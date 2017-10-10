@@ -1,0 +1,385 @@
+\documentclass[a4paper]{article}
+
+\def\npart {IB}
+\def\nterm {Michaelmas}
+\def\nyear {2017}
+\def\nlecturer {Dr. Keating }
+\def\ncourse {Linear Algebra}
+
+\include{header}
+
+\begin{document}
+\maketitle
+
+\setcounter{section}{-1}
+\section{Introduction}
+
+
+
+\section{Vector Spaces}
+
+\begin{defi}
+	An $ \F $-Vector space (a vector space on $ \F $) is an abelian group $ (V, +) $ equipped with a function\footnote{scalar multiplication} $ F \times V \to V $, $ (\lambda,v) \mapsto \lambda V $
+	
+	\[ \lambda ( v_{1} + v_{2}) = \lambda v_{1} + \lambda v_{2} \]
+	
+	\[ (\lambda_{1} + \lambda_{2}) v = \lambda_{1} v + \lambda_{2} v \]
+	
+	\[ \lambda (\mu v) = \lambda \mu v \]
+	
+	\[ 1v = v \]
+	
+	\[ v + \mathbf{0} = v \]
+	
+	for all $ \lambda_{i}, \mu \in F $, $ v_{i} \in V $
+	
+\end{defi}
+
+Note that we will not be underlining our vectors, as this is cumbersome here. We will however be using $ \mathbf{0} $ to denote the zero vector. 
+
+\begin{eg}
+	For all $ n \in \N  $, $ \F^{n} = $ space of column vectors of length $ n $, entries in $ \F $. We understand the definition as entry-wise addition, entry-wise scalar multiplication
+	  
+\end{eg}
+
+
+\begin{eg}
+	$ M_{m,m}(\F) $, the set of $ m \times m $ matrices with entries in $ \F $
+	
+	\[ \begin{pmatrix}
+	a & b \\
+	c & d
+	\end{pmatrix} + \begin{pmatrix}
+	e & f \\
+	g & h
+	\end{pmatrix} = \begin{pmatrix}
+	a + e & b + f\\
+	c + g & d + h
+	\end{pmatrix} \]
+	again all operations defined entry-wise
+\end{eg}
+
+\begin{eg}
+	For any set $ X $, $ \R^{X} = \{ f : X \to \R \}$
+	Addition and scalar multiplication defined pointwise $ = f_{1}(x) + f_{2} (x) $.
+\end{eg}
+
+
+\begin{ex}
+	Show that the above examples satisfy the axioms
+\end{ex}
+
+\begin{prop} 
+	$ 0 v = \mathbf{0} $ for all $ v \in V $.
+\end{prop}
+
+\begin{proof}
+	( $ (0 + 0)v = 0v \iff 0 v + 0v = 0v \iff 0v = \mathbf{0} $)
+\end{proof}
+
+\begin{ex}
+	Show\footnote{Hint: Use the previous proposition} that $ (-1)v = -v $
+\end{ex}
+
+\begin{defi}
+	Let V be an $ \F $-vector space. A subset $ U $ of $ V $ is a subspace ( $ U \leq V $) if: 
+	\begin{enumerate}
+		\item $ \mathbf{0} \in U $
+		\item $ u_{1}, u_{2} \in U  \Rightarrow u_{1} + u_{2} \in U $ ``$ U $ is closed under addition...''
+		\item $ u \in U $, any $ \lambda \in \F \Rightarrow \lambda u \in U$ ``...and scalar multiplication''
+	\end{enumerate}
+\end{defi}
+
+
+\begin{ex}
+	If $ U $ is a subspace of $ V $, then $ U $ is also an $ \F $-vector space.
+\end{ex}
+
+\begin{eg}
+	Let $ V = \R^{\R} $, then $ f : R \to R $. The set of all continuous functions $ C(\R) $ are a subspace. An even smaller subspace is the set of all polynomials.
+\end{eg}
+
+
+\begin{ex} Define $ U \subseteq R^{3} $ as: 
+	\[ \begin{pmatrix}
+a_{1} \\
+a_{2} \\
+a_{3}
+\end{pmatrix} \qquad a_{1} + a_{2} + a_{3} = t \]
+for some constant  $ t $. 
+Check that this is a subspace of $ \R^{3} $ if and only if $ t = 0 $.
+\end{ex}
+
+\begin{prop} 
+	Let $ V $ be an $ F $-vector space, $ U,W \leq V $. Then $ U \cap W \leq V $.	
+\end{prop}
+
+\begin{proof}
+	\begin{enumerate}
+		\item 	$ 0 \in U $, $ 0 \in W  \Rightarrow 0 \in U \cap W $ 
+		\item Suppose $ u,v \in U \cap W $, $ \lambda, \mu \in F $.
+		$ U $ is a subspace $ \Rightarrow  \lambda u + \mu v \in U $. Similarly $ \lambda u + \mu v \in U \in W $, so it is in the intersection. 
+	\end{enumerate}
+\end{proof}
+
+\begin{eg}
+	$ V = \R^{3} $, $ U = \left\{ \begin{pmatrix}
+	x\\
+	y\\
+	z
+	\end{pmatrix} \; | \; x = 0 \right\} $, $ V = \left\{ \begin{pmatrix}
+	x\\
+	y\\
+	z
+	\end{pmatrix} \; | \; y = 0 \right\}  $ then $ U \cap W = U = \left\{ \begin{pmatrix}
+	x\\
+	y\\
+	z
+	\end{pmatrix} \; | \; x = 0, y= 0 \right\}  $ (intersect along the $ z $-axis)
+\end{eg}
+
+Note: union of family of subspaces is almost never a subspace itself.
+
+
+\begin{defi}
+	Let $ V $ be an $ F $-vector space, $ U,W \leq V $. The \emph{sum} of $ U $ and $ W $ is the set:
+	
+	\[ U + W = \left\{  u + w \; | u \in U, w \in W    \right\}  \]
+\end{defi}
+
+\begin{prop} 
+	$ U + W \leq V $
+\end{prop}
+
+\begin{proof}
+	$ \mathbf{0} \in U,W \Rightarrow \mathbf{0} + \mathbf{0} = \mathbf{0} \in U + W $
+	
+	$ u_{1},u_{2} \in U $, $ w_{1},w_{2} \in W $, 
+	
+	\[ (u_{1} + w_{1}) + (u_{2} + w_{2}) = \underbrace{(u_{1} + u_{2})}_{\in U}  + \underbrace{(w_{1} + w_{2})}_{\in W} \]
+	
+	Similarly for scalar multiplication (ex.)
+\end{proof}
+
+Note: $ U + W $ is the smallest subspace containing both $ U $ and $ W $. (This is becaues all elements of the form $ u + w $ ae forced to be in such a subspace by the ``closed under addition'' axiom)
+
+
+\begin{defi}
+	$ V $ is an $ \F $-vector space, $ U \leq V $. The quotient space\footnote{think of this as the collection of cosets of $ U $ in $ V $ } $ V / U $ is the abelian group $ V / U $ equipped with scalar multiplication;
+	
+	\[ F \times V / U \to V / U \]
+	
+	\[ (\lambda, v + U) \mapsto \lambda v + U \]
+\end{defi}
+
+\begin{prop} 
+	This is well-defined, and $ V/U $ is an $ F $-vector space.
+\end{prop}
+
+\begin{proof}
+	Well-defined: Suppose $ v_{1} + U = v_{2} + U \in V / U $. $ \Rightarrow (v_{2} - v_{1}) \in U \Rightarrow ( \lambda v_{2} - \lambda v_{1}) \in U \Rightarrow \lambda v_{2} + U = \lambda v_{1} + U \in V / U $
+
+To show that it is an $ \F $-vector space, we must show that the axioms hold. These follow from the axioms of $ V $.
+$ \lambda ( \mu (v + U)) = \lambda ( \mu v + U) = \lambda(u v) + U = (\lambda u) v + U  = \lambda u (v \in U) $ (scalar multiplication on $ V / U $). 
+
+Ex. Other axioms follow similarly from using vecton space axioms
+
+\end{proof}
+
+\begin{defi}
+	$ V $ is an $ \F $-vector space, $ S \subset V $. The \emph{span} of $ S $ is denoted by 
+	
+	\[ <S> = \left\{ \sum_{s \in S}  \lambda_{s} s \; | \; \lambda_{s} \in \F \right\}  \]
+	
+	ie. the set of all finite linear combinations, all but finitely many of the $ \lambda_{s} $ are zero.
+\end{defi}
+
+Remark: $ <S> $ is the smallest subspace of $ V $ which contains\footnote{This is essentially a tautology} all of the elements of $ S $
+
+Convention: $  < \emptyset > = \{ \mathbf{0} \} $.
+
+\begin{eg}
+	$ V = \R^{3} $, 
+	
+	\[ S = \left\{ \begin{pmatrix}
+	1 \\
+	0 \\
+	0
+	
+	\end{pmatrix}, \begin{pmatrix}
+	0\\
+	1\\
+	2
+	
+	\end{pmatrix}, \begin{pmatrix}
+	3\\
+	-2\\
+	-4
+	\end{pmatrix} \right\}  \]
+	5
+	\[ <S> = \{ \begin{pmatrix}
+	a\\
+	b\\
+	2b
+	\end{pmatrix} \} \; | \; a,b \in \R \]
+	
+	ie. we have took linear combinations of the first two. We don't need the third one.
+	
+\end{eg}
+
+
+
+\begin{eg}
+	For $ X $ a set, 
+	
+	
+	\[ \delta_{x}(y) = \begin{cases} 1  & \text{ if } x = y \\ 0  & \text{ if } x \neq y \end{cases}  \]
+	
+	\[ < \delta_{x} \; | \; x \in X > = \{  f \in \R^{X} \; | \; f \text{ has finite support} \}  \]
+	
+	\[ = <  x \in X \; | \; f(x) \neq 0 > \]
+\end{eg}
+
+\begin{defi}
+	$ S $ \emph{spans} $ V $ if $ <S> = V $
+\end{defi}
+
+\begin{defi}
+	$ V $ is \emph{finite dimensiona}l over $ \F $ if it is spanned by a set that is finite.
+\end{defi}
+
+\begin{defi}
+	The vectors $ v_{1},\cdots,v_{n} $ are \emph{linearly indepedent} over $ \F $ if 
+	
+	\[ \sum_{i = 1}^{n} \lambda_{i} v_{i} = 0 \Rightarrow \lambda_{i} \text{ for all } i \]
+	
+	some coefficients $ \lambda_{i} \in \F  $. $ S \subset V $ is linearly independent if every finite subset of it is. 
+\end{defi}
+
+\begin{eg}
+	The fist example, $ u,v,w $ are not linearly independent.
+	
+\end{eg}
+
+\begin{eg}
+	The set $ \{  \delta_{X} \; | \; x \in X \} $ is linearly indepndent.
+\end{eg}
+
+
+\begin{defi}
+	If \emph{not} linearly indepnedent, say a set is linearly dependent.
+\end{defi}
+
+\begin{defi}
+	$ S $ is a \emph{basis} of $ V $ if it is linearly indepnedent and spans $ V $
+\end{defi}
+
+
+\begin{eg}
+	$ \F^{n}  $  standard basis: $ e_{1},e_{2},\cdots,e_{n} $.
+\end{eg}
+
+\begin{eg}
+	$ V = \C $ over $ \C $ has natural basis $ \{ 1\} $, over $ \R $ has natural basis $ \{ 1,i \} $
+\end{eg}
+
+
+\begin{eg}
+	$ V = \mathcal{P}(\R) $ space of all polynomials, has natural basis 
+	
+	\[ \{ 1,x,x^{2},x^{3},\cdots \} \]
+\end{eg}
+
+\begin{ex}
+	Check this carefully 
+\end{ex}
+
+
+\begin{lemma} 
+	$ V $ is an $ \F $-vector space. The vectors $ v_{1}, \cdots, v_{n} $ form a basis of $ V $ iff each vector $ v \in V $ has a unique expression
+	
+	\[ v = \sum_{i=1}^{n} \lambda_{i}v_{i}, \text{ with } \lambda_{i} \in \F \] 
+	
+\end{lemma}
+
+\begin{proof}
+	$ (\Rightarrow) $ Fix $ v \in V$. The $ v_{i} $ span, so 
+	
+	\[ \exists \lambda_{i} \in \F \text{ s.t. } v = \sum \lambda_{i} v_{i} \]
+	
+	Suppose also $ v = \sum \mu_{i} v_{i} $ for some $ \mu_{i} \in \F $. $ \sum \left( \mu_{i} - \lambda_{i} \right)  v_{i} = \mathbf{0} $.
+	
+	The $ v_{i} $ are linearly indepnedent so $ \mu_{i} - \lambda_{i} = 0 $ for all $ i $, $ \lambda_{i} = \mu_{i} $
+	
+	
+	$ (\Leftarrow) $ The $ v_{i} $ span $ V $, since any $ v \in V $ is a linear combination of them.
+	IF $ \sum_{i=1}^{n} \lambda_{i} v_{i} = \mathbf{0} $. Note that $ \mathbf{0} = \sum_{i=1}^{n} 0 v_{i} $. By uniqueness (applied to $ \mathbf{0} $), $ \lambda_{i}  = 0 $ for all $ i $. 
+\end{proof} 
+
+
+\begin{lemma} 
+	If $ v_{1},\cdots,v_{n} $ span $ V $ (over $ \F $), then some subset of $ v_{1},\cdots,v_{n} $ is a basis for $ V $ (over $ \F $).	
+\end{lemma}
+
+\begin{proof}
+		If $ v_{1},\cdots,v_{n} $ ilnearly indepnedent, done.
+		Otherwise for some $ l $, there exist $ \alpha_{1},\cdots,\alpha_{l-1} \in \F $ such that
+		
+		\[ v_{l} = \alpha_{1} v_{1} + \cdots + \alpha_{l-1}v_{l-1} \]
+		
+		
+		( If $ \sum \lambda_{i} v_{i} = \mathbf{0}$, not all $ \lambda_{i} = 0 $. Take $ l $ maximaml with $ \lambda_{i} \neq  0$, just $ \alpha_{i} = - \lambda_{i} / \lambda_{l} $ ).
+		
+		Now $ v_{2}, \cdots, v_{l-1},v_{l+1},\cdots,v_{n} $ still span $ V $. Continue interatively until get linear independence. 
+		
+\end{proof}
+
+\begin{thm} (Steinitz exchange lemma)
+	Let $ V $ be a finite dimensional vector space over $ \F $. Take $ v_{1},\cdots,v_{m} $ to be linearly independent $ w_{1},\cdots,w_{n} $ to span $ V $. 
+	
+	Then $ m \leq n $, and reordering the spanning set if needed,
+	
+	\[ v_{1},\cdots, v_{m}, w_{m+1},\cdots,w_{n} \] span $ V $.
+	
+\end{thm}
+
+\begin{proof} (Induction)
+	Suppose that we've replaced $ l (\geq 0)$ of the $ w_{i} $. Reordering the $ w_{i} $ if needed, $ v_{1},\cdots,v_{l},w_{l+1},\cdots,w_{n} $ span $ V $. 
+	
+	If $ l = m $, done.
+	
+	If $ l < m $, then
+	
+	\[ v_{l+1} = \sum_{i=1}^{l} \alpha_{i} v_{i}  + \sum_{i > l} \beta_{i} w_{i} \]
+	
+	$ \alpha_{i}, \beta_{i} \in \F $. As the $ v_{i} $ are lin. indep, $ \beta_{i} \neq 0 $ for some $ i $. (After reordering, $ \beta_{l+1} \neq 0 $).
+	
+	\[ w_{l+1} = \frac{1}{\beta_{l+1}} \left( v_{l+1} - \sum_{i \leq l} \alpha_{i} v_{i}  - \sum_{i > l+1} \beta_{i} w_{i} \right)  \]
+	
+	This $ v_{1},\cdots,v_{l+1},w_{l+2},\cdots,w_{n} $ also spans $ V $. After $ m $ steps, $ w_{i} $ will have replaced $ m $ of the $ w_{i} $ by $ v_{i} $. Thus $ m \leq n $.
+\end{proof}
+
+
+\begin{thm} 
+	If $ V $ is a finite dimensional vector space over $ \F $, then any two bases for $ V $ have the same number of elements. This is what we call the \emph{dimension} of $ V $, denoted $ \dim_{\F} V $.
+\end{thm}
+
+\begin{proof}
+	If $ v_{\{1},\cdots,v_{n} $ is a basis and $ w_{1},\cdots,w_{m} $ is another basis, the $ \{ v_{i} \} $ span and $ \{ w_{i} \} $ is linearly indepnedent' so by Steinitz $ m \leq n $. Likewise, $ n \leq m $.
+\end{proof}
+
+
+\begin{eg}
+	$ \dim_{\C} \C = 1 $, $ \dim_{\R} \C = 2 $
+\end{eg}
+
+
+
+
+
+\subsection{}
+
+
+
+
+\end{document}

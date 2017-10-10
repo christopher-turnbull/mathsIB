@@ -1,0 +1,239 @@
+\documentclass[a4paper]{article}
+
+\def\npart {IB}
+\def\nterm {Michaelmas}
+\def\nyear {2017}
+\def\nlecturer {C.G.Caulfield }
+\def\ncourse {Methods}
+
+\include{header}
+
+\begin{document}
+\maketitle
+
+\setcounter{section}{-1}
+\section{Introduction}
+
+I will never say anything that is untrue deliberately...
+
+Self-adjoint ODEs
+
+\section{Fourier Series}
+
+\subsection{Peridoidic Functions}
+
+\begin{defi}
+	A function $ f(t) $ is \emph{periodic} with period $ T $ if $ f(t + T) = f(T) $
+\end{defi}
+
+Fig 1
+
+\begin{eg}
+	 \[ A \sin \omega t   \]
+	
+	$ A  $ is the \emph{amplitude}, $ \omega $ is the \emph{frequency}, $ 2 \pi / \omega $ is the \emph{period}.
+\end{eg}
+
+Sines and cosines are beautiful because they have an orthogonality property:
+
+\[ \cos(A \pm B) = \cos A \cos B \mp \sin A \sin B \]
+
+
+\[ \cos A \cos B = \frac{1}{2} \left[  \cos (A - B) + \cos(A + B) \right] \]
+\[ \sin A \sin B = \frac{1}{2} \left[  \cos (A - B) - \cos(A + B) \right] \]
+
+We want to consider $ \sin n\pi x / l $, $ \sin m \pi x / l $, where $ n, m $ are positive integers. These functions are periodic with period $ 2l $. \footnote{They have a common period of $ 2l $, not their smallest period!}
+
+
+
+\begin{align*}
+SS_{mn} & : = \int_{0}^{2l} \sin \left( \frac{m \pi x}{l} \right) \sin \left( \frac{n \pi x}{l} \right) \d x \\
+& = \frac{1}{2} \int_{0}^{2l} \cos \left[  \frac{(m-n) \pi x}{l} \right]  \; \d x - \frac{1}{2} \cos \left[  \frac{(m+n) \pi x}{l} \right] \; \d x 
+\end{align*}
+
+
+if $ m \neq n $,
+
+\[ SS_{mn} = \frac{l}{2 \pi} \left[  \frac{\sin (m-n)\pi x / l}{m - n} -  \frac{\sin (m+n)\pi x / l}{m + n} \right]_{0}^{2l} = 0  \]
+
+if $ m = n $, then $  SS_{mn} = 1 $ (provided $ m \neq 0 $, $ n \neq 0 $). Hence
+\[ SS_{mn} = \begin{cases} \delta_{mn}  & \text{ if }  m, n \neq 0 \\ 0 & \text{ if }   m \text{ or } n = 0\end{cases}  \]
+
+Similarly, $ CC_{mn} = \int_{0}^{2l} \cos \left( \frac{m \pi x }{l} \right) \cos \left( \frac{n \pi x }{l} \right) \; \d x = l \delta_{mn} $
+ $ \forall m,n \neq 0 $, and $ 2l $ if $ m = n = 0 $
+ 
+Finally,
+
+\begin{align*}
+CS_{mn} & = \int_{0}^{2l} \cos \left( \frac{m \pi x }{l} \right) \sin \left( \frac{n \pi x }{l} \right) \; \d x  \\
+& = \frac{1}{2} \int_{0}^{2l} \frac{\sin (m + n) \pi x }{l} \; \d x + \frac{1}{2} \int_{0}^{2l} \frac{\sin (m - n) \pi x }{l} \; \d x = 0
+\end{align*}
+
+By analogy with vectors [these integrals are indeed \emph{inner products}], $ \sin n \pi x / l $, $ \cos n \pi x / l $ are said to be orthogonal on the interval $ [0,2l] $.
+
+They actually constitute an \emph{orthogonal basis}. ie. it is possible to represent an arbitrary (but sufficiently well behaved\footnote{to be definied}) function in terms of an infinite series (Fourier series) formed as a sum of sins and cosines. 
+
+
+\subsection{Definition of a Fourier Series}
+
+Any well behaved periodic function $ f(x) $ with periodic $ 2L $ can be written as a Fourier Series:
+
+\[ \frac{f(x_{+}) + f(x_{-})}{2} = \frac{1}{2} a_{0} + \sum_{n=1}^{\infty} a_{n} \cos \left( \frac{n \pi x}{L} \right) + b_{n} \sin \left( \frac{m \pi x}{L} \right)   \] 
+
+$ a_{n} $ and $ b_{n} $ are the Fourier Coefficients, $ f(x_{+}) $ and $ f(x_{-}) $ are the right limit approaching form above and the left limit approaching from below respectively 
+
+If $ f(x) $ is continuous at $ x_{c} $, then the LHS is just $ f(x) $. If $ f(x) $ has a bounded discontinuity, at $ x_{d} $, ie. $ f(x_{d}^{-}) \neq f(x_{d}^{+})$, but $ (f(x_{d}^{-}) - f(x_{d}^{+})) $ is finite, then the FS tends to the mean value of the two limits. 
+
+Coefficient construction:
+Multiply rhs of (*) by $ \sin m \pi x / L $, integrate over $ 0 $ to $ 2L $, assume you can invert order or summation and integration.
+
+\begin{align*}
+\int_{0}^{2L} \left[  \frac{a_{0}}{2} + \sum_{n=1}^{\infty} a_{n} \cos \left( \frac{n \pi x}{L} \right) + b_{n} \sin \left( \frac{m \pi x}{L} \right) \right] \sin \frac{m \pi x}{2} \; \d x
+\end{align*}
+
+We see that
+
+
+\[ \frac{a_{0}}{2}\int_{0}^{2L} \sin \frac{m \pi x}{L} \; \d x = 0 \]
+\[ \sum_{n=1}^{\infty} \int_{0}^{2L} a_{n} \cos \left( \frac{n \pi x}{L} \right) \sin \left( \frac{m \pi x}{L} \right) \; d x = 0 \]
+\[ \sum_{n=1}^{\infty}  \int_{0}^{2L} b_{n} \sin \left( \frac{n \pi x}{L} \right) \sin \left( \frac{m \pi x}{L} \right) \; d x = Lb_{n} \]
+
+So 
+
+\[ \text{LHS} = \int_{0}^{2L} f(x) \sin \left( \frac{m \pi x}{L} \right)  \; \d x \Rightarrow b_{m} = \frac{1}{L} \int_{0}^{2L} f(x) \sin \left( \frac{m \pi x}{L} \right) \; \d x \]
+
+
+Multiply by $ \cos \frac{m \pi x}{l} $ and integrate from $ 0 $ to $ 2L $ (inc $ m = 0 $)
+
+
+\[ \int_{0}^{2L} \left( \frac{1}{2} a_{0} + \sum_{n=1}^{\infty} a_{n} \cos \frac{n \pi x}{L}  + b_{n} \sin \frac{m \pi x}{L}\right) \cos \frac{m \pi x}{L} \; \d x \]
+
+Non zero only when $ m = 0 $
+
+Therefroe 
+
+\[ \frac{a_{0}}{2} 2L = \int_{0}^{2L} f(x) \; \d x \Rightarrow \frac{a_{0}}{2} = \frac{1}{2L} \int_{0}^{2L} f(x) \; \d x \]
+
+\[ a_{m} = \frac{1}{L} \int_{0}^{2L} f(x) \cos \left(  \frac{m \pi x}{L}  \right) \; \d x  \]
+
+The range of integration is one period so its also permissibel to choose $ \int_{-L}^{L} $
+
+a paricularly nice case is when $ L = \pi $.
+
+\[ a_{m}  = \frac{1}{\pi} \int_{-\pi}^{\pi} f(x) \cos m x \; \d x \qquad m \geq 0 \]
+
+\[ b_{m} = \frac{1}{\pi} \int_{\pi}^{\pi} f(x) \sin m x \; \d x \qquad m \geq 1 \]
+
+
+\subsection{Dirichlet Conditions}
+
+If $ f(x) $ is a periodic function with period $ 2l $ st.
+
+\begin{enumerate}
+	\item it is absolutely integrable \footnote{ie. $ \int_{0}^{2l} | f(x) | \; \d x $ is well defined}
+	\item it has a finite number of extrema (ie maxs and mins) in $ [0,2l] $
+	\item it has a finite number of bounded discontinuities in $ [0,2l] $
+	
+\end{enumerate}
+
+then the FS representation converges to $ f(x) $ for all points where $ f(x) $ is cts, and at points $ x_{d} $ where $ f(x) $ is discontinuous, the series coverges to the avg value of the left and right limits, ie. to $ \frac{1}{2} \left( f(x_{d_{+}}) + f(x_{d_{-}}) \right)  $. These conditions are satisfied if the function is of `bounded variation'
+
+\subsection{Smoothness and order of Fourier coefficients}
+
+If the $ p^{\text{th}} $ derivative is the lowest derivative which is discontinuous somewhere (inc at the endpoints), then the F.C. are $ \Oc[n^{-(p+1)}] $ as $ n \to \infty $, eg. if a function has a bounded discontinuity, zeroth derivative is discontinuous: coefficients are of order $ \frac{1}{n} $ as $ n \to \infty $
+
+\begin{eg}
+	The sawtooth function, $ f(x) = x $ on $ -L \leq x \leq L $
+	
+	  \begin{center}
+		\begin{tikzpicture}
+		\draw (-3.2, 0) -- (3.2, 0);
+		
+		\draw [thick, mblue] (-3, -1) -- (-1, 1);
+		\draw [dashed, mblue] (-1, 1) -- (-1, -1);
+		\draw [thick, mblue] (-1, -1) -- (1, 1);
+		\draw [dashed, mblue] (1, 1) -- (1, -1);
+		\draw [thick, mblue] (1, -1) -- (3, 1);
+		
+		\node at (-3, 0) [below] {$-3\pi$};
+		\node at (-1, 0) [below] {$-\pi$};
+		\node at (1, 0) [below] {$\pi$};
+		\node at (3, 0) [below] {$3\pi$};
+		\end{tikzpicture}
+	\end{center}
+\end{eg}
+
+Function is odd, so
+
+\[ a_{m} = \frac{1}{L} \int_{L}^{-L} x cos\left( \frac{m \pi x}{L} \right) \\ \d x = 0 \],
+
+\begin{align*}
+b_{m} = \frac{1}{L} \int_{-L}^{L} x \sin \left( \frac{m \pi x}{L}\right) \; \d x & = \frac{1}{L} \left(  \left[  - \frac{xL}{m\pi} \cos\left( \frac{m \pi x}{L} \right)  \right]_{-L}^{L} - \int_{-L}^{L} \frac{-L}{m \pi} \cos\left( \frac{m \pi x}{L} \right) \; \d x  \right)   \\
+& = \frac{1}{m\pi} \left( -2L cos(m \pi) + \left[  \sin \left( \frac{m \pi x}{L} \right) \frac{L}{m \pi}  \right]_{-L}^{L}  \right) \\
+& = \frac{2L}{m\pi} (-1)^{m+1}
+\end{align*}
+
+So
+
+\[ \frac{f(x_{+}) + f(x_{-})}{2} = \frac{2L}{\pi} \left[  \sin \left( \frac{\pi x}{L} \right) - \frac{1}{2} \sin  \left( \frac{2 \pi x}{L} \right) + \cdots  \right]  \]
+
+\begin{enumerate}
+	\item $ f_{N} (x) : = \sum_{n=1}^{N} b_{n} \sin\left( \frac{n \pi x}{L} \right) \to f(x)  $ almost everywhere, but the convergence is non-uniform. 
+	\item Persistence overshoot @ $ x = L $: 'Gibbs phenomenon'
+	\item $ f(L) = 0 $ average of right and left limits
+	\item Coefficients are $ \Oc (\frac{1}{n}) $ as $ n \to \infty $
+	
+\end{enumerate}
+
+\begin{eg}
+	The integral of the sawtooth function, $ f(x) = \frac{1}{2} x^{2} $, $ - L \leq x \leq L $
+\end{eg}
+	
+\begin{ex}
+	\[ f(x) = L^{2}  \left[  \frac{1}{6} + 2 \sum_{n=1}^{\infty} \frac{(-1)^{n}}{(n \pi)^{2}} \cos \left( \frac{n \pi x}{L} \right)  \right]  \]
+\end{ex}
+
+Note at $ x = 0 $, 
+
+\[ 0 = L^{2} \left[ \frac{1}{6}  + 2 \sum_{n=1}^{\infty} \frac{(-1)^{2}}{(n \pi)^{2}} \right] \Rightarrow \frac{\pi^{2}}{12} = \sum_{n=1}^{\infty} \frac{(-1)^{n+1}}{n^{2}} \]
+
+\section{Properties of the Fourier Series}
+
+\subsection{Integration and Differentiation}
+
+\subsubsection{Integration: Always works!}
+
+FS. can be integrated term by term:
+
+$ f(x) $ periodic with period $ 2L $ and has a FS (so it satisfies Dirichlet conditions)\footnote{pay attention to the limits here}:
+
+\[ \frac{f(x_{+}) + f(x_{-})}{2} = \frac{1}{2} a_{0} + \sum_{n=1}^{\infty} a_{n} \cos \left( \frac{n \pi x}{L} \right) + b_{n} \sin \left( \frac{m \pi x}{L} \right)   \] 
+
+\begin{align*}
+F(x) = \int_{-L}^{x} f(x') \; \d x' & = \frac{a_{0}(x + L)}{2} + \sum_{n=1}^{\infty} \frac{a_{n}L}{n \pi } \sin\left( \frac{n \pi x}{L} \right) \\
+& \qquad  + \sum_{n = 1 }^{\infty} \frac{b_{n} L}{n \pi} \left[  (-1)^{n} - \cos \left( \frac{n \pi x}{L} \right)  \right] \\
+& = \frac{a_{0}L}{2} + L \sum_{n=1}^{\infty} (-1)^{n} \frac{b_{n}}{n \pi} \\
+& \qquad - L \sum_{n = 1 }^{\infty}\frac{b_{n}}{n \pi} \cos\left( \frac{n \pi x}{L} \right)  \\
+& \qquad + L \sum_{n = 1 }^{\infty} \left( \frac{a_{n} - (-1)^{n}a_{0}}{n \pi} \right) \sin \left( \frac{n \pi x}{L} \right)  
+ \end{align*}
+ 
+If $ a_{n} $ and $ b_{n} $ are FC then the series involving $ \frac{a_{n}}{n} $ and $ \frac{b_{n}}{n}  $ (multipled by cos or sin) must also converge 
+
+\subsubsection{Differentiation: Doesn't always work!}
+
+Let $ f(x) $ be a periodic function with period 2, st.
+
+\[ f(x) = \begin{cases} 1  & \text{ if } 0 < x < 1 \\ - 1 & \text{ if } -1 < x < 0 \end{cases} \]
+
+\[ \frac{f(x_{+}) + f(x_{-})}{2}  = \frac{4}{\pi} \sum_{n=1}^{\infty} \frac{\sin\left(  (2n - 1)\pi x \right) }{2n - 1} \]
+
+Apply diff rules:
+
+\[ f'(x) = 4 \sum_{n=1}^{\infty} \cos \left( (2n - 1)\pi x \right)  \]
+
+This is clearly divergent, even though $ f(x) = 0 $ for al $ x \neq 0 $.
+
+ The extra factor of $ 2n - 1 $ is the problem. It's related to the discontinuity, $ f'(x) $ does not satisfy the Dirichlet condition
+
+
+  \end{document}
