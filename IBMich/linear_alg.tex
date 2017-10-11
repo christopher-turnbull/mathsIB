@@ -365,7 +365,7 @@ Convention: $  < \emptyset > = \{ \mathbf{0} \} $.
 \end{thm}
 
 \begin{proof}
-	If $ v_{\{1},\cdots,v_{n} $ is a basis and $ w_{1},\cdots,w_{m} $ is another basis, the $ \{ v_{i} \} $ span and $ \{ w_{i} \} $ is linearly indepnedent' so by Steinitz $ m \leq n $. Likewise, $ n \leq m $.
+	If $ \{  v_{1},\cdots,v_{n} \} $ is a basis and $ w_{1},\cdots,w_{m} $ is another basis, the $ \{ v_{i} \} $ span and $ \{ w_{i} \} $ is linearly indepnedent' so by Steinitz $ m \leq n $. Likewise, $ n \leq m $.
 \end{proof}
 
 
@@ -373,11 +373,196 @@ Convention: $  < \emptyset > = \{ \mathbf{0} \} $.
 	$ \dim_{\C} \C = 1 $, $ \dim_{\R} \C = 2 $
 \end{eg}
 
+\begin{thm} 
+	$ V $, finite dim, $ v $-space over $ \F $. If $ w_{1},\cdots,w_{l}$ is a linearly indepnedent set of vectors, we can extend it to a basis $ w_{1},\cdots,w_{l},v_{l+1},\cdots,v_{n} $
+\end{thm}
 
 
+\begin{proof}
+	Apply Steinitiz to $ w_{1},\cdots,w_{l} $ (lin indep) and any basis $ v_{1},\cdots,v_{n} $.
+	
+	Or directrly, if $ V = <w_{1},\cdots,w_{l} > $, stop.
+	
+	Otherwise take $ v_{l+1} \in V \; \setminus <w_{1},\cdots,w_{l} > $, now $ w_{1},\cdots,w_{l},v_{l+1} $ is linearly indep. iterate
+\end{proof}
 
 
-\subsection{}
+\begin{cor} 
+	Suppose $ V $ is a finite dimensional vector space, with dimension $ n $.
+	
+	\begin{enumerate}
+		\item Any linearly independent set of vectors has at most $ n $ elements with equality iff it's a basis
+		\item Any spanning set of vectors must have at least $ n $ elements, with equality if and only if it's a basis.
+		
+	\end{enumerate}
+\end{cor}
+
+Slogan ``Choose the best basis for the job''
+
+\begin{thm} 
+	Let $ U,W $ be subspaces of $ V $. If $ U $, $ W $ are finite dim, so is $ U + W $ and $ \dim (U + W)   = \dim U + \dim W - \dim (U \cap W)  $
+\end{thm}
+
+\begin{proof}
+	Pick basis basis $ v_{1},\cdots,v_{l} $ of $ U \cap W $. Extend it to basis $ v_{1},\cdots,v_{l},u_{1},\cdots,u_{m} $ of $ U $.
+	Extend it to basis $ v_{1},\cdots,v_{l},w_{1},\cdots,w_{n} $ of $ W $.
+	
+	Claim: $ v_{1},\cdots,v_{l},u_{1},\cdots,u_{m},w_{1},\cdots,w_{n} $ is a basis for $ U + W $.
+	\begin{enumerate}
+		\item Span: $ u \in U $, then $ u = \sum \alpha_{i} v_{i}  + \sum _{\beta_{i} u_{i}} $, $ \alpha_{i},\beta_{i} \in \F $
+		$ w \in W $, then $ w = \sum \gamma_{i} v_{i}  + \sum _{\delta_{i} w_{i}} $, $ \gamma_{i},\delta_{i} \in \F $
+		
+		\[ u + w  = \sum  (\alpha_{i} + \gamma_{i})v_{i}   + \sum (\beta_{i} + \delta_{i} )u_{i} \]
+		
+		\item lin indep: $ u = \sum \alpha_{i} v_{i}  + \sum _{\beta_{i} u_{i}} + \sum \gamma_{i} w_{i} = \mathbf{0} $
+		
+		\[ \Rightarrow  u =  \underbrace{\sum \alpha_{i} v_{i}  + \sum \beta_{i} u_{i}}_{\in U} = \underbrace{- \sum \gamma_{i} w_{i} }_{\in W}  \in U \cap W  \]
+		
+		This is equal to $ \sum \delta_{i} v_{i} $ for some $ \delta_{i} \in \F $ because $ v_{i} $ are basis for $ U \cap W $.
+		
+		AS $ v_{i} $ and $ w_{i} $ are lin indep, $ (*) \Rightarrow \gamma_{i} = \delta_{i} = 0 $ for all $ i $.
+		
+		$ \Rightarrow \sum \alpha_{i} v_{i} + \sum \beta_{i} u_{i} = 0 \Rightarrow \alpha_{i} = \beta_{i} = 0  $ because $ v_{i} $ and $ u_{i} $ rom a basis for $ U $.
+		
+		
+ 		
+	\end{enumerate}
+\end{proof}
+
+
+\begin{thm} 
+	Let $ V $ be a finite dim $ \F $-vector space, $ U \leq V $, then $ U $ and $ V / U $ are also of finite dim, and
+	
+	\[ \dim V = \dim U + \dim V / U \]
+\end{thm}
+
+\begin{proof}
+	\begin{ex}
+		Show that $ U $ is finite dim.
+	\end{ex}
+
+
+Let $ u_{1},\cdots,u_{l} $ be a basis for $ U $. Extend it to a basis for $ V $. Say $ u_{1},\cdots,u_{l},w_{l+1},\cdots,w_{n} $ of $ V $.
+\begin{ex}
+	Check: $ w_{l+1} + U, \cdots, w_{m} + U $ form a basis for $ V / U $.
+\end{ex}
+
+\end{proof}
+
+\begin{cor} 
+	If $ U $ is a proper subspace of $ V $, $ V $ is finite dimensional, $ \dim U < \dim V $.
+	
+	\begin{proof}
+		$ V / U \neq \{ \mathbf{0} \} \Rightarrow \dim V/U  > 0 \Rightarrow \dim U < \dim V$
+	\end{proof}
+\end{cor}
+
+\begin{defi}
+	Let $ V $ be an $ \F $-vector space, $ U,W \leq V $
+	Then $ V = U + \oplus W $ ($ V $ is an internal direct sum of $ U $ and $ W $) if every element of $ V $ can be written as $ v  = u + w, w \in W, u \in U $, uniquely.
+	
+	$ W $ is a \emph{direct compliment} of $ U $ in $ V $
+\end{defi}
+
+\begin{lemma} 
+	$ U,W \leq V $. The following are equivalent
+	
+	\begin{enumerate}
+		\item $ V = U \oplus W $
+		\item $ V = U + W $ and $ U \cap W = \{ \mathbf{0} \} $
+		\item $ B_{1} $ any basis of $ U $, $ B_{2} $ is any basis of $ W $, then $ B = B_{1} \cup B_{2} $ is a basis of $ V $.
+		
+	\end{enumerate}
+\end{lemma}
+
+
+\begin{proof}
+	(ii) $ \Rightarrow $ (i). Any $ v \in V $ is $ u + w $ for some $ u \in U $, $ w in W $.
+	
+	\[ u_{1} + w_{1} = u_{2} + w_{2} \Rightarrow u_{1} - u_{2} = -w_{1} + w_{2} \in U \cap W = \{ \mathbf{0} \} \Rightarrow w_{1} = w_{2}, u_{1} = u_{2} \]
+	
+	
+	(i) $ \Rightarrow $ (iii) $ B $ spans, any $ v \in V $ is $ u + w $, for some $ u \in U $, $ w \in W $, write $ u $ in terms of $ B_{1} $, $ w $ in terms of $ B_{2} $, Then $ u + w $ is a lin comb. of elements of $ B $.
+	
+	$ B $ indep? \[ \sum_{v \in B} \lambda_{v} v = \mathbf{0} = \mathbf{0}_{v} + \mathbf{0}_{w} \]
+	
+	\[ \underbrace{\sum_{v \in B_{1}} \lambda_{v} v}_{\in U} + \sum_{v \in B_{2}} \lambda_{v} v \]
+	
+	%under, in U, W
+	
+	By uniqueness of expressions, 
+	
+	\[ \sum_{v \in B_{1}} \lambda_{v} v = \mathbf{0}_{U} \qquad \sum_{v \in B_{2}} \lambda_{v} v = \mathbf{0}_{W} \]
+	
+	AS $ B_{1} $ and $ B_{2} $ are basis, all of the $ \lambda_{v} $ are zero. 
+	
+	
+	(iii) $ \Rightarrow $ (ii). If $ v \in V $, $ v = \sum_{x \in B}  \lambda_{x} x = \underbrace{\sum_{u \in B} \lambda_{u} u }_{\in U} + \underbrace{\sum_{w \in B_{2}}   \lambda_{w} w }_{\in W}  $
+	
+	$ \Rightarrow v \in U + W $.
+	
+	
+	If $ v \in U \cap W $, $ v = \sum_{u \in B_{1}}  \lambda_{u} u = \sum_{w \in B_{2}}  \lambda_{w} w  \Rightarrow $ All $ \lambda_{u},\lambda_{w} $ are zero, because $ B_{1} \cup B_{2}  $ is lin. indep.
+	
+\end{proof}
+	
+	\begin{lemma} 
+		Let $ V $ be an f-dim vector space. $ U \leq V $.
+		Then there exists a direct compliment to $ U $ in $ V $
+		
+	\end{lemma}
+
+\begin{proof}
+	Let $ u_{1},\cdots,u_{l} $ be a basis for $ U $. Extend it to a basis for $ V $, 
+	
+	\[ u_{1},\cdots,u_{l},w_{l+1},\cdots,w_{n} \]
+	
+	Then $ <w_{l+1},\cdots,w_{n}>$ is a direct compliment of $ U $. 
+\end{proof}
+
+Note! Direct compliments are not at all unique. In general, if you pick different ways of extending this you will get different direct compliments. 
+
+Pick $ V = \R^{2} $. Pick $ U $ as the $ y $-axis, then any one of the following green lines are direct compliments.:
+
+\begin{defi}
+	Def $ v_{1},\cdots,v_{l} \leq V $,
+	
+	\[ \sum V_{i} = V_{1} + \cdots + V_{l} = \{  v_{1} + \cdots + v_{l} \; | \; v_{i} \in V_{i} \} \]
+	
+	The sum is direct if
+	
+	\[ v_{1} + \cdots + v_{l} = v_{1}' + \cdots + v_{l}' \Rightarrow v_{i} = v_{i}' \text{ for all} l \] (``unique expressions'')
+	
+	Notation:
+	
+	\[ \bigoplus_{i=1}^{l} V_{i} \]
+\end{defi}
+	
+\begin{ex}
+	$ V_{1},\cdot,V_{l} \leq V $. TFAE
+	
+	\begin{enumerate}
+		\item The sum $ \sum V_{i} $ is direct
+		\item $ V_{i} \cap \sum_{j \neq i}   V_{j} = \{ \mathbf{0} \} $ for all $ i $
+		\item For any basis $ B_{i} $ of $ V_{2} $, the union $ B = \bigcup_{i=1}^{l} B_{i} $ is a basis for $ \sum V_{i}  $
+		
+	\end{enumerate}
+
+
+\begin{defi}
+	Let $ U,W $ eb $ \F $-vector spaces.
+	External direct sum
+	
+	\[ U \oplus V  = \{  (u,w) \; | \; u \in U, w \in W \}\]
+	
+	with $ (u,w) + (x,y) = (u + x, w + y) $,
+	
+	$ \lambda(u,w) = (\lambda u, \lambda w) $
+\end{defi}
+
+\end{ex}
+
+
 
 
 

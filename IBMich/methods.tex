@@ -217,7 +217,11 @@ F(x) = \int_{-L}^{x} f(x') \; \d x' & = \frac{a_{0}(x + L)}{2} + \sum_{n=1}^{\in
 & \qquad + L \sum_{n = 1 }^{\infty} \left( \frac{a_{n} - (-1)^{n}a_{0}}{n \pi} \right) \sin \left( \frac{n \pi x}{L} \right)  
  \end{align*}
  
-If $ a_{n} $ and $ b_{n} $ are FC then the series involving $ \frac{a_{n}}{n} $ and $ \frac{b_{n}}{n}  $ (multipled by cos or sin) must also converge 
+If $ a_{n} $ and $ b_{n} $ are FC then the series involving $ \frac{a_{n}}{n} $ and $ \frac{b_{n}}{n}  $ (multipled by cos or sin) must also converge
+
+The Fourier series of $ f(x) $ exists, so $ b_{n} $ is at least of $ \Oc (\frac{1}{n}) $ as $ n \to \infty \Rightarrow \frac{b_{n}}{n} $ is at least $ \Oc (\frac{1}{n^{2}}) $ as $ n \to \infty $, and so by the comparison test with $ \sum_{n=1}^{\infty} \frac{M}{n^{2}} $, the second term on the RHS converges $ \Rightarrow F(x) $ has a FS.
+
+Note: integration smooths. Proof relies on discontinuity being bdd, ($ f(x) $ satisfies Dirichlet condition). 
 
 \subsubsection{Differentiation: Doesn't always work!}
 
@@ -225,15 +229,220 @@ Let $ f(x) $ be a periodic function with period 2, st.
 
 \[ f(x) = \begin{cases} 1  & \text{ if } 0 < x < 1 \\ - 1 & \text{ if } -1 < x < 0 \end{cases} \]
 
+Odd function $ \Rightarrow a_{m} = 0 $.
+
+\begin{align*}
+	b_{m} & = - \int_{-1}^{0} \sin(m \pi x) \; \d x + \int_{0}^{1} \sin(m \pi x) \; \d x \\
+	& = \left[  \frac{\cos(m \pi x)}{m \pi} \right]_{-1}^{0} - \left[  \frac{\cos(m \pi x)}{m \pi} \right]_{0}^{1}\\
+	& = \frac{1}{m \pi} \left[  1 - (-1)^{m} - (-1)^{m} + 1 \right]   \\
+	& = \frac{4}{\pi x} \text{ if } m  \text{ odd, or } 0 \text{ if } m \text{ even }
+\end{align*}
+
+
+
 \[ \frac{f(x_{+}) + f(x_{-})}{2}  = \frac{4}{\pi} \sum_{n=1}^{\infty} \frac{\sin\left(  (2n - 1)\pi x \right) }{2n - 1} \]
 
 Apply diff rules:
 
 \[ f'(x) = 4 \sum_{n=1}^{\infty} \cos \left( (2n - 1)\pi x \right)  \]
 
-This is clearly divergent, even though $ f(x) = 0 $ for al $ x \neq 0 $.
+This is clearly divergent, even though $ f(x) = 0 $ for all $ x \neq 0 $.
 
  The extra factor of $ 2n - 1 $ is the problem. It's related to the discontinuity, $ f'(x) $ does not satisfy the Dirichlet condition
+ 
+Differentiation can be done under certain circumstances. 
+
+\begin{eg}
+	Assume the function $ f(x) $ is continuous and is extended as a $ 2L $-periodic function, piece-wise continuously differentiable on $ (0,2L) $. Let $ g(x) = \frac{\d f}{\d x} $ such that $ g(x) $ satisfies D.C.\footnote{$ g(x) $ has at worst a finite number of bounded discontinuitites.} 
+	
+	\[ f(x) =  \frac{1}{2} a_{0} + \sum_{n=1}^{\infty} a_{n} \cos \left( \frac{n \pi x}{L} \right) + b_{n} \sin \left( \frac{m \pi x}{L} \right) \]
+	
+	\[ \frac{g(x_{+}) + g(x_{-})}{2} = \frac{A_{0}}{2} + \sum_{n=1}^{\infty} A_{n} \cos \left( \frac{n \pi x}{L} \right) + B_{n} \sin \left( \frac{n \pi x}{L} \right)   \]
+	
+	\[ A_{0} = \frac{1}{L} \int_{0}^{2L} g(x) \; \d x = \frac{f(2L)  - f(0)}{L} = 0 \qquad \text{ by periodicity} \]
+	
+	\begin{align*}
+		A_{n} & = \frac{1}{L} \int_{0}^{2L} \frac{\d f}{\d x} \cos \left( \frac{n \pi x}{L} \right) \; \d x\\
+		& = \frac{1}{L} \left[ f(x) \cos \left(\frac{n \pi x}{L} \right)  \right]_{0}^{2L} + \frac{n \pi}{L^{2}} \int_{0}^{2L} f(x) \sin \left( \frac{n \pi x}{L} \right) \; \d x \\
+		&= 0 + \frac{n \pi b_{n}}{L}
+	\end{align*}
+
+	\begin{ex}
+		$ B_{n} = \frac{- n \pi a_{n}}{L} $
+	\end{ex}
+\end{eg}
+
+We see differentiation reduces to multiplying by $ \pm \frac{n \pi}{L} $
 
 
-  \end{document}
+\subsection{Alternate representation: complex form}
+
+Remember 
+
+\[ \cos \left( \frac{n \pi x}{L} \right) = \frac{1}{2} \left(  e^{\frac{ i n \pi x}{L}} + e^{\frac{- i n \pi x}{L}}  \right)  \]
+
+\[ \sin \left( \frac{n \pi x}{L} \right) = \frac{1}{2i} \left(  e^{\frac{ i n \pi x}{L}} - e^{\frac{- i n \pi x}{L}}  \right)  \]
+
+\[ \frac{f(x_{+}) + f(x_{-})}{2} = \frac{a_{0}}{2} + \sum_{n=1}^{\infty} \frac{a_{n}}{2} \left(  e^{\frac{ i n \pi x}{L}} + e^{\frac{- i n \pi x}{L}}  \right) - \frac{b_{n i}}{2} \left(  e^{\frac{ i n \pi x}{L}} - e^{\frac{- i n \pi x}{L}}  \right)\]
+
+\[ = \frac{a_{0}}{2} = \sum_{n=1}^{\infty} \left( \frac{a_{n} - i b_{n}}{2} \right) e^{\frac{i n \pi x}{L}} + \sum_{n=1}^{\infty} \left( \frac{a_{n} + i b_{n}}{2} \right) e^{\frac{- i n \pi x}{L}}  \]
+
+\[ = \sum_{-\infty}^{\infty} c_{n} e^{\frac{i \pi n x}{L}} \quad c_{0} = \frac{a_{0}}{2} ; \underbrace{c_{n}}_{ (n > 0)} = \frac{a_{n} - i b_{n}}{2}; \underbrace{c_{n}}_{ (n < 0)} = \frac{a_{n} + i b_{n}}{2} \]
+
+Note that 
+
+\[ c_{m}^{*} = c_{-m} \]
+
+complex exponentials are orthogonal
+
+\[ \int_{0}^{2L} e^{\frac{i n \pi x}{L}} e ^{\frac{- i n \pi x}{L}} \; \d x = \int_{0}^{2L} \cos \left( \frac{(n - m) \pi x}{L} \right)  \; \d x  + i \int_{0}^{2L}  \underbrace{\sin(n-m)}_{0 \text{ by periodicity}}\frac{\pi x}{L} \; \d x = 2L \delta_{nm} \]
+
+
+\[ c_{m} = \frac{1}{2L} \int_{0}^{2L} f(x) e^{\frac{-i m \pi x}{L}} \; \d x = \frac{1}{2L} \int_{0}^{2L} \sum_{-\infty}^{\infty} c_{n} e^{\frac{i n \pi x}{L}} e ^{\frac{- i n \pi x}{L}} \; \d x \]
+
+Now assume $ g(x) = \frac{\d f}{\d x} = \sum_{n = -\infty}^{\infty} c_{n} e^{\frac{i n \pi x}{L}} $
+
+
+\begin{align*}
+	c_{n} & = \frac{1}{2L} \int_{0}^{2L} \frac{\d f}{\d x} e^{\frac{- i n \pi x}{L}} \; \d x \\
+	& = \frac{1}{2L} \left[  f(x) e^{\frac{- i n \pi x }{L}} \right]_{0}^{2L} + \frac{i n \pi}{2L^{2}} \int_{0}^{2L} f(x) e^{\frac{- i n \pi x}{L}} \; \d x \\
+	& = \frac{i n \pi}{L} c_{n} \quad \text{by periodicity}
+\end{align*}
+
+\subsection{Half-range series}
+
+Consider a functon defined only on $ 0 \leq x \leq L $.
+
+There are two possible ways to extend it to a $ 2L $-periodic function that can be represented as a FS. \footnote{It would be a dumbass thing to extend it as an odd function; you'll have a discontinuity!}
+
+\subsubsection{Fourier sine series: odd function}
+
+$ f(x) $ can be extended as an \emph{odd} function
+$ f(x) = -f(-x) $ on $ -L \leq x \leq L $ and then extended as a $ 2L $-periodic function. In this case $ a_{n}= 0 $ and we can define the \emph{Fourier sine series}
+
+\[ \frac{f(x_{+}) + f(x_{-})}{2} = \sum_{n=1}^{\infty} b_{n} \sin \left( \frac{n \pi x}{L} \right) \qquad b_{n} = \frac{2}{L} \int_{0}^{L} f(x) \sin \left(  \frac{n \pi x}{L} \right) \; \d x   \]
+
+\begin{eg}
+	Sawtooth function 
+	
+	
+	 \begin{center}
+		\begin{tikzpicture}
+		\draw (-3.2, 0) -- (3.2, 0);
+		
+		\draw [thick, mblue] (-3, -1) -- (-1, 1);
+		\draw [dashed, mblue] (-1, 1) -- (-1, -1);
+		\draw [thick, red] (-1, -1) -- (0,0);
+		\draw [thick, mgreen] (0, 0) -- (1, 1);
+		\draw [dashed, mblue] (1, 1) -- (1, -1);
+		\draw [thick, mblue] (1, -1) -- (3, 1);
+		
+		\node at (-3, 0) [below] {$-3\pi$};
+		\node at (-1, 0) [below] {$-\pi$};
+		\node at (1, 0) [below] {$\pi$};
+		\node at (3, 0) [below] {$3\pi$};
+		\end{tikzpicture}
+	\end{center}
+
+
+FS describes the $ 2L $ periodic fn. Sine seires still describes the fn on $ [0,L] $
+\end{eg}
+
+
+\subsubsection{Even functions: fourier cosine series}
+$ f(x) $ can also be extended as an even fn on $ -L \leq x \leq L $ ie. $ f(x) = f(-x) $ and then extended as a $ 2L $-periodic fn: $ \Rightarrow b_{n} = 0 \; \forall n $.
+
+Fourier cosine series:
+
+\[ \frac{f(x_{+}) + f(x_{-})}{2} = \frac{a_{0}}{2} \sum_{n=1}^{\infty} a_{n} \cos \left( \frac{n \pi x}{L} \right) \qquad a_{n} = \frac{2}{L} \int_{0}^{L} f(x) \cos \left(  \frac{n \pi x}{L} \right) \; \d x   \]
+
+
+\begin{center}
+	\begin{tikzpicture}
+	\draw (-3.2, 0) -- (3.2, 0);
+	
+	\draw [thick, mblue] (-3, 1) -- (-2, 0);
+	\draw [thick, mblue] (-2, 0) -- (-1, 1);
+	\draw [dashed, mblue] (-1, 1) -- (-1, -1);
+	\draw [thick, red] (-1, 1) -- (0,0);
+	\draw [thick, mgreen] (0, 0) -- (1, 1);
+	\draw [dashed, mblue] (1, 1) -- (1, -1);
+	\draw [thick, mblue] (1, 1) -- (2, 0);
+	\draw [thick, mblue] (2, 0) -- (3, 1);
+	
+	\node at (-3, 0) [below] {$-3\pi$};
+	\node at (-1, 0) [below] {$-\pi$};
+	\node at (1, 0) [below] {$\pi$};
+	\node at (3, 0) [below] {$3\pi$};
+	\end{tikzpicture}
+\end{center}
+
+
+\subsection{Parserals Theorem}
+
+'Energy' of a periodic signal is often of interest, ie
+
+\[ E = \int_{0}^{2L} f^{2}(x) \; \d x  \]
+
+Consider the general case 
+
+\[ f(x) = \sum_{-\infty}^{\infty} c_{n} e^{\frac{i n \pi x}{L}} \]
+
+where 
+
+\[ g(x) = \sum_{m = - \infty}^{\infty} d_{m} e^{\frac{i m \pi x}{L}} \]
+
+
+\[ \int_{0}^{2L} f(x) g(x) \; \d x = \sum_{n = - \infty}^{\infty} \sum_{m = -\infty}^{\infty} c_{n} d_{m} \int_{0}^{2L} \exp \left[  \frac{i \pi x}{L} (n + m) \right]  \; \d x \]
+
+\[ =  \sum_{n = - \infty}^{\infty} \sum_{m = -\infty}^{\infty} c_{n} d_{m} \left( 2L \delta_{n[-m]} \right)  \]
+
+\[ = \sum_{n = -\infty}^{\infty} c_{n} d_{-n} = 2L \sum_{n = -\infty}^{\infty} c_{n} d_{n}^{*} \]
+
+
+So if $ g(x) = f(x) $
+
+\[ \int_{0}^{2L} \left[  f(x) \right]^{2} \; \d x = 2L \sum_{n = -\infty}^{\infty} | c_{n} |^{2} = L\left[  \frac{a_{0}^{2}}{2} + \sum_{n=1}^{\infty}  \left(a_{n}^{2}  + b_{n}^{2} \right)  \right]  \]
+
+
+\begin{eg}
+	Remember $ f(x) = x $ for $ -L \leq x \leq L $
+	\[ b_{n} = \frac{2L}{m \pi}(-1)^{m+1} \]
+	
+	\[ \int_{-L}^{L} x^{2} \; \d x = \frac{2L^{3}}{3} = L \sum_{m = 1}^{\infty}  \frac{4 L^{2}}{m^{2} \pi^{2}} \]
+	
+	\[ \Rightarrow \sum_{m=1}^{\infty} \frac{1}{m^{2}} = \frac{\pi^{2}}{6} \]
+\end{eg}
+
+\begin{ex}
+	From the FS of $ \frac{x^{2}}{2} $ show that
+	
+	\[ \sum_{m=1}^{\infty} \frac{1}{m^{4}} = \frac{\pi^{4}}{90} \]
+\end{ex}
+
+\section{Strum-Liouville Theory Motivation}
+
+\subsection{Second order ODEs}
+
+\[ \mathcal{L} y(x) = \alpha(x) \frac{\d^{2} }{\d x^{2} } y + \beta(x) \frac{\d y }{\d x } + \gamma(x)  y = f(x) \]
+
+$ \alpha, \beta, \gamma $ continuous, $ \alpha $ non zero except perhaps at a finite number of isolated points, 
+
+$ f(x) $ is bounded, defined on $ a \leq x \leq b $ ( $ a $ or $ b $ may be $ \pm \infty $).
+
+HOMOGENOUS: eg 
+\[ \mathcal{L} y = 0  \]
+
+has two linearly independent solutions $ y_{1},y_{2} $ complementary function $ y_{c} = Ay_{1} + By_{2} $
+
+INHOMOGENEOUS OR FORCED EQUATION. 
+
+\[ \mathcal{L} y = f(x)  \]
+
+$ F $ is the \emph{forcing} and has a particular integral $ y_{p} (x) $. G.S. is $ y = y_{c}(x) + y_{p}(x) $ where $ A + B $ are determined in a `PROBLEM' by applying conditions
+
+
+
+
+
+\end{document}
