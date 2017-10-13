@@ -43,18 +43,18 @@ Quantum Mechanics (QM) is a radical generalization of classical physics involvin
 
 Despite these radical changes, classical physics must be recovered in the limit $ \hbar \to 0 $ (which may require careful interpretation).
 
+
 The following sections provide some physical background and summarise key experimental evidence for these novel features of QM.
  
 \subsection{Light Quanta}
 
-An electromagnetic (EM) wave, eg. light, consists of quanta called \emph{photons}. Photons can be regarded as particles with energy, $ E $, and momentum, $ p $, related to frequency\footnote{$ v,\omega $  both called frequency, and differ by a factor of $ 2 \pi $.} $ \nu $ or $ \omega $, and wavelength $ \lambda $, or wavenumber $ k $, according to
+An electromagnetic (EM) wave, eg. light, consists of quanta called \emph{photons}. Photons can be regarded as particles with energy, $ E $, and momentum, $ p $, related to frequency $ \nu $ or $ \omega $, and\footnote{$ v,\omega $  both called frequency, and differ by a factor of $ 2 \pi $.} wavelength $ \lambda $, or wavenumber $ k $, according to
 
 \[ E = h v = \hbar \omega \]
 \[ p = h / \lambda = \hbar k \]
 
   
 
-(Think of periodic functions, $ e^{\pm i \omega t}, e^{\pm i k x} $
 
 From the wave equation (satisfied by each EM field component) 
 
@@ -64,9 +64,26 @@ so the relations are consistent with photons being particles of rest mass zero, 
 
 Compelling evidence for the existence of photons is provided by the \emph{photoelectric effect}. Consider (Fig. 1) light of EM radiation $ (\gamma) $ of frequency $ \omega $ incident on a metal surface. For certain metals and suitable frequencies this results in the emission of electrons $ (e^{-}) $ and their maximum kinetic energy $ K $ can be measured. 
 
-[fig 1] 
 
-Experiments find that (i) the rate at which electrons are emitted is proportional to the intensity of the radiation (the `brightness' of the source); (ii) $ K $ depends linearly on $ \omega $ but \emph{not} on the intensity; (iii) for $ \omega < \omega_{0} $, some critical value, \emph{no} electrons are emitted, irrespective of the intensity. 
+\begin{center}
+	\begin{tikzpicture}
+	\draw (-2, 0) -- (3, 0);
+	\draw [decorate, decoration={snake}] (-2, 2) -- (0, 0) node [pos = 0.5, anchor=south west] {$\gamma$};
+	\draw [decorate, decoration={snake}] (-1, 2) -- (1, 0) node [pos = 0.5, anchor=south west] {$\gamma$};
+	\draw [->] (0, 0) -- (2, 2) node [right] {$e^{-}$};
+	\draw [->] (1, 0) -- (3, 2) node [right] {$e^{-}$};
+	\end{tikzpicture}
+\end{center}
+
+
+Experiments find that:
+
+ \begin{enumerate}
+ 	\item the rate at which electrons are emitted is proportional to the intensity of the radiation (the `brightness' of the source); 
+ 	\item $ K $ depends linearly on $ \omega $ but \emph{not} on the intensity; 
+ 	\item for $ \omega < \omega_{0} $, some critical value, \emph{no} electrons are emitted, irrespective of the intensity. 
+ 	
+ \end{enumerate}
 
 The results are extremely hard to understand in terms of classical EM waves. However, they follow naturally from the assumption that the wave consists of photons, each with energy $ E = \hbar \omega $, and with the intensity of the radiation proportional to the number of photons incident per unit time. Suppose that an electron is emitted as a result of absorbing a single photon with sufficiently high energy. If $ W $ is the minimum energy needed to liberate an electron from the metal then
 
@@ -74,7 +91,15 @@ The results are extremely hard to understand in terms of classical EM waves. How
 
 is the maximum kinetic energy of an emitted electron if $ \omega > \omega_{0} $, where $ \omega_{0}  = W / \hbar $, and no emission is possible if $ \omega < \omega_{0} $ (Fig 2). Furthermore, the rate at which electrons are emitted will be proportional to the rate at which incident photons arrive, and hence the intensity.
 
-Figure 2:
+\begin{center}
+	\begin{tikzpicture}
+	\draw [-> ](-0.5, 0) -- (5, 0) node [right] {$ \omega $};
+	\draw [->] (0, 0) -- (0, 3) node [above] {$ K $};
+	\draw (1, 0) node [below] {$w_{0} = \frac{w}{\hbar}$} -- (4, 2) ;
+	\end{tikzpicture}
+\end{center}
+
+
 
 
 
@@ -85,55 +110,120 @@ Consider a photon of wavelength $ \lambda $ colliding with an electron that is s
 
 \[ \lambda' - \lambda = \frac{h}{m_{e}c} (1 - cos \theta) \] 
 
-Figrue 3
+\begin{center}
+	\begin{tikzpicture}
+	\draw ;
+	\draw [decorate, decoration={snake}] (-3, 0) -- (1, 0) node [pos = 0.5, anchor=south west] {$\gamma(\lambda)$};
+	\draw [decorate, decoration={snake}] (1, 0) -- (3, 2) node [pos = 0.5, anchor=south east] {$\gamma$};
+	\draw [->] (1, 0) node [below] {$e^{-}$} -- (3, -2) node [right] {$e^{-}$};
+	\draw [dashed] (1,0) -- (3,0);
+	\draw (1.5, 0) arc (0:65:0.4);
+	\draw node at (1.35,0.35) [below] {$ \theta $}; 
+	\end{tikzpicture}
+\end{center}
 
 This dependence of the change in wavelength (or decrease in energy) can be verified experimentally (for $ X $-rays, or $ \gamma $-rays, for instance). 
 
 \subsection{Bohr Model of the Atom}
 
-The \emph{Rutherford model} of the atom was proposed to explain the results of scattering experiments (eg. alpha particles scattered by gold foil). The key assumption is that most of the mass of the atom is concentrated in a compact, positively-charged \emph{nucleus} (subsequently understood to consist of protons and neutrons), with light, negatively charged electrons orbiting around it. The simplest case is the Hydrogen atom, in which a single electron with charge $ - e $ and mass $ m_{e} $ orbits a nucleus consisting of a single proton with charge $ +e $ and mass $ m_{p} $. Since $ m_{p} \geq\geq m_{e} $ it is a good approximation to assume the proton is stationary, at the origin, say. The electron and proton interact via Coulomb's Law: the potential energy of the electron and the force it experiences are:
+The \emph{Rutherford model} of the atom was proposed to explain the results of scattering experiments (eg. alpha particles scattered by gold foil). The key assumption is that most of the mass of the atom is concentrated in a compact, positively-charged \emph{nucleus} (subsequently understood to consist of protons and neutrons), with light, negatively charged electrons orbiting around it. The simplest case is the Hydrogen atom, in which a single electron with charge $ - e $ and mass $ m_{e} $ orbits a nucleus consisting of a single proton with charge $ +e $ and mass $ m_{p} $. Since $ m_{p} >> m_{e} $ it is a good approximation to assume the proton is stationary, at the origin, say. The electron and proton interact via Coulomb's Law: the potential energy of the electron and the force it experiences are:
 \[ V(r) = - \frac{e^{2}}{4\pi \varepsilon_{0}} \frac{1}{r} \qquad \mathbf{F}(\mathbf{r}) =  - \nabla V = - \frac{e^{2}}{4\pi \varepsilon_{0}} \hat{\mathbf{r}}\]
 
+The classic equations of motion for the electron imply that its angular momentum, $ \mathbf{L} = \mathbf{r} \times \mathbf{p} $, and its total energy,
 
-EM radiaton of accerelated charge $ \Rightarrow $ this would be unstable. Also - experimental evidence for complex structure in atoms. Line spectra:
+\[ E = \frac{1}{2} m_{e} v^{2} - \frac{e^{2}}{4 \pi \varepsilon_{0}} \frac{1}{r}  \]
 
-Bohr quantisation condition: angular momentum takes discrete set of possile values: $ L = n \hbar, n = 1,2,\cdots $
+are constant. The orbits are therefore planar and they can be determined exactly. For any value of $ E < 0 $ there is a closed orbit and the electron is \emph{bound} to the proton to form a Hydrogen atom. For orbits with $ E > 0 $ the electron eventually escapes to infinity: it is not bound to the proton.
 
-So if you don't have a continuous set of orbits, it can't lose a bit of energy, seems dubious, but there's no denying that this assmuption is a simple way of reproducting the line specra shit.
+Despite its success in accounting for Rutherford scattering, this model has a number of problems. The treatment is identical, mathematically, to planetary orbits governed by gravity (see Part IA Dynamics and Relativity, for example) but an important additional feature of electromagnetism has been left out. An accelerating charge radiates energy (carried away via EM fields) and this means that the electron would actually spiral inwards towards the proton: this is not a good model of a stable atom!
 
-This implies discrete set of allwoed orbits with energies 
 
-\[ E_{n} = - \frac{1}{2} m_{e} \left( \frac{e^{2}}{4\pi \varepsilon_{0} \hbar} \right)^{2} \frac{1}{n^{2}}  \]
+There is also experimental evidence for complex discrete structure within atoms. This comes from \emph{line spectra}: bright emission lines (from a hot sample) or dark absorption lines (if radiation is passed through a cooler sample), both occurring at certain characteristic wavelengths or frequencies. This suggests that an atom can emit or absorb radiation only at these particular frequencies or wavelengths, which corresponds to photon with particular energies.
+
+The \emph{Bohr model} restricts the classical orbits of the Rutherford model by postulating that the angular momentum of the electron obeys the \emph{Bohr quantisation condition}
+
+\[ L = n \hbar, \qquad n = 1,2,\cdots,\]
+ 
+with only these discrete values are allowed. This might seem to be an unsatisfactory way to address the issue of stability, but it proves to be remarkably successful in reproducing the complex experimental data relating to line spectra.
+
+Specializing to circular orbits (Fig. 4) for simplicity, we have 
+
+\[ F = m_{e} v^{2} / r \qquad \text{ and } \qquad L = m_{e} r v \]
+
+ \begin{center}
+	\begin{tikzpicture}
+	\draw [ ->] (2, 0) node [right] { $ m_{e} $ } -- (2, 2) node [right] {$ v $};
+	\draw [->] (0, 0) node [below] {$ m_{p} $}  -- (2, 0) node [pos = 0.5, below] {$r$};
+	\draw [->-=0.1] (0, 0) circle [x radius = 2, y radius = 2];
+	\end{tikzpicture}
+\end{center}
+
+It is then straightforward to check that the quantisation condition leads to the following set of \emph{Bohr orbits}
+
+\[ r_{n} = \frac{4 \pi \varepsilon_{0} \hbar^{2}}{m_{e} e^{2}} n^{2}, \quad v_{n} = \frac{e^{2}}{4 \pi \varepsilon_{0} \hbar} \frac{1}{n}, \quad E_{n} 
+= - \frac{1}{2} m_{e} \left(  \frac{e^{2}}{4 \pi \varepsilon_{0} \hbar} \right)^{2} \frac{1}{n^{2}}, \quad n = 1,2,\cdots   \]
 
 Note that the allowed energy levels are now discrete. 
 
-Suppose that an electron makes a transition between levels $ n $ and $ n' $ (with $ n > n' $ say ) accompanied by emission or absorption of a photon of frequecy $ \omega $ (Fig 5). Then
+Suppose that an electron makes a transition between levels $ n $ and $ n' $ (with $ n' > n $, say) accompanied by emission or absorption of a photon of frequency $ \omega $ (Fig 5). Then
 
-For emission or absorption of radiation with atom making transition between levels $ n $ \& $ n' $ with $ n'  > n$
+\[ \hbar \omega = E_{n'} - E_{n} = \frac{1}{2}m\left( \frac{e^{2}}{4 \pi \varepsilon_{0} \hbar }^{2} \right)^{2} \left( \frac{1}{n^{2}} - \frac{1}{n'^{2}} \right)   \]
+ 
 
+\begin{center}
+	\begin{tikzpicture}
+	\draw (-1, 0) node [left] {$0$} -- (1, 0);
+	\draw (-1, -0.5) node [left] {$E_n'$} -- (1, -0.5);
+	\draw (-1, -1.5) node [left] {$E_n$} -- (1, -1.5);
+	\draw [->] (0, -0.5) -- (0, -1.5);
+	\draw [decorate, decoration={snake}] (0, -1) -- (2, -1) node [right] {$\hbar \omega$};
+	\end{tikzpicture}
+\end{center}
+
+This formula accounts for a vast amount of experimental data on spectral lines for Hydrogen. The Bohr model also provides an estimate for the \emph{size} of the Hydrogen atom $ r_{1} \approx 5.29 \times 10^{-11} \text{m} $, the \emph{Bohr radius}. Despite these considerable successes, the origin of the Bohr quantisation condition seems obscure. A better explanation is needed.
 
 \subsection{Matter Waves}
 
-Use same relations:
+The relations used to associate particle properties ($ E $ and $ p $) to waves can also be used to associate wave properties ($ v $ or $ omega $ and $ \lambda $ or $ k $) to particles. This applies not just to relativistic photons but also to non-relativistic particles, electrons for example, and $ \lambda $ is called the \emph{de Broglie wavelength} of the particle. A strong hint that this might be important for a better understanding of the Bohr quantisation condition comes from observing that for a circular orbit
 
-$ E = \hbar \omega $, $ p = \hbar k $
+\[ L = pr = n \hbar \quad \iff \quad n \lambda = 2 \pi r \]
 
-to say particles behave like waves.
+The Bohr condition therefore says that the circumference of each orbit is exactly an integral number of de Broglie wavelengths. 
 
-Note Bohr quantisation conditios becomes:
+[Fig 6]
 
-\[ L = pr = n \hbar \iff n \lambda = 2 \pi r \]
+It can also be verified experimentally that electrons do indeed exhibit wave-like behaviour, and a helpful idealisation is the \emph{double slit experiment}. Consider a source which emits a beam of electrons, a barrier with two slits that can be open or closed, and a screen on which the electrons are detected. 
 
-$ n = 3 $ - Fig 6.
+Suppose that first one slit is open and the other is closed. We cannot say with certainty where any particular electron will be detected, but after many electrons have been emitted, the number detected varies with tranverse position. If \emph{both} slits are open, however, then the electrons produce (perhaps unexpectedly) an interference pattern.
 
+\begin{center}
+	\begin{tikzpicture}
+	\draw (4, -2) -- (4, 2);
+	
+	\foreach \x in {-1, -2, -3} {
+		\draw (\x, -2) -- (\x, 2);
+	}
+	
+	\draw [<->] (-2, -1.7) -- (-3, -1.7) node [below, pos=0.5] {$\lambda$};
+	\draw [->] (-3, 2.3) -- (-1.5, 2.3) node [right] {wave};
+	
+	\draw (0, 0.55) -- (4, 1.5);
+	\draw (0, -0.55) -- (4, 1.5);
+	\draw [domain=-2:2,samples=50, mblue] plot [smooth] ({4 + 1.5 * exp(-\x * \x) * (cos (200 * \x))^2}, \x);
+	\draw [->, align=left] (4, 0) -- (6, 0) node [right] {density of\\ electrons};
+	
+	\draw [dashed] (0, 0.55) -- (0.34, -0.375);
+	\node at (0.20, -0.45) [below] {$\delta$};
+	
+	\draw [mred, fill=white] (-0.05, -0.5) rectangle (0.05, 0.5);
+	\draw [mred, fill=white] (-0.05, 0.6) rectangle (0.05, 2);
+	\draw [mred, fill=white] (-0.05, -0.6) rectangle (0.05, -2);
+	\end{tikzpicture}
+\end{center}
 
-To confirm wave-behaviour of electrons, two slit experiment.
+This matches the interference pattern obtained for waves of length $ \lambda $ incident on a barrier. Consider a point $ P $ at some fixed perpendicular distance from the barrier, and let $ \delta $ be the difference of the distances to $ P $ from each of the slits. Constructive interference occurs for $ \delta = n \lambda $ while destructive interference occurs for $ \delta = (n + 1/2)\lambda $. The result is that the (amplitude)$^{2}$ of the superposed waves varies as $ P $ varies.
 
-But Fig 8.... Interference pattern
-
-Fig 9. I
-
-In diffraction experimets with electorns, we cannot predict what will happen to any \emph{single} particle; the most that can be said is that it will be detected at a given postiion with a certain \emph{probability}
+In diffraction experiments with electrons, we cannot predict what will happen to any \emph{single} particle; the most that can be said is that it will be detected at a given position with a certain \emph{probability}. The diffraction pattern is conclusive evidence of interference and so confirms the existence of matter waves, and diffraction experiments allow an experimental determination of the de Broglie wavelength. The results also suggest that the probability distribution for particles can be expressed as the (amplitude)$^{2}$ of a wave. 
  
 
 
@@ -144,7 +234,7 @@ In first few chapters we consider a quantum particle in one dimension, introduce
 
 \subsection{Wave functions and States  }
 
-A classical point particle in one-dimension has a position $ x $ at each time. In QM a particle has a \emph{state} at each time given by a complex-valued wavefunction 
+A classical point particle in one-dimension has a position $ x $ at each time. In QM a particle has a \emph{state} at each time given by a complex-valued, \footnote{non-zero} wavefunction 
 
 \[ \psi(x) \]
 
@@ -295,12 +385,168 @@ where $ \hat{p} = - i \hbar \frac{\d }{\d x} $
 
 as in 1.1 with $ x_{0} = 0 $
 
-\[ \Rightarrow \;  <\hat{p}>_{\psi} = 0 \]
+\[ \Rightarrow \;   \langle \hat{p} \rangle _{\psi} = 0 \]
 
 and 
 
 \[ \phi(x) = C e^{-x^{2} / 2 \alpha} e^{i k x} \]
 
+
+
+
+
 \[ \Rightarrow \; <\hat{p}>_{\psi} = \hbar k  \]
+
+If we accept (P2) then this result accounts for the choice of momentum operator  $ \hat{p} = - i \hbar \frac{\d }{\d x} $
+
+\subsubsection{Eigenstates and Eigenvalues}
+
+A state $ \psi $ ($ \neq 0 $) is an \emph{eigenstate} or \emph{eigenfunction} of an operator or observable $ Q $ with eigenvalue $ q $ if 
+
+\[ Q \psi = q \psi \]
+
+Postulate (P3): If $ Q $ is measured when the particle is an eigenstate $ \psi $, as above, then the result is the eigenvalue $ q $ with probability 1. 
+
+\begin{eg}
+	\begin{enumerate}
+		\item $ Q = \hat{x} $ no ( continuous ) eigenfunctions since
+		
+		\[ \hat{x} \psi(x)  = x \psi(x) = q \psi(x) \Rightarrow \psi(x) = 0 \text{ for } x \neq q \]
+		
+		\item $ Q = \hat{p} = - i \hbar \frac{\d }{\d x } $ eigenfunctions obey
+		
+		\[ - i \hbar \psi' = q \psi \]
+		
+		\[ \Rightarrow \psi(x) = C e^{i k x} \quad \text{ with } q = \hbar k \]
+		
+		But not normalisable since $ | \psi(x) |^{2} = | C |^{2} $, so can't interpret this directly as wave function for a single particle on $ - \infty < x < \infty $.
+		
+		Could normalise on interval of length $ l $ by choosing $ C = \frac{1}{\sqrt{l}} $, but then need to look carefully at boundary conditions on interval
+		
+		\item $ Q = H $ Hamiltonian (energy) with particular choice of potential $ V(x) = \frac{1}{2} K x^{2} $ with $ K > 0 $.
+		
+		So
+		
+		\[ H = \frac{1}{2m} \hat{p}^{2} + \frac{1}{2} K  \hat{x}^{2} \]
+		
+		and
+		
+		\[ H \psi = - \frac{\hbar^{2}}{2m} \psi''  + \frac{1}{2} K x^{2} \psi = E \psi  \]
+		
+		This is satisfied for 
+		
+		\[ \psi(x) = C e^{-x^{2}/2 \alpha} \] if we choose $ \alpha^{2} = \hbar^{2} / K m $ and then
+		
+		\[ E = \frac{\hbar}{2} \sqrt{\frac{K}{m}} \]
+		
+		is energy eigenvalue.
+		
+		Note classically for fixed $ E $ have $ | x | \leq ( 2E / K)^{\frac{1}{2}} $ but wave function above gives non-zero probability density along entire $ x $-axis
+		
+			\end{enumerate}
+		
+		\end{eg}
+		
+		In general, the energy eigenvalue equation 
+		
+		\[ H \psi = E \psi \]
+		
+		or
+		
+		\[ - \frac{\hbar^{2}}{2m} \frac{\d^{2} \psi }{\d x^{2} } + V(x) \psi = E \psi \]
+		
+		for a particle of mass $ m $ in potential determines states of definite energy and allowed energy values.
+		
+		This is the \emph{time-independent Schr\"odinger Equation}
+		
+		Solving this for $ H $-atom is our eventual aim.
+		
+
+
+\subsubsection{Comments}
+
+\begin{enumerate}
+	\item Defined $ \langle Q \rangle_{\psi} = (\psi, Q\psi) $ used in (P2) for $ \psi $ normalised: if $ \psi $ is not normalised, 
+	
+	\[ \langle Q \rangle_{\psi} = \frac{(\psi, Q \psi)}{\psi,\psi}  \]
+	
+	\item Definition for $ Q = \hat{x} $ reproduce standard defn of mean. 
+	For $ \hat{p} $ and $ H $ can check explicitly (taking complex conjugates and integrating by parts) that $ \langle \hat{p} \rangle_{\psi} $ and $ \langle H \rangle_{\psi} $ are real
+	
+	\item (P3) is consistent with (P2) - consider energy, for example.
+	
+
+
+	\begin{align*}
+		H \psi = E \psi & \Rightarrow (\psi, H \psi) = \langle H \rangle_{\psi}  \\
+		& = (\psi, E \psi ) = E \text{ if } \psi \text{ normalised}
+	\end{align*}
+	
+	ie. measurement of energy gives result $ E $ with prob $ = 1  \Rightarrow $ mean result is $ E $.
+	
+	\item From (ii) and (iii) we deduce that any eigenvalue of $ H $ is real. 
+
+\end{enumerate}
+
 \end{eg}
+
+\subsection{Infinite Potential Well or Particle in a Box }
+
+\begin{center}
+	\begin{tikzpicture}
+	\draw [->] (-2.5, 0) -- (2.5, 0) node [right] {$x$};
+	\draw [->] (0, -0.5) -- (0, 2) node [above] {$V$};
+	\draw [mred, semithick, dashed] (-1.5, 0) node [below] {$-a$} -- (-1.5, 2);
+	\draw [mred, semithick, dashed] (1.5, 0) node [below] {$a$} -- (1.5, 2);
+	\draw [mred, semithick] (-1.5, 0) -- (1.5, 0);
+	\end{tikzpicture}
+\end{center}
+
+\[ V(x) = \begin{cases} 0  & \text{ if } | x |  \leq a \\ U & \text{ if } | x | > a \end{cases} \] in the limit $ U \to \infty $.
+
+Time indep SE:
+
+\[ \frac{-\hbar^{2}}{2m} \psi''  = E \psi \qquad | x  | \leq a \]
+\[ \frac{-\hbar^{2}}{2m} \psi'' + U \psi = E \psi \qquad | x | > a \]
+
+Taking the limit as $ U  \to \infty $, 2nd equation suggests we must take $ \psi = 0 $ for $ | x | > a $.
+
+This will be justified shortly. In this case the appropriate boundary conditions are $ \psi = 0 $ for $ | x | > a $ and $ \psi $ continuous at $ x = \pm a $. So we are left to solve
+
+\[ - \frac{\hbar^{2}}{2m} \psi'' = E \psi \quad \text{ on } -a \leq x \leq a  \text{ with } \psi(\pm a) = 0 \]
+
+For $ E > 0 $ set \[  E = \frac{\hbar^{2} k^{2}}{2m}  \quad \text{with } k > 0 \] and we get
+
+\[ \psi'' + k^{2} \psi = 0 \]
+
+\[ \Rightarrow \psi = A \cos k x + B \sin k x \]
+
+and boundary conditions imply $ A \cos k a \pm B \sin k a  = 0 $ ie.  $ A \cos k a = B \sin k a  = 0 $.
+Since $ \sin ka $ and $ \cos ka $ cannot both be zero simultaneously, we have:
+
+
+\begin{enumerate}
+	\item $ B = 0 $ and $ ka = n \pi / 2 $ for $ n = 1,3,\cdots $
+or 
+\item $ A = 0 $ and $ ka = n \pi / 2 $ for $ n = 2,4,\cdots $
+	
+\end{enumerate}
+
+Hence
+
+\[ E_{n} = \frac{\hbar^{2}\pi^{2}}{8ma^{2}}n^{2} \quad \text{ for } n = 1,2,3,4,\cdots \]
+
+discrete set of allowed energies, with normalised wave functions
+
+\[
+\psi_n(x) = \left(\frac{1}{a}\right)^{\frac{1}{2}}
+\begin{cases}
+\cos \frac{n\pi x}{2a} & n\text{ odd}\\
+\sin \frac{n\pi x}{2a} & n\text{ even}
+\end{cases}.
+\]
+
+
+
+
   \end{document}

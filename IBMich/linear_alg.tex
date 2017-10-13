@@ -101,11 +101,11 @@ Note that we will not be underlining our vectors, as this is cumbersome here. We
 
 
 \begin{ex} Define $ U \subseteq R^{3} $ as: 
-	\[ \begin{pmatrix}
+	\[ \left\{   \begin{pmatrix}
 a_{1} \\
 a_{2} \\
 a_{3}
-\end{pmatrix} \qquad a_{1} + a_{2} + a_{3} = t \]
+\end{pmatrix} \; \; a_{1} + a_{2} + a_{3} = t \right\} \]
 for some constant  $ t $. 
 Check that this is a subspace of $ \R^{3} $ if and only if $ t = 0 $.
 \end{ex}
@@ -118,7 +118,7 @@ Check that this is a subspace of $ \R^{3} $ if and only if $ t = 0 $.
 	\begin{enumerate}
 		\item 	$ 0 \in U $, $ 0 \in W  \Rightarrow 0 \in U \cap W $ 
 		\item Suppose $ u,v \in U \cap W $, $ \lambda, \mu \in F $.
-		$ U $ is a subspace $ \Rightarrow  \lambda u + \mu v \in U $. Similarly $ \lambda u + \mu v \in U \in W $, so it is in the intersection. 
+		$ U $ is a subspace $ \Rightarrow  \lambda u + \mu v \in W $. Similarly $ \lambda u + \mu v \in U \in W $, so it is in the intersection. 
 	\end{enumerate}
 \end{proof}
 
@@ -230,7 +230,7 @@ Convention: $  < \emptyset > = \{ \mathbf{0} \} $.
 
 
 \begin{eg}
-	For $ X $ a set, 
+	For $ X $ a set, define $ \delta_{x}(y) : X \to \F $ as 
 	
 	
 	\[ \delta_{x}(y) = \begin{cases} 1  & \text{ if } x = y \\ 0  & \text{ if } x \neq y \end{cases}  \]
@@ -563,6 +563,270 @@ Pick $ V = \R^{2} $. Pick $ U $ as the $ y $-axis, then any one of the following
 \end{ex}
 
 
+\section{Linear Maps}
+
+\begin{defi}
+	$ V,W $ are $ \F $-vector spaces. A map $ \alpha: V \to W $ is linear if
+	
+	\begin{enumerate}
+		\item $ \alpha(v_{1} + v_{2}) = \alpha(v_{1}) + \alpha(v_{2}) $
+		\item $ \alpha(\lambda v) = \lambda \alpha(v) $
+		
+	\end{enumerate}
+
+Can be combined as: $ \alpha(\lambda_{1} v_{1} + \lambda_{2} v_{2}) = \lambda_{1} \alpha(v_{1}) + \lambda_{2} \alpha(v_{2}) $
+\end{defi}
+
+\begin{eg}
+	A $ n \times m $ matrix with coeff in $ \F $
+	
+	\[ \alpha: \F^{n} \to \F^{w} \]
+	\[ v \mapsto A v \]
+\end{eg}
+
+\begin{eg}
+	\[ \mathcal{D} : \mathcal{P}(\R) \to \mathcal{P}(\R) \]
+	
+	\[ f \mapsto \frac{\d f}{\d x} \]
+\end{eg}
+
+
+\begin{eg}
+	\[ I: \mathcal{C}[0,1] \to \mathcal{C}[0,1] \]
+	\[ f \mapsto I(f) \]
+	
+	where $ I(f)(x) = \int_{0}^{x} f(t) \; \d t $
+\end{eg}
+
+\begin{eg}
+	Fix $ x \in [0,1] $
+	
+	\[ \mathcal{C}[0,1] \to \R \]
+	\[ f \mapsto f(x) \]
+\end{eg}
+
+Notes: $ U,V,W $ are v spaces over $ \F $.
+
+\begin{enumerate}
+	\item id: $ V \to V $ linear
+	\item $ U \to V \to W $
+	
+		\begin{tikzcd}
+		U \ar[r, "\alpha"] & V \ar[r, "\beta"] & W 
+	\end{tikzcd}
+	
+	$ \alpha,\beta $ both linear, then $ \beta \circ \alpha $ is linear.
+	
+\end{enumerate}
+
+\begin{lemma} 
+	$ V,W $ are $ \F $-vector spaces, $ B $ is a basis for $ V $.
+	If $ \alpha_{0} : B \to W $ is \emph{any} map, then there exits a unique linear map $ \alpha : V \to W $ extending $ \alpha_{0} $
+	
+	\[ \alpha(v) = \alpha_{0}(v) \]
+	
+	for any basis element $ v $. 
+	
+\end{lemma}
+
+
+\begin{proof}
+	Let $ v  \in V $. Then $ v = \sum \lambda_{i} v_{i} $, $ v_{i} \in B $, $ \lambda_{i} \in \F $, unique expression. 
+	
+	Linear forces
+	
+	\[ \alpha(v) = \alpha\left( \sum \lambda_{i} v_{i} \right) = \sum \lambda_{i} \alpha(v_{i}) = \sum \lambda_{i} \alpha_{0}(v_{i})  \]
+	
+	linear, exists.
+	expression forced to be unique. 
+\end{proof}
+
+Note
+
+\begin{enumerate}
+	\item True for infinite dimensional vector space also
+	\item Very often, to define a linear map, define it on a basis. 
+	\item $ \alpha_{1},\alpha_{2} : V \to W $ linear maps. If they agree on a basis, then they are equal. 
+	
+\end{enumerate}
+
+
+\begin{defi}
+	$ V,W $ over $ F $. The map $ \alpha : V \to W $ is an \emph{isomorphism} if it is linear and if it is bijective. 
+	Notation: $ V \simeq W $
+\end{defi}
+
+\begin{lemma} 
+	$ \simeq $ is an equivalence notation on the set (score out set and write class) of all vector spaces over $ \F $.
+	
+	\begin{enumerate}
+		\item $ i_{V} : V \to V $ is an iso
+		\item If $ \alpha : V \to W $ is an iso, then the inverse map $ \alpha^{-1} : W \to V $ is also linear, hence an iso.
+		\item If 
+		
+		
+		
+		 \begin{tikzcd}
+			U \ar[r, "\beta"] & V \ar[r, "\alpha"] & W 
+		\end{tikzcd}
+		
+	
+		then 
+		
+		\begin{tikzcd}
+			U \ar[r, "\beta \circ \alpha"] & W  
+		\end{tikzcd}
+		
+		is also an iso 
+		
+	\end{enumerate}
+	
+\end{lemma}
+
+\begin{proof}
+	\begin{enumerate}
+		\item immediate
+		\item $ \alpha $ bijective $ \Rightarrow \alpha^{-1} $ exists. Check: linear. 
+		$ w_{2} \in W, w_{2} = \alpha(v_{2}) $, $ v_{2} \in V $, unique.
+		$ \alpha^{-1}(w_{1} + w_{2}) = \alpha^{-1}(\alpha(v_{1}) + \alpha(v_{2})  = \alpha^{-1} (\alpha(v_{1} + v_{2})) = v_{1} + v_{2} = \alpha^{-1}(w_{1})  + \alpha^{-1}(w_{2}) $.
+		
+		Similarly, $ \lambda \in \F $, $ w \in W $, 
+		
+		\[ \alpha^{-1} (\lambda w) = \lambda \alpha^{-1} (w) \]
+		
+	\end{enumerate}
+\end{proof}
+
+
+
+\begin{thm} 
+	If $ V $ vector space over $ \F $ of dimension $ n $, then $ V \simeq \F^{n} $.
+	
+\end{thm}
+
+\begin{proof}
+	Choose a basis $ B $ for $ V $, say $ v_{1},\cdots,v_{n} $
+	
+	\[ V \to \F^{n} \]
+	
+	\[ \sum \lambda_{i}v_{i} \mapsto \begin{pmatrix}
+	\lambda_{1} \\
+	\cdots \\
+	\lambda_{n}
+	\end{pmatrix} \text{ is an iso}\]
+\end{proof}
+
+Remark: Choosing an iso $ V \simeq F^{n} $ is equivalent to choosing a basis for $ V $.
+
+\begin{thm} 
+	$ V,W $ $ v $ spaces over $ \F $, finite dim, are isomorphic iff they have the same dimension
+\end{thm}
+
+\begin{proof}
+	($ \Leftarrow $) Both $ V $ and $ W $ are isomorphic 
+	
+	\[ \F^{\dim V} = \F^{\dim W} \]
+	
+	($ \Rightarrow $) Let $ \alpha : V \to W $ iso, $ B $ a basis for $ V $.
+	
+	Claim: $ \alpha(B) $ is a basis for $ W $. 
+	
+	
+	Check: $ \alpha(B) $ spans $ W $ because of surjectivity of $ \alpha $.
+	
+	\begin{ex}
+		$ \alpha(B) $ lin indep: follows from injectivity of $ \alpha $.
+	\end{ex}
+\end{proof}
+
+\begin{defi}
+	$ \alpha : V \to W $ linear, 
+	$ N(\alpha) = \ker \alpha = \{  v \in V \; | \; \alpha(v) = \mathbf{0} \} \leq V $.
+	$ Im(\alpha) = \{ w \in W \; | \; w \ \alpha(v), \text{ some } v \in V  \} \leq W  $
+\end{defi}
+
+\[ \alpha \text{ injective} \iff N(\alpha) = \{ \mathbf{0} \} \]
+
+\[ \alpha \text{ surjective } \iff Im(\alpha) = W \]
+
+\begin{eg}
+	\[ \alpha : \mathcal{C}^{\infty} (\R) \to \mathcal{C}^{\infty} (\R)  \]
+	
+	$ \alpha(f)(t) = f''(t) + 2f'(t) - 5f  $, $  $ is solutions to
+	
+	\[  \ker \alpha \text{ is solut to } f'' + 2f' + 5f = 0 \]
+	
+	\[ g \in \Im \alpha \text{ if } \; \exists \text{ solut to } f'' + 2f' + 5f = g  \]
+\end{eg}
+
+\begin{thm} (First Isomorphism Theorem)
+	Let $ \alpha : V \to W $ linear map. It induces an iso :
+	
+	\[ V / \ker \alpha \to \Im \alpha \] %use alpha bar
+	
+	\[ \overline{\alpha} (v + \ker \alpha) = \alpha(v) \]
+	
+	
+\end{thm}
+
+\begin{proof}
+	\begin{enumerate}
+		\item  $ \overline{\alpha} $ is well defined:
+	
+	\[ v + \ker \alpha = v' + \ker \alpha \]
+	
+	the
+	
+	\[ \iff v - v' \in \ker \alpha \Rightarrow \alpha(v) = \alpha(v') \]
+	
+	\item $ \overline{\alpha} $ linear is immediate from linearly of $ \alpha $.
+	
+	\item $ \overline{\alpha} $ bijective? 
+	
+	\[ \overline{\alpha}(v + \ker \alpha  ) = \mathbf{0} \Rightarrow \alpha(v) = 0 \Rightarrow v \in \ker \alpha \]
+	
+	\item surjectie: by def of $ \Im(\alpha) $.		
+	\end{enumerate}
+	
+	
+\end{proof}
+
+
+\begin{defi}
+	\[ r(\alpha) = rk(\alpha) = \dim (\Im \alpha) \]
+	
+	\[ n(\alpha) = \dim(N(\alpha)) \]
+	
+	rank, nullity
+\end{defi}
+
+\begin{thm} (Rank-nullity theorem)
+	Let $ U,V $ be vector spaces over $ \F $, $ \dim_{\F} U < \infty $.
+	
+	Let $ \alpha : U \to V $ linear.
+	
+	Then
+	
+	\[ \dim U = r(\alpha) + n(\alpha) \]
+\end{thm}
+
+
+\begin{proof}
+	\[ U / \ker \alpha \simeq \Im (\alpha) \Rightarrow \dim(U) - \dim \ker \alpha = \dim \Im(\alpha) \]
+\end{proof}
+
+\begin{lemma} 
+	Let $ V,W $ be v spaces over $ \F $, of equal finite dim. Let $ \alpha : V \to W $ linear. 
+	
+	TFAE
+	
+	\begin{enumerate}
+		\item $ \alpha $ injective
+		\item $ \alpha $ surjective
+		\item $ \alpha $ isomorphism
+		
+	\end{enumerate}
+\end{lemma}
 
 
 

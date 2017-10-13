@@ -1,0 +1,252 @@
+\documentclass[a4paper]{article}
+\usepackage{amsmath}
+\def\npart {IB}
+\def\nterm {Michaelmas}
+\def\nyear {2017}
+\def\nlecturer {?}
+\def\ncourse {Methods Example Sheet 1}
+
+\input{header}
+
+\newtheorem*{soln}{Solution}
+
+\renewcommand{\thesection}{}
+\renewcommand{\thesubsection}{\arabic{section}.\arabic{subsection}}
+\makeatletter
+\def\@seccntformat#1{\csname #1ignore\expandafter\endcsname\csname the#1\endcsname\quad}
+\let\sectionignore\@gobbletwo
+\let\latex@numberline\numberline
+\def\numberline#1{\if\relax#1\relax\else\latex@numberline{#1}\fi}
+\makeatother
+
+
+\begin{document}
+	
+\maketitle
+
+\section{QUESTION 1}
+
+\[ \frac{f(x_{+} + f(x_{-}))}{2} = \frac{1}{2} a_{0} + \sum_{n=1}^{\infty} \left[ a_{n} \cos \left( \frac{n \pi x}{L} \right) + b_{n} \sin \left( \frac{n \pi x}{L} \right)  \right]  \]
+
+For $ f(x) = (x-1)^{2} $ on the interval $ -1 \leq x \leq 1 $, $ f(x) $ is an even function, thus $ b_{n} = 0 $. We have $ L = 1 $, and 
+
+\begin{align*}
+\frac{1}{2} a_{0} & = \frac{1}{2L} \int_{-L}^{L} f(x) \; \d x \\
+& = \frac{1}{2} \int_{-1}^{1} x^{4} - 2x^{2} + 1 \; \d x \\
+& = \int_{0}^{1} x^{4} - 2x^{2} + 1 \; \d x \\
+& = \frac{8}{15}
+\end{align*}
+
+and
+
+\begin{align*}
+a_{n} & = \frac{1}{L} \int_{-1}^{1} f(x) \cos \left( \frac{n \pi x}{L} \right) \; \d x   \\
+& = \int_{-1}^{1} x^{4} \cos  n \pi x  \; \d x - 2 \int_{-1}^{1} x^{2} \cos  n \pi x   \; \d x + \int_{-1}^{1} \cos  n \pi x   \; \d x
+\end{align*}
+
+Evaluating each integral separately, we have:
+
+\begin{enumerate}
+	\item  \[ \int_{-1}^{1} \cos  n \pi x   \; \d x = \left[ \frac{\sin n \pi x}{n \pi} \right]_{-1}^{-1} = 0  \]
+	
+	as $ \sin n \pi x = 0 \; \forall \; n $
+	
+	\item By parts, 
+	
+	\begin{align*}
+	\int_{-1}^{1} x^{2} \cos  n \pi x   \; \d x & = \left[ \frac{x^{2} \sin n \pi x}{n \pi} - \frac{1}{n \pi }\int 2x \sin n \pi x \; \d x \right]_{-1}^{1}  \\
+	& = - \frac{2}{n \pi} \int_{-1}^{1} x \sin n \pi x \; \d x
+	\end{align*}
+	
+	and
+	
+	\begin{align*}
+	\int_{-1}^{1} x \sin n \pi x \; \d x & = \left[  \frac{- x \cos n \pi x}{n \pi} + \frac{1}{n \pi} \int \cos n \pi x \; \d x   \right]_{-1}^{1}  \\
+	& = \frac{-2 \cos n \pi x }{(n \pi )^{2}}
+	\end{align*}
+	
+	Thus the second integral contributes to give
+	
+	\[ - \frac{8 cos n \pi x}{(n \pi)^{2}} \]
+	
+	
+	\item 
+	
+	\begin{align*}
+	\int_{-1}^{1} x^{4} \cos  n \pi x  \; \d x & = \left[ \frac{x^{4} \sin n \pi x}{n \pi} - \frac{1}{n \pi }\int 4x^{3} \sin n \pi x \; \d x  \right]_{-1}^{1} \\
+	& = - \frac{4}{n \pi} \int_{-1}^{1} x^{3} \sin n \pi x \; \d x
+	\end{align*}
+	
+	and 
+	
+	\begin{align*}
+	\int_{-1}^{1} x^{3} \sin n \pi x \; \d x & = \left[ \frac{-x^{3} \cos n \pi x}{n \pi} + \frac{1}{n \pi} \int 3 x^{2} \cos n \pi x \right]_{-1}^{1}  \\
+	& = \frac{-2 \cos n \pi}{n \pi} + \frac{3}{n \pi} \int_{-1}^{1} x^{2} \cos n \pi x \; \d x
+	\end{align*}
+	
+	Whence
+	
+	\begin{align*}
+	\int_{-1}^{1} x^{4} \cos  n \pi x  \; \d x & = \frac{8\cos n \pi}{n \pi} - \frac{12}{(n \pi)^{2} } \int_{-1}^{1} x^{2} \cos n \pi x \; \d x  \\
+	& = \frac{8\cos n \pi}{n \pi} - \frac{48 \cos n \pi }{(n \pi)^{4}}
+	\end{align*}
+	
+	using (ii).
+	
+	
+	
+\end{enumerate}
+
+Finally,
+
+\begin{align*}
+a_{n} & = - \frac{48 \cos n \pi }{(n \pi)^{4}} \\
+& = \frac{48(-1)^{n+1}}{(n \pi)^{4}}
+\end{align*}
+
+as $ \cos n \pi x = (-1)^{n}$ 
+
+Hence the Fourier Series is given by
+
+\begin{align*}
+f(x) & = \frac{1}{2}a_{0} + \sum_{n=1}^{\infty} a_{n} \cos n \pi x \\
+& = \frac{8}{15} + \frac{48}{\pi^{4}}\sum_{n=1}^{\infty} \frac{(-1)^{n+1}}{n^{4}} \cos n \pi x
+\end{align*}
+
+\begin{center}
+	\begin{tikzpicture}
+	\draw [->] (-5, 0) -- (5, 0) node [right] {$x$};
+	\draw [->, use as bounding box] (0, -2.5) -- (0, 2.5) node [above] {$f(x)$};
+	
+	\end{tikzpicture}
+\end{center}
+
+
+$ f(x) $ satisfies the Dirichlet conditions. The $ 1^{\text{st}} $ derivative is the lowest derivative which is discontinuous (at the endpoints, as $ f(x) $ even fn $ \Rightarrow \; f'(x) $ odd), so Fourier coefficients are $ \Oc(\frac{1}{n^{2}}) $ as $ n \to \infty $
+
+\section{QUESTION 2}
+
+\begin{enumerate}[label = (\alph*)]
+	\item \[ \frac{f(x_{+} + f(x_{-}))}{2} =  \sum_{n=1}^{\infty} b_{n} \sin \left( \frac{n \pi x}{L} \right)  \]
+	
+	where 
+	\begin{align*}
+	b_{n} & = \frac{2}{L} \int_{0}^{L} f(x) \sin \left( \frac{n \pi x}{L} \right) \; \d x  \\
+	& = \frac{2}{\pi} \int_{0}^{\pi} x^{2} \sin n x \; \d x
+	\end{align*}
+	
+	Integrating by parts,
+	
+	\begin{align*}
+	\int_{0}^{\pi} x^{2} \sin n x \; \d x & = \left[  \frac{- x^{2} \cos n x }{n} + \frac{1}{n} \int 2x \cos n x \; \d x \right]_{0}^{\pi}  \\
+	& = \frac{- \pi^{2} \cos n \pi}{n} + \frac{2}{n} \int_{0}^{\pi} x \cos n x \; \d x
+	\end{align*}
+	
+	and once again,
+	
+	\begin{align*}
+	\int_{0}^{\pi} x \cos n x \; \d x & =\left[ \frac{x \sin n x}{n} - \frac{1}{n} \int \sin n x \; \d x \right]_{0}^{\pi}  \\
+	& = - \frac{1}{n} \int_{0}^{\pi} \sin n x \; \d x \\
+	& = - \frac{1}{n} \left[ - \frac{\cos n x}{n} \right]_{0}^{\pi}\\
+	& = \frac{1}{n^{2}} (\cos n \pi - 1) 
+	\end{align*}
+	
+	Back substituting in, 
+	
+	\begin{align*}
+	b_{n} & = \frac{2}{\pi} \left( \frac{- \pi^{2} \cos n \pi}{n} + \frac{2}{n^{3}} (\cos n \pi - 1)   \right)  \\
+	& = \frac{2}{\pi n^{3}} \left(   - 2 + (2 - (\pi n)^{2} )\cos n \pi       \right) 
+	\end{align*}
+	
+	Hence Fourier sine series given by:
+	
+	\[ f(x) = \sum_{n=1}^{\infty} \frac{2}{\pi n^{3}} \left(   - 2 + (2 - (\pi n)^{2} ) (-1)^{n} \right) \sin n x  \]
+	
+	\item Similarly,
+	
+	\[ \frac{f(x_{+} + f(x_{-}))}{2} =  \frac{a_{0}}{2} + \sum_{n=1}^{\infty} a_{n} \cos \left( \frac{n \pi x}{L} \right)  \]
+	
+	where 
+	
+	\begin{align*}
+	\frac{a_{0}}{2} & = \frac{1}{L} \int_{0}^{L} f(x) \; \d x \\
+	& = \frac{1}{\pi} \int_{0}^{\pi} x^{2} \; \d x\\
+	& = \frac{\pi^{2}}{3}
+	\end{align*}
+	
+	and 
+	
+	\begin{align*}
+	a_{n} & = \frac{2}{L} \int_{0}^{L} f(x) \cos \left( \frac{n \pi x}{L} \right) \; \d x  \\
+	& = \frac{2}{\pi} \int_{0}^{\pi} x^{2} \cos n x \; \d x
+	\end{align*}
+	
+	Integrating by parts,
+	
+	
+	\begin{align*}
+	\int_{0}^{\pi} x^{2} \cos n x \; \d x & = \left[ \frac{x^{2}\sin n x}{n}  - \frac{1}{n}\int 2x \sin n x \; \d x \right]_{0}^{\pi} \\
+	& = \frac{-2}{n} \int_{0}^{\pi} x \sin n x \; \d x
+	\end{align*}
+	
+	and once again,
+	
+	\begin{align*}
+	\int_{0}^{\pi} x \sin n x \; \d x & = \left[  \frac{- x \cos n x}{n} + \frac{1}{n} \int \cos n x \; \d x \right]_{0}^{\pi} \\
+	& = \frac{- \pi \cos n \pi}{n} + \frac{1}{n} \left[ \frac{\sin n x}{n \pi} \right]_{0}^{\pi} \\
+	& = \frac{- \pi \cos n \pi}{n}
+	\end{align*}
+	
+	Thus
+	
+	\[ a_{n} = \frac{4}{n^{2}} \cos n \pi  \]
+	
+	and the Fourier cosine series is given by
+	
+	\[ f(x) = \frac{\pi^{2}}{3} + \sum_{n=0}^{\infty} \frac{4}{n^{2}} (-1)^{n} \cos n x \]
+	
+\end{enumerate}
+
+\begin{enumerate}
+	\item \begin{center}
+		\begin{tikzpicture}
+		\draw [->] (-5, 0) -- (5, 0) node [right] {$x$};
+		\draw [->, use as bounding box] (0, -2.5) -- (0, 2.5) node [above]
+		{$f(x)$};
+		\draw node at (-4.5,0) [below] {$ -6 \pi$}; 
+		\draw node at (-3,0) [below] {$ -4 \pi$}; 
+		\draw node at (-1.5,0) [below] {$ -2 \pi$}; 
+		\draw node at (1.5,0) [below] {$ 2 \pi$}; 
+		\draw node at (3,0) [below] {$ 4 \pi$}; 
+		\draw node at (4.5,0) [below] {$ 6 \pi$}; 
+		
+		\end{tikzpicture}
+	\end{center}
+	
+	\item \begin{center}
+		\begin{tikzpicture}
+		\draw [->] (-5, 0) -- (5, 0) node [right] {$x$};
+		\draw [->, use as bounding box] (0, -2.5) -- (0, 2.5) node [above] {$f(x)$};
+		\draw node at (-4.5,0) [below] {$ -6 \pi$}; 
+		\draw node at (-3,0) [below] {$ -4 \pi$}; 
+		\draw node at (-1.5,0) [below] {$ -2 \pi$}; 
+		\draw node at (1.5,0) [below] {$ 2 \pi$}; 
+		\draw node at (3,0) [below] {$ 4 \pi$}; 
+		\draw node at (4.5,0) [below] {$ 6 \pi$}; 
+		
+		\end{tikzpicture}
+	\end{center}
+
+\end{enumerate}
+
+
+\section{QUESTION 3}
+\section{QUESTION 4}
+\section{QUESTION 5}
+
+
+
+
+
+
+\end{document}

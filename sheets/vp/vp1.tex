@@ -1,0 +1,459 @@
+\documentclass[a4paper]{article}
+\usepackage{amsmath}
+\def\npart {IA}
+\def\nterm {Michaelmas}
+\def\nyear {2017}
+\def\nlecturer {Mx Tsang}
+\def\ncourse {Variational Principles Example Sheet 1}
+
+\input{header}
+
+\newtheorem*{soln}{Solution}
+
+\renewcommand{\thesection}{}
+\renewcommand{\thesubsection}{\arabic{section}.\arabic{subsection}}
+\makeatletter
+\def\@seccntformat#1{\csname #1ignore\expandafter\endcsname\csname the#1\endcsname\quad}
+\let\sectionignore\@gobbletwo
+\let\latex@numberline\numberline
+\def\numberline#1{\if\relax#1\relax\else\latex@numberline{#1}\fi}
+\makeatother
+
+
+\begin{document}
+	
+\maketitle
+
+\section{QUESTION 1}
+
+\begin{soln}
+\[ \nabla \phi = (x_{1}^{3} - x_{2} - x_{3}, x_{2}^{3} - x_{3} - x_{1}, x_{3}^{3} - x_{1} - x_{2}) \]
+\end{soln}
+
+Setting $ \nabla \phi = 0 $ yields three equations satisfied by the coordinates $ \mathbf{x} = (x_{1},x_{2},x_{3}) $ of the stationary points of $ \phi $. Subtracting the first two of these gives
+
+\[ (x_{1} - x_{2})(x_{1}^{2} + x_{1}x_{2} + x_{2}^{2}) = -(x_{1}-x_{2}) \]
+
+\[ \Rightarrow (x_{1} - x_{2}) = 0 \quad \text{ or } \quad (x_{1}^{2} + x_{1}x_{2} + x_{2}^{2} + 1) = 0  \]
+
+Treating the second equation as a quadratic in $ x_{1} $ gives the discriminant as $ -3x_{2}^{2} - 4  < 0 $ with no real solutions. Hence $ x_{1} = x_{2} $, and by symmetry, $ x_{1} = x_{2} = x_{3} $. Using  $ [\nabla \phi]_{1} = 0 $ gives $ x_{1}^{3} = 2 x_{1}  \Rightarrow x_{1} = \pm \sqrt{2}, 0 $. The stationary points of $ \phi $ are:
+
+\[ (0,0,0) \qquad \text{and} \qquad (\pm \sqrt{2},\pm \sqrt{2},\pm \sqrt{2}) \]
+
+
+For $ (\pm \sqrt{2},\pm \sqrt{2},\pm \sqrt{2}) $, the Hessian is 
+
+\[ \mathbf{H} = \begin{pmatrix}
+6 & -1 & -1 \\
+-1 & 6 & -1 \\
+-1 & -1 & 6 
+\end{pmatrix} \]
+
+with eigenvalues $ \lambda_{1} = \lambda_{2} = 7 $, $ \lambda_{3} = 4 $.
+As all eigenvalues are positive, both of these points are minima. Hence $ \phi $ takes it's minimum value at both of these two points, and this minimum value is:
+
+\begin{align*}
+\phi (\pm \sqrt{2},\pm \sqrt{2},\pm \sqrt{2}) & = \frac{1}{4}( 3  (\sqrt{2})^{4} ) - 3(2)\\
+& = -3
+\end{align*}
+
+
+For $ (0,0,0) $, the Hessian is 
+
+\[ \mathbf{H} = \begin{pmatrix}
+0 & -1 & -1 \\
+-1 & 0 & -1 \\
+-1 & -1 & 0 
+\end{pmatrix} \]
+
+with eigenvalues $ \lambda_{1} = \lambda_{2} = 1 $, $ \lambda_{3} = -1 $. As some are positive and the rest negative, $ (0,0,0) $ is a saddle point of $ \phi $.
+
+Now let $ x_{i} = R_{ij} x_{j}' $ for some rotation matrix $ R $, which we can choose such that the matrix $ H' = R^{T} H R $ is diagonal. Neglecting terms of order $ x_{3} $ we have
+
+\begin{align*}
+\phi & = \frac{1}{2} x_{i} H_{ij} x_{j} + O(x^{3})\\
+& = \frac{1}{2}\sum_{i = 1 }^{3} \lambda_{i} (x_{i}')^{2} \\
+& = \frac{1}{2}\left( x_{1}' + x_{2}' - 2x_{3}' \right)  
+\end{align*}
+
+The surface here becomes $ x_{3}' = \frac{1}{2} (x_{1}' + x_{2}') $. Geometrically, we see this is a cone with semi-angle $ \arctan \sqrt{2} $
+
+
+
+\section{QUESTION 2}
+
+\begin{soln}
+\begin{enumerate}
+	\item The upper half plane is trivially a convex set, hence $ f(x,y) = x^{2} / y $ is convex on the upper half plane $ (x,y) : y > 0 $ if and only if for all $ (x,y), (x',y') $ in the upper half plane:
+	
+	\[ f \left[ (1 - t) \begin{pmatrix}
+	x \\
+	y
+	\end{pmatrix}  + t \begin{pmatrix}
+	x' \\
+	y'
+	\end{pmatrix} \right] \leq (1-t) f \begin{pmatrix}
+	x \\
+	y
+	\end{pmatrix} + t f\begin{pmatrix}
+	x' \\
+	y'
+	\end{pmatrix}, \qquad 0 < t < 1 \]
+	
+	This is true if and only if
+	
+	\[ \frac{[ (1 - t)x_ + t x' ]^{2}}{(1-t)y + y'} \leq (1-t) \frac{x^{2}}{y} + t \frac{(x')^{2}}{y'} \]
+	
+	\[ \iff [ (1 - t)x_ + t x' ]^{2}y y' = [(1-t) x^{2}y' + t(x')^{2}y][(1-t)y + y']  \]
+	\[ \iff 2t(1-t) xx'yy' \leq t(1-t)\left[ x^{2}(y')^{2} +  (x')^{2}y^{2}\right]  \]
+	\[ \iff \left[  xy' + x'y \right] \geq 0 \]
+	
+	where the last inequality is trivially true. Hence convexity follows.
+	
+	\item Given $ F(x,y) = y f(x/y) $, we are trying to show
+	
+	\[ F \left[  (1-t) \begin{pmatrix}
+	x\\
+	y
+	\end{pmatrix} + t \begin{pmatrix}
+	x' \\
+	y'
+	\end{pmatrix} \right] \leq (1-t) F \begin{pmatrix}
+	x\\
+	y
+	\end{pmatrix} + t F \begin{pmatrix}
+	x'\\
+	y'
+	\end{pmatrix} \]
+	
+	for some $0 < t < 1 $, for all $ (x,y), (x',y') $ in the upper half plane, given that $ f(x) $ is convex. This is true if and only if
+	
+	\[ \left[ (1-t)y + t y' \right] f \left( \frac{(1-t)x + t x'}{(1-t)y + t y'} \right)  \leq (1-t)f(x/y) + t y' f(x' / y') \]
+	
+	Using the fact that $ f(x/y) $ is convex, for some $ 0 < t < 1 $ we have
+	
+	\[ f \left[ (1-t)x/y + t x'/y' \right]  \leq (1-t)f(x/y) + t f(x'/y')  \]
+	
+	Upon replacing $ t  $  with $ s = \frac{ty'}{(1-t)y + ty'} $, the result follows immediately. 
+\end{enumerate}
+\end{soln}
+
+
+
+\section{QUESTION 3}
+
+	
+\begin{soln}
+The Legrende transform of $ f(x) = e^{x} $ is given by
+
+\[ f^{*}(p) = \sup_{x} \left[ px - e^{x} \right]  \]
+
+In this case $ p = e^{x} $, and hence $ x = \log p $ at the maximum of $ px - e^{x} $, which is then $ f^{*}(p) $. So
+
+\[ f^{*}(p) = p \log p - p, \qquad p \in \R, p > 0 \]
+
+Similarly, the Legrende transform of $ f(x) = a^{-1}x^{a} $, $ a > 1, x > 0 $ is given by
+
+\[ f^{*}(p) = \sup_{x} \left[ px - a^{-1}x^{a} \right]  \]
+
+In this case $ p = x^{a-1} $, and 
+
+\[ f^{*}(p) = b^{-1}p^{b}, \qquad \text{ where } b = \frac{a}{a-1}  \]
+
+\end{soln}	
+
+	
+
+
+\section{QUESTION 4}
+
+\begin{soln}
+	The Hemholtz free energy is defined by 
+	
+	\[ F(T,V) = \min_{S}\left[ U(S,V) - TS \right]  \]
+	
+Differentiating with respect to $ S $ gives 
+
+\begin{align*}
+T & = \frac{\partial U }{\partial S}  \\
+& = T_{0} \left( \frac{V_{0}}{V} \right)^{1/\alpha} \exp\left(   \frac{S - S_{0}}{\alpha n R}\right) 
+\end{align*}
+
+Rearranging, $ S = S_{0} + \alpha n R \log \left[ \frac{T}{T_{0}}  \left( \frac{V_{0}}{V} \right)^{1/\alpha} \right]  $. Hence
+
+\[  F(T,V) = U_{0} + \alpha n R (T - T_{0}) - T \left(  S_{0} + \alpha n R \log \left[ \frac{T}{T_{0}}  \left( \frac{V_{0}}{V} \right)^{1/\alpha} \right] \right)  \]
+\end{soln}
+
+\section{QUESTION 5}
+
+\begin{soln}
+	
+	\begin{enumerate}
+		\item For a triangle of given perimeter $ 2s $, the area
+		
+		\[ A = \sqrt{s(s-a)(s-b)(a+b-s)} \] is maximised when $ \frac{\partial A }{\partial a} = \frac{\partial A }{\partial b} = 0 $.
+		
+		\[ \frac{\partial A }{\partial a} = \frac{-\sqrt{s(s-b)(a+b-s)} }{2\sqrt{(s-a)}} + \frac{\sqrt{s(s-a)(s-b)}}{2\sqrt{(a+b-s)}}\]
+		
+		Setting $ \frac{\partial A }{\partial a} = 0 $ we recover $ a + b - s = s - a \Rightarrow 2s = 2a + b $. Similarly, $ \frac{\partial A }{\partial b} = 0 \Rightarrow 2s = a + 2b $. Hence $ a = b $, and by symmetry, $ a = b = c $ and the triangle is equilateral.
+		
+		
+		\item For a right-angled triangle with sides $ a,b,c $ where $ c^{2} = a^{2} + b^{2} $, the perimeter $ P $ is given by
+		
+		\[ P = a^{2} + b^{2} + \sqrt{a^{2} + b^{2}} \]
+		
+		and the area $ A $ by
+		
+		\[ A = \frac{ab}{2} \]
+		
+		Rearranging the first expression for $ a $ we find that
+		
+		\[ a = \frac{1}{2} \left( \frac{2bP-P^{2}}{b - P} \right)  \]
+		
+		Substituting this in, we find
+		
+		\[ A = \frac{1}{4} \left(  \frac{2bP - P^{2}}{b - P} \right) b   \]
+		
+		So setting $ \frac{\partial A }{\partial b} = 0 $,
+		
+		\begin{align*}
+		& \frac{1}{4} \left(  \frac{2bP - P^{2}}{b - P} \right) + \frac{1}{4} \left(  \frac{(b - P)2P - (2bP - P^{2})}{(b-P)^{2}}  \right) b = 0   \\
+		\Rightarrow \; & (2bP - P^{2})(b - P) + (b - P)2P - (2bP - P^{2}) = 0
+		\end{align*}
+		
+		
+	\end{enumerate}
+	
+	
+
+\end{soln}
+
+\section{QUESTION 6}
+
+
+\begin{soln}
+The volume of the parallelepiped is $ 2x \times 2y \times 2z = 8xyz $
+Using a Lagrange multiplier $ \lambda $ to impose the constraint, we have
+
+\[ \Phi_{\lambda}[\mathbf{x}] = 8xyz - \lambda\left(  \frac{x^{2}}{a^{2}} + \frac{x^{2}}{x^{2}} + \frac{x^{2}}{c^{2}} - 1 \right)  \]
+	
+	
+\[ 	\frac{\partial \Phi }{\partial x} = 0 \Rightarrow 8yz - \frac{2 x \lambda}{a^{2}} = 0 \Rightarrow \frac{1}{a^{2}} = \frac{4yz}{x\lambda} \]
+
+Similarly
+
+\[ 	\frac{\partial \Phi }{\partial y} = 0 \Rightarrow \frac{1}{b^{2}} = \frac{4zx}{y\lambda}, \quad 	\frac{\partial \Phi }{\partial z} = 0 \Rightarrow \frac{1}{c^{2}} = \frac{4xy}{z\lambda} \]
+
+Whence, 
+
+\begin{align*}
+\frac{\partial \Phi }{\partial \lambda} = 0 & \Rightarrow \frac{x^{2}}{a^{2}} + \frac{x^{2}}{x^{2}} + \frac{x^{2}}{c^{2}} = 1 \\
+& \Rightarrow \lambda = 12 xyz
+\end{align*}
+
+Substituting our value of $ \lambda $ into the $ \frac{\partial \Phi }{\partial x} = 0  $ equation gives
+
+\[ \frac{1}{a^{2}} = \frac{4yz}{12x^{2}yz} \Rightarrow x = \frac{a}{\sqrt{3}} \]	
+
+Similarly, $ y = \frac{b}{\sqrt{3}} $, $ z = \frac{c}{\sqrt{3}} $ and 
+
+\begin{align*}
+V & = 8xyz \\
+& = \frac{8abc}{3\sqrt{3}}
+\end{align*}
+	
+\end{soln}
+
+
+\section{QUESTION 7}
+
+
+\begin{soln}
+	In spherical coordinates the distance functional is given by 
+	
+	\[ F[r,\theta,\phi] = \int_{t}^{t + \delta t} \sqrt{\dot{r}^{2} + r^{2} \dot{\theta}^{2} + r^{2}\sin^{2}\theta \dot{\phi}^{2}} \; \d t \]
+	
+	On the unit sphere, $ r = 1 $, and this becomes:
+	
+		\[ F[\theta,\phi] = \int_{t}^{t + \delta t} \sqrt{ \dot{\theta}^{2} + \sin^{2}\theta \dot{\phi}^{2}} \; \d t \]
+	
+	
+	 Equivalently, if $ \theta $ is a good parameter for the curve, we can consider the functional obtained from a change of variables
+	
+		\[ F[\phi] = \int_{\theta}^{\theta + \delta \theta} \sqrt{1 +  \sin^{2}\theta(\phi')^{2}} \; \d \theta \]
+		
+		where the curve is now specified by the function $ \phi(\theta) $.
+		
+		The functional for the total path length between any two points on the unit sphere is given by:
+		
+			\[ L[\phi] = \int_{\theta_{A}}^{\theta_{B}} \sqrt{1 +  \sin^{2}\theta(\phi')^{2}} \; \d \theta \] 
+			
+		In this case with $ f = \sqrt{1 +  \sin^{2}\theta(\phi')^{2}} $, $ \frac{\partial f }{\partial \phi} = 0 $ and the Euler Lagrange equation can be immediately once integrated to give the first integral:
+		
+		\[ \frac{\phi'\sin^{2}\theta}{\sqrt{1 +  \sin^{2}\theta(\phi')^{2}}} = c \]
+		
+		for some constant $ c $. Hence 
+		
+		\[ \phi' = \frac{c}{\sin \theta \sqrt{\sin^{2}\theta - c^{2}}} \]
+		
+		Substitute $ u = \cot \theta $ so that $ \d u = - \cosec^{2} \theta \d \theta $. Then
+		
+		\begin{align*}
+		\phi & = \int \frac{-c \; \d u}{\sqrt{1 - c^{2}\cosec^{2}\theta}}\\
+		& =  \int \frac{-c \d u}{\sqrt{1 - c^{2}(1 + u^{2})}} \\
+		& = \frac{- \d u}{\sqrt{a^{2} - u^{2}}} \qquad \text{ where } \; a = \sqrt{1 - c^{2}} / c \\
+		& = \cos^{-1}(u/a) + \phi_{0}
+		\end{align*}
+		
+		where $ \phi_{0} $ is a constant of integration. Hence, the path is given by
+		
+		\[ \cot \theta = a \cos (\phi - \phi_{0}) \]
+		
+		which is the path of a great circle. 
+	
+	
+
+\end{soln}
+
+
+\section{QUESTION 8}
+
+\begin{soln}
+	Assuming $ z $ is a good parameter for the curve, it can be written as $ r(z) $, and we are trying to maximize the functional for the surface area
+	\[ S[r] = \int_{-b}^{b} 2 \pi r \sqrt{ 1 + (r')^{2}} \; \d z  \quad \Rightarrow \quad f = 2 \pi r \sqrt{ 1 + (r')^{2}} \]
+	
+	As $ f $ has no explicit $ z $-dependence, we have the first integral 
+	
+	\[ \text{constant } = f - r' \frac{\partial f }{\partial r'} = \frac{2 \pi r}{\sqrt{1 + (r')^{2}}} \quad \Rightarrow r = c \cosh (z / c)\]
+	
+	Using the boundary conditions $ r = a \Rightarrow z = \pm b $, we have $ a / c = \cosh(  b / c) $
+\end{soln}
+
+
+\section{QUESTION 9}
+\begin{soln}
+	Let Stratford be the origin of coordinates in the vertical plane with $ x $ being horizontal distance from the origin and $ y $ being the vertical distance below the origin. The train depart with zero velocity so conservation of energy implies that its speed $ v $at any later time is given by
+	
+	\[ \frac{1}{2}mv^{2} = mgy \; \Rightarrow \; v = \sqrt{2gy} \]
+	
+	We have to find the path that minimizes the travel time when the speed depends on position, ie. we have to minimize:
+	
+	\[ T = \int_{A}^{B} \frac{\d l}{v} = \frac{1}{\sqrt{2g}}\int_{A}^{B} \frac{\sqrt{\d x^{2} + \d y^{2}}}{\sqrt{y}} \]
+	
+	Assuming $ x $ is a good coordinate for the curve, 
+	
+	\[ T[y] \propto \int_{0}^{x_{B}} \sqrt{\frac{1 + (y')^{2}}{y}}  \; \d x, \quad \Rightarrow \quad f = \sqrt{\frac{1 + (y')^{2}}{y}}\]
+	
+	As $ f $ has no explicit $ x $-dependence, we have the first integral 
+	
+	\[ \text{constant } = f - y' \frac{\partial f }{\partial y'} = \frac{1}{y[1 + (y')^{2}]} \quad \Rightarrow \quad y [ 1 + (y')^{2}]  = 2c\]
+	
+	for positive constant $ c $. The solution of this first-order ODE with $ y(0) = 0 $ is given parametrically by
+	
+	\[ x = c(\theta - \sin \theta), \qquad y = c( 1 - \cos \theta) \]
+	
+	which is an inverted cycloid. The origin (Stratford) corresponds to $ \theta = 0 $. Requiring the cycloid passes through $ (l,0) $ (Acton) gives $ \theta = 2\pi $, $ c = \frac{l}{2 \pi} $. Hence, the time taken is given by
+	
+	\begin{align*}
+	T & = \frac{1}{\sqrt{2g}}\int_{A}^{B} \frac{\sqrt{\d x^{2} + \d y^{2}}}{\sqrt{y}} \\
+	& =  \frac{1}{\sqrt{2g}} \int_{0}^{2\pi} \sqrt{\frac{c^{2}(1 - \cos \theta)^{2} + \theta^{2} \sin^{2} \theta}{c(1 - \cos \theta)}} \; \d \theta \\
+	& =  \sqrt{\frac{c}{2g}} \int_{0}^{2\pi} \sqrt{2} \; \d \theta\\
+	& = \sqrt{\frac{2\pi l}{g}}
+	\end{align*}
+	
+	
+\end{soln}
+
+
+
+\section{QUESTION 10}
+
+
+\begin{soln}
+	Fermat's principle states that light takes the path of least time. We wish to minimize
+	
+	\begin{align*}
+	T[y] & = \int \frac{\d l}{v} \\
+	& = \propto \int  \sqrt{(1 - ky)(1+(y')^{2}} \; \d x
+	\end{align*}
+	
+	Notice that 
+	
+	\[ f =  \sqrt{(1 - ky)(1+(y')^{2}} \quad \Rightarrow \quad \frac{\partial f }{\partial x} = 0\]
+	
+	so we have the first integral
+	
+		\[ \text{constant } = f - y' \frac{\partial f }{\partial y'} = \sqrt{\frac{1-ky}{1+(y')^{2}}}\]
+		
+	Squaring, we deduce that 
+	
+	\[ (y')^{2} = (k / c^{2}) (y_{0} - y), \qquad y_{0} = \frac{1 - c^{2}}{k} \]
+	
+	Taking the square root we deduce that
+	
+	\[ \frac{\d }{\d x} \left[  \sqrt{y - y_{0}} \pm \frac{k}{2 \sqrt{c}} x \right] = 0 \Rightarrow y = y_{0} - \frac{k^{2}}{4 c^{2}} (x - x_{0})^{2}  \]
+	
+	where $ x_{0} $ is another integration constant. This is a parabola, with maximum height $ y = y_{0} $. If the ray enters the medium at $ (-x_{0},0) $ and leaves at $ (x_{0},0) $, maximum height is reached at $ x = 0 $. Substituting in $ y_{0} $ for $ c $ gives:
+	
+	\[ y = y_{0} - \frac{(kx_{0})^{2}}{4(1-k y_{0})^{2}} \]
+	
+\end{soln}
+ 
+\section{QUESTION 11}
+
+
+
+\section{QUESTION 12}
+\begin{soln}
+	
+	Writing the area of the enclosed region as an integral over $ x $ of area elements of vertical strips, the total area is:
+	
+	\[ A[y] =  \int_{0}^{a} y(x) \; \d x \]
+	
+	We must maximize $ A $ subject to the condition that $ P[y] = L $, where 
+	
+	\[ P[y] = \int \sqrt{1 + (y')^{2}} \; \d x \]
+	
+	Using a Lagrange multiplier to impose the constraint, we have
+	
+	\[ \Phi_{\lambda}[y] = \int f_{\lambda} (y,y') \; \d x + \lambda L, \qquad f(y,y') = y - \lambda \sqrt{1 + (y')^{2}} \]
+	
+	$ f_{\lambda}(y,y') $ has no explicit $ x $-dependence, so the EL equations imply that
+	
+	\[ \text{constant } = f_{\lambda} - y' \frac{\partial f_{\lambda} }{\partial y'} = y - \frac{\lambda}{\sqrt{1 + (y')^{2}}}  \]
+	
+	This is equivalent to 
+	
+	\[ (y')^{2} = \frac{\lambda^{2}}{(y - y_{0})^{2}} - 1 \]
+	
+	for some constant $ y_{0} $. This ODE has the solution $ y = y_{0} \pm \sqrt{\lambda^{2} - (x - x_{0})^{2}} $ for some constant $ x_{0} $, so
+	
+	\[ (x - x_{0})^{2} + (y - y_{0})^{2} = \lambda^{2} \]
+	
+	
+ 	
+\end{soln}
+
+\section{QUESTION 13}
+
+
+\begin{soln}
+		Functional for the total length is 
+		
+		\[ P[y] = \int_{-a}^{a}  y\sqrt{1 + (y')^{2}} \; \d x \]
+		
+		Using a Lagrange multiplier to impose the constraint, we have
+	
+	\[ \Phi_{\lambda}[y] = \int f_{\lambda} (y,y') \; \d x + \lambda P, \qquad f(y,y') = (y- \lambda)\sqrt{1 + (y')^{2}} \]
+	
+		$ f_{\lambda}(y,y') $ has no explicit $ x $-dependence, so the EL equations imply that
+	
+	\[ \text{constant } = f_{\lambda} - y' \frac{\partial f_{\lambda} }{\partial y'} =  \]
+	
+	
+	
+	
+\end{soln}
+
+
+\end{document}

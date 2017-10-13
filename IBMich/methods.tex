@@ -285,7 +285,7 @@ Remember
 
 \[ \frac{f(x_{+}) + f(x_{-})}{2} = \frac{a_{0}}{2} + \sum_{n=1}^{\infty} \frac{a_{n}}{2} \left(  e^{\frac{ i n \pi x}{L}} + e^{\frac{- i n \pi x}{L}}  \right) - \frac{b_{n i}}{2} \left(  e^{\frac{ i n \pi x}{L}} - e^{\frac{- i n \pi x}{L}}  \right)\]
 
-\[ = \frac{a_{0}}{2} = \sum_{n=1}^{\infty} \left( \frac{a_{n} - i b_{n}}{2} \right) e^{\frac{i n \pi x}{L}} + \sum_{n=1}^{\infty} \left( \frac{a_{n} + i b_{n}}{2} \right) e^{\frac{- i n \pi x}{L}}  \]
+\[ = \frac{a_{0}}{2} + \sum_{n=1}^{\infty} \left( \frac{a_{n} - i b_{n}}{2} \right) e^{\frac{i n \pi x}{L}} + \sum_{n=1}^{\infty} \left( \frac{a_{n} + i b_{n}}{2} \right) e^{\frac{- i n \pi x}{L}}  \]
 
 \[ = \sum_{-\infty}^{\infty} c_{n} e^{\frac{i \pi n x}{L}} \quad c_{0} = \frac{a_{0}}{2} ; \underbrace{c_{n}}_{ (n > 0)} = \frac{a_{n} - i b_{n}}{2}; \underbrace{c_{n}}_{ (n < 0)} = \frac{a_{n} + i b_{n}}{2} \]
 
@@ -295,7 +295,7 @@ Note that
 
 complex exponentials are orthogonal
 
-\[ \int_{0}^{2L} e^{\frac{i n \pi x}{L}} e ^{\frac{- i n \pi x}{L}} \; \d x = \int_{0}^{2L} \cos \left( \frac{(n - m) \pi x}{L} \right)  \; \d x  + i \int_{0}^{2L}  \underbrace{\sin(n-m)}_{0 \text{ by periodicity}}\frac{\pi x}{L} \; \d x = 2L \delta_{nm} \]
+\[ \int_{0}^{2L} e^{\frac{i n \pi x}{L}} e ^{\frac{- i n \pi x}{L}} \; \d x = \int_{0}^{2L} \cos \left( \frac{(n - m) \pi x}{L} \right)  \; \d x  + i \int_{0}^{2L}  \underbrace{\sin \left( \frac{(n-m)\pi x}{L} \right) }_{0 \text{ by periodicity}} \; \d x = 2L \delta_{nm} \]
 
 
 \[ c_{m} = \frac{1}{2L} \int_{0}^{2L} f(x) e^{\frac{-i m \pi x}{L}} \; \d x = \frac{1}{2L} \int_{0}^{2L} \sum_{-\infty}^{\infty} c_{n} e^{\frac{i n \pi x}{L}} e ^{\frac{- i n \pi x}{L}} \; \d x \]
@@ -350,11 +350,11 @@ FS describes the $ 2L $ periodic fn. Sine seires still describes the fn on $ [0,
 
 
 \subsubsection{Even functions: fourier cosine series}
-$ f(x) $ can also be extended as an even fn on $ -L \leq x \leq L $ ie. $ f(x) = f(-x) $ and then extended as a $ 2L $-periodic fn: $ \Rightarrow b_{n} = 0 \; \forall n $.
+$ f(x) $ can also be extended as an even fn on $ -L \leq x \leq L $ ie. $ f(x) = f(-x) $ and then extended as a $ 2L $-periodic fn: $ \Rightarrow b_{n} = 0 \; \forall \; n $.
 
 Fourier cosine series:
 
-\[ \frac{f(x_{+}) + f(x_{-})}{2} = \frac{a_{0}}{2} \sum_{n=1}^{\infty} a_{n} \cos \left( \frac{n \pi x}{L} \right) \qquad a_{n} = \frac{2}{L} \int_{0}^{L} f(x) \cos \left(  \frac{n \pi x}{L} \right) \; \d x   \]
+\[ \frac{f(x_{+}) + f(x_{-})}{2} = \frac{a_{0}}{2} + \sum_{n=1}^{\infty} a_{n} \cos \left( \frac{n \pi x}{L} \right) \qquad a_{n} = \frac{2}{L} \int_{0}^{L} f(x) \cos \left(  \frac{n \pi x}{L} \right) \; \d x   \]
 
 
 \begin{center}
@@ -439,8 +439,142 @@ INHOMOGENEOUS OR FORCED EQUATION.
 
 \[ \mathcal{L} y = f(x)  \]
 
-$ F $ is the \emph{forcing} and has a particular integral $ y_{p} (x) $. G.S. is $ y = y_{c}(x) + y_{p}(x) $ where $ A + B $ are determined in a `PROBLEM' by applying conditions
+$ F $ is the \emph{forcing} and has a particular integral $ y_{p} (x) $. G.S. is $ y = y_{c}(x) + y_{p}(x) $ where $ A + B $ are determined in a `PROBLEM' by applying conditions.
 
+
+\subsection{Hermition Matrices}
+
+Remember the problem: find $ \mathbf{x} $ s.t. 
+
+\[ A \mathbf{x} = \mathbf{b} \]
+
+if $ A $ is an Hermitian, $ A  $ is $ N \times N $,
+
+\[ A^{\dag} = A \]
+
+dagger denotes complex conjugate transpose
+
+4 key properties: remeber an eigenvector and an eigenvalue are definied st.
+
+\[ A \mathbf{y}_{n} = \lambda_{n} \mathbf{y_{n}} \]
+
+$ \lambda_{n} $ e-vaulue, $ \mathbf{y}_{n} $ is the e-vector
+
+\begin{enumerate}
+	\item $ \lambda_{n} $ are real.
+	\item if $ \lambda_{m} \neq \lambda_{n} $, $ \mathbf{y}_{m} \cdot \mathbf{y}_{n} = 0 $
+	\item the e-vectors form (on scaling) an orthonormal basis and so specifically $ \mathbf{b} \in \C^{N} $ can be described by a linear combination of e-vectors
+	\item if $ A $ is non-singular (all elements are non-zero) the solution to $ A \mathbf{x} = \mathbf{b} $ can be written as a sum of e-vectors
+\end{enumerate}
+
+Gaussian Elimination: $ A \mathbf{x} = \mathbf{b} $
+
+H3 $ \Rightarrow \; \mathbf{b} = \sum_{n=1}^{N} b_{n} \mathbf{y}_{n} $
+ and $ \mathbf{x} = \sum_{n=1}^{N} c_{n} \mathbf{y}_{n} $
+ 
+ (Assuming $ \mathbf{y}_{n} $ are distinct and non-zero)
+ 
+ Linear!
+ 
+ \[ A \mathbf{x} = \sum_{n=1}^{N} c_{n} A y_{n} = \sum_{n=1}^{N} c_{n} \lambda_{n} \mathbf{y}_{n} = \sum_{n=1}^{N} b_{n} \mathbf{y}_{n} = \mathbf{b} \]
+ 
+ \[\text{H2} \Rightarrow \mathbf{y}_{m} \cdot \left( \sum_{n=1}^{N} c_{n} \lambda_{n} \mathbf{y}_{n}  \right) = c_{m} \lambda_{m} = \mathbf{y}_{m} \cdot \left(  \sum_{n=1}^{N} b_{n} \mathbf{y}_{n}  \right) = b_{m}    \]
+ 
+ \[ \Rightarrow c_{m} = \frac{b_{m}}{\lambda_{m}} \Rightarrow \mathbf{x} = \sum_{n=1}^{N} \frac{b_{n}}{\lambda_{n}} \mathbf{y}_{n} \]
+ 
+ Treating $ A $ as an operator... can this be generalized to differential operators?
+ 
+ 
+ \subsection{Motivating Example using FS}
+ 
+ For continuous forcing function $ f(x) $, we want to find $ y(x) $ on a finite interval st.
+ 
+ \[ - \frac{\d^{2} y }{\d  x^{2}} = f(x) \quad 0 \leq x \leq L \]
+
+Suppose $ f(0) = f(L) = y(0) = y(L) = 0 $ (super homogenuous BCS.)
+
+$ f(x) $ satisfies the D.C. and so we can write a FSS if we extend $ f $ to be a $ 2L $ periodic ODD function
+
+\[ f(x) \sum_{n = 1 }^{\infty} b_{n} \sin \left(  \frac{n \pi x}{L} \right)  \; ; \; b_{n} = \frac{2}{L} \int_{0}^{L} f(\xi)  \sin \left( \frac{n \pi \xi}{L}  \; \d \xi \right)  \]
+
+
+\[ \mathcal{L} = - \frac{\d^{2} }{\d  x^{2}} \]  
+
+can we find solution to $ \mathcal{L} y_{n} = \lambda_{n} y_{n}  $, $ y_{n} (0) = y_{n}(L) = 0 $
+
+\[ \frac{\d^{2} }{\d  x^{2}} = - \lambda_{n} y_{n}   \]
+
+\[ \Rightarrow y_{n} = \sin \frac{n \pi x}{L} \]
+
+\[ \lambda_{n} = \frac{n^{2} \pi^{2}}{L^{2}} \]
+
+Note: $ \lambda_{n} $ are real and strictly positive so $ y_{n} $ is an EIGENFUNCTION with associated E-VALUE $ \lambda_{n} $
+ 
+Note: $  \lambda_{n} = \frac{n^{2} \pi^{2}}{L^{2}}  $ has property H1 \emph{and} we have already met the orthogonality property H2 ie
+
+\[ \int_{0}^{L} y_{n} y_{m} \; \d x = \frac{L}{2} \delta_{mn} \]
+
+There is also a generalization of porperty H3: sines + cosines form a complete (infinite dimensional) basis for functions that satisfy Dirichlet conditions.
+
+For this problem $ y(x) $ must be sufficiently smooth so that its second derivative satisfies the D.C. so that $ y(x) $ has the F.S.S
+
+\[ y(x)  = \sum_{n=1}^{\infty} c_{n} \sin \frac{n \pi x}{L}  \]
+
+\[ - \frac{\d^{2} }{\d x^{2}}  = \mathcal{y} = \sum_{n = 1 }^{\infty} \frac{n^{2} \pi^{2}}{L^{2}} c_{n} \sin \frac{n \pi x}{L} = \sum_{n = 1 }^{\infty} \lambda_{n} c_{n} \sin \frac{n \pi x}{L} \]
+
+\[ = \sum_{n=1}^{\infty} b_{n} \sin \frac{n \pi x}{L} \]
+
+(exactly the same concept but its infinite).
+
+Orthogonality tells us 
+
+\[ \lambda_{n} c_{n} = b_{n} \]
+
+Therefore
+
+\begin{align*}
+y(x) & = \sum_{n=1}^{\infty} \frac{b_{n}}{\lambda_{n}} \sin \left( \frac{s \pi x}{L} \right)  \\
+& = \frac{2}{L} \int_{0}^{L} \sum_{n=1}^{\infty} \left[  \frac{\sin \left( \frac{n \pi x}{L}\right) \sin \left( \frac{n \pi \xi}{L} \right)}{\lambda_{n}} f(\xi) \right]  \; \d \xi \\
+& = \int_{0}^{L} G(x \; \xi) f(\xi) \; \d \xi \qquad \lambda_{n} = \frac{n^{2} \pi^{2}}{L^{2}}
+\end{align*}
+
+where $  G(x \; \xi)  $ is Green's function
+
+\[ A \mathbf{x} = \mathbf{b} \Rightarrow \mathbf{x} A^{-1} \mathbf{b} \]
+
+\[ \mathcal{L} y = f \Rightarrow y = \mathcal{L}^{-1} f \]
+
+(Loose analogy)
+
+\section{S-L Theory: Self-adjoint operators}
+
+\subsection{Definiton of self-adjoint form}
+
+Consider a $ 2^{\text{nd}} $ order linear differential operator where the e-value problem is to determine eigenfunciton $ y $ and associated e-value $ \lambda $ s.t.
+
+\[ \alpha(x) \frac{\d^{2} y}{\d x^{2}} + \beta(x) \frac{\d y}{\d x} + \gamma(x) y = \mathcal{L} y = - \lambda \kappa(x) y  (*) \]
+
+st. $ a \leq x \leq b $, $ \kappa $ and $ \alpha $ are real and positive on $ [a,b] $
+
+
+(previous example, $ \kappa = \alpha = 1 $, $ \beta = \gamma = 0 $)
+
+This general differential operator can ALWAYS be written in STURM-LIOUVILLE (S-L) or self-adjoint form. \footnote{we're constructing an integrating factor to rebuild teh problem}
+
+\[ \mathcal{L} y = - \frac{\d }{\d x} \left[ p(x) \frac{\d y}{\d x}  \right] + q(x) y = \lambda W(x) y \]
+
+$ W(x) $ is called the \emph{weight function} wlog real and positive on $ [a,b] $ expect possibly at isolated points where $ W = 0 $.
+
+Multiply (*) by $ - \phi(x) $ where
+
+\[ \phi(x) = \frac{\exp \left[  \int^{x} \frac{\beta(x)}{\alpha(x)} \; \d x \right] }{\alpha(x)} \]
+
+
+\[ \Rightarrow p(x) = \exp \left[ \int^{x} \frac{\beta(x)}{\alpha(x)} \; \d x \right] \; \quad q(x) = - \frac{-\gamma(x)}{\alpha(x)} \exp \left[ \int^{x} \frac{\beta(x)}{\alpha(x)} \; \d x \right] \]
+
+\[ W(x) = \frac{\kappa(x)}{\alpha(x)} \exp \left[ \int^{x} \frac{\beta(x)}{\alpha(x)} \; \d x \right] \]
+
+$ p,q,W $ are all real and weight is positive. 
 
 
 
