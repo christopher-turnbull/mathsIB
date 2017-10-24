@@ -1,0 +1,51 @@
+\documentclass[a4paper]{article}
+\usepackage{amsmath}
+\def\npart {IA}
+\def\nterm {Michaelmas}
+\def\nyear {2016}
+\def\nlecturer {Gareth Taylor}
+\def\ncourse {Numbers and Sets Example Sheet 4.5}
+
+\input{header}
+
+\newtheorem*{soln}{Solution}
+
+\renewcommand{\thesection}{}
+\renewcommand{\thesubsection}{\arabic{section}.\arabic{subsection}}
+\makeatletter
+\def\@seccntformat#1{\csname #1ignore\expandafter\endcsname\csname the#1\endcsname\quad}
+\let\sectionignore\@gobbletwo
+\let\latex@numberline\numberline
+\def\numberline#1{\if\relax#1\relax\else\latex@numberline{#1}\fi}
+\makeatother
+
+
+\begin{document}
+	
+\maketitle
+
+\section{QUESTION 1}
+\section{QUESTION 2}
+\section{QUESTION 3}
+\section{QUESTION 4}
+\section{QUESTION 5}
+
+Let $ f: X \to Y  $ be a function. For $ A \subseteq X $ let $ f(A) = \{ f(x) \; : \; x \in A \} $. For $ B \subseteq Y $ let $ f^{-1}(B) = \{ x \in X \; : \; f(x) \in B   \} $. Give proofs or counterexamples of the following claims:
+
+\begin{enumerate} [label=(\alph*)]
+	\item $ f(A_{1} \cup A_{2}) = f(A_{1}) \cup f(A_{2}) $
+	\item $ f^{-1} (B_{1} \cup B_{2}) = f^{-1}(B_{1}) \cup f^{-1}(B_{2}) $
+	\item $ f(A_{1} \cap A_{2}) = f(A_{1}) \cap f(A_{2}) $
+	\item $ f^{-1} (B_{1} \cap B_{2}) = f^{-1}(B_{1}) \cap f^{-1}(B_{2}) $
+	\item $ f^{-1}(f(A)) = A $
+	\item $ f(f^{-1}(B)) = B $
+\end{enumerate}
+\section{QUESTION 6}
+\section{QUESTION 7}
+\section{QUESTION 8}
+\section{QUESTION 9}
+\section{QUESTION 10}
+
+
+
+\end{document}

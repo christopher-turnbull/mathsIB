@@ -492,59 +492,594 @@ Postulate (P3): If $ Q $ is measured when the particle is an eigenstate $ \psi $
 
 \subsection{Infinite Potential Well or Particle in a Box }
 
+\begin{eg}
+	\begin{center}
+		\begin{tikzpicture}
+		\draw [->] (-2.5, 0) -- (2.5, 0) node [right] {$x$};
+		\draw [->] (0, -0.5) -- (0, 2) node [above] {$V$};
+		\draw [mred, semithick, dashed] (-1.5, 0) node [below] {$-a$} -- (-1.5, 2);
+		\draw [mred, semithick, dashed] (1.5, 0) node [below] {$a$} -- (1.5, 2);
+		\draw [mred, semithick] (-1.5, 0) -- (1.5, 0);
+		\end{tikzpicture}
+	\end{center}
+	
+	\[ V(x) = \begin{cases} 0  & \text{ if } | x |  \leq a \\ U & \text{ if } | x | > a \end{cases} \] in the limit $ U \to \infty $.
+	
+	Time indep SE:
+	
+	\[ \frac{-\hbar^{2}}{2m} \psi''  = E \psi \qquad | x  | \leq a \]
+	\[ \frac{-\hbar^{2}}{2m} \psi'' + U \psi = E \psi \qquad | x | > a \]
+	
+	Taking the limit as $ U  \to \infty $, 2nd equation suggests we must take $ \psi = 0 $ for $ | x | > a $.
+	
+	This will be justified shortly. In this case the appropriate boundary conditions are $ \psi = 0 $ for $ | x | > a $ and $ \psi $ continuous at $ x = \pm a $. So we are left to solve
+	
+	\[ - \frac{\hbar^{2}}{2m} \psi'' = E \psi \quad \text{ on } -a \leq x \leq a  \text{ with } \psi(\pm a) = 0 \]
+	
+	For $ E > 0 $ set \[  E = \frac{\hbar^{2} k^{2}}{2m}  \quad \text{with } k > 0 \] and we get
+	
+	\[ \psi'' + k^{2} \psi = 0 \]
+	
+	\[ \Rightarrow \psi = A \cos k x + B \sin k x \]
+	
+	and boundary conditions imply $ A \cos k a \pm B \sin k a  = 0 $ ie.  $ A \cos k a = B \sin k a  = 0 $.
+	Since $ \sin ka $ and $ \cos ka $ cannot both be zero simultaneously, we have:
+	
+	
+	\begin{enumerate}
+		\item $ B = 0 $ and $ ka = n \pi / 2 $ for $ n = 1,3,\cdots $
+		or 
+		\item $ A = 0 $ and $ ka = n \pi / 2 $ for $ n = 2,4,\cdots $
+		
+	\end{enumerate}
+	
+	Hence
+	
+	\[ E_{n} = \frac{\hbar^{2}\pi^{2}}{8ma^{2}}n^{2} \quad \text{ for } n = 1,2,3,4,\cdots \]
+	
+	discrete set of allowed energies, with normalised wave functions
+	
+	\[
+	\psi_n(x) = \left(\frac{1}{a}\right)^{\frac{1}{2}}
+	\begin{cases}
+	\cos \frac{n\pi x}{2a} & n\text{ odd}\\
+	\sin \frac{n\pi x}{2a} & n\text{ even}
+	\end{cases}.
+	\]
+\end{eg}
+
+Comments 
+
+\begin{enumerate}
+	\item Since $ \psi_{n}(x) = 0 $, $ | x | \geq a $ normalisation condition is $ \int_{-a}^{a} | \psi_{n} (x) |^{2} \; \d x = 1 $.
+	
+	%insert a picture with psi_{1}, n = 1, same as before but do the upside down parabloa here. then anther, psi_{2}, n = 2, sine wave, two extrema
+	
+	\item for $ E < 0 $ diff eqn has solutions of type cosh/sinh instead of cos/sin $ \Rightarrow $ no eigenfunctions satisfying boundary conds. 
+	
+	\item Before taking $ U \to \infty $, we have normalisable solutions $ e^{\pm \kappa x} $ in $ x > a, x < -a $ with $ \kappa > 0 $ st. $ \frac{\hbar^{2}\kappa^{2}}{2m} = U - E $. but then we see that $ \kappa \to \infty $ as $ U \to \infty $, confirming $ \psi(x) = 0 $ for $ | x | \geq a $
+	
+	\item Superposition eg. $ \psi_{1} + \psi_{2} $ produces state that is \emph{not} an energy eigenstate. 
+\end{enumerate}
+
+\section{Schr\"odinger Equation}
+
+In chapter 1 we discussed wavefunctions or states at some fixed time. Now consider evolution in time for QM of a particle in 1d, described\footnote{usually reserve capitals to emphasze t-dep} by wavefunction $ \Psi(x,t) $.
+
+Classically, dynamics governed by potential $ V(x) $ (produces force $ F = - V' $). In QM, time evolution is governed by Hamiltonian
+
+\[ H = \frac{\hat{p}^{2}}{2m} + V(\hat{x}) \]
+
+(again specified by $ V(x) $). The wavefunction satisfies the \emph{time-dependent Schr\"odinger Equation}
+
+\[ i \hbar \frac{\partial \Psi }{\partial t} = H \Psi \qquad (*) \]
+
+Note operators do not change in time (in this formulation) eg. momentum is now $ \hat{p} = -i \hbar \frac{\partial  }{\partial x} $
+
+
+and t-dep SE becomes
+
+\[ i \hbar \frac{\partial  \Psi}{\partial t} =  - \frac{\hbar^{2}}{2m} \frac{\partial^{2} \Psi  }{\partial x^{2}} + V(x) \Psi \]
+
+Linear PDE but first oredr in $ t $, so specifying $ \Psi(x,0) $ determines $ \Psi(x,t) $ for $ t \geq 0 $. 
+
+\subsection{Stationary States}
+
+Consider a wavefunction of frequency $ \omega $:
+
+\[ \Psi(x,t) = \psi(x) e^{-i \omega t} \]
+
+This satisfies (*) iff
+
+\[ \psi \hbar \omega e^{- i \omega t} = (H \psi) e^{- i \omega t} \]
+\[ \iff H\psi = E \psi \qquad \text{with} \qquad E = \hbar \omega \]
+
+OR have a separable $ \Psi(x,t) = \psi(x) f(t) $ of SE iff
+
+\[ \frac{1}{\psi} H \psi = i \hbar \frac{1}{f} \dot{f} = E, \text{ separation const.} \]
+\[ \Rightarrow H \psi = E \psi \text{ and } f(t) = f(0) e^{-i \omega t}, \text{ but } f(0) = 1 \text{ wlog } \]
+
+So $ t $-dep SE produces desired energy-frequency relation. For a solution of this special type, 
+
+\[ \Psi (x,t) = \psi(x) e^{-iEt/\hbar} \quad \text{ with } H \psi = E \psi \]
+
+both $ \Psi $ and $ \psi $ are called \emph{stationary states}. In this case
+
+\begin{enumerate}
+	\item $ \Psi(x,t) $ is an energy eigenstate at each time $ t $
+	\item $ | \Psi(x,t) |^{2} = | \psi(x) |^{2} $ indep of time
+\end{enumerate}
+
+\subsection{Conservation of Probability}
+The probability density 
+
+\[ P(x,t) = | \Psi(x,t) |^{2} \]
+
+obeys a \emph{conservation equation }
+
+\[ \frac{\partial P }{\partial t} = - \frac{\partial J }{\partial x} \]
+
+where 
+
+\[ J(x,t) = - \frac{i \hbar}{2m}(\Psi^{*}\Psi' - \Psi'^{*} \Psi )  \]
+
+is \emph{probability current}
+
+This follows for any $ \Psi(x,t) $ satisfying $ (*) $, by taking $ (*) $ and its complex conjugate
+
+\[ - i \hbar \frac{\partial \Psi^{*} }{\partial t} = -\frac{\hbar^{2}}{2m} \Psi^{'' *} + V \Psi^{*} \qquad \text{  (V real)}\]
+
+since
+
+\begin{align*}
+\frac{\partial P }{\partial t}& = \Psi^{*} \dot{\Psi} + \dot{\Psi}^{*} \Psi \\
+& = \Psi^{*} \frac{i \hbar}{2m} \Psi^{''} - \frac{i \hbar}{2m} \Psi^{'' *} \Psi \qquad \text{ v terms cancel} \\
+& =  - \frac{\partial J }{\partial x} \text{ as claimed}
+\end{align*}
+
+The conservation eqn implies
+
+\[ \frac{\d }{\d t} \int_{a}^{b} P(x,t) \; \d t = \int_{a}^{b} \frac{\partial P }{\partial t} \; \d x = - \int_{a}^{b} \frac{\partial J }{\partial t} (x,t) \; \d x \]
+\[ \text{fixed a,b } = -J(b,t) + J(a,t) \]
+
+with boundary conditions such that $ \Psi, J \to 0 $ as $ x \to \pm \infty $ (fixed $ t $) we find 
+\[ \int_{-\infty}^{\infty} | \Psi(x,t) |^{2} \; \d x  \text{ independent of  } t \]
+
+ie. $ \Psi(x,0) $ normalised $ \Rightarrow \; \Psi(x,t) $ normalised for all $ t \geq 0 $
+
+\subsection{Wavepackets and Particles}
+
+A wavefunction localised in space, about some point, on some scale, will be called a \emph{wavepacket} - may interpret this as a particle of scale is sufficiently small.
+
+Consider Gaussian as in Section 1.1 %do the funny section symbol
+
+\[ \psi(x) = A \frac{1}{\alpha^{\frac{1}{2}}} e^{-x^{2}/2\alpha} \qquad \text{with  } A = \left( \frac{\alpha}{\pi} \right)^{\frac{1}{4}}  \]
+
+wavepacket localised around $ x = 0 $ on scale $ \sqrt{\alpha} $
+
+
+For $ V = 0 $, \emph{free} particle, this is not a stationary state; in fact, soln of $ t $-dep SE with $ \Psi(x,0) = \psi(x) $ is
+
+\[ \Psi(x,t) = A \frac{1}{\gamma(t)^{1/2}} e^{- x^{2}/2\gamma(t)}  \]
+
+with
+
+\[ \gamma(t) = \alpha + \frac{i \hbar}{m} t \qquad   \text{see eg sheet 1} \]
+
+
+Probability density 
+
+\[ P_{\Psi}(x,t) = | \Psi(x,t) |^{2} = \frac{| A |^{2}}{| \gamma(t) |} e^{- \alpha x^{2} / | \gamma(t) |^{2} } \]
+
+localised around $ x = 0 $ on scale 
+
+\[ \frac{| \gamma(t) |}{\sqrt{\alpha}} \qquad \text{ solution "diffuses"}\]
+
+how quickly does solution ``diffuse''?
+
+Time scale $ m \alpha / \hbar  $
+
+For $ m = m_{e} $, and $ \sqrt{\alpha} = 10^{-12} $ m $ \Rightarrow $ time scale $ \sim 10^{-20} $ s
+
+For $ m = 10^{-6} $ kg, $ \sqrt{\alpha} = 10^{-6} $ m, $ \Rightarrow $ time scale $ \sim 10^{16} $ s. 
+
+
+Solution $ \Psi(x,t) $ depends on time but
+
+\[ \langle  \hat{x} \rangle_{\Psi}  = 0 \text{ and } \langle \hat{p} \rangle_{\Psi} = 0 \]
+
+Now consider solution $ \Phi(x,t) $ with 
+
+\[ \Phi(x,0) = \phi(x) = \psi(x) e^{ikx} \]
+
+Can check that this is given by
+
+\[ \Phi(x,t) = \Psi(x-ut,t) e^{ikx} e^{-i\hbar k^{2} t/2m } \]
+
+provided $ mu = \hbar k $
+
+Probability density 
+
+\[ P_{\Phi}(x,t) = \left| \Phi(x,t) \right|^{2} =  | \Psi(x-ut,t)  |^{2} = P_{\Psi} (x-ut,t) \]
+
+
 \begin{center}
-	\begin{tikzpicture}
-	\draw [->] (-2.5, 0) -- (2.5, 0) node [right] {$x$};
-	\draw [->] (0, -0.5) -- (0, 2) node [above] {$V$};
-	\draw [mred, semithick, dashed] (-1.5, 0) node [below] {$-a$} -- (-1.5, 2);
-	\draw [mred, semithick, dashed] (1.5, 0) node [below] {$a$} -- (1.5, 2);
-	\draw [mred, semithick] (-1.5, 0) -- (1.5, 0);
+	% \draw [ ->](0, 0) -- (0,1.3) node[above] {$| \psi(x) |^{2}$
+	%dashed vertical line going through the second wave, label with x_{0}
+	\begin{tikzpicture}[xscale=0.75, yscale=1.5]
+	\draw [ ->](-3, 0) -- (9, 0) node[right] {$x$};
+	\draw [ ->](0, 0) -- (0,1.3) node[above] {$| P_{\Psi}(x,t) |$};
+	\draw [dashed] (6, -0.5)  -- (6,1.3)  node[above] {$| P_{\Psi}(x-ut,t) |$}  ;
+	\draw [domain=-3:9,samples=80, mblue] plot (\x, {exp(-\x * \x) + exp(-(\x - 6)^2)});
 	\end{tikzpicture}
 \end{center}
 
-\[ V(x) = \begin{cases} 0  & \text{ if } | x |  \leq a \\ U & \text{ if } | x | > a \end{cases} \] in the limit $ U \to \infty $.
+Also easy to check that
 
-Time indep SE:
+\[ \langle  \hat{x} \rangle_{\Psi}  = ut \text{ and } \langle \hat{p} \rangle_{\Psi} = \hbar k \]
 
-\[ \frac{-\hbar^{2}}{2m} \psi''  = E \psi \qquad | x  | \leq a \]
-\[ \frac{-\hbar^{2}}{2m} \psi'' + U \psi = E \psi \qquad | x | > a \]
 
-Taking the limit as $ U  \to \infty $, 2nd equation suggests we must take $ \psi = 0 $ for $ | x | > a $.
+\section{Bound States in One Dimension}
 
-This will be justified shortly. In this case the appropriate boundary conditions are $ \psi = 0 $ for $ | x | > a $ and $ \psi $ continuous at $ x = \pm a $. So we are left to solve
+Study in this chapter normalisable solutions of $ t $-indep SE (energy eigenvalue problem) corresponding to particle ``bound'' in the potential (compare with electron bound to proton for $ E < 0 $)
 
-\[ - \frac{\hbar^{2}}{2m} \psi'' = E \psi \quad \text{ on } -a \leq x \leq a  \text{ with } \psi(\pm a) = 0 \]
 
-For $ E > 0 $ set \[  E = \frac{\hbar^{2} k^{2}}{2m}  \quad \text{with } k > 0 \] and we get
+\subsection{Potential Well}
 
-\[ \psi'' + k^{2} \psi = 0 \]
 
-\[ \Rightarrow \psi = A \cos k x + B \sin k x \]
+	\begin{center}
+	\begin{tikzpicture}
+	\draw [->] (-2.5, 0) -- (2.5, 0) node [right] {$x$};
+	\draw [->] (0, -0.5) -- (0, 2) node [above] {$V(x)$};
+	\draw [mred, semithick, dashed] (-1.5, 0) node [above] {$-a$} -- (-1.5, -1.5);
+	\draw [mred, semithick, dashed] (1.5, 0) node [above] {$a$} -- (1.5, -1.5);
+	\draw [mred, semithick] (-1.5, -1.5) -- (1.5, -1.5) node[right] {$ U $}  ;
+	\end{tikzpicture}
+\end{center}
 
-and boundary conditions imply $ A \cos k a \pm B \sin k a  = 0 $ ie.  $ A \cos k a = B \sin k a  = 0 $.
-Since $ \sin ka $ and $ \cos ka $ cannot both be zero simultaneously, we have:
+	\[ V(x) = \begin{cases} -U  & \text{ if } | x |  < a \quad (U > 0)\\ 0 & \text{ if } | x | \geq a \end{cases} \] in the limit $ U \to \infty $.
 
+
+Seek energy functions and eigenvalues given by 
+
+\[ -\frac{\hbar^{2}}{2m} \psi''  + V(x) \psi = E \psi \]
+
+with energies in range $ -U < E < 0 $
+
+SE becomes 
+
+\[ -\frac{\hbar^{2}}{2m} \psi'' = (E+U) \psi \text{ and } -\frac{\hbar^{2}}{2m} \psi'' = E \psi  \]
+
+\[ | x | < a \qquad \text{ and } \qquad | x | > a \]
+
+Set 
+
+\[ U + E = \frac{\hbar^{2}k^{2}}{2m} \text{ and } E = \frac{-\hbar^{2}\kappa^{2}}{2m}   \]
+
+\[ k > 0 \qquad \text{ and } \qquad \kappa > 0 \]
+
+then SE is 
+
+\[ \psi''  + k^{2} \psi = 0 \text{ and } \psi'' - \kappa^{2} \psi = 0 \]
+
+\[ | x | < a \qquad \text{ and } \qquad | x | > a \]
+
+At $ x = \pm a $, $ \psi,\psi' $ continuous ($ \psi'' $ discontinuous, matching step in $ V(x) $ )
+
+[ Integrate SE from $ a - \varepsilon $ to $ a + \varepsilon $, then provided $ U $, $ \psi $ bounded, find $ [\psi']_{a - \varepsilon}^{a + \varepsilon} \to 0 $ as $ \varepsilon \to 0^{+} $ ]
+
+Consider \emph{even parity} solutions, ie. those with $ \psi(-x) = \psi(x) $,
+
+\[ \psi = \begin{cases} A \cos k x  & \text{ if } | x | < a \\ Be^{-\kappa x} & \text{ if } x > a \end{cases} \]
+
+Note the solution for $ x < -a $ fixed by parity. Matching at $ x = a $,
+
+\[ \psi \text{ cts }: A \cos k a = B e^{-kappa a} \]
+\[ \psi' \text{ cts }: - A \sin k a = - B \kappa e^{-kappa a} \]
+
+These equations give same solution for $ A $ or $ B $ iff:
+
+\[ k \tan k a = \kappa \]
+
+To find when solutions exists it is convenient to set
+
+\[ \xi = a k, \quad \nu = a \kappa \quad \text{ dimensionless and positive} \]
+
+So 
+
+\[ \nu = \xi \tan \xi \]
+
+but also 
+
+\[ \xi^{2} + \nu^{2} = \frac{2ma^{2}U}{\hbar^{2}} \quad \text{ from definitiens of} k \text{ and } \kappa \]
+
+Intersection of $ \nu = \xi \tan \xi $ with circle of $ (\text{radius})^{2} = \frac{2ma^{2} U}{\hbar^{2}} $. Have energy eigenstate for each point of intersection ($ a,U $ fixed parameters, determining $ \xi,\nu $ determines $ E $)
+
+We can look for solutions by plotting these two equations. We first plot the curve $\eta = \xi \tan \xi$:
+\begin{center}
+	\begin{tikzpicture}
+	\draw [->] (0, 0) -- (6, 0) node [right] {$\xi$};
+	\draw [->] (0, 0) -- (0, 4) node [right] {$\eta$};
+	\begin{scope}[yscale=2]
+	\clip (0, 0) rectangle (6, 2);
+	\foreach \a in {0,1,...,5} {
+		\pgfmathsetmacro\b{\a + 0.499};
+		\draw [domain=\a:\b] plot [smooth] (\x, {\x * min(4, tan(180*\x))});
+	}
+	\end{scope}
+	\foreach \a in {0,1,...,5} {
+		\pgfmathsetmacro\n{\a * 2 + 1};
+		\draw [dashed] (\a + 0.5, 4) -- (\a + 0.5, 0) node [below] {$\frac{\pgfmathprintnumber{\n} \pi}{2}$};
+	}
+	\end{tikzpicture}
+\end{center}
+The other equation is the equation of a circle. Depending on the size of the constant $2ma^2 U/\hbar^2$, there will be a different number of points of intersections.
+\begin{center}
+	\begin{tikzpicture}
+	\draw [->] (0, 0) -- (6, 0) node [right] {$\xi$};
+	\draw [->] (0, 0) -- (0, 4) node [right] {$\eta$};
+	\begin{scope}[yscale=2]
+	\clip (0, 0) rectangle (6, 2);
+	\foreach \a in {0,1,...,5} {
+		\pgfmathsetmacro\b{\a + 0.499};
+		\draw [domain=\a:\b] plot [smooth] (\x, {\x * min(4, tan(180*\x))});
+	}
+	\end{scope}
+	\draw [mred, dashed] (2.3, 0) arc (0:90:2.3);
+	\draw [mred, dashed] (1.5, 0) arc (0:90:1.5);
+	\end{tikzpicture}
+\end{center}
+
+So 1 solution for \[ \frac{2ma^{2}U}{\hbar^{2}} < \pi^{2} \]
+
+and then we have exactly $n$ even parity solutions (for $n \geq 1$).
+
+\[ (n-1)^{2} \pi^{2}  < \frac{2ma^{2}U}{\hbar^{2}}  < n^{2} \pi^{2}  \]
+
+
+
+We can do exactly the same thing for odd parity eigenstates\ldots on example sheet 1.
+
+
+\subsection{General Properties}
+
+Consider $ t $-indep SE for particle of mass $ m $
+
+\[ H \psi = - \frac{\hbar^{2}}{2m} \psi''  + V(x)\psi = E \psi \]
+
+with potential $ V(x) \to 0 $ (rapidly) as $ x \to \pm \infty $
+
+
+\subsubsection{Bond State Energies}
+	
+	From assumption above 
+	
+	\[ -\frac{\hbar^{2}}{2m} \psi''  \sim E \psi \qquad x \to \pm \infty \] 
+	
+
+
+If $ E = \frac{\hbar^{2}k^{2}}{2m} > 0 $ then $ \psi \sim A \pm e^{ikx} + B \pm e^{-ikx} $ as $ x \to \pm \infty $.
+
+In this case, no normalisable solution - nevertheless these solutions are of physical interest - Chapter 5. 
+
+If $\underbrace{ E = - \frac{\hbar \kappa^{2}}{2m}}_{\kappa > 0} < 0  $ then $ \psi \sim A \pm e^{\kappa x}  + B \pm e^{- \kappa x} $ as $ x \to \pm \infty $.
+
+2nd order ODE so 2 complex constants in general solution. 
+
+But eqn linear and changing $ \psi \to \lambda \psi $ for any complex $ \lambda \neq 0 $ does not change physical content. Left with one complex degree of freedom
+
+Also, for a normalisable solution we need to fix $ A_{+} = 0 $ and $ B_{-} = 0 $, imposing two conditions. Overconstrained problem $ \Rightarrow $ solutions exist only for \emph{particular} values of $ E $. 
+
+In general, expect bound state energy levels to be \emph{quantised}. May have several solutions. 
+
+	 \begin{center}
+	%draw lines 
+	\begin{tikzpicture}[yscale=1.5]
+	\draw [->] (-3, 0) -- (3, 0) node [right] {$x$};
+	\draw [->](0, -1.3)   -- (0, 1.3) node [above] {$V(x)$};
+	\draw [domain=-3:3,samples=50, mblue] plot (\x, - {exp(-\x * \x)});
+	\draw [mred, dashed] (-3, -0.7) -- (3, -0.7);
+	\draw [mred, dashed] (-3, -0.6) -- (3, -0.6);
+	\draw [mred, dashed] (-3, -0.9) -- (3, -0.9);
+	\end{tikzpicture}
+\end{center}
+or none
+
+	 \begin{center}
+	%label axis x,y as x, |psi(x)|^{2}
+	\begin{tikzpicture}[yscale=1.5]
+	\draw [->] (-3, 0) -- (3, 0) node [right] {$x$};
+	\draw [->](0, 0)  -- (0, 1.3) node [above] {$ V(x) $};
+	\draw [domain=-3:3,samples=50, mblue] plot (\x, {exp(-\x * \x)});
+	\end{tikzpicture}
+\end{center}
+
+Futhermore, if $V(x) \geq V_{0} $ (const) then for normalised $ \psi $ with 
+
+\[ H \psi = E \psi \], we have 
+
+\[ E = \langle H \rangle_{\psi} \]
+
+\begin{align*}
+& = \int_{-\infty}^{\infty}  \left(  \frac{\hbar^{2}}{2m} \psi^{*} \psi '' + \psi^{*}  V(x) \psi \right) \; \d x   \\
+& = \int_{-\infty}^{\infty}  \left(  \frac{\hbar^{2}}{2m} | \psi' |^{2} + V(x) | \psi(x) |^{2} \right) \; \d x \\
+& \geq 0 + \int_{-\infty}^{\infty} V_{0} | \psi(x) |^{2} \; \d x \\
+& = V_{0}
+\end{align*}
+
+So in general have discrete eigenvalues with $ 0 > E > V_{0} $
+
+
+
+
+Bound state is a normalisable energy eigenstate. State with lowest energy eigenvalue is called the \emph{ground state}. States with higher energy eigenvalues are often referred to as \emph{excited states}.
+
+\subsubsection{Parity}
+
+Consider SE with $ V(-x) = V(x) $. By changing variables $ x \to -x $ find
+
+\[ \psi(x) \text{ eigenstate of } H \text{ with energy } E \]
+\[ \iff -\psi(x) \text{ eigenstate of } H \text{ with energy } E \]
+
+Assume $ \psi(\pm x) $ have same physical content, so that
+
+\[ \psi(-x) = \eta \psi(x) \text{ (say)} \]
+
+Then
+
+\[ \psi(x) = \eta \psi(-x) = \eta^{2} \psi(x) \]
+\[ \Rightarrow \eta^{2} = 1 \text{ or } \eta = \pm 1  \]
+
+or 
+
+\[ \psi(-x) = \pm \psi(x) \]
+
+We say that $ \psi $ has \emph{even/odd} parity or \emph{parity} $ \eta = \pm 1 $.
+
+The assumption above is valid for any normalisable $ \psi $ (Sheet 1 question 8).
+
+More generally, consider linear combinations of states 
+
+\[ \psi_{\pm}(x) = \lambda \left(   \psi(x) \pm \psi(-x ) \right) \] 
+
+(with $ \lambda $ const) also eigenstates of $ H $ with eigenvalues $ E $
+
+\[ \psi_{\pm}(-x) = \pm \psi_{\pm}(x) \]
+
+so parity $ \pm 1 $ by construction. For bound states, one of these combinations vanishes. 
+
+\subsection{Harmonic Oscillator}
+
+Particle of mass $ m $ in a potential 
+
+
+	 \begin{center}
+	%label axis x,y as x, |psi(x)|^{2}
+	\begin{tikzpicture}[yscale=0.5]
+	\draw [->] (-3, 0) -- (3, 0) node [right] {$x$};
+	\draw [->](0, 0)  -- (0, 9) node [above] {$ V(x) $};
+	\draw [domain=-3:3,samples=50, mblue] plot (\x, {\x *\x});
+	\end{tikzpicture}
+\end{center}
+
+
+\[ V(x) = \frac{1}{2} m \omega^{2} x^{2} \]
+
+($ \omega = \sqrt{k/m} $ to compare with chapter 1 and sheet 1, question 5)
+
+Classically, in general solution
+
+\[ x = A \cos \omega (t - t_{0}) \] 
+
+In QM, seek all normalisable solutions of SE:
+\[ H \psi = - \frac{\hbar^{2}}{2m} \psi'' + \frac{1}{2} m \omega^{2} x^{2} \psi = E \psi \]
+
+To simplify, put
+
+\[ y = \left( \frac{m \omega}{\hbar} \right)^{\frac{1}{2}}  \qquad \text{dimensionless}\]
+
+SE becomes
+
+\[ - \frac{\d^{2} \psi }{\d  y^{2} } + y^{2} \psi = \varepsilon \psi \qquad \text{ with } \varepsilon = \frac{2E}{\hbar \omega} \]
+
+
+Behaviour for $ y^{2} >> \varepsilon $ suggests setting
+
+\[ \psi = f(y) e^{- \frac{1}{2} y^{2}} \qquad \text{(wlog)} \]
+
+and then SE holds iff
+
+\[ \frac{\d^{2} f}{\d y^{2}} - 2y \frac{\d f}{\d y} + (\varepsilon - 1)f = 0 \]
+
+[$ y^{2} $ term now absent, by construction]
+
+Now seek series solution
+
+\[ f(y) = \sum_{r\geq 0} a_{r} y^{r} \]
+
+and substitute
+
+\[ \sum_{r\geq 0} \left\{   (r+2)(r+1)a_{r+2} + (\varepsilon  - 1 - 2r) a_{r}    \right\} y^{r} = 0  \]
+
+
+\[ \iff a_{r+2} = \frac{2r + 1 - \varepsilon}{(r+2)(r+1)} a_{r} \qquad r \geq 0 \]
+
+This gives two linearly independent series solutions consisting of all even or all odd powers, with overall constants $ a_{0} $ and $ a_{1} $
+
+Consider each series separately and examine behaviour of $ f(y) $ when $ y $ is large. Unless coeffs vanish,
+
+\begin{center}
+	\begin{tabular}{rlll}
+		for even series & $a_{2p} / a_{2p - 2} $ & $\sim \frac{1}{p}$ & $ \quad p \to \infty $\\
+		for odd series & $a_{2p+1} / a_{2p - 1} $ & $\sim \frac{1}{p}$ & $ \quad  p \to \infty $
+	\end{tabular}
+\end{center}
+
+which matches behaviour of $ y^{\alpha} e^{y^{2}} $ for some $ \infty $
+
+eg
+
+\[ \sum \frac{1}{p!} y^{2p}, \quad \sum \frac{1}{p!} y^{2p + 1}  \]
+
+Such behaviour for $ f \Rightarrow \psi \sim \text{ (poly in y) }e^{\frac{1}{2}y^{2}}  $ not normalisable
+
+Hence $ \psi $ is a normalisable solution iff series for $ f $ terminates, giving a polynomial. This happens iff
+
+\[ \varepsilon = 2n + 1 \qquad \text{ for } n = 0,1,2,\cdots \]
+
+Solutions:
+
+\[ \begin{cases}  a_{r+2} = \frac{2r - 2n}{(r+2)(r+1)} a_{r} & \text{ if } n \text{ even} \\ a_{r} = 0 & \text{ if } n \text{ odd}\end{cases} \]
+
+Solutions
+
+\[ f(y) = h_{n}(y) \text{ poly of degree } n \text{ with} \]
+
+\[ h_{n}(-y) = (-1)^{n} h_{n}(y) \]
+
+eg.
+
+
+\begin{align*}
+h_{0}(y) & = a_{0}  \qquad \varepsilon = 1\\
+h_{1}(y) & = a_{1} y \qquad \varepsilon = 3\\
+h_{2}(y) & = a_{0} (1 - 2y^{2}) \qquad \varepsilon = 5\\
+h_{3}(y) & = a_{1} a_{1} (y - \frac{2}{3} y^{3}) \qquad \varepsilon = 7\\
+\end{align*}
+
+The ODE for $ f $ is called \emph{Hermite's equation}, and solutions are \emph{Hermite polynomials}
+
+Restoring constants- harmonic oscillator eigenvalues and eigenfunction are
+
+\[ E_{n} = \hbar \omega  (n + \frac{1}{2}) \quad \text{ and } \quad \psi_{n}(x) = h_{n} \left(  \left(\frac{m \omega}{\hbar}   \right)^{\frac{1}{2}}  x \right)  e^{-\frac{1}{2} \left( \frac{m \omega}{\hbar} \right) x^{2} }     \]
+
+for $ n = 0,1,2,\cdots $
+
+There are many important applications of these results.
 
 \begin{enumerate}
-	\item $ B = 0 $ and $ ka = n \pi / 2 $ for $ n = 1,3,\cdots $
-or 
-\item $ A = 0 $ and $ ka = n \pi / 2 $ for $ n = 2,4,\cdots $
+	\item Any smooth potential can be approximated by an oscillator near a minimum $ x_{0} $:
+	
+	\[ V(x) \simeq V(x_{0}) + \frac{1}{2} V''(x_{0}) (x - x_{0})^{2} + \cdots \]
+	
+	frequency
+	
+	\[ \omega = \sqrt{V''(x_{0}) / m} \]
+	
+	\item Systems with many degrees of freedom e.g. crystals can be analysed by reducing to \emph{normal modes} of oscillation
+	
+	\item Quantised EM fields: one oscillator for each mode of vibration with $ n $th state of this oscillator interpreted as $ n $ photons with $ E_{n} - E_{0} = n \hbar \omega $
+	
+	Underlies full explaination (QFT) of wave/particle duality
 	
 \end{enumerate}
 
-Hence
 
-\[ E_{n} = \frac{\hbar^{2}\pi^{2}}{8ma^{2}}n^{2} \quad \text{ for } n = 1,2,3,4,\cdots \]
 
-discrete set of allowed energies, with normalised wave functions
 
-\[
-\psi_n(x) = \left(\frac{1}{a}\right)^{\frac{1}{2}}
-\begin{cases}
-\cos \frac{n\pi x}{2a} & n\text{ odd}\\
-\sin \frac{n\pi x}{2a} & n\text{ even}
-\end{cases}.
-\]
+
+
+
 
 
 

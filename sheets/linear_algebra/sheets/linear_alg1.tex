@@ -1,0 +1,699 @@
+\documentclass[a4paper]{article}
+\usepackage{amsmath}
+\def\npart {IB}
+\def\nterm {Michaelmas}
+\def\nyear {2017}
+\def\nlecturer {Mr Rawlinson ( jir25@cam.ac.uk )}
+\def\ncourse {Linear Algebra Sheet 1}
+
+\input{header}
+\newtheorem*{soln}{Solution}
+
+\renewcommand{\thesection}{}
+\renewcommand{\thesubsection}{\arabic{section}.\arabic{subsection}}
+\makeatletter
+\def\@seccntformat#1{\csname #1ignore\expandafter\endcsname\csname the#1\endcsname\quad}
+\let\sectionignore\@gobbletwo
+\let\latex@numberline\numberline
+\def\numberline#1{\if\relax#1\relax\else\latex@numberline{#1}\fi}
+\makeatother
+
+
+\begin{document}
+	
+	\maketitle
+	
+	\section{QUESTION 1}
+	
+	As all of the following basis are of order $ n $, we need only check for linear independence (or spanning).
+	
+	\begin{enumerate}[label = (\alph*)]
+		\item  \[ \alpha_{1} (\mathbf{e}_{1} + \mathbf{e}_{2}) + \alpha_{2} (\mathbf{e}_{2} + \mathbf{e}_{3}) + \cdots + \alpha_{n-1} ( \mathbf{e}_{n-1} + \mathbf{e}_{n}) + \alpha_{n} \mathbf{e}_{n} = \mathbf{0}  \]
+		The first vector is the only one that contains $ \mathbf{e}_{1} $, so $ \alpha_{1} = 0 $. But then $ \alpha_{2} = 0, \cdots, \alpha_{n} = 0 $ so this set is linearly independent, and thus a basis.
+		
+		\item \[ \alpha_{1} (\mathbf{e}_{1} + \mathbf{e}_{2}) + \alpha_{2} (\mathbf{e}_{2} + \mathbf{e}_{3}) + \cdots + \alpha_{n-1} ( \mathbf{e}_{n-1} + \mathbf{e}_{n}) + \alpha_{n} (\mathbf{e}_{n} + \mathbf{e}_{1} ) = \mathbf{0}  \]
+		
+		Then $ \alpha_{2} = - \alpha_{1}, \alpha_{3} = \alpha_{1}, \cdots, \alpha_{n} = (-1)^{n+1}\alpha_{1} $. Thus for $ n $ even, it is possible to cancel out the $ \mathbf{e}_{1} $ and have linear dependence, but not when $ n $ is odd. Thus
+		
+		\[ \begin{cases} \text{basis }  & \text{ if } n \text{ odd } \\ \text{not a basis } &  \text{ if } n \text{ even} \end{cases} \]
+		
+		\item Vectors in this basis are of the form $ \mathbf{e}_{i} + (-1)^{i} \mathbf{e}_{n-i} $. If $ n $ is odd, say $ n = 2k + 1 $, setting 
+		
+		\begin{itemize}
+			\item $ \alpha_{k+1} = 0 $ (middle coefficient), only vector containing $ \mathbf{e}_{k+1} $
+			\item $ \alpha_{1} = - \alpha_{n}, \alpha_{2} = - \alpha_{n-1}, \cdots $ 
+		\end{itemize}
+		is enough to show linear dependence.
+		
+		If $ n $ is even, the first and last vector are $ \mathbf{e}_{1} - \mathbf{e}_{n} $ and $ \mathbf{e}_{1} + \mathbf{e}_{n} $, so these coefficients must both be set so zero. Likewise for $ \mathbf{e}_{2} - \mathbf{e}_{n-1} $ and $ \mathbf{e}_{2} + \mathbf{e}_{n-1} $,$ \cdots $ etc, all the coefficients are zero, thus linear independence, thus this set is a basis when $ n $ is even. 
+		
+	\end{enumerate}
+	
+	
+	\section{QUESTION 2}
+	
+	\begin{enumerate}
+	\item \begin{prop} 
+		$ T \cup U $ is a subspace of $ V $ only if either $ T \leq U $ or $ U \leq T $
+		
+	\end{prop}
+
+	\begin{proof}
+			\begin{itemize}
+			\item Choose $ v_{1} \in T \setminus U $, $ v_{2} \in U \setminus T  $
+			\item As $ T \cup U $ is a subspace of $ V $.  $ v_{1},v_{2} \in T \cup U \Rightarrow v_{1} + v_{2} \in T \cup U $
+			\item $ \Rightarrow v_{1} + v_{2} \in T$ or $ U $ 
+			\item If $ v_{1} + v_{2} \in T $, then $ v_{2} \in T $. But we said $ v_{2} \in U \setminus T $. Contradiction.
+			\item Hence $ U \setminus T $ is empty and $ U \leq T $. 
+			\item Similarly, $ v_{1} + v_{2} \in U $ then $ T \leq U $
+		\end{itemize} 
+	\end{proof}
+
+	\item 
+	\begin{enumerate}[label = (\alph*)]
+		\item Choose 
+		
+		\[ T = \left\{  \begin{pmatrix}
+		x\\
+		x\\
+		\end{pmatrix} \subset \R^{2} \; | \; x \in \R \right\}, U = \left\{  \begin{pmatrix}
+		x\\
+		2x\\
+		\end{pmatrix} \subset \R^{2} \; | \; x \in \R \right\} \]
+		
+		and 
+		
+		\[ W = \left\{  \begin{pmatrix}
+		x\\
+		3x\\
+		\end{pmatrix} \subset \R^{2} \; | \; x \in \R \right\} \]
+		
+		
+		Then LHS $ =  T + (U \cap W) = T + \mathbf{0} = T$, and RHS $ = (\R^{2}) \cap (\R^{2})  = \R^{2} $ 
+		
+		\item Choosing $ T, U $ and $ W $ as before,
+		LHS $ = (\R^{2}) \cap W = W $, and RHS $ = \mathbf{0} + \mathbf{0} = \mathbf{0} $
+		
+	\end{enumerate}
+
+	\item The counter examples suggest which way the inclusions are:
+	
+	\begin{prop} 
+		$ T + (U \cap W) \subset (T + U) \cap ( T + W ) $
+	\end{prop} 
+
+\begin{proof}
+	\begin{itemize}
+		\item Let $ a + b \in T + (U \cap W) $
+		\item $ a \in T $, $ b \in U \cap W $
+		\item Then $ b \in U $ and $ b \in W $
+		\item $ a \in T $, $ b \in U  \Rightarrow a + b \in (T + U) $
+		\item $ a \in T, b \in W \Rightarrow a + b \in (T + W) $
+		\item Thus $ a + b \in (T + U) \cap (T + W) $
+		\end{itemize}
+\end{proof}
+
+\begin{prop} 
+	$ (T + U) \cap W \supset (T \cap W) + (U \cap W) $
+\end{prop}
+
+\begin{proof}
+	\begin{itemize}
+		\item Similarly, let $ a + b \in $ RHS
+		\item so $ a \in (T \cap W), b \in (U \cap W) $
+		\item In particular, $ a \in T $, $ b \in U  \Rightarrow a + b \in (T + U)$
+		\item And $ a \in W $, $ b \in W \Rightarrow a + b \in W + W = W $
+		\item Thus $ a + b \in (T + U) \cap W $
+	\end{itemize}
+\end{proof}
+		
+	\end{enumerate}
+	
+	\section{QUESTION 3}
+	
+	Hint to show isomorphism: Guess an explicit inverse, compose both with right and left to get the identity
+	
+	\begin{enumerate}[label = (\alph*)]
+		\item Let $ T : V \to W $ be defined by
+		
+		\[ T \begin{pmatrix}
+		v_{1}\\
+		v_{2}\\
+		v_{3}\\
+		v_{4}
+		\end{pmatrix}  = \begin{pmatrix}
+		v_{1}\\
+		v_{2}\\
+		v_{3}\\
+		v_{4} \\
+		-v_{1} - v_{2} - v_{3} - v_{4}
+		\end{pmatrix}\]
+		
+		It is straightforward to see that $ T(\mathbf{x} + \mathbf{y}) = T(\mathbf{x}) + T(\mathbf{y}) $ and $ T(\alpha \mathbf{x} ) = \alpha T(x) $, thus $ T $ is linear.	
+		
+		To show it is one-to-one, consider the map $ T': W \to V $ defined by
+		
+		\[ T' \begin{pmatrix}
+		w_{1}\\
+		w_{2}\\
+		w_{3}\\
+		w_{4}\\
+		w_{5}
+		\end{pmatrix}  = \begin{pmatrix}
+		w_{1}\\
+		w_{2}\\
+		w_{3}\\
+		w_{4} \\
+		\end{pmatrix} \]	
+		
+		Then $ T \circ T' = T' \circ T = \id $.
+		
+		\item Note that $ \{1,x,x^{2},x^{3},x^{4},x^{5}\} $ is a spanning set for $ W $. It is also linearly independent; suppose that
+		
+		\[ a_{0} + a_{1} x + a_{2} x^{2} + a_{3}x^{3} + a_{4}x^{4} + a_{5}x^{5} = \theta(x) \]
+		
+		where $ \theta(x) $ is the zero polynomial. If this holds for all values of $ x $, then (since $ \theta'(x) = \theta(x) $) we can differentiate both sides to obtain 
+		
+		\[ a_{1} + 2a_{2} x + 3 a_{3} x^{2} + 4 a_{4} x^{3} + 5 a_{5} x^{4} = \theta(x) \]
+		
+		Continuing differentiation in this fashion we arrive at
+		
+		\[ 5! a_{5} = \theta(x) \]
+		
+		And we must have $ a_{5} = 0 $. Going one diffentiation step back the previous equation insist $ a_{4} = 0 $, and so we have $ a_{i} = 0 $ for all $ i $, and thus  $ \{1,x,x^{2},x^{3},x^{4},x^{5}\} $ is linearly independent in $ W $. 
+		
+		Hence we have found a basis for $ W $ and conclude $ \dim W = 6 $. But $ \dim V = 5$, and therefore there can be no such isomorphism.
+		
+		
+		\item Define $ T : W \to V $ as $ T(f(x)) \mapsto f(2x + 1) $:
+		
+		\begin{itemize}
+			\item Linear: 
+			
+			\begin{align*}
+			T(\lambda f_{1}(x) + \mu f_{2}(x)& = (\lambda f_{1} + \mu f_{2})(2x + 1) \\
+			& = \lambda f_{1} (2x + 1) + \mu f_{2} (2x + 1)\\
+			& = \lambda T(f_{1}(x)) + \mu T(f_{2}(x))
+			\end{align*}
+			
+			\item Bijective: Define $ T':W \to V $ as $ T'(f(x)) = f(\frac{x-1}{2}) $ 
+			
+			Show that $ T \circ T' = T' \circ T = \id $
+			
+		\end{itemize}
+		
+		\item Define $ T : V \to W $ as $ T(f(x)) \mapsto \int^{x} f(t) \; \d t $
+		
+		\item A natural basis for $ W $ is $ \{ A,B \} $ where solutions are of the form $ A \cos t + B \sin t $. Hence define $ T : V \to W $ as $ T(v_{1},v_{2}) = v_{1} \cos t + v_{2} \sin t $.
+		
+		\item Suppose $ \varphi : R^{4} \to C[0,1] $ is an isomorphism. Let $ e_{1},e_{2},e_{3},e_{4} $ be a basis for $ \R^{4} $. Then 
+		
+		\[ \{ \varphi(e_{1}),\varphi(e_{2}),\varphi(e_{3}),\varphi(e_{4}) \} \]
+		
+		is a basis for $ C[0,1] $.
+		
+		In particular, we have a spanning set of size 4. But, eg. $ \{1,x,x^{2},x^{3},x^{4},x^{5}\} $ is a linearly independent set of size 5. This is a contradiction (by Steinitz)
+		
+		\item Suppose $ \phi : \mathcal{P} \to \R^{\N} $ is an isomorphism, with $ \phi $ having the natural basis $ \{  1,x,x^{2},\cdots,x^{N}\} $. Then
+
+		\[ \underbrace{\{ \phi(1),\phi(x),\cdots,\phi(x^{N}) \}} \]
+		
+		is a countable basis for $ \R^{\N} $. But, $ \R^{\N} $ has no countable basis, no $ \phi $ cannot be an isomorphism. 
+		
+		
+	\end{enumerate}
+		
+	\section{QUESTION 4}
+	
+\begin{enumerate}
+	\item 	Let $ \alpha,\beta $ be linear maps from $ U $ to $ V $. Then
+	
+	\begin{align*}
+	(\alpha + \beta)(v_{1} + v_{2})& = \alpha(v_{1}+v_{2}) + \beta(v_{1} + v_{2}) \\
+	& = \alpha(v_{1}) + \alpha(v_{2}) + \beta(v_{1}) + \beta(v_{2})\\
+	& = (\alpha + \beta)(v_{1}) + (\alpha + \beta)(v_{2})
+ 	\end{align*}
+ 	
+ 	and 
+ 	
+ 	\begin{align*}
+ 	(\alpha + \beta)(\lambda v)& = \alpha(\lambda v) + \beta(\lambda v) \\
+ 	& = \lambda \alpha(v) + \lambda \beta(v) \\
+ 	& = \lambda(\alpha + \beta)(v)
+ 	\end{align*}
+ 	
+ 	Thus $ \alpha + \beta $ is also a linear map
+ 	
+	 	\begin{enumerate}[label = (\alph*)]
+	 		\item Let $ \alpha, \beta: V \to V $ st. $ \alpha = \id $, $ \beta = - \alpha $.
+	 		
+	 		Then $ \Im(\alpha + \beta) = 0 $, $ \Im(\alpha) = V $, $ \Im(\beta) = V $.
+	 		
+	 		\[ \Im (\alpha + \beta) \neq \Im \alpha + \Im \beta  \]
+	 		
+	 		\item Using the same maps, $ \ker (\alpha + \beta) = V $, $ \ker \alpha = \mathbf{0}  $ and $ \ker \beta = \mathbf{0} $, hence 
+	 		
+	 		\[ \ker( \alpha + \beta) \neq \ker \alpha \cap \ker \beta \]
+	 		
+	 		\end{enumerate}
+ 		
+	 		\begin{prop} 
+	 			\[ \Im (\alpha + \beta) \subset \Im \alpha + \Im \beta  \]
+	 		\end{prop}
+ 		
+ 		\begin{proof}
+ 			
+ 			Suppose $ v \in  $ LHS, that is
+ 			
+ 			\begin{align*}
+ 			 v & \in \{  v \in V \; | \; v  = (\alpha + \beta)(u), \text{ some } u \in U      \} \\
+ 			&  = \{  v \in V \; | \; v = \alpha(u) + \beta(u), \text{ some } u \in U      \}\\
+ 			&  \subset \{  v \in V \; | \; v = \alpha(u), \text{ some } u \in U  \} + \{  v \in V \; | \; v = \beta(u), \text{ some } u \in U      \} \\
+ 			& = \Im \alpha + \Im \beta
+ 			\end{align*}
+ 			
+ 			Hence $ v \in  $ RHS
+ 			
+ 		\end{proof}
+ 	
+ 	\begin{prop} 
+ 	\[ 	\ker( \alpha + \beta) \supset \ker \alpha \cap \ker \beta \]
+ 	\end{prop}
+ 	
+ 	\begin{proof}
+ 		Suppose $ u \in $ RHS 
+ 	\end{proof}
+ 	
+ 	\begin{proof}
+ 		Let $ u \in $ RHS, ie
+ 		
+ 		\begin{align*}
+ 		u & \in \{ u \in U \; | \; \alpha(u) = \mathbf{0} \} \cap \{ u \in U \; | \; \beta(u) = \mathbf{0} \}  \\
+ 		& = \{ u \in U \; | \; \alpha(u) = \beta(u) = \mathbf{0} \}\\
+ 		& \subset \{ u \in U \; | \; \alpha(u) + \beta(u) = \mathbf{0} \}\\
+ 		& = \ker (\alpha + \beta)
+ 		\end{align*}
+ 	\end{proof}
+ 
+ 
+ \item (Might be helpful to think of $ \alpha $ geometrically as a projection).
+ We want to prove that if $ \alpha^{2} = \alpha $, then
+ 
+ \begin{itemize}
+ 	\item $ \Im \alpha  \cap \ker \alpha = \{ \mathbf{0} \}$
+ 	\item $ \Im \alpha + \ker \alpha = V $
+ \end{itemize}
+
+\begin{proof}
+	\begin{itemize}
+		\item Given $ v \in \Im \alpha  \cap \ker \alpha $, there exists some $ w $ st. $ v = \alpha(w) $. So
+		
+		\begin{align*}
+		v & = \alpha(w) \\
+		& = \alpha^{2}(w) \\
+		& = \alpha(\alpha(w)) \\
+		& = \alpha(v) \qquad \in \ker \alpha\\
+		& = \mathbf{0}
+		\end{align*}
+		
+		\item Given $ v \in V $, then
+		
+		\[ v = \underbrace{\alpha(v)}_{\in \Im \alpha} + \underbrace{(v - \alpha(v))}_{\in \ker \alpha}  \]
+		
+		since 
+		
+		\begin{align*}
+		\alpha(v-\alpha(v)) & = \alpha(v) - \alpha^{2}(v) \\
+		& = \alpha(v) - \alpha(v) \\
+		& = \mathbf{0}
+		\end{align*}
+		
+		So $ V = \ker \oplus \im \alpha $
+		
+	\end{itemize}
+\end{proof}
+	
+\end{enumerate}
+ 	
+ 	
+	 
+	\section{QUESTION 5}
+	
+	$ U \cap W = \{ \mathbf{x} \in \R^{5} : x_{1} + 2x_{2} =0, x_{2} = x_{3} = x_{4}, x_{1} + x_{5} = 0 \} $ by combining the conditions on $ U $ and $ W $. Vectors in $ U $, $ W $ and $ U \cap W $ respectively have the form:
+	
+	\[ \begin{pmatrix}
+	x_{1} \\
+	x_{2} \\
+	x_{3} \\
+	- x_{1} - x_{3} \\
+	- \frac{1}{2} (x_{1} + x_{2})
+	\end{pmatrix}, \qquad \begin{pmatrix}
+	x_{1} \\
+	x_{2} \\
+	x_{2} \\
+	x_{2} \\
+	- x_{1} \\
+	\end{pmatrix} 
+	\quad \text{and}  \quad 
+	\begin{pmatrix}
+	-2x \\
+	x \\
+	x \\
+	x \\
+	2x
+	\end{pmatrix} \]
+	
+	Thus a natural basis for $ U \cap W $ is 
+	
+	\[ \left\{  \begin{pmatrix}
+	-2 \\
+	1 \\
+	1 \\
+	1 \\
+	2
+	\end{pmatrix} \right\} \]
+	
+	Basis for $ U $, $ W $:
+	
+	\[ \left\{  
+	\begin{pmatrix}
+	1\\
+	0\\
+	0\\
+	-1\\
+	-\frac{1}{2}
+	\end{pmatrix}, 
+	\begin{pmatrix}
+	0\\
+	2\\
+	0\\
+	0\\
+	-\frac{1}{2}
+	\end{pmatrix},\\
+	\begin{pmatrix}
+	0\\
+	0\\
+	1\\
+	-1\\
+	0
+	\end{pmatrix}\right\} \qquad 	
+	 \left\{  \begin{pmatrix}
+	0 \\
+	1 \\
+	1 \\
+	1 \\
+	0
+	\end{pmatrix}, \begin{pmatrix}
+	1 \\
+	0 \\
+	0 \\
+	0 \\
+	-1
+	\end{pmatrix}\right\} \]
+	
+	
+	Now add the vector to each of these basis and perform Gaussian elimination. Or, note that we can switch it for the first vector in $ U $ and the second vector in $ W $, as the first component is non-zero. Thus
+	the required basis for $ U $, $ W $ are:
+	
+	\[ \left\{  
+	 \begin{pmatrix}
+	-2 \\
+	1 \\
+	1 \\
+	1 \\
+	2
+	\end{pmatrix} , 
+	\begin{pmatrix}
+	0\\
+	2\\
+	0\\
+	0\\
+	-\frac{1}{2}
+	\end{pmatrix},\\
+	\begin{pmatrix}
+	0\\
+	0\\
+	1\\
+	-1\\
+	0
+	\end{pmatrix}\right\} \qquad 	
+	\left\{  \begin{pmatrix}
+	0 \\
+	1 \\
+	1 \\
+	1 \\
+	0
+	\end{pmatrix},  \begin{pmatrix}
+	-2 \\
+	1 \\
+	1 \\
+	1 \\
+	2
+	\end{pmatrix} \right\}  \]
+	
+	Now the basis for $ U + W $ is just $ \text{basis for }U \cup \text{basis for }V $, provided the basis for $ U \cap W $ is a subset of both. 
+	
+	So a basis for $ U + W $ is 
+	
+	\[  \left\{  
+	\begin{pmatrix}
+	-2 \\
+	1 \\
+	1 \\
+	1 \\
+	2
+	\end{pmatrix} , 
+	\begin{pmatrix}
+	0\\
+	2\\
+	0\\
+	0\\
+	-\frac{1}{2}
+	\end{pmatrix},\\
+	\begin{pmatrix}
+	0\\
+	0\\
+	1\\
+	-1\\
+	0
+	\end{pmatrix},
+	\begin{pmatrix}
+	0 \\
+	1 \\
+	1 \\
+	1 \\
+	0
+	\end{pmatrix} \right\}  \]
+	
+	
+	\section{QUESTION 6}
+	
+	
+Let $ \alpha : V \to V $ linear, and let $ v_{1} = \alpha(u_{1}) $, $ v_{2} = \alpha(v_{2}) $
+
+From the first isomorphism theorem we have $ \Im(\alpha) \leq V $,
+$ \ker	(\alpha) \leq V $
+
+\begin{prop} 
+	$ \ker (\alpha) \leq V $
+\end{prop}
+
+\begin{proof}
+	\begin{itemize}
+		\item $ \mathbf{0} \in \ker \alpha $
+		\item Let $ v_{1},v_{2} \in \ker \alpha $. Then
+		
+		\begin{align*}
+		\alpha( \lambda v_{1} + \mu v_{2}) & = \lambda \alpha(v_{1}) + \mu \alpha (v_{2}) \\
+		& = \mathbf{0} + \mathbf{0} = \mathbf{0} \qquad \text{ as } v_{1},v_{2} \in \ker \alpha
+		\end{align*}
+		
+		Hence $ \lambda v_{1} + \mu v_{2} \in \ker \alpha $
+	\end{itemize}
+\end{proof}
+
+\begin{align*}
+\Im (\alpha^{k+1}) & = \{  v \in V \; | \; \alpha^{k+1}(u) \in V, \text{some } u \in V \} \\
+& = \{  v \in V \; | \; \alpha^{k}(\alpha(u)) \in V, \text{some } u \in V \}\\
+& \subseteq \{  v \in V \; | \; \alpha^{k}(v) \in V, \text{some } v \in V \}  \qquad \text{ as $ \Im(\alpha) \leq V $ } \\
+& = \Im(\alpha^{k})
+\end{align*}
+
+Hence
+
+\[ V \geq \Im (\alpha) \geq \Im (\alpha^{2}) \geq \cdots \]
+
+Next, $ \alpha(\mathbf{0}) = \mathbf{0} $, so trivially $ \{ 0 \} \leq \ker(\alpha) $, and
+
+\begin{align*}
+\ker (\alpha^{k+1}) & = \{  v \in V \; | \; \alpha^{k+1}(v) =0\} \\
+& = \{  v \in V \; | \; \alpha^{k}(\alpha(v)) =0 \}\\
+& \subseteq \{  v \in V \; | \; \alpha^{k}(v) =0 \}  \qquad \text{ as $ \ker(\alpha) \leq V $ } \\
+& = \ker(\alpha^{k})
+\end{align*}
+
+It now follows that
+
+\[ \{ \mathbf{0} \} \leq \ker \alpha \leq \ker \alpha^{2} \leq \cdots \]
+
+Next, taking dim of the first inequality gives
+
+\[ \dim V \geq r_{1} \geq r_{2} \geq \cdots  \]
+	
+Thus $ r_{k} \geq r_{k+1} $. Similarly for $ n_{k} = n(\alpha^{k}) $, we have $ n_{k} \leq n_{k+1} $.
+
+Let $ \widetilde{\alpha}_{k} : \Im \alpha_{k} \to V $ be defined by $ v \mapsto \alpha(v) $. Note that $ \Im(\widetilde{\alpha}_{k}) = \Im(\alpha^{k+1}) $
+
+Applying R-N to $ \widetilde{\alpha}_{k} $,
+
+\[ \dim (\Im(\alpha^{k})) = r(\widetilde{\alpha}_{k}) + n(\widetilde{\alpha}_{k}) \]
+So
+\[ n_{k+1} = r_{k} - r_{k+1} \]
+
+
+
+
+\section{QUESTION 7}
+
+With respect to the standard basis, $ \alpha $ is represented by the matrix $ A $, where
+
+\[ A =  \begin{pmatrix}
+2 & 1 & 0\\
+0 & 2 & 1\\
+0 & 0 & 2
+\end{pmatrix} \]
+
+Change of basis matrix $ P $ and it's inverse are given by
+
+\[ P = \begin{pmatrix}
+1 & 1 & 1 \\
+1 & 1 & 0\\
+1 & 0 & 0
+\end{pmatrix}, \quad P^{-1} = \begin{pmatrix}
+0 & 0 & 1 \\
+0 & 1 & -1 \\
+1 & -1 & 0
+\end{pmatrix} \]
+
+So the matrix $ \tilde{A} $ representing the linear map with respect to the new basis is given by
+
+\begin{align*}
+\tilde{A}  & =  P^{-1} A P \\
+& = \begin{pmatrix}
+2 & 0 & 0\\
+1 & 2 & 0 \\
+0 & 1 & 2
+\end{pmatrix}
+\end{align*}
+
+EASIER:
+Given the basis 
+
+\[ \{  \begin{pmatrix}
+1\\
+1\\
+1
+\end{pmatrix},
+\begin{pmatrix}
+1\\
+1\\
+0
+\end{pmatrix},
+\begin{pmatrix}
+1\\
+0\\
+0
+\end{pmatrix} \} \]
+
+for the domain, and the same one for the range, $ \alpha $ maps
+
+\[ \alpha \begin{pmatrix}
+1\\
+1\\
+1
+\end{pmatrix} = \begin{pmatrix}
+3\\
+3\\
+2
+\end{pmatrix} = 2 \begin{pmatrix}
+1\\
+1\\
+1
+\end{pmatrix} 
++ 1 \begin{pmatrix}
+1\\
+1\\
+0
+\end{pmatrix}
++ 
+\begin{pmatrix}
+1\\
+0\\
+0
+\end{pmatrix} \]
+
+So the first column of $ A $ is $ \begin{pmatrix}
+2\\
+1\\
+0
+\end{pmatrix} $, etc. 
+
+
+
+		
+\section{QUESTION 8}
+
+(i) $ \Rightarrow $ (iii) Let $ B  = B_{1} \cup \cdots \cup B_{n}$. Basis for $ \sum_{i}  U_{i } $, write $ u_{i} $ in terms of $ B_{i} $, Then $ u_{1} +\cdots +  u_{n} $ is a lin comb. of elements of $ B $.
+
+$ B $ indep? \[ \sum_{v \in B} \lambda_{v} v = \mathbf{0} = \mathbf{0}_{U_{1}} + \cdots + \mathbf{0}_{U_{n}} \]
+
+\[ \underbrace{\sum_{v \in B_{1}} \lambda_{v} v}_{\in U_{1}} + \cdots + \sum_{v \in B_{n}} \lambda_{v} v \]
+
+%under, in U, W
+
+By uniqueness of expressions, 
+
+\[ \sum_{v \in B_{1}} \lambda_{v} v = \mathbf{0}_{U_{1}} \cdots \sum_{v \in B_{n}} \lambda_{v} v = \mathbf{0}_{U_{n}} \]
+
+As $ B_{1}, \cdots, B_{n} $ are basis, all of the $ \lambda_{v} $ are zero. \\
+
+
+(iii) $ \Rightarrow $ (ii). 
+
+Given $ v \in U_{j} \cap \sum_{i\neq j} U_{i} $
+
+Since $ v \in U_{j} $, can write
+
+\[ v = \sum_{b_{i} \in B_{i}} \lambda_{i} b_{i} \]
+
+Since $ v \in \sum_{i\neq j} U_{i} $, can write
+
+\[ v = \sum_{b_{i} \in \cup_{k \neq j}B_{k}} \mu_{i} b_{i} \]
+
+No $ b_{i} $'s in common because of the pairwise disjointness of the $ B_{i} $.
+
+But $ \cup_{k} B_{k} $ is a basis, so by uniqueness of expression, 
+
+$ \lambda_{i} = \mu_{i} = 0 $ for all $ i $.
+
+So $ v = \mathbf{0} $.
+
+(ii) $ \Rightarrow $ (i)
+
+Suppose  that
+
+\[ \sum u_{i} = \sum u_{i}' \]
+
+Then for each $ j $,
+
+\[ u_{j} - u_{j}'  = \sum_{i \neq j} (u_{i}' - u_{i} )  \in U_{j} \cap \sum_{i \neq j} U_{i} = \mathbf{0}  \]
+
+So $ u_{j} = u_{j}' $, for all $ j $. Thus uniqueness of expression
+
+	
+	
+	
+	
+	
+	
+\end{document}

@@ -1,0 +1,42 @@
+\documentclass[a4paper]{article}
+\usepackage{amsmath}
+\def\npart {IA}
+\def\nterm {Michaelmas}
+\def\nyear {2016}
+\def\nlecturer {Gareth Taylor}
+\def\ncourse {Numbers and Sets Example Sheet 4}
+
+\input{header}
+
+\newtheorem*{soln}{Solution}
+
+\renewcommand{\thesection}{}
+\renewcommand{\thesubsection}{\arabic{section}.\arabic{subsection}}
+\makeatletter
+\def\@seccntformat#1{\csname #1ignore\expandafter\endcsname\csname the#1\endcsname\quad}
+\let\sectionignore\@gobbletwo
+\let\latex@numberline\numberline
+\def\numberline#1{\if\relax#1\relax\else\latex@numberline{#1}\fi}
+\makeatother
+
+
+\begin{document}
+	
+\maketitle
+
+\section{QUESTION 1}
+\section{QUESTION 2}
+\section{QUESTION 3}
+\section{QUESTION 4}
+\section{QUESTION 5}
+\section{QUESTION 6}
+\section{QUESTION 7}
+\section{QUESTION 8}
+\section{QUESTION 9}
+\section{QUESTION 10}
+\section{QUESTION 11}
+\section{QUESTION 12}
+\section{QUESTION 13}
+
+
+\end{document}

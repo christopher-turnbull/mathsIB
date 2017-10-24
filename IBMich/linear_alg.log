@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6100 64-bit) (preloaded format=pdflatex 2017.1.3)  13 OCT 2017 11:57
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6100 64-bit) (preloaded format=pdflatex 2017.1.3)  24 OCT 2017 21:06
 entering extended mode
 **./linear_alg.tex
 (linear_alg.tex
@@ -1606,61 +1606,102 @@ Package microtype Info: Loading generic settings for font family
 
 
 
-{C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map}] [2] [3] [4] [5] [6]
-Overfull \hbox (7.7608pt too wide) in paragraph at lines 407--409
+{C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map}] [2] [3] [4] [5] [6] [7]
+Overfull \hbox (7.7608pt too wide) in paragraph at lines 415--417
 []\OT1/cmr/m/n/10 (-20) Pick ba-sis ba-sis $\OML/cmm/m/it/10 v[]; []  ; v[]$ \O
 T1/cmr/m/n/10 (-20) of $\OML/cmm/m/it/10 U \OMS/cmsy/m/n/10 \ \OML/cmm/m/it/10 
 W$\OT1/cmr/m/n/10 (-20) . Ex-tend it to ba-sis $\OML/cmm/m/it/10 v[]; []  ; v[]
 ; u[]; []  ; u[]$
  []
 
-[7]
-Overfull \hbox (36.14258pt too wide) in paragraph at lines 445--446
+
+Overfull \hbox (36.14258pt too wide) in paragraph at lines 453--454
 []\OT1/cmr/m/n/10 (-20) Let $\OML/cmm/m/it/10 u[]; []  ; u[]$ \OT1/cmr/m/n/10 (
 -20) be a ba-sis for $\OML/cmm/m/it/10 U$\OT1/cmr/m/n/10 (-20) . Ex-tend it to 
 a ba-sis for $\OML/cmm/m/it/10 V$\OT1/cmr/m/n/10 (-20) . Say $\OML/cmm/m/it/10 
 u[]; []  ; u[]; w[]; []  ; w[]$
  []
 
-[8] [9] [10] [11] [12] [13] [14]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 834.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 834.
+[8] [9] [10] [11] [12] [13] [14] [15] [16] [17] [18]
+Overfull \hbox (0.28806pt too wide) in paragraph at lines 1164--1165
+[]\OT1/cmr/m/n/10 (-20) Note: this de-fines an equiv-a-lence re-la-tion on $\OM
+L/cmm/m/it/10 M[]\OT1/cmr/m/n/10 (-20) (\U/msb/m/n/10 F\OT1/cmr/m/n/10 (-20) )$
+, eg. $\OML/cmm/m/it/10 A[] \OT1/cmr/m/n/10 (-20) = \OML/cmm/m/it/10 Q[]AP; A[]
+ \OT1/cmr/m/n/10 (-20) =
+ []
+
+[19] [20] [21]
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 1366.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `\times' on input line 1366.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 1366.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 1366.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 1366.
+
+[22] [23] [24]
+Overfull \hbox (16.9812pt too wide) in paragraph at lines 1581--1582
+[]\OT1/cmr/m/n/10 (-20) Let $\OML/cmm/m/it/10 e[]; []  ; e[]$ \OT1/cmr/m/n/10 (
+-20) be a ba-sis for $\OML/cmm/m/it/10 U$\OT1/cmr/m/n/10 (-20) . Ex-tend to a b
+a-sis for $\OML/cmm/m/it/10 V$\OT1/cmr/m/n/10 (-20) . $\OML/cmm/m/it/10 e[]; []
+  ; e[]; e[]; []  ; e[]$\OT1/cmr/m/n/10 (-20) . 
+ []
+
+[25] [26]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1674.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1674.
  (linear_alg.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 834.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 834.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1674.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1674.
+
 Package rerunfilecheck Info: File `linear_alg.out' has not changed.
-(rerunfilecheck)             Checksum: 218D3965AF05A29C582FDE4109EF9B16;144.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 834.
+(rerunfilecheck)             Checksum: FC367DD85D8B72D8860D4C67C38A1206;862.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1674.
  ) 
 Here is how much of TeX's memory you used:
- 46840 strings out of 493333
- 1051964 string characters out of 3139195
- 1276350 words of memory out of 3000000
- 49477 multiletter control sequences out of 15000+200000
- 19077 words of font info for 99 fonts, out of 3000000 for 9000
+ 47024 strings out of 493333
+ 1054914 string characters out of 3139195
+ 1278370 words of memory out of 3000000
+ 49576 multiletter control sequences out of 15000+200000
+ 21489 words of font info for 125 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 66i,14n,98p,10400b,1091s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 66i,19n,98p,10400b,1091s stack positions out of 5000i,500n,10000p,200000b,50000s
 <C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Pr
 ogram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Program Fi
 les/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Program Files/MiKT
 eX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Program Files/MiKTeX 2.9/f
-onts/type1/public/amsfonts/cm/cmmi5.pfb><C:/Program Files/MiKTeX 2.9/fonts/type
-1/public/amsfonts/cm/cmmi7.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/
-amsfonts/cm/cmmi8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/
-cm/cmr10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.
-pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/P
-rogram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr5.pfb><C:/Program Fil
-es/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr6.pfb><C:/Program Files/MiKTeX 
-2.9/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Program Files/MiKTeX 2.9/fonts/
-type1/public/amsfonts/cm/cmr8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/publ
-ic/amsfonts/cm/cmr9.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfont
-s/cm/cmsy10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cms
-y7.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti10.pfb><
-C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/msbm10.pfb><C:/
-Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/msbm7.pfb>
-Output written on linear_alg.pdf (14 pages, 281286 bytes).
+onts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Program Files/MiKTeX 2.9/fonts/typ
+e1/public/amsfonts/cm/cmmi5.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public
+/amsfonts/cm/cmmi7.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts
+/cm/cmmi8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10
+.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/
+Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Program F
+iles/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr5.pfb><C:/Program Files/MiKTe
+X 2.9/fonts/type1/public/amsfonts/cm/cmr6.pfb><C:/Program Files/MiKTeX 2.9/font
+s/type1/public/amsfonts/cm/cmr7.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/pu
+blic/amsfonts/cm/cmr8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfo
+nts/cm/cmr9.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cms
+y10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy5.pfb><
+C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Progra
+m Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Program Files/
+MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti8.pfb><C:/Program Files/MiKTeX 2.
+9/fonts/type1/public/amsfonts/symbols/msbm10.pfb><C:/Program Files/MiKTeX 2.9/f
+onts/type1/public/amsfonts/symbols/msbm7.pfb>
+Output written on linear_alg.pdf (26 pages, 385733 bytes).
 PDF statistics:
- 240 PDF objects out of 1000 (max. 8388607)
- 56 named destinations out of 1000 (max. 500000)
- 26757 words of extra memory for PDF output out of 29859 (max. 10000000)
+ 364 PDF objects out of 1000 (max. 8388607)
+ 92 named destinations out of 1000 (max. 500000)
+ 29389 words of extra memory for PDF output out of 29859 (max. 10000000)
 

@@ -1,7 +1,7 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6100 64-bit) (preloaded format=pdflatex 2017.1.3)  13 OCT 2017 10:56
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6100 64-bit) (preloaded format=pdflatex 2017.1.3)  13 OCT 2017 19:23
 entering extended mode
-**./methods.tex
-(methods.tex
+**./ns1.tex
+(ns1.tex
 LaTeX2e <2016/03/31> patch level 3
 Babel <3.9r> and hyphenation patterns for 75 language(s) loaded.
 ("C:\Program Files\MiKTeX 2.9\tex\latex\base\article.cls"
@@ -21,20 +21,6 @@ File: size10.clo 2014/09/29 v1.4h Standard LaTeX file (size option)
 \belowcaptionskip=\skip42
 \bibindent=\dimen102
 )
-\@input{header.aux}
-\openout2 = `header.aux'.
-
-(header.tex ("C:\Program Files\MiKTeX 2.9\tex\latex\base\alltt.sty"
-Package: alltt 1997/06/16 v2.0g defines alltt environment
-)
-("C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\amsfonts.sty"
-Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
-\@emptytoks=\toks14
-\symAMSa=\mathgroup4
-\symAMSb=\mathgroup5
-LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
-(Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
-)
 ("C:\Program Files\MiKTeX 2.9\tex\latex\amsmath\amsmath.sty"
 Package: amsmath 2016/06/28 v2.15d AMS math features
 \@mathmargin=\skip43
@@ -45,7 +31,7 @@ Package: amstext 2000/06/29 v2.01 AMS text
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\amsmath\amsgen.sty"
 File: amsgen.sty 1999/11/30 v2.0 generic functions
-\@emptytoks=\toks15
+\@emptytoks=\toks14
 \ex@=\dimen103
 ))
 ("C:\Program Files\MiKTeX 2.9\tex\latex\amsmath\amsbsy.sty"
@@ -75,38 +61,48 @@ LaTeX Font Info:    Redeclaring font encoding OMS on input line 635.
 \dotsspace@=\muskip10
 \c@parentequation=\count94
 \dspbrk@lvl=\count95
-\tag@help=\toks16
+\tag@help=\toks15
 \row@=\count96
 \column@=\count97
 \maxfields@=\count98
-\andhelp@=\toks17
+\andhelp@=\toks16
 \eqnshift@=\dimen106
 \alignsep@=\dimen107
 \tagshift@=\dimen108
 \tagwidth@=\dimen109
 \totwidth@=\dimen110
 \lineht@=\dimen111
-\@envbody=\toks18
+\@envbody=\toks17
 \multlinegap=\skip44
 \multlinetaggap=\skip45
-\mathdisplay@stack=\toks19
+\mathdisplay@stack=\toks18
 LaTeX Info: Redefining \[ on input line 2739.
 LaTeX Info: Redefining \] on input line 2740.
+) (header.tex
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\alltt.sty"
+Package: alltt 1997/06/16 v2.0g defines alltt environment
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\amsfonts.sty"
+Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
+\symAMSa=\mathgroup4
+\symAMSb=\mathgroup5
+LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
+(Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
 )
 ("C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\amssymb.sty"
 Package: amssymb 2013/01/14 v3.01 AMS font symbols
 )
 ("C:\Program Files\MiKTeX 2.9\tex\latex\amscls\amsthm.sty"
 Package: amsthm 2015/03/04 v2.20.2
-\thm@style=\toks20
-\thm@bodyfont=\toks21
-\thm@headfont=\toks22
-\thm@notefont=\toks23
-\thm@headpunct=\toks24
+\thm@style=\toks19
+\thm@bodyfont=\toks20
+\thm@headfont=\toks21
+\thm@notefont=\toks22
+\thm@headpunct=\toks23
 \thm@preskip=\skip46
 \thm@postskip=\skip47
 \thm@headsep=\skip48
-\dth@everypar=\toks25
+\dth@everypar=\toks24
 )
 ("C:\Program Files\MiKTeX 2.9\tex\latex\booktabs\booktabs.sty"
 Package: booktabs 2005/04/14 v1.61803 publication quality tables
@@ -137,7 +133,7 @@ Package caption3 Info: TeX engine: e-TeX on input line 67.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\graphics\keyval.sty"
 Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
-\KV@toks@=\toks26
+\KV@toks@=\toks25
 )
 \captionmargin=\dimen125
 \captionmargin@=\dimen126
@@ -153,7 +149,7 @@ Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
 Package: enumitem 2011/09/28 v3.5.2 Customized lists
 \labelindent=\skip49
 \enit@outerparindent=\dimen132
-\enit@toks=\toks27
+\enit@toks=\toks26
 \enit@inbox=\box28
 \enitdp@description=\count104
 )
@@ -243,7 +239,7 @@ LaTeX Info: Thecontrolsequence`\]'isalreadyrobust on input line 129.
 )
 ("C:\Program Files\MiKTeX 2.9\tex\latex\microtype\microtype.sty"
 Package: microtype 2016/05/14 v2.6a Micro-typographical refinements (RS)
-\MT@toks=\toks28
+\MT@toks=\toks27
 \MT@count=\count110
 LaTeX Info: Redefining \textls on input line 774.
 \MT@outer@kern=\dimen145
@@ -292,7 +288,7 @@ Package: pgfplots 2016/08/10 v1.14 Data Visualization (1.14)
 ("C:\Program Files\MiKTeX 2.9\tex\latex\pgf\basiclayer\pgf.sty"
 ("C:\Program Files\MiKTeX 2.9\tex\latex\pgf\utilities\pgfrcs.sty"
 ("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\utilities\pgfutil-common.tex"
-\pgfutil@everybye=\toks29
+\pgfutil@everybye=\toks28
 \pgfutil@tempdima=\dimen147
 \pgfutil@tempdimb=\dimen148
 
@@ -313,12 +309,12 @@ Package: pgf 2015/08/07 v3.0.1a (rcs-revision 1.15)
 Package: pgfsys 2014/07/09 v3.0.1a (rcs-revision 1.48)
 
 ("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\utilities\pgfkeys.code.tex"
-\pgfkeys@pathtoks=\toks30
-\pgfkeys@temptoks=\toks31
+\pgfkeys@pathtoks=\toks29
+\pgfkeys@temptoks=\toks30
 
 ("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\utilities\pgfkeysfiltered.code.te
 x"
-\pgfkeys@tmptoks=\toks32
+\pgfkeys@tmptoks=\toks31
 ))
 \pgf@x=\dimen149
 \pgf@y=\dimen150
@@ -334,9 +330,9 @@ x"
 \c@pgf@countb=\count115
 \c@pgf@countc=\count116
 \c@pgf@countd=\count117
-\t@pgf@toka=\toks33
-\t@pgf@tokb=\toks34
-\t@pgf@tokc=\toks35
+\t@pgf@toka=\toks32
+\t@pgf@tokb=\toks33
+\t@pgf@tokc=\toks34
  ("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\systemlayer\pgf.cfg"
 File: pgf.cfg 2008/05/14  (rcs-revision 1.7)
 )
@@ -385,9 +381,9 @@ Package: pgfcore 2010/04/11 v3.0.1a (rcs-revision 1.7)
 \pgfmath@dimen=\dimen157
 \pgfmath@count=\count120
 \pgfmath@box=\box30
-\pgfmath@toks=\toks36
-\pgfmath@stack@operand=\toks37
-\pgfmath@stack@operation=\toks38
+\pgfmath@toks=\toks35
+\pgfmath@stack@operand=\toks36
+\pgfmath@stack@operation=\toks37
 )
 ("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\math\pgfmathfunctions.code.tex"
 ("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\math\pgfmathfunctions.basic.code.
@@ -526,8 +522,8 @@ Package: pgffor 2013/12/13 v3.0.1a (rcs-revision 1.25)
 ("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\math\pgfmath.code.tex")
 \pgffor@iter=\dimen184
 \pgffor@skip=\dimen185
-\pgffor@stack=\toks39
-\pgffor@toks=\toks40
+\pgffor@stack=\toks38
+\pgffor@toks=\toks39
 ))
 ("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\frontendlayer\tikz\tikz.code.tex"
 Package: tikz 2015/08/07 v3.0.1a (rcs-revision 1.151)
@@ -567,9 +563,9 @@ File: tikzlibrarytopaths.code.tex 2008/06/17 v3.0.1a (rcs-revision 1.2)
 )))
 ("C:\Program Files\MiKTeX 2.9\tex\generic\pgfplots\pgfplots.code.tex"
 ("C:\Program Files\MiKTeX 2.9\tex\generic\pgfplots\pgfplotscore.code.tex"
-\t@pgfplots@toka=\toks41
-\t@pgfplots@tokb=\toks42
-\t@pgfplots@tokc=\toks43
+\t@pgfplots@toka=\toks40
+\t@pgfplots@tokb=\toks41
+\t@pgfplots@tokc=\toks42
 \pgfplots@tmpa=\dimen193
 \c@pgfplots@coordindex=\count133
 \c@pgfplots@scanlineindex=\count134
@@ -604,7 +600,7 @@ code.tex"
 ("C:\Program Files\MiKTeX 2.9\tex\generic\pgfplots\numtable\pgfplotstableshared
 .code.tex"
 \c@pgfplotstable@counta=\count137
-\t@pgfplotstable@a=\toks44
+\t@pgfplotstable@a=\toks43
 )
 ("C:\Program Files\MiKTeX 2.9\tex\generic\pgfplots\liststructure\pgfplotsdeque.
 code.tex")
@@ -806,7 +802,7 @@ Package: siunitx 2017/01/01 v2.7a A comprehensive (SI) units package
 Package: array 2014/10/28 v2.4c Tabular extension package (FMi)
 \col@sep=\dimen294
 \extrarowheight=\dimen295
-\NC@list=\toks45
+\NC@list=\toks44
 \extratabsurround=\skip72
 \backup@length=\skip73
 )
@@ -987,7 +983,7 @@ Package: tabularx 2016/02/03 v2.11 `tabularx' package (DPC)
 \TX@target=\dimen311
 \TX@delta=\dimen312
 \TX@cols=\count185
-\TX@ftn=\toks46
+\TX@ftn=\toks45
 )
 ("C:\Program Files\MiKTeX 2.9\tex\latex\tkz-euclide\tkz-euclide.sty"
 Package: tkz-euclide 2011/06/01 1.16 c for plots 2d 
@@ -1052,9 +1048,9 @@ Package: numprint 2012/08/20 v1.39 Print numbers (HH)
 \nprt@sepwidth=\skip79
 \nprt@decimalwidth=\skip80
 \nprt@blockwidth=\skip81
-\nprt@digittoks=\toks47
-\nprt@pretoks=\toks48
-\nprt@posttoks=\toks49
+\nprt@digittoks=\toks46
+\nprt@pretoks=\toks47
+\nprt@posttoks=\toks48
 \nprt@thisdigit=\count190
 \nprt@curpos=\count191
 \nprt@rndpos=\count192
@@ -1146,7 +1142,7 @@ ex") ("C:\Program Files\MiKTeX 2.9\tex\latex\tkz-euclide\tkz-obj-lines.tex")
 \UL@box=\box64
 \UL@hyphenbox=\box65
 \UL@skip=\skip82
-\UL@hook=\toks50
+\UL@hook=\toks49
 \UL@height=\dimen325
 \UL@pe=\count274
 \UL@pixel=\dimen326
@@ -1170,14 +1166,14 @@ Loading kernel: messages; fonts; allocations: state,
 \D@c=\dimen331
 \L@c=\dimen332
 \R@c=\dimen333
-\Edge@c=\toks51
+\Edge@c=\toks50
 \X@p=\dimen334
 \Y@p=\dimen335
 \U@p=\dimen336
 \D@p=\dimen337
 \L@p=\dimen338
 \R@p=\dimen339
-\Edge@p=\toks52
+\Edge@p=\toks51
 \X@origin=\dimen340
 \Y@origin=\dimen341
 \X@xbase=\dimen342
@@ -1205,10 +1201,10 @@ Loading kernel: messages; fonts; allocations: state,
 \quotPTK@=\dimen355
 
 utility macros; pictures: \xy, positions,
-\swaptoks@@=\toks53
+\swaptoks@@=\toks52
 \connectobjectbox@@=\box69
  objects,
-\styletoks@=\toks54
+\styletoks@=\toks53
  decorations;
 kernel objects: directionals, circles, text; options; algorithms: directions,
 edges, connections;  Xy-pic loaded)
@@ -1219,7 +1215,7 @@ Package: xy 2013/10/06 Xy-pic version 3.8.9
 ("C:\Program Files\MiKTeX 2.9\tex\generic\xypic\xycurve.tex"
  Xy-pic option: Curve and Spline extension v.3.12 curve,
 \crv@cnt@=\count279
-\crvpts@=\toks55
+\crvpts@=\toks54
 \splinebox@=\box70
 \splineval@=\dimen356
 \splinedepth@=\dimen357
@@ -1246,8 +1242,8 @@ Package: xy 2013/10/06 Xy-pic version 3.8.9
  Xy-pic option: Matrix feature v.3.14
 \Row=\count280
 \Col=\count281
-\queue@=\toks56
-\queue@@=\toks57
+\queue@=\toks55
+\queue@@=\toks56
 \qcount@=\count282
 \qcount@@=\count283
 \matrixsize@=\count284
@@ -1276,8 +1272,8 @@ Package: xkeyval 2014/12/03 v2.7a package option processing (HA)
 
 ("C:\Program Files\MiKTeX 2.9\tex\generic\xkeyval\xkeyval.tex"
 ("C:\Program Files\MiKTeX 2.9\tex\generic\xkeyval\xkvutils.tex"
-\XKV@toks=\toks58
-\XKV@tempa@toks=\toks59
+\XKV@toks=\toks57
+\XKV@tempa@toks=\toks58
 )
 \XKV@depth=\count285
 File: xkeyval.tex 2014/12/03 v2.7a key=value parser (HA)
@@ -1335,11 +1331,11 @@ Package: multicol 2016/04/07 v1.8p multicolumn formatting (FMi)
 \colbreak@box=\box96
 \mc@col@check@num=\count294
 ))
-\methods@idxfile=\write5
-\openout5 = `methods.idx'.
+\ns1@idxfile=\write5
+\openout5 = `ns1.idx'.
 
 
-Writing index file methods.idx
+Writing index file ns1.idx
 ("C:\Program Files\MiKTeX 2.9\tex\latex\hyperref\hyperref.sty"
 Package: hyperref 2016/06/24 v6.83q Hypertext links for LaTeX
 
@@ -1482,23 +1478,23 @@ libraryquotes.code.tex"
 File: tikzlibraryquotes.code.tex 2014/03/21 v3.0.1a (rcs-revision 1.4)
 ))
 \c@nthm=\count306
-) (methods.aux)
-\openout1 = `methods.aux'.
+) (ns1.aux)
+\openout1 = `ns1.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 11.
-LaTeX Font Info:    ... okay on input line 11.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 11.
-LaTeX Font Info:    ... okay on input line 11.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 11.
-LaTeX Font Info:    ... okay on input line 11.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 11.
-LaTeX Font Info:    ... okay on input line 11.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 11.
-LaTeX Font Info:    ... okay on input line 11.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 11.
-LaTeX Font Info:    ... okay on input line 11.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 11.
-LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: hyperref package is loaded.
 Package caption Info: End \AtBeginDocument code.
@@ -1510,12 +1506,12 @@ Package caption Info: End \AtBeginDocument code.
 \scratchbox=\box97
 \nofMPsegments=\count308
 \nofMParguments=\count309
-\everyMPshowfont=\toks60
+\everyMPshowfont=\toks59
 \MPscratchCnt=\count310
 \MPscratchDim=\dimen380
 \MPnumerator=\count311
 \makeMPintoPDFobject=\count312
-\everyMPtoPDFconversion=\toks61
+\everyMPtoPDFconversion=\toks60
 ) ("C:\Program Files\MiKTeX 2.9\tex\latex\oberdiek\epstopdf-base.sty"
 Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
 
@@ -1529,7 +1525,7 @@ Package grfext Info: Graphics extension search list:
 G,.JBIG2,.JB2,.eps]
 (grfext)             \AppendGraphicsExtensions on input line 456.
 )
-LaTeX Info: Redefining \microtypecontext on input line 11.
+LaTeX Info: Redefining \microtypecontext on input line 23.
 Package microtype Info: Generating PDF output.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using default protrusion set `alltext'.
@@ -1556,7 +1552,7 @@ Dictionary: translator-basic-dictionary, Language: English
 ("C:\Program Files\MiKTeX 2.9\tex\latex\siunitx\siunitx-abbreviations.cfg"
 File: siunitx-abbreviations.cfg 2017/01/01 v2.7a siunitx: Abbreviated units
 )
-LaTeX Font Info:    Try loading font information for U+msa on input line 11.
+LaTeX Font Info:    Try loading font information for U+msa on input line 23.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\umsa.fd"
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
@@ -1564,7 +1560,7 @@ File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 ("C:\Program Files\MiKTeX 2.9\tex\latex\microtype\mt-msa.cfg"
 File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 11.
+LaTeX Font Info:    Try loading font information for U+msb on input line 23.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\umsb.fd"
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
@@ -1572,9 +1568,9 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ("C:\Program Files\MiKTeX 2.9\tex\latex\microtype\mt-msb.cfg"
 File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 )
-Package xypdf Info: Line width: 0.39998pt on input line 11.
+Package xypdf Info: Line width: 0.39998pt on input line 23.
 \AtBeginShipoutBox=\box98
-Package hyperref Info: Link coloring OFF on input line 11.
+Package hyperref Info: Link coloring OFF on input line 23.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\hyperref\nameref.sty"
 Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
@@ -1584,13 +1580,13 @@ Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
 \c@section@level=\count313
 )
-LaTeX Info: Redefining \ref on input line 11.
-LaTeX Info: Redefining \pageref on input line 11.
-LaTeX Info: Redefining \nameref on input line 11.
+LaTeX Info: Redefining \ref on input line 23.
+LaTeX Info: Redefining \pageref on input line 23.
+LaTeX Info: Redefining \nameref on input line 23.
 
-(methods.out) (methods.out)
+(ns1.out) (ns1.out)
 \@outlinefile=\write6
-\openout6 = `methods.out'.
+\openout6 = `ns1.out'.
 
 \c__siunitx_mathsf_int=\count314
 Package microtype Info: Loading generic settings for font family
@@ -1604,64 +1600,36 @@ Package microtype Info: Loading generic settings for font family
 (microtype)             See the microtype manual for details.
  [1
 
-
-
-{C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map}] [2] [3] [4]
-Overfull \hbox (38.21648pt too wide) in paragraph at lines 174--174
-[] 
- []
-
-[5] [6] [7] [8]
-Overfull \hbox (41.35902pt too wide) detected at line 298
-[][] \OML/cmm/m/it/10 e[]e[] \OT1/cmr/m/n/10 d\OML/cmm/m/it/10 x \OT1/cmr/m/n/1
-0 = [][] [] []  d\OML/cmm/m/it/10 x \OT1/cmr/m/n/10 + \OML/cmm/m/it/10 i [][] [
-]  \OT1/cmr/m/n/10 d\OML/cmm/m/it/10 x \OT1/cmr/m/n/10 = 2\OML/cmm/m/it/10 L[]
-
- []
-
-[9] [10] [11] [12] [13] [14] [15]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 582.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 582.
- (methods.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 582.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 582.
-Package rerunfilecheck Info: File `methods.out' has not changed.
-(rerunfilecheck)             Checksum: 997FFE7EE9AE37EF9A0AF15380266FB2;1599.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 582.
+{C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map}]
+[2] [3] [4] [5] [6] [7] [8] [9] [10] [11] [12] [13] [14]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 58.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 58.
+ (ns1.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 58.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 58.
+Package rerunfilecheck Info: File `ns1.out' has not changed.
+(rerunfilecheck)             Checksum: EFC618329C1FA3456C63D809566C582C;610.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 58.
  ) 
 Here is how much of TeX's memory you used:
- 46756 strings out of 493333
- 1049734 string characters out of 3139195
- 1275291 words of memory out of 3000000
- 49384 multiletter control sequences out of 15000+200000
- 19581 words of font info for 105 fonts, out of 3000000 for 9000
+ 46642 strings out of 493333
+ 1047845 string characters out of 3139195
+ 1266496 words of memory out of 3000000
+ 49332 multiletter control sequences out of 15000+200000
+ 16962 words of font info for 84 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 66i,12n,98p,10397b,745s stack positions out of 5000i,500n,10000p,200000b,50000s
-<C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Pr
-ogram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Program Fi
-les/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx7.pfb><C:/Program Files/MiKTe
-X 2.9/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Program Files/MiKTeX 2.9/fo
-nts/type1/public/amsfonts/cmextra/cmex8.pfb><C:/Program Files/MiKTeX 2.9/fonts/
-type1/public/amsfonts/cm/cmmi10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/pu
-blic/amsfonts/cm/cmmi5.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsf
-onts/cm/cmmi6.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/c
-mmi7.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi8.pfb>
-<C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Progr
-am Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Program Files/
-MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Program Files/MiKTeX 2.
-9/fonts/type1/public/amsfonts/cm/cmr5.pfb><C:/Program Files/MiKTeX 2.9/fonts/ty
-pe1/public/amsfonts/cm/cmr6.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public
-/amsfonts/cm/cmr7.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/
-cm/cmr8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr9.pf
-b><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Pr
-ogram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy5.pfb><C:/Program Fil
-es/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Program Files/MiKTeX
- 2.9/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Program Files/MiKTeX 2.9/font
-s/type1/public/amsfonts/cm/cmti10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/
-public/amsfonts/symbols/msbm10.pfb>
-Output written on methods.pdf (15 pages, 337539 bytes).
+ 64i,11n,96p,10391b,735s stack positions out of 5000i,500n,10000p,200000b,50000s
+<C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Pr
+ogram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Program Fi
+les/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Files/MiKTe
+X 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Program Files/MiKTeX 2.9/fon
+ts/type1/public/amsfonts/cm/cmr17.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/
+public/amsfonts/cm/cmr9.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/ams
+fonts/cm/cmsy10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm
+/cmti10.pfb>
+Output written on ns1.pdf (14 pages, 120094 bytes).
 PDF statistics:
- 315 PDF objects out of 1000 (max. 8388607)
- 55 named destinations out of 1000 (max. 500000)
- 27413 words of extra memory for PDF output out of 29859 (max. 10000000)
+ 183 PDF objects out of 1000 (max. 8388607)
+ 28 named destinations out of 1000 (max. 500000)
+ 24277 words of extra memory for PDF output out of 24883 (max. 10000000)
 

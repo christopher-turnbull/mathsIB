@@ -1,0 +1,347 @@
+\documentclass[a4paper]{article}
+\usepackage{amsmath}
+\def\npart {IA}
+\def\nterm {Michaelmas}
+\def\nyear {2017}
+\def\nlecturer {Dr. Forster}
+\def\ncourse {Numbers and Sets }
+
+\usepackage{amsmath}
+\input{header}
+\def\checkmark{\tikz\fill[scale=0.4](0,.35) -- (.25,0) -- (1,.7) -- (.25,.15) -- cycle;}
+
+\newcommand{\dd}{\mathcal{D}}
+\begin{document}
+	
+\maketitle
+
+
+\subsection*{1D 2012}
+
+\begin{enumerate}
+	\item By Euclid,
+	
+	\begin{align*}
+	23 & = 18 + 5 \\
+	18 & = 3 \times 5 + 5\\
+	5 & = 3 + 2\\
+	3 & = 2 + 1 
+	\end{align*}
+	
+	So gcd(23,18) $ = 1 $.
+	
+	Now expressing 1 as a linear combination of 23 and 18,
+	
+	\begin{align*}
+	1 & = 3 - 2 \\
+	& = 3 - (5 - 3) \\
+	& = 2 \times 3 - 5 \\
+	& = 2(18 - 5 \times 3) - 5\\
+	& = 2 \times 18 - 7 \times 5 \\
+	& = 2 \times 18 - 7 \times (23 - 18) \\
+	& = 9 \times 18 - 7 \times 23
+	\end{align*}
+	
+Hence multiplying by 101,
+
+\[ 909 \times 18 - 707 \times 23 = 101 \]
+
+we see that
+
+\[ x = 909, y = - 707 \]
+
+\item We know 
+
+\begin{align*}
+9 \times 18 & = 1 \quad (\text{mod } 23) \\
+-7 \times 23 & = 1 \quad (\text{mod } 18)
+\end{align*}
+
+So put 
+
+\[ x = (9 \times 18 \times 2) - (7 \times 23 \times 3) \]
+
+ie. \[ x = 106 \]
+\end{enumerate}
+
+
+\subsection*{2D 2012}
+
+A relation $ a R b $ on elements of a set $ a,b \in X $ is an \emph{equivalence relation} if it is
+
+\begin{itemize}
+	\item Reflexive: $ a R a $ $ \forall \; a \in X $
+	\item Symmetric: $ a R b \; \iff \; b R a \; \forall \; a,b \in X $
+	\item Transitive: $ a R b $ and $ b R c \; \Rightarrow \; a R c \; \forall \; a,b,c \in X$
+\end{itemize}
+
+If $ \sim  $ is an equivalence relation on $ X $, then the equivalence classes of $ \sim $ form a partition of $ X $
+
+\begin{proof}
+	By reflexivity, $ x \in [x] \; \forall \; x \in X$.
+	
+	Now suppose $ [x] \cap [y] \neq \emptyset $. Let $ z \in [x] \cap [y] $.
+	Then $ x \sim z $ and $ y \sim z $. By symmetry, $ z \sim y $. By transitivity, $ x \sim y $.
+	
+	For all $ x' \in X$, we have $ x' \sim x $, thus by transitivity, $ x' \sim y $, and $ [x] \subseteq [y] $. Similarly, $ [y] \subseteq [x] $, and $ [x] = [y] $.
+\end{proof}
+
+\begin{enumerate}
+	\item $ V $ is an equivalence relation:
+	$ x R x, x S x \; \forall \; x \in X  $ hence $ x V x \; \forall \; x \in X $. Similarly, symmetry and transitivity follow exactly.
+	
+	\item $ W $ is not necessarily an equivalence relation: take $ X = \{  1,2,3 \} $, let $ R $ act such that $ 1 R 2 $, with 3 in its own equivalence class, and let $ S $ act such that $ 2 S 3 $ with 1 in it's own class.
+	
+	By the definition of $ W $, $ 1 W 2 $ and $ 2 W 3 $, but 1 is not related to 3, so transitivity fails. 
+\end{enumerate}
+
+\subsection*{5D 2012}
+
+\begin{enumerate}
+	\item Not true if $ X $ is infinite. Let $ X = \N$, $ g(x) = x + 1 $, 
+	
+	\[ f(x) = \begin{cases} 1  & \text{ if } x = 1 \\ x - 1 & \text{ otherwise }  \end{cases} \]
+	
+	Then $ f \circ g $ is the identity map, but $ g(f(1)) = 2 $.
+	
+	If $ X $ is finite and $ f \circ g $ is the identity, 
+	
+	\begin{itemize}
+		\item $ f \circ g  $ is injective
+		\item $ f \circ g  $ injective $ \Rightarrow \; g $ injective 
+		\item $ X $ finite, $ g $ injective $ \Rightarrow \; g $ bijective
+		\item $ \Rightarrow \; $ f bijective, $ f = g^{-1} $,
+		\item Hence $ f \circ g $ identity $ \Rightarrow \; g \circ f $ identity
+	\end{itemize}
+
+\item Can be false: Let $ X \subseteq \N $, take $ g(x) $ to be the constant function $ g(x) = 1 $, and take $ f(x) = x^{2} $.
+
+(``$ g $ destroys a lot of information, $ f $ has a lot of leeway'')
+
+\item Take $ f(x) = 1 $ for all $ x \in X $. It doesn't matter what $ g $ does now, but certainly need not be the identity, for any set $ X $. 
+
+	 
+\end{enumerate}
+
+
+\begin{itemize}
+	\item If $ X $ is a finite set, for each $ x_{i} \in X $ there exists a positive integer $ n_{i} $ such that $ f^{n_{i}}(x_{i}) = x_{i} $. Now simply take lcm($ x_{1},\cdots,x_{N} $), thus $ f^{N}(x) = x $ for all $ x \in X $
+	\item If $ X $ is a countably infinite set, biject it with $ \N $ and take the function that maps
+	
+	\[ f(1) = 2, f(2) = 1 \]
+	\[ f(3) = 4, f(4) = 5, f(5) = 3 \]
+	
+	and so on. Respectively we have $ n = 2,3,\cdots $, and there is no positive integer $ N $ such that $ f^{N}(x)  = x $ for all $ x \in X $
+	
+	\item If $ X $ is an uncountably infinite set, eg. $ \R $, simply set the function to be equal to the identity map on the points in $ \R \setminus \N $, and equal to our previous function for points in $ \N $.
+	
+	(we can always biject eg. $ \R^{2} to \R $)
+\end{itemize}
+
+\subsection*{6D 2012}
+
+\begin{thm} Fermat's (Little) Theorem.
+	Let $ p $ be a prime. Then $ a^{p} \equiv a \text{ (mod p)} $, for all $ a \in \Z $.
+\end{thm}
+
+\begin{thm} Wilsons Theorem.
+	Let $ p $ be a prime. Then $ (p-1)! \equiv -1 \text{ (mod p)} $
+\end{thm}
+
+\begin{prop} $ x^{2} \equiv -1 \text{ (mod } p) $ has a solution iff $ p \equiv 1 $ ( mod 4)
+\end{prop}
+
+\begin{proof}
+	By Wilson's,
+	
+	\begin{align*}
+	-1 \equiv (p-1)! & \equiv (1)(2) \cdots  \left( \frac{p-1}{2} \right) \left( - \frac{p-1}{2} \right) \cdots (-2)(-1) \\
+	& = (-1)^{\frac{p-1}{2}} \left( \frac{p-1}{2} \right)!^{2} 
+	\end{align*}
+
+
+If $ p \equiv 1 \text{ mod 4} $, write $ p = 4k + 1 $, and the RHS becomes $ (2k!)^{2} $. But for $ p \equiv -1 \text{ (mod 4)}$, ie. $ p = 4k + 3 $, suppose we have some $ x $ st. $ x^{2} \equiv -1 \text{ (mod p)} $.
+
+Then, by Fermat's, $ x^{p} \equiv x \; \Rightarrow x^{p-1} \equiv 1 $, and
+
+\begin{align*}
+1 & \equiv x^{4k + 2}  \\
+& = (x^{2})^{2k + 1} \\
+& \equiv (-1)^{2k + 1}\\
+& = -1 
+\end{align*} 
+Contradiction. 
+\end{proof}
+
+$ x $ has order $ d $ (mod $ p $), so $ d $ is the least positive integer st. $ x^{d} \equiv 1 $ (mod $ p $).
+Suppose $ x^{k} \equiv 1 $ (mod $ p $). Then $ k > d $, so write $ k = qd + r $ for $ q > 0 $, with remainder $ r \in \{ 0,\cdots,d-1 \} $.
+
+Then
+
+\begin{align*}
+1 = x^{k} & = x^{qd + r} \\
+& = (x^{d})^{q} x^{r} \\
+& \equiv x^{r} \text{ (mod p)}
+\end{align*}
+
+ie $ x^{r} \equiv 1 $Since $ r \in \{  0,\cdots,d-1\} $, and $ d $ is the least positive integer st. $ x^{d} \equiv 1 $, we must have $ r = 0 $, and hence $ d $ divides $ k $.
+
+Now, suppose $ p  $ is a prime factor of $ F_{n} = 2^{2^{n}} + 1 $. We want to determine the order of $ 2 $ (mod $ p $), ie. the least positive integer $ d $ st. $ 2^{d} \equiv 1 $ ( mod $ p $). Now, as $ p $ is a factor of $ F_{n} $ we have
+
+\[ 2^{2^{n}} + 1 \equiv 0 \; (\text{mod }p) \]
+\[ 2^{2^{n}} \equiv -1 \; (\text{mod } p) \]
+
+and by squaring both sides we have
+\[ 2^{2^{n+1}} \equiv 1 \; (\text{mod } p) \]
+
+thus the order of 2 (mod $ p $) divides $ 2^{n+1} $.
+
+I think the order is $ 2^{n+1} $ but don't know how to justify this.
+$ F_{n} $ and $ F_{m} $ are pairwise relatively coprime iff their gcd is 1. 
+
+Next, if $ p $ is of the form $ 4k + 3 $ and is a factor of some $ F_{n} $, we have $ \left( 2^{2^{n-1}} \right)^{2} \equiv -1 $, but in the first part of the question we showed that $ x^{2} $ only has a solution when $ p $ is of the form $ 4k + 1 $.
+
+
+\subsection*{7D 2012}
+	\begin{enumerate}
+		\item 
+			CLAIM: $ \sqrt{6} $ is irrational
+		
+			Assume otherwise,
+			
+			\[ \sqrt{6} = \frac{p}{q}, \quad (p,q) = 1 \]
+			
+			Then $ 6q^{2} = p^{2}  \Rightarrow 2 | p^{2} $. 
+			
+			CLAIM: $ p^{2} $ even $ \Rightarrow \; p $ even.
+			
+		\begin{proof}
+				Proof by contrapositive, if $ p $ not even, write $ p = 2k + 1 $ for some integer $ k $. Then
+			
+			\begin{align*}
+			p^2 & = 4k^2 + 4k + 1 \\
+			& = 2 (2k^2 + 2) + 1
+			\end{align*}
+			Thus $ p^{2} $ is not even. Hence $ p^{2} $ even $ \Rightarrow \; p $ even.
+		\end{proof}
+			Thus $ p $ even, and we can write $ p = 2p' $ and $ \sqrt{6} = \frac{2p'}{q} \Rightarrow 2 | q $ also, which contradicts $ (p,q) = 1 $.
+
+	
+		Now to show $ \sqrt{2} + \sqrt{3} $ is irrational, all we need to do is assume it is rational and we get the following contradiction: then so is $ (\sqrt{2} + \sqrt{3})^{2} = 5 + 2 \sqrt{6} $. But this is absurd since we have just showed $ \sqrt{6} $ is irrational
+	
+		
+	
+	
+
+	\item 
+	
+	\[ e : = 1 + \frac{1}{1!} + \frac{1}{2!} + \frac{1}{3!} + \cdots \]
+	
+		Suppose is rational, $e = \frac{p}{q}$ for some integers $ p,q $ s.t. $ (p,q) = 1 $  Then $q!e \in \N$. But
+	\[
+	q!e = \underbrace{q! + q! + \frac{q!}{2!} + \frac{q!}{3!} + \cdots + \frac{q!}{q!}}_{n} + \underbrace{\frac{q!}{(q + 1)!} + \frac{q!}{(q + 2)!} + \cdots}_{x},
+	\]
+	where $n \in \N$ and 
+	\[
+	x = \frac{1}{q + 1} + \frac{1}{(q + 1)(q + 2)} + \cdots.
+	\]
+	We can bound it by
+	\[
+	0 < x < \frac{1}{q+1} +\frac{1}{(q + 1)^2} + \frac{1}{(q + 1)^3} + \cdots = \frac{1}{q + 1}\cdot \frac{1}{1 - 1/(q + 1)} = \frac{1}{q}.
+	\]
+	
+	Now clearly $ e > 2 $, and
+	
+	\begin{align*}
+	\frac{1}{2!}  + \frac{1}{3!} + \cdots & < \frac{1}{2} + \frac{1}{2^{2}} + \frac{1}{2^{3}} + \cdots \\
+	& < \frac{1/2}{1 - 1/2} = 1 
+	\end{align*}
+	
+	Thus $ 2 < e < 3 $, so $ e  = \frac{p}{q} $ is not an integer $ \Rightarrow q > 1 $. Hence
+	
+	\[ x < 5\frac{1}{q} < 1 \]
+	
+	Thus $q!e$ is the sum of an integer part $n$ plus a non-integer part $x$.
+	Contradiction.
+
+	
+	\item Suppose the real root $ x = \frac{p}{q} $, $ (p,q) = 1 $ Then
+	
+	\begin{align*}
+	\frac{p^{3}}{q^{3}} + 4 \frac{p}{q} - 7 = 0 & \Rightarrow \frac{p^{3}}{q} + 4pq - 7q^{2}  \\
+	& \Rightarrow \frac{p^{3}}{q} = 7 q^{2} - 4pq 
+	\end{align*}
+	
+	Then RHS is an integer $ \Rightarrow $ LHS is an integer also, which contradicts the fact that $ (p,q) = 1 $.
+	
+	
+	\item 
+		Let $ \log_{2} 3 = \frac{p}{q} $, $ (p,q) = 1 $ Now it must hold that 
+	\[ 2^{q} = 3^{p} \]
+	
+	which is nonsense as LHS is even, while the RHS is odd.
+	Note this could be true if either $ p $ or $ q $ are equal to zero, but it is clear that this is not the case here.	
+	\end{enumerate}
+
+
+\subsection*{8D 2012}
+
+\begin{prop} 
+	There is no injection from the power-set of $ \R  $ to $ \R $
+\end{prop}
+	\begin{proof}
+	
+	
+		\begin{itemize}
+			\item Suppose for the sake of contradiction that $ f: \mathcal{P} (\R) \to \R $ is an injection.
+			\item For each $ t \in \Im(f) $, there exists a unique $ s \in \mathcal{P} ( \R ) $ st. $ f(s) = t $. Define $ g $ as 
+			
+			\[ g(t) = \begin{cases}  s & \text{ if } (t \in \Im f) \text{ and } (f(s) = t)\\ s_{0} & \text{ if } t \notin \Im f \end{cases} \]
+			
+			where $ s_{0} $ is any element of $ S $.
+			
+			By construction, given any $ s \in S \; \exists f(s) \in \R $ that maps to $ s $ under $ g $, so $ g : \R \to \mathcal{P}(R) $ is a surjection.
+			
+			\item Let $ S = \{  r \in \R : r \notin f(r) \}$. Since $ g $ is surjective, there must exist $ r \in \R $ st. $ g(r) = S $. If $ r \in \R $, then $ r \notin \R $ by the definition of $ S $. Conversely if $ r \notin S $, then $ r \in S $.
+			
+			\item This is absurd, and we arrive at the conclusion that $ f $ cannot be an injection.
+		
+	
+		\end{itemize}
+	\end{proof}
+
+
+\begin{proof}
+	Suppose such an injection exists, $ f: R \to \mathcal{P}(\R)  $. Take 
+	
+	\[ S = \{ r \in \R \; : \; r \notin f^{-1} (r) \} \]
+	
+	where $ f^{-1} $ denotes the preimage of $ f $. Nah, I don't think this works unless we use the fact that the preimage is surjective...?
+\end{proof}
+
+
+\begin{prop} There is an injection from $ \R^{2} $ to $ \R $	
+	
+\end{prop}
+
+\begin{proof}
+	Let's construct an injective function $ f : (0,1) \times (0,1) \to (0,1) $. Since there exist bijections between $ \R $ and $ (0,1) $ (eg. take $ g(t) = (\tan t + \frac{\pi}{2})/2 $), the proposed function $ f $ is sufficient to show such an injection exists.
+	
+	
+	Let the decimal representation of $ x $ be $ 0.x_{1}x_{2}x_{3}\cdots $, and that of $ y $ be $ 0.y_{1}y_{2}y_{3}\cdots $. Let $ f(x,y) $ be $ 0.x_{1}y_{1}x_{2}y_{2}x_{3}y_{3}\cdots $
+	
+	To make this function well-defined, avoid decimal representations that end with infinite successions of $ 9 $s. Then, $ f $ is injective. 
+\end{proof}
+
+To specify some $ f \in X : = \{  f : f(x) = x \text{ for all but finitely many } x \in \R   \}$, I need
+
+\[ (r_{1},f(r_{1}), r_{2},f(r_{2} ),\cdots,(r_{n},f(r_{n})) \] ie. a finite set of ordered pairs or reals, where the $ r_{i} $ represents the points at which the function is not the identity.
+
+Given the number of ordered pairs $ n \in \N $ we then encode these orders pairs as a member of the set $ \N \times \R $, and inject this into $ \R $:
+
+\[ N \times \R \to \R \times \R \to \R \]
+
+Hence an injection $ X \to \R $ 
+
+
+\end{document}

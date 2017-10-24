@@ -3,7 +3,7 @@
 \def\npart {IB}
 \def\nterm {Michaelmas}
 \def\nyear {2017}
-\def\nlecturer {Dr. Keating }
+\def\nlecturer {Dr. A. Keating (amk50@cam.ac.uk)}
 \def\ncourse {Linear Algebra}
 
 \include{header}
@@ -14,9 +14,17 @@
 \setcounter{section}{-1}
 \section{Introduction}
 
+   Linear algebra is an important component of undergraduate mathematics. At the practical level, matrix theory and the related vector-space concepts provide a language and a powerful computational framework for posing and solving important problems. 
+
+
+
+
+Beyond this, elementary linear algebra is a valuable introduction to mathematical abstraction and logical reasoning because the theoretical development is self-contained, consistent, and accessible to most students.
+
 
 
 \section{Vector Spaces}
+\subsection{Vector Spaces}
 
 \begin{defi}
 	An $ \F $-Vector space (a vector space on $ \F $) is an abelian group $ (V, +) $ equipped with a function\footnote{scalar multiplication} $ F \times V \to V $, $ (\lambda,v) \mapsto \lambda V $
@@ -31,7 +39,7 @@
 	
 	\[ v + \mathbf{0} = v \]
 	
-	for all $ \lambda_{i}, \mu \in F $, $ v_{i} \in V $
+	for all $ \lambda_{i}, \lambda, \mu \in F $, $ v_{i} \in V $
 	
 \end{defi}
 
@@ -186,6 +194,8 @@ Ex. Other axioms follow similarly from using vecton space axioms
 
 \end{proof}
 
+\subsection{Bases}
+
 \begin{defi}
 	$ V $ is an $ \F $-vector space, $ S \subset V $. The \emph{span} of $ S $ is denoted by 
 	
@@ -216,7 +226,8 @@ Convention: $  < \emptyset > = \{ \mathbf{0} \} $.
 	-2\\
 	-4
 	\end{pmatrix} \right\}  \]
-	5
+	
+	
 	\[ <S> = \{ \begin{pmatrix}
 	a\\
 	b\\
@@ -257,37 +268,34 @@ Convention: $  < \emptyset > = \{ \mathbf{0} \} $.
 \end{defi}
 
 \begin{eg}
-	The fist example, $ u,v,w $ are not linearly independent.
+	The first example, $ u,v,w $ are not linearly independent\footnote{If \emph{not} linearly independent, say a set is linearly dependent.}, but the set $ \{  \delta_{X} \; | \; x \in X \} $ is linearly independent.
 	
 \end{eg}
 
-\begin{eg}
-	The set $ \{  \delta_{X} \; | \; x \in X \} $ is linearly indepndent.
-\end{eg}
 
+A lesson to be learnt from our example is that a linearly dependent spanning set contains redundant information. In a sense, a linearly independent spanning set is a minimal spanning set and hence represents the most efficient way of characterizing the subspace. This idea leads to the following definition.
 
 \begin{defi}
-	If \emph{not} linearly indepnedent, say a set is linearly dependent.
-\end{defi}
-
-\begin{defi}
-	$ S $ is a \emph{basis} of $ V $ if it is linearly indepnedent and spans $ V $
+	$ \mathcal{B} $ is a \emph{basis} of $ V $ if it is linearly independent and spans $ V $
 \end{defi}
 
 
 \begin{eg}
-	$ \F^{n}  $  standard basis: $ e_{1},e_{2},\cdots,e_{n} $.
-\end{eg}
+	\begin{itemize}
+	
+	
+	
+	\item $ \F^{n}  $  standard basis: $ \left\{     e_{1},e_{2},\cdots,e_{n} \right\} $.
 
-\begin{eg}
-	$ V = \C $ over $ \C $ has natural basis $ \{ 1\} $, over $ \R $ has natural basis $ \{ 1,i \} $
-\end{eg}
+	\item $ V = \C $ over $ \C $ has natural basis $ \{ 1\} $, over $ \R $ has natural basis $ \{ 1,i \} $
 
-
-\begin{eg}
-	$ V = \mathcal{P}(\R) $ space of all polynomials, has natural basis 
+	\item $ V = \mathcal{P}(\R) $ space of all polynomials, has natural basis 
 	
 	\[ \{ 1,x,x^{2},x^{3},\cdots \} \]
+	
+	
+		
+\end{itemize}
 \end{eg}
 
 \begin{ex}
@@ -309,7 +317,7 @@ Convention: $  < \emptyset > = \{ \mathbf{0} \} $.
 	
 	Suppose also $ v = \sum \mu_{i} v_{i} $ for some $ \mu_{i} \in \F $. $ \sum \left( \mu_{i} - \lambda_{i} \right)  v_{i} = \mathbf{0} $.
 	
-	The $ v_{i} $ are linearly indepnedent so $ \mu_{i} - \lambda_{i} = 0 $ for all $ i $, $ \lambda_{i} = \mu_{i} $
+	The $ v_{i} $ are linearly independent so $ \mu_{i} - \lambda_{i} = 0 $ for all $ i $, $ \lambda_{i} = \mu_{i} $
 	
 	
 	$ (\Leftarrow) $ The $ v_{i} $ span $ V $, since any $ v \in V $ is a linear combination of them.
@@ -322,7 +330,7 @@ Convention: $  < \emptyset > = \{ \mathbf{0} \} $.
 \end{lemma}
 
 \begin{proof}
-		If $ v_{1},\cdots,v_{n} $ ilnearly indepnedent, done.
+		If $ v_{1},\cdots,v_{n} $ linearly independent, done.
 		Otherwise for some $ l $, there exist $ \alpha_{1},\cdots,\alpha_{l-1} \in \F $ such that
 		
 		\[ v_{l} = \alpha_{1} v_{1} + \cdots + \alpha_{l-1}v_{l-1} \]
@@ -468,7 +476,7 @@ Let $ u_{1},\cdots,u_{l} $ be a basis for $ U $. Extend it to a basis for $ V $.
 	$ U,W \leq V $. The following are equivalent
 	
 	\begin{enumerate}
-		\item $ V = U \oplus W $
+		\item $ V = U \oplus W $, ie. every element of $ V $ can be written uniquely as $ u + w, $ for  $u \in U, w \in W $
 		\item $ V = U + W $ and $ U \cap W = \{ \mathbf{0} \} $
 		\item $ B_{1} $ any basis of $ U $, $ B_{2} $ is any basis of $ W $, then $ B = B_{1} \cup B_{2} $ is a basis of $ V $.
 		
@@ -479,7 +487,16 @@ Let $ u_{1},\cdots,u_{l} $ be a basis for $ U $. Extend it to a basis for $ V $.
 \begin{proof}
 	(ii) $ \Rightarrow $ (i). Any $ v \in V $ is $ u + w $ for some $ u \in U $, $ w in W $.
 	
-	\[ u_{1} + w_{1} = u_{2} + w_{2} \Rightarrow u_{1} - u_{2} = -w_{1} + w_{2} \in U \cap W = \{ \mathbf{0} \} \Rightarrow w_{1} = w_{2}, u_{1} = u_{2} \]
+	Suppose that 
+	
+
+	\[ u_{1} + w_{1} = u_{2} + w_{2} \]
+	
+	
+	Then 
+	\[ \Rightarrow u_{1} - u_{2} = -w_{1} + w_{2} \in U \cap W = \{ \mathbf{0} \} \Rightarrow w_{1} = w_{2}, u_{1} = u_{2} \]
+	
+	Thus uniqueness of expressions.
 	
 	
 	(i) $ \Rightarrow $ (iii) $ B $ spans, any $ v \in V $ is $ u + w $, for some $ u \in U $, $ w \in W $, write $ u $ in terms of $ B_{1} $, $ w $ in terms of $ B_{2} $, Then $ u + w $ is a lin comb. of elements of $ B $.
@@ -502,7 +519,7 @@ Let $ u_{1},\cdots,u_{l} $ be a basis for $ U $. Extend it to a basis for $ V $.
 	$ \Rightarrow v \in U + W $.
 	
 	
-	If $ v \in U \cap W $, $ v = \sum_{u \in B_{1}}  \lambda_{u} u = \sum_{w \in B_{2}}  \lambda_{w} w  \Rightarrow $ All $ \lambda_{u},\lambda_{w} $ are zero, because $ B_{1} \cup B_{2}  $ is lin. indep.
+	If $ v \in U \cap W $, $ v = \sum_{u \in B_{1}}  \lambda_{u} $ , $u = \sum_{w \in B_{2}}  \lambda_{w} w  \Rightarrow $ All $ \lambda_{u},\lambda_{w} $ are zero, because $ B_{1} \cup B_{2}  $ is lin. indep.
 	
 \end{proof}
 	
@@ -544,13 +561,19 @@ Pick $ V = \R^{2} $. Pick $ U $ as the $ y $-axis, then any one of the following
 	\begin{enumerate}
 		\item The sum $ \sum V_{i} $ is direct
 		\item $ V_{i} \cap \sum_{j \neq i}   V_{j} = \{ \mathbf{0} \} $ for all $ i $
-		\item For any basis $ B_{i} $ of $ V_{2} $, the union $ B = \bigcup_{i=1}^{l} B_{i} $ is a basis for $ \sum V_{i}  $
+		\item The $ B_{i} $ are pairwise disjoint and their union is a basis for  $ \sum V_{i}  $
 		
 	\end{enumerate}
 
 
+\end{ex}
+
+
+We also discuss \emph{external} direct sums, though will not touch them much in this course. This is simply an internal direct sum $ U_{1} \oplus U_{2} $, except now the $ U_{i} $'s are not subspaces of $ V $, they can be any old vector space. 
+
+
 \begin{defi}
-	Let $ U,W $ eb $ \F $-vector spaces.
+	Let $ U,W $ be $ \F $-vector spaces.
 	External direct sum
 	
 	\[ U \oplus V  = \{  (u,w) \; | \; u \in U, w \in W \}\]
@@ -560,10 +583,13 @@ Pick $ V = \R^{2} $. Pick $ U $ as the $ y $-axis, then any one of the following
 	$ \lambda(u,w) = (\lambda u, \lambda w) $
 \end{defi}
 
-\end{ex}
+Note that when we talk about dimension in this course, we have not shown yet that the dimension of an \emph{infinite} vector space is well defined\footnote{It is!}. We will come to this later.
+
 
 
 \section{Linear Maps}
+
+\subsection{Linear Maps}
 
 \begin{defi}
 	$ V,W $ are $ \F $-vector spaces. A map $ \alpha: V \to W $ is linear if
@@ -574,17 +600,20 @@ Pick $ V = \R^{2} $. Pick $ U $ as the $ y $-axis, then any one of the following
 		
 	\end{enumerate}
 
-Can be combined as: $ \alpha(\lambda_{1} v_{1} + \lambda_{2} v_{2}) = \lambda_{1} \alpha(v_{1}) + \lambda_{2} \alpha(v_{2}) $
+Can be combined concisely as: 
+
+\[  \alpha(\lambda_{1} v_{1} + \lambda_{2} v_{2}) = \lambda_{1} \alpha(v_{1}) + \lambda_{2} \alpha(v_{2})  \quad \lambda_{i} \in \F, v_{i} \in V  \]
 \end{defi}
 
 \begin{eg}
 	A $ n \times m $ matrix with coeff in $ \F $
 	
-	\[ \alpha: \F^{n} \to \F^{w} \]
+	\[ \alpha: \F^{n} \to \F^{m} \]
 	\[ v \mapsto A v \]
 \end{eg}
 
 \begin{eg}
+	The set of all polynomials with real coefficients:
 	\[ \mathcal{D} : \mathcal{P}(\R) \to \mathcal{P}(\R) \]
 	
 	\[ f \mapsto \frac{\d f}{\d x} \]
@@ -592,6 +621,7 @@ Can be combined as: $ \alpha(\lambda_{1} v_{1} + \lambda_{2} v_{2}) = \lambda_{1
 
 
 \begin{eg}
+	The set of continuous functions over $ [0,1] $
 	\[ I: \mathcal{C}[0,1] \to \mathcal{C}[0,1] \]
 	\[ f \mapsto I(f) \]
 	
@@ -605,27 +635,24 @@ Can be combined as: $ \alpha(\lambda_{1} v_{1} + \lambda_{2} v_{2}) = \lambda_{1
 	\[ f \mapsto f(x) \]
 \end{eg}
 
-Notes: $ U,V,W $ are v spaces over $ \F $.
+Notes: If $ U,V,W $ are v spaces over $ \F $, then
 
 \begin{enumerate}
-	\item id: $ V \to V $ linear
-	\item $ U \to V \to W $
-	
-		\begin{tikzcd}
+	\item The identity map id: $ V \to V $ is linear
+	\item If \begin{tikzcd}
 		U \ar[r, "\alpha"] & V \ar[r, "\beta"] & W 
-	\end{tikzcd}
-	
-	$ \alpha,\beta $ both linear, then $ \beta \circ \alpha $ is linear.
+	\end{tikzcd} with $ \alpha,\beta $ both linear, then $ \beta \circ \alpha $ is linear.
 	
 \end{enumerate}
 
 \begin{lemma} 
-	$ V,W $ are $ \F $-vector spaces, $ B $ is a basis for $ V $.
-	If $ \alpha_{0} : B \to W $ is \emph{any} map, then there exits a unique linear map $ \alpha : V \to W $ extending $ \alpha_{0} $
+	Let $ V,W $ be $ \F $-vector spaces, and let $ \mathcal{B} $ is a basis for $ V $.
+	If $ \alpha_{0} : \mathcal{B} \to W $ is \emph{any} map, then there exists a unique linear map\footnote{ie. if I tell you \emph{any} mapping of the basis vectors $ \alpha_{0} $ (it could be a non-linear mapping), then you have enough information to construct a linear map from this. } $ \alpha : V \to W $ extending $ \alpha_{0} $, ie. 
 	
 	\[ \alpha(v) = \alpha_{0}(v) \]
 	
-	for any basis element $ v $. 
+	for any basis element $ v \in \mathcal{B} $. 
+
 	
 \end{lemma}
 
@@ -633,9 +660,13 @@ Notes: $ U,V,W $ are v spaces over $ \F $.
 \begin{proof}
 	Let $ v  \in V $. Then $ v = \sum \lambda_{i} v_{i} $, $ v_{i} \in B $, $ \lambda_{i} \in \F $, unique expression. 
 	
-	Linear forces
+	Now Linearity forces
 	
-	\[ \alpha(v) = \alpha\left( \sum \lambda_{i} v_{i} \right) = \sum \lambda_{i} \alpha(v_{i}) = \sum \lambda_{i} \alpha_{0}(v_{i})  \]
+	\begin{align*}
+	\alpha(v) & = \alpha\left( \sum \lambda_{i} v_{i} \right) \\
+	& = \sum \lambda_{i} \alpha(v_{i})\\
+	& = \sum \lambda_{i} \alpha_{0}(v_{i}) \\
+	\end{align*}
 	
 	linear, exists.
 	expression forced to be unique. 
@@ -645,19 +676,19 @@ Note
 
 \begin{enumerate}
 	\item True for infinite dimensional vector space also
-	\item Very often, to define a linear map, define it on a basis. 
-	\item $ \alpha_{1},\alpha_{2} : V \to W $ linear maps. If they agree on a basis, then they are equal. 
-	
+	\item Very often, to define a linear map, define it on a basis and `extend linearly'
+	\item Let $ \alpha_{1},\alpha_{2} : V \to W $ be linear maps. If they agree on any basis, then they are equal. 
 \end{enumerate}
 
 
-\begin{defi}
-	$ V,W $ over $ F $. The map $ \alpha : V \to W $ is an \emph{isomorphism} if it is linear and if it is bijective. 
+\begin{defi} (Isomorphism)
+	
+	Let $ V,W $ be vector spaces over $ F $. The map $ \alpha : V \to W $ is an \emph{isomorphism} if it is linear and bijective. 
 	Notation: $ V \simeq W $
 \end{defi}
 
 \begin{lemma} 
-	$ \simeq $ is an equivalence notation on the set (score out set and write class) of all vector spaces over $ \F $.
+	$ \simeq $ is an equivalence notation on the set (score out set and write class) of all vector spaces over $ \F $. That is,
 	
 	\begin{enumerate}
 		\item $ i_{V} : V \to V $ is an iso
@@ -694,6 +725,8 @@ Note
 		
 		\[ \alpha^{-1} (\lambda w) = \lambda \alpha^{-1} (w) \]
 		
+		\item immediate
+		
 	\end{enumerate}
 \end{proof}
 
@@ -705,13 +738,13 @@ Note
 \end{thm}
 
 \begin{proof}
-	Choose a basis $ B $ for $ V $, say $ v_{1},\cdots,v_{n} $
+	Choose a basis $ \mathcal{B} $ for $ V $, say $ v_{1},\cdots,v_{n} $
 	
 	\[ V \to \F^{n} \]
 	
 	\[ \sum \lambda_{i}v_{i} \mapsto \begin{pmatrix}
 	\lambda_{1} \\
-	\cdots \\
+	\vdots \\
 	\lambda_{n}
 	\end{pmatrix} \text{ is an iso}\]
 \end{proof}
@@ -719,7 +752,7 @@ Note
 Remark: Choosing an iso $ V \simeq F^{n} $ is equivalent to choosing a basis for $ V $.
 
 \begin{thm} 
-	$ V,W $ $ v $ spaces over $ \F $, finite dim, are isomorphic iff they have the same dimension
+	$ V,W $ $ v $ spaces over $ \F $, finite dim, are isomorphic iff they have the same dimension 
 \end{thm}
 
 \begin{proof}
@@ -727,42 +760,63 @@ Remark: Choosing an iso $ V \simeq F^{n} $ is equivalent to choosing a basis for
 	
 	\[ \F^{\dim V} = \F^{\dim W} \]
 	
-	($ \Rightarrow $) Let $ \alpha : V \to W $ iso, $ B $ a basis for $ V $.
+	($ \Rightarrow $) Let $ \alpha : V \to W $ iso, $ \mathcal{B} $ a basis for $ V $.
 	
-	Claim: $ \alpha(B) $ is a basis for $ W $. 
+	Claim: $ \alpha(\mathcal{B}) $ is a basis for $ W $. 
 	
-	
-	Check: $ \alpha(B) $ spans $ W $ because of surjectivity of $ \alpha $.
 	
 	\begin{ex}
-		$ \alpha(B) $ lin indep: follows from injectivity of $ \alpha $.
+		$ \alpha(\mathcal{B}) $ spans $ W $ because of surjectivity of $ \alpha $.
+	\end{ex}
+	
+	\begin{ex}
+		$ \alpha(\mathcal{B}) $ lin indep: follows from injectivity of $ \alpha $.
 	\end{ex}
 \end{proof}
 
-\begin{defi}
-	$ \alpha : V \to W $ linear, 
-	$ N(\alpha) = \ker \alpha = \{  v \in V \; | \; \alpha(v) = \mathbf{0} \} \leq V $.
-	$ Im(\alpha) = \{ w \in W \; | \; w \ \alpha(v), \text{ some } v \in V  \} \leq W  $
+\begin{defi} (Null space/ Kernel of a linear map)
+	Let $ \alpha : V \to W $ be a linear map,the \emph{null space} of $ \alpha $ is given by 
+	\[ N(\alpha) = \ker \alpha = \{  v \in V \; | \; \alpha(v) = \mathbf{0} \} \leq V \]
+\end{defi}	
+	
+\begin{defi} (Image of a linear map)
+			Let $ \alpha : V \to W $ be a linear map, the \emph{image} of $ \alpha $ is defined as:
+			  \[ \Im(\alpha) = \{ w \in W \; | \; w = \alpha(v), \text{ some } v \in V  \} \leq W   \]
 \end{defi}
 
-\[ \alpha \text{ injective} \iff N(\alpha) = \{ \mathbf{0} \} \]
 
-\[ \alpha \text{ surjective } \iff Im(\alpha) = W \]
+\begin{defi} (Injective map)
+	$ \alpha $ is injective if and only if $ N(\alpha) = \{ \mathbf{0} \} $
+\end{defi}
+
+\begin{defi} (Surjective map)\footnote{I mean, all definitions are iff statements really. Sometimes we leave it out and just use `if'}
+$ 	\alpha $  is surjective if and only if $ \Im(\alpha) = W $
+\end{defi}
 
 \begin{eg}
-	\[ \alpha : \mathcal{C}^{\infty} (\R) \to \mathcal{C}^{\infty} (\R)  \]
+	Let $ \alpha : {\mathcal{C}^{\infty}} (\R) \to \mathcal{C}^{\infty} (\R) $ be defined by 
 	
-	$ \alpha(f)(t) = f''(t) + 2f'(t) - 5f  $, $  $ is solutions to
+	\[ \alpha(f)(t) = f''(t) + 2f'(t) - 5f  \] 
 	
-	\[  \ker \alpha \text{ is solut to } f'' + 2f' + 5f = 0 \]
 	
-	\[ g \in \Im \alpha \text{ if } \; \exists \text{ solut to } f'' + 2f' + 5f = g  \]
+	\[  \ker \alpha \text{ is solns to } f'' + 2f' + 5f = 0 \]
+	
+	\[ g \in \Im \alpha \text{ if } \; \exists \text{ soln} f \text{ to } f'' + 2f' + 5f = g  \]
 \end{eg}
 
+\subsection{The First Isomorphism Theorem}
+
 \begin{thm} (First Isomorphism Theorem)
-	Let $ \alpha : V \to W $ linear map. It induces an iso :
+	Let $ \alpha : V \to W $ be a linear map. It induces an iso :
 	
-	\[ V / \ker \alpha \to \Im \alpha \] %use alpha bar
+	\begin{center}
+		\begin{tikzcd}
+			V/ \ker \alpha  \ar[r, "\overline{\alpha}"] & \Im(\alpha) 
+		\end{tikzcd}
+	\end{center}
+
+	defined by
+	
 	
 	\[ \overline{\alpha} (v + \ker \alpha) = \alpha(v) \]
 	
@@ -773,46 +827,45 @@ Remark: Choosing an iso $ V \simeq F^{n} $ is equivalent to choosing a basis for
 	\begin{enumerate}
 		\item  $ \overline{\alpha} $ is well defined:
 	
-	\[ v + \ker \alpha = v' + \ker \alpha \]
+	\begin{align*}
+	& v + \ker \alpha = v' + \ker \alpha \\
+	\iff &  v - v' \in \ker \alpha \Rightarrow \alpha(v) \\
+	\Rightarrow &  \alpha(v) = \alpha(v')
+	\end{align*}
 	
-	the
-	
-	\[ \iff v - v' \in \ker \alpha \Rightarrow \alpha(v) = \alpha(v') \]
-	
-	\item $ \overline{\alpha} $ linear is immediate from linearly of $ \alpha $.
+	\item $ \overline{\alpha} $ is linear; immediate from linearity of $ \alpha $.
 	
 	\item $ \overline{\alpha} $ bijective? 
 	
-	\[ \overline{\alpha}(v + \ker \alpha  ) = \mathbf{0} \Rightarrow \alpha(v) = 0 \Rightarrow v \in \ker \alpha \]
+	\begin{align*}
+	& \overline{\alpha}(v + \ker \alpha  ) = \mathbf{0} \\
+	\Rightarrow & \alpha(v) = 0 \\
+	\Rightarrow &  v \in \ker \alpha 
+	\end{align*}
 	
-	\item surjectie: by def of $ \Im(\alpha) $.		
+	
+	\item surjective: by defn of $ \Im(\alpha) $.		
 	\end{enumerate}
+
+
 	
 	
 \end{proof}
 
 
-\begin{defi}
-	\[ r(\alpha) = rk(\alpha) = \dim (\Im \alpha) \]
-	
-	\[ n(\alpha) = \dim(N(\alpha)) \]
-	
-	rank, nullity
+\begin{defi} (Rank and Nullity of a linear map)
+	The \emph{rank} of a linear map $  r(\alpha) = rk(\alpha) $ is given by $ \dim (\Im \alpha)  $, and the \emph{nullity} $ n(\alpha) $ is likewise given as $ \dim(N(\alpha)) $
 \end{defi}
 
 \begin{thm} (Rank-nullity theorem)
-	Let $ U,V $ be vector spaces over $ \F $, $ \dim_{\F} U < \infty $.
-	
-	Let $ \alpha : U \to V $ linear.
-	
-	Then
+	Let $ U,V $ be vector spaces over $ \F $, $ \dim_{\F} U < \infty $.Let $ \alpha : U \to V $ linear. Then:
 	
 	\[ \dim U = r(\alpha) + n(\alpha) \]
 \end{thm}
 
 
 \begin{proof}
-	\[ U / \ker \alpha \simeq \Im (\alpha) \Rightarrow \dim(U) - \dim \ker \alpha = \dim \Im(\alpha) \]
+	\[ U / \ker \alpha \simeq \Im (\alpha) \Rightarrow \dim(U) - \dim (\ker \alpha) = \dim (\Im(\alpha) )\]
 \end{proof}
 
 \begin{lemma} 
@@ -827,6 +880,793 @@ Remark: Choosing an iso $ V \simeq F^{n} $ is equivalent to choosing a basis for
 		
 	\end{enumerate}
 \end{lemma}
+
+\begin{defi}
+	The \emph{space of linear maps} from $ V $ to $ W $ is denoted by 
+	
+	\[ L(V,W) = \{ \alpha : V \to W \text{ linear}\} \]
+\end{defi}
+
+\begin{prop} 
+	$ L(V,W) $ is a v-space over $ \F $ under operators
+	
+	\begin{itemize}
+		\item $ (\alpha_{1} + \alpha_{2})(v) = \alpha_{1} (v) + \alpha_{2} v $ for all $ \alpha_{i} \in L(V,W) $
+		\item $ (\lambda \alpha  ) (v) = \lambda ( \alpha (v)) $ for all $ v \in V $, $ \lambda \in \F $
+	\end{itemize}
+
+
+If both $ V $ and $ W $ are finite dim, then so is $ L(V,W) $ and $ \dim (L(V,W))  = \dim(V) \times \dim(W) $.
+
+\end{prop}
+
+\begin{proof}
+	$ \alpha_{1} + \alpha_{2} $, $ \lambda \alpha $ defined above are well-defined linear maps. The v-space axioms are satisfied.
+	
+	Claim about finite dim: See later
+\end{proof}
+
+\subsection{Representation of Linear Maps by Matrices }
+
+
+\begin{defi}
+	An $ m \times n $ matrix over $ \F $ is an array with $ m $ rows and $ n $ columns, entries in $ \F $.
+	
+	\[ A = (a_{ij}), \quad a_{ij} \in F, \quad 1 \leq i \leq m, 1 \leq j \leq n \]
+	
+	$ M_{m,n}(\F) $ is the set of all such matrices
+\end{defi}
+
+\begin{prop} $ M_{m,n}(\F) $ is an $ \F $ vector space, under operations
+	
+	\item $ (a_{ij}) + (b_{ij}) = (a_{ij} + b_{ij}) $
+	\item $ \lambda(a_{ij}) = (\lambda a_{ij}) $
+	\item and $ \dim (M_{m,n}(\F)) = m \times n $
+	
+\end{prop}
+
+\begin{proof}
+	$ v $-space okay, see 1.1. And dim? A standard basis for $ M_{m,n}(\F) $ is 
+	
+	\[ E_{ij} =  \begin{pmatrix}
+	0 & \cdots & 0 \\
+	\vdots & 1 &  \vdots\\
+	0 & \cdots & 0\\
+
+
+	\end{pmatrix} \]
+	
+	(ie a matrix of zeroes, with 1 in $ i^{\text{th}}  $ row and $ j^{\text{th}}$ column )
+	
+	
+	$ (a_{ij}) = \sum_{ij}  a_{ij} E_{ij} $, from which span and LI follows
+	
+	This basis has cardinality $ mn $
+	
+\end{proof}
+
+
+\begin{defi} (Coordinate Vectors)
+	
+	Let $ V,W $ be v-spaces over $ \F $, of finite dim, with $ \alpha : V \to W $, linear. Basis $ \mathcal{B} $ for $ V $, $ v_{1},\cdots,v_{n} $ basis $ \mathcal{C} $ for $ W $, $ w_{1},\cdots,w_{n} $. If $  v \in V $, $ v = \sum \lambda_{i} v_{i} $, write $ [v]_{\mathcal{B}} = \begin{pmatrix}
+\lambda_{1} \\
+\vdots \\
+\lambda_{n}
+\end{pmatrix} \in \F$, called coordinate vector of $ v $ wrt $ \mathcal{B} $. Similarly, $ [w]_{\mathcal{C}} \in \F^{m} $.
+\end{defi}
+
+\begin{defi} (Matrix)
+	$ [\alpha]_{\mathcal{B},\mathcal{C}} $ matrix of $ \alpha $ wrt $ \mathcal{B} $ and $ \mathcal{C} $
+	
+	
+	\begin{align*}
+	[\alpha]_{\mathcal{B},\mathcal{C}} & = \left(   [\alpha(v_{1})]_{\mathcal{C}} \; | \; [\alpha(v_{2})]_{\mathcal{C}} \; | \; \cdots \; | \; [\alpha(v_{n})]_{\mathcal{C}} \right) \in M_{m,n}(\F)  \\
+	& = (a_{ij})
+	\end{align*}
+\end{defi}
+
+The notation says $ \alpha(v_{j}) = \sum \alpha_{ij} w_{i} $
+
+\begin{lemma} For any $ v \in V $, 
+	
+	\[ [\alpha(v)]_{\mathcal{C}} = [\alpha]_{\mathcal{B},\mathcal{C}} \cdot [v]_{\mathcal{B}} \]
+	
+	where the dot denotes matrix applied to vector
+	
+\end{lemma}
+
+\begin{proof} Fix $ v \in V $, $ v = \sum_{j=1}^{n} \lambda_{j}v_{j} $, so $ [v]_{\mathcal{B}} = \begin{pmatrix}
+	\lambda_{1} \\
+	\vdots \\
+	\lambda_{n}
+	\end{pmatrix} $
+	
+	
+	\begin{align*}
+	\alpha(v) & = \alpha( \sum \lambda_{j} v_{j} )  = \sum \lambda_{j} \alpha(v_{j}) = \sum_{j} \lambda_{j} (\sum_{i} \alpha_{ij} w_{i}  )  \\
+	& = \sum_{i} \underbrace{\left(  \sum_{j} \alpha_{ij} \lambda_{j}  \right)}_{i^{\text{th}} \text{ entry of } [\alpha]_{\mathcal{B},\mathcal{C}} [v]_{\mathcal{B}}  } w_{i}
+	\end{align*}
+	
+\end{proof}
+
+\begin{lemma} 
+	Let $ \alpha $, $ \beta $ be linear maps, with
+	\begin{tikzcd}
+		U \ar[r, "\beta"] & V \ar[r, "\beta"] & W 
+	\end{tikzcd}
+	and $ \alpha \circ \beta $ linear. Let $ \mathcal{A},\mathcal{B},\mathcal{C} $ be basis for $ U,W,V $ reps. Then
+	
+	\[  [\alpha \circ \beta]_{\mathcal{A},\mathcal{C}} = \underbrace{[\alpha]_{\mathcal{B},\mathcal{C}}}_{= (a_{ij})} \circ \underbrace{[\beta]_{\mathcal{A},\mathcal{B}}}_{= (b_{ji})}\]
+
+\end{lemma}
+
+\begin{proof}
+	\begin{align*}
+	(\alpha \circ \beta) \overbrace{(u_{i}) }^{\text{in } \mathcal{A}} & = \alpha(\beta(u_{i})) = \alpha (\sum_{j} b_{ji}\overbrace{ v_{j}}^{\text{in } \mathcal{B}} ) \\
+	& = \sum_{j} b_{ji} \alpha(v_{j})\\
+	& = \sum_{j} b_{ji} \sum_{i} a_{ij} \overbrace{w_{i}}^{\text{in } C} \\
+	& = \sum_{i} \underbrace{\left(  \sum_{j} a_{ij} b_{ji} \right)}_{(i,j)^{\text{th}} \text{ entry of } [\alpha]_{\mathcal{B},\mathcal{C}} [\beta]_{\mathcal{A},\mathcal{B}}  }    w_{i} 
+	\end{align*}
+\end{proof}
+
+
+\begin{prop} 
+	If $ V,W $ are v-spaces over $ \F $ with $ \dim V = n $, $ \dim W = m $, then $ L(V,W) \simeq M_{m,n}(\F)  $
+\end{prop}
+
+\begin{proof}
+	Fix bases 
+	\[ \mathcal{B} \text{ of } V: v_{1},v_{2},\cdots,v_{n}  \]
+	\[ \mathcal{C} \text{ of } V: w_{1},v_{2},\cdots,v_{n}  \]
+	
+	Claim: 
+	
+	\[ L(v,w) \to M_{m,n}(\F) \]
+	\[ \alpha \mapsto [\alpha]_{\mathcal{B},\mathcal{C}} \]
+	
+	is an iso. 
+	
+	\begin{itemize}
+		\item $ \theta $ linear $ [\lambda_{1} \alpha_{1} + \lambda_{2}\alpha_{2}]_{\mathcal{B},\mathcal{C}} = \lambda_{1}[\alpha_{1}]_{\mathcal{B},\mathcal{C}} + \lambda_{2} [\alpha_{2}]_{\mathcal{B},\mathcal{C}}  $
+		\item $ \theta $ surjective: given $ A = (a_{ij})$. Let $ \alpha : v_{j} \mapsto \sum_{i=1}^{m} a_{ij}w_{i} $, and extend linearly. Then $ \alpha \in L(V,W),b  \theta(\alpha) = A$.
+		\item $ \theta $ injective, $ [\alpha]_{\mathcal{B},\mathcal{C}} = 0 $ matrix $ \Rightarrow \alpha $ is zero-map from $ V $ to $ W $.
+	\end{itemize}
+\end{proof}
+
+\begin{cor} 
+	\[ \dim(L(V,W)) = (\dim V)(\dim W) \]
+\end{cor}
+
+\begin{eg}
+	$ \alpha : V \to W, Y \leq V, Z \leq W$. Say $ \alpha(Y) \subseteq Z $.
+	
+	Basis of $ V: $
+	
+	\[ \mathcal{B}: \; \underbrace{v_{1},\cdots,v_{k}}_{\text{Basis for } Y, \; \mathcal{B}'},v_{k+1},\cdots,v_{n}  \]
+	
+	
+	Basis of $ W: $
+	
+	\[ \mathcal{C}: \; \underbrace{w_{1},\cdots,w_{k}}_{\text{Basis for } Z, \; \mathcal{C}'},w_{k+1},\cdots,w_{m}  \]
+	
+	Then 
+	
+	\[ [\alpha]_{\mathcal{B},\mathcal{C}}  = \begin{pmatrix}
+	A & \cdots & B_{1} \\
+	\vdots & \ddots & \vdots \\
+	0 & \cdots & C_{1}  
+	\end{pmatrix}\]
+	
+	because for $ 1 \leq j \leq k $, $ \alpha(v_{j}) $ is a lin combo of $ w_{i} $, where $ 1 \leq i \leq l $. 
+	
+	And
+	
+	\[ [\alpha |_{y}]_{\mathcal{B}',\mathcal{C}'} = A_{1} \]
+	
+	Claim: $ \alpha $ induces 
+	
+	\[ \overline{\alpha} : V / Y \to W / Z \]
+	
+	\[ v + Y \mapsto  \alpha(v) + Z  \]
+	
+	Well defined? 
+	
+	\begin{align*}
+	v_{1} + Y = v_{2} + Y & \Rightarrow v_{1} - v_{2} \in Y \\
+	& \Rightarrow \alpha(v_{1} - v_{2}) \in Z \\
+	& \Rightarrow \alpha(v_{1})  + Z = \alpha(v_{2}) + Z
+	\end{align*}
+	
+\begin{ex}
+		Linear from linearity of $  \alpha $
+\end{ex}
+
+Basis for $ Y / V $,
+
+\[ \mathcal{B}'' : v_{k+1} + Y, \cdots, v_{n} + Y \]
+
+Basis for $ W / Z $, 
+
+\[ \mathcal{B}'' : v_{k+1} + Y, \cdots, v_{n} + Y \] 
+
+\begin{ex}
+	$ [\overline{\alpha}]_{\mathcal{B}'',\mathcal{C}''} $
+\end{ex}
+
+\end{eg}
+
+
+
+
+
+
+\subsection{Change of Basis}
+
+Let $ V $ and $ W $ be v-spaces over $ \F $ with the following basis
+
+
+\[ V \qquad \qquad \qquad  W  \]
+\[ \mathcal{B} = \{ v_{1},\cdots,v_{n} \} \quad C = \{ w_{1},\cdots,w_{m} \} \]
+\[ \mathcal{B}' = \{ v_{1}',\cdots,v_{n}' \} \quad C' = \{ w_{1}',\cdots,w_{m}' \} \]
+
+\begin{defi}
+	The \emph{change of basis matrix} from $ \mathcal{B} $ to $ \mathcal{B}' $ is $ P = (p_{ij}) $ given by $ v_{j}' = \sum p_{ij}v_{i} $.
+	
+	Equivalently,
+	
+	\[ P = \begin{pmatrix}
+	& & & & & & \\
+	[v_{1}']_{\mathcal{B}} & \big| & [v_{2}']_{\mathcal{B}} & \cdots &  & \big| & [v_{n}']_{\mathcal{B}} \\
+	& & & & & &
+	\end{pmatrix} = [\id]_{\mathcal{B}',\mathcal{B}}  \]	
+	
+\end{defi}
+
+\begin{lemma} 
+	$ [v]_{\mathcal{B}} = P [v]_{\mathcal{B}'} $
+\end{lemma}
+
+\begin{proof}
+	\[ P [v]_{\mathcal{B}'} = [\id]_{\mathcal{B}',\mathcal{B}}[v]_{\mathcal{B}'} = [v]_{\mathcal{B}} \] 
+\end{proof}
+
+\begin{lemma} 
+	$ P $ is an invertible $ n \times n $ matrix, and $ P^{-1} $ is the change of basis matrix from $ \mathcal{B} $ to $ \mathcal{B}' $
+\end{lemma}
+
+\begin{proof}
+	\[  [\id]_{\mathcal{B},\mathcal{B}'} [\id]_{\mathcal{B}',\mathcal{B}} =  [\id]_{\mathcal{B}',\mathcal{B}'}  = I_{n}\]
+	
+		\[  [\id]_{\mathcal{B'},\mathcal{B}} [\id]_{\mathcal{B},\mathcal{B}'} =  [\id]_{\mathcal{B},\mathcal{B}}  = I_{n}\]
+	
+\end{proof}
+
+Let $ Q $ be the change of basis matrix from $ C' $ to $ C $. $ Q $ also invertible $ m \times m $.
+
+\begin{prop} 
+	Let $ \alpha : V \to W $ linear, $ A = [\alpha]_{\mathcal{B},\mathcal{C}} $, $ A' = [\alpha]_{\mathcal{B}',\mathcal{C}'}  $. Then
+	
+	\[ A' = Q^{-1} A P \]
+\end{prop}
+
+\begin{proof}
+	\begin{align*}
+	Q^{-1} A P & = [\id]_{\mathcal{C},\mathcal{C'}} [\alpha]_{\mathcal{B},\mathcal{C}} [\id]_{B',B}  \\
+	& = [\id \circ \alpha \circ \id ]_{\mathcal{B}',\mathcal{C}'} \\
+	& = A'
+	\end{align*}
+\end{proof}
+
+\begin{defi}
+	$ A,A' \in M_{m,n}(\F) $ are \emph{equivalent} if $ A' = Q^{-1} A P $ for some invertible $ P \in M_{n,n}(\F), Q \in 	M_{m,m} (\F) $
+\end{defi}
+
+Note: this defines an equivalence relation on $ M_{m,n}(\F) $, eg. $ A' = Q^{-1} A P, A'' = (Q^{-1})^{-1} A' P' \Rightarrow A'' = (Q Q^{-1})^{-1} A P P' $
+
+
+\begin{prop} 
+	Let $ V,W $ be $ \F $-vector spaces of $ \dim n $ and $ m $ resp. Let $ \alpha : V \to W $ be a linear map. Then there exists bases $ \mathcal{B} $ of $ V $ and $ \mathcal{C} $ of $ W $, and some $ r \leq m, n $ st. 
+	
+		\[ [\alpha]_{\mathcal{B},\mathcal{C}}  = \begin{pmatrix}
+	I_{r} & \cdots & 0 \\
+	\vdots & \ddots & \vdots \\
+	0 & \cdots & 0  
+	\end{pmatrix}\]
+	
+	where $ I_{r} $ is the identity matrix. 
+	
+	Note: $ r = \text{rank}(\alpha) = r(\alpha) $
+	
+\end{prop}
+	
+	\begin{proof}
+		Fix $ r $ st. $ N(\alpha) $ has $ \dim n - r $. Fix a basis for $ N(\alpha) $, say $ v_{r+1},v_{r+2},\cdots,v_{n} $. Extend this to a basis for $ V $, say $ \underbrace{v_{1},\cdots,v_{r}}_{\mathcal{B}},v_{r+1},\cdots,v_{n} $. Now $ \alpha(v_{1}),\cdots,\alpha(v_{r}) $ is a basis for $ \im(\alpha) $.
+		
+		\begin{itemize}
+			\item span: $ \alpha(v_{1}),\cdots,\alpha(v_{r}),\underbrace{\alpha(v_{r+1})}_{=0},\cdots,\underbrace{\alpha(v_{n})}_{=0} $ certainly span $ \imath(\alpha) $
+			
+			\item LI: 
+			
+		\begin{align*}
+			\sum_{i=1}^{r} \lambda_{i} \alpha(v_{i}) = \mathbf{0} & \Rightarrow \alpha \underbrace{\left(  \sum_{i=1}^{r} \lambda_{i} v_{i} \right)}_{\in \ker(\alpha)} = \mathbf{0}   \\
+		& \Rightarrow \sum_{i=1}^{r} \lambda_{i}v_{i} = \sum_{j=r+1}^{n} \mu_{j} v_{j} \text{ some } \mu_{j} \in \F \\
+		& \Rightarrow \text{ as } v_{1},\cdots,v_{n} \text{ LI }, \lambda_{i} = \mu_{j} = 0 \; \forall \; i,j 
+		\end{align*}
+		\end{itemize}
+	
+	Extend $ \alpha(v_{1}),\cdots,\alpha(v_{r}) $ to a basis of $ W $, say $ C $. By construction, 
+	
+		\[ [\alpha]_{\mathcal{B},\mathcal{C}}  = \begin{pmatrix}
+	I_{r} & \cdots & 0 \\
+	\vdots & \ddots & \vdots \\
+	0 & \cdots & 0  
+	\end{pmatrix}\]
+	
+	Remark: didn't need to assume in the proof that $ r = r(\alpha) $. Can think of this as giving a different proof of the r-n theorem.
+	
+		
+		
+		 	
+
+\end{proof}
+
+\begin{cor} 
+	Any $ m \times n $ matrix is equivalent to $ \begin{pmatrix}
+	I_{r} & \cdots & 0 \\
+	\vdots & \ddots & \vdots \\
+	0 & \cdots & 0  
+	\end{pmatrix} $ for some $ r $.
+\end{cor}
+
+\begin{defi}
+	Let $ A \in M_{m,n}(\F) $. The \emph{column rank} of $ A $ is the dimension of the subspace of $ \F^{m} $ spanned by the columns of $ A $. The \emph{row rank} of $ A $ is the column rank of $ A^{T} $ (the dimension of the subspace of $ \F^{n} $ spanned by the row vectors of $ A $).
+\end{defi}
+
+Note: if $ \alpha $ is a linear map represented by $ A $ wrt. any choice of basis, then $ r(\alpha) = r(A) $, ie column rank = rank.
+
+\begin{prop} 
+	Two $ m \times n $ matrices $ A,A' $ are equivalent iff $ r(A') = r(A) $. 
+\end{prop}
+
+\begin{proof}
+	 ($ \Leftarrow $) Both $ A $ and $ A' $ are equivalent to $ \begin{pmatrix}
+	 I_{r} & \cdots & 0 \\
+	 \vdots & \ddots & \vdots \\
+	 0 & \cdots & 0  
+	 \end{pmatrix} $, $ r = r(A') = r(A) $ (this is a transitive relation)
+	 
+	 ($ \Rightarrow $) Let $ \alpha $ be the linear map: $ \alpha : \F^{n}  \to \F^{m} $ represented by $ A $ wrt. the standard basis $ A' = Q^{-1} A P$. $ P $ and $ Q $ invertible, so $ A' $ represents $ \alpha $ wrt. two other bases. $ r(\alpha) $ is defined in a basis invariant way, so $ r = r(\alpha) = r(A) = r(A') $
+
+\end{proof}
+
+
+
+\begin{thm} 
+	$ r(A) = r(A^{T}) $ ("row rank = column rank").
+\end{thm}
+
+\begin{proof}
+	$ Q^{-1} A P = \begin{pmatrix}
+	I_{r} & \cdots & 0 \\
+	\vdots & \ddots & \vdots \\
+	0 & \cdots & 0  
+	\end{pmatrix}_{m,n} $ where $ Q,P $ invertible 
+	
+	Take transpose of whole equation:
+	
+	\begin{align*}
+	\begin{pmatrix}
+	I_{r} & \cdots & 0 \\
+	\vdots & \ddots & \vdots \\
+	0 & \cdots & 0  
+	\end{pmatrix}_{n,m} & = (Q^{-1} A P)^{T} \\
+	& = P^{T} A^{T} (Q^{T})^{-1}
+	\end{align*}
+	
+	so $ A^{T} $ equiv to $ 	\begin{pmatrix}
+	I_{r} & \cdots & 0 \\
+	\vdots & \ddots & \vdots \\
+	0 & \cdots & 0  
+	\end{pmatrix}_{n,m} $. Thus $ r(A) = r(A^{T})  $.
+	
+	
+	
+\end{proof}
+
+
+
+$ V = W $, $ \mathcal{C} = \mathcal{B} $, other basis $ \mathcal{B} $'. $ P $ change of basis matrix form $ \mathcal{B} $ to $ \mathcal{B}' $, $ \alpha \in L(V,V) $. 
+
+\[ [\alpha]_{\mathcal{B}',\mathcal{B}'} = P^{-1} [\alpha]_{B,B}  P \]
+
+\begin{defi}
+	$ A,A' \in M_{n,n}(\F) $, $ A, A' $ are \emph{similar} (or \emph{conjugate}) if $ A'  = P^{-1}  A P $ for  some invertible $ P $.  
+\end{defi}
+
+\subsection{Elementary Matrices and Operations}
+
+\begin{defi}
+	\emph{Elementary column operators} on an $ m \times n $ matrix $ A $:
+	
+	\begin{enumerate}
+		\item swap columns $ i $ and $ j $ (wlog $ i \neq j $)
+		\item replace column $ i $ by $ \lambda $ (column $ i $), $ \lambda \neq 0 $
+		\item add $ \lambda $(column $ i $) to column $ j $, $ i \neq j $, $ \lambda \neq 0$.
+	\end{enumerate}
+\emph{Elementary row operators} analogous (replace `column' by `row')
+\end{defi}
+
+Note: all of these operations are reversible. 
+
+Corresponding elementary matrices: effect of performing the column operations on $ I_{n} = n \times n $ id.  For row operations, $ I_{m} $.
+
+\begin{enumerate}
+	\item $ \begin{pmatrix}
+		1\\
+		& \ddots\\
+		& & 1\\
+		& & & 0 & & & & 1\\
+		& & & & 1\\
+		& & & & & \ddots\\
+		& & & & & & 1\\
+		& & & 1 & & & & 0\\
+		& & & & & & & & 1\\
+		& & & & & & & & & \ddots\\
+		& & & & & & & & & 1
+	\end{pmatrix} $
+	
+	The zeros appear in row $ i $, row $ j $.
+	
+	\item $ \begin{pmatrix}
+	1 & & & & & &\\
+	& \ddots & & & & & \\
+	& & 1 & & & & \\
+	& & & \lambda & & & \\
+	& & & & 1 & & \\
+	& & & & & \ddots & \\
+	& & & & & & 1
+	\end{pmatrix} $
+	
+	with $ \lambda $ in the $ i^{\text{th}} $ row
+	
+	\item $ I_{n} + \lambda E_{ij}  $, where $ E_{ij} $ is defined as $ 1 $ in the $ (i,j) $ position and $ 0 $ everywhere else.
+	
+\end{enumerate}
+
+An elementary column operation on $ A \in M_{m,n}(\F) $ can be performed by multiplying $ A $ by the corresponding elementary matrix on the right.
+
+\begin{ex}
+	\[ \begin{pmatrix}
+	1 & 2\\
+	3 & 4
+	\end{pmatrix} \begin{pmatrix}
+	0 & 1 \\
+	1 & 0
+	\end{pmatrix} = \begin{pmatrix}
+	2 & 1\\
+	4 & 3
+	\end{pmatrix} \]
+\end{ex}
+
+For row operations, multiply on the left
+
+\begin{ex}
+\[ \begin{pmatrix}
+0 & 1 \\
+1 & 0
+\end{pmatrix} \begin{pmatrix}
+1 & 2\\
+3 & 4
+\end{pmatrix} = \begin{pmatrix}
+3 & 4\\
+1 & 2
+\end{pmatrix} \]	
+\end{ex}
+
+\subsection{Constructive proof that any $ m \times n $ matrix is equivalent to the following matrix, for some $ r $ }
+ 
+\[ \begin{pmatrix}
+I_{r} & \cdots & 0 \\
+\vdots & \ddots & \vdots \\
+0 & \cdots & 0  \end{pmatrix} \]
+
+\begin{proof}
+	Start with $ A $. If all entries of $ A $ are $ 0 $, we're done ($ r = 0 $). If not, some $ a_{ij} = \lambda \neq 0 $.
+	\begin{itemize}
+		\item swap rows $ 1,i $
+		\item swap columns $ 1,j $
+		\item multiply column 1 by $ \frac{1}{\lambda} $
+		
+	\end{itemize}
+to get $ 1 $ in position $ (1,1) $. Now
+
+\begin{itemize}
+	\item add $ (-a_{12})(\text{column } 1) $ to column $ 2 $. 
+	\item Similarly clear out all other entries in row 1.
+	\item Also use row operations to clear out all other entries in column 1
+\end{itemize}
+
+Upshot: get
+
+$ \begin{pmatrix}
+1 & 0 & \cdots & 0 \\
+0 & & & &\\
+\vdots & & \tilde{A} & \\
+0 & & & &
+\end{pmatrix} $, $ \tilde{A} \in M_{m-1,n-1}(\F) $
+
+Now iterate, to get $ \begin{pmatrix}
+I_{r} & \cdots & 0 \\
+\vdots & \ddots & \vdots \\
+0 & \cdots & 0  \end{pmatrix} = \overbrace{\underbrace{E_{1}',\cdots,E_{k}'}_{\text{elem row}}}^{Q^{-1}} A \overbrace{\underbrace{E_{1},\cdots,E_{k}}_{\text{elem column}}}^{P}  $
+
+
+Row/column ops are reversible $ \Rightarrow $ elem matrices are invertible. $ Q: m \times m $ invertible, $ P: n \times n $ invertible.
+
+\end{proof}
+
+Variations:
+
+If you use elementary row operations, can get the row echelon form of a matrix. 
+
+\[ \begin{pmatrix}
+1 & 0 & 0 & 0 & a \\
+& & 1 & 0 & b\\
+& & & 1 & c  
+\end{pmatrix} \]
+
+How? Assume $ a_{i1}' = \lambda \neq 0 $ some $ i $.
+\begin{itemize}
+	\item swap rows 1 and $ i $ $ \Rightarrow $ get $ \lambda $ in $ (1,1) $
+	\item divide row 1 by $ \lambda \; \Rightarrow \; 1 $ in $ (1,1) $
+	\item use (iii)-type operation to clear out rest of column 1, then move on to second column etc.  
+\end{itemize}
+
+\begin{lemma} 
+	If $ A $ is $ n \times n $ invertible, we can obtain $ I_{n} $ by using only elementary row operations (or elementary column operations).
+\end{lemma}
+
+\begin{proof}
+	Induction on number of rows
+	
+	
+	Suppose we have
+	
+	\[ \begin{pmatrix}
+	1 & 0 & 0 & & &  \\
+	& & 1 & & 0 & \\
+	& & & 1 & & 
+	\end{pmatrix} \]
+	
+	There exists $ j > k $ with $ a_{k+1,j} = \lambda \neq 0 $
+	
+	If not, 	\[ \begin{pmatrix}
+	0 \\
+	\vdots \\
+	1 \\
+	\vdots \\
+	0
+	\end{pmatrix} \] with 1 in the $ (k+1) $th entry would not lie in the span of the column vectors, which would contradict invertability
+	
+	
+	\begin{itemize}
+		\item Swap columns $ k+1 $ and $ j $
+		\item Divide column $ k+1 $ by $ \lambda $
+		\item Use type 3 operators to clear the other entries of the $ (k+1) $th row. 
+		\item now proceed inductively
+	\end{itemize}
+	
+	
+	
+\end{proof}
+
+Upshot 
+
+\[ A E_{1} E_{2} \cdots E_{l} = I_{n} \Rightarrow A^{-1} = E_{1} E_{2} \cdots E_{l} \]
+
+one recipe for inverses.
+
+\begin{prop} 
+	Any invertible matrix can be written as a product of elementary matrices.
+\end{prop}
+
+
+\section{Dual Spaces and Dual Maps}
+
+\begin{defi}
+	Let $ V $ be a vector space over $ \F $. The \emph{dual vector space} $ V^{*} $ of $ V $
+	
+	\[ V^{*} = L(V,F) = \{ \alpha : V \to F \text{ linear } \}  \]
+\end{defi}
+
+$ V^{*} $ is a vector space over $ \F $. Its elements are sometimes called linear functionals. 
+
+\begin{eg}
+	$ V = \R^{3} $,
+	
+	\[ \theta: V \to \R \]
+	
+	\[ \begin{pmatrix}
+	a \\
+	b\\
+	c
+	\end{pmatrix} \to a - c \qquad \theta \in V^{*} \]
+\end{eg}
+
+\begin{eg}
+	\[ t_{n}:  M_{m,n}(\F) \to \F \]
+	
+	\[ A \mapsto \sum_{i} A_{ii}, \qquad t_{n} \in (M_{m,n}(\F))^{*} \]
+\end{eg}
+
+\begin{lemma} 
+	Let $ V $ be a vector space over $ \F $ with finite basis $ \mathcal{B} = \{ e_{1},\cdots,e_{n} \} $. Then there is a basis for $ V^{*} $, given by $ \mathcal{B}^{*} = \{  \varepsilon_{1},\cdots,\varepsilon_{n} \}  $ where 
+	
+	\[ \varepsilon_{j} = \underbrace{\left(   \sum_{i=1}^{m}  a_{i} e_{i}  \right) }_{\in V} = a_{j}  \qquad 1 \leq j \leq m \]
+	
+	$ \mathcal{B}^{*} $ is called the dual basis to $ \mathcal{B} $
+\end{lemma}
+
+
+\begin{proof}
+\begin{itemize}
+	\item Independence
+	
+	\begin{align*}
+	\sum_{j=1}^{n} \lambda_{j} \varepsilon_{j} & \Rightarrow \left(  \sum_{j=1}^{n}  \lambda_{j} \varepsilon_{j} \right) e_{i}   \\
+	& = \sum_{j} \lambda_{j} \underbrace{\varepsilon_{j} (e_{i})}_{\delta_{ij}} 
+	\end{align*}
+	
+	where 
+	
+	\[ \delta_{ij} = \begin{cases} 0  & \text{ if } i \neq j \\ & 1 \text{ if } i = j\end{cases} \]
+	
+	
+	\[ \Rightarrow  \lambda_{i} = 0 \quad \forall \; i = 1,\cdots,m \]
+	
+	\item Span: If $ \alpha \in V^{*} $, then $ \alpha = \sum_{i=1}^{m} \alpha(e_{i}) \varepsilon_{i} $
+	
+	(``linear mapse are determined by their action on a basis'')
+	
+\end{itemize}
+\end{proof}
+
+\begin{cor} 
+	If $ V $ is finite dim, then $ \dim V  = \dim V^{*} $
+\end{cor}
+ 
+ 
+ Remark: Someties useful to think about $ (\F^{n})^{*} $ as the space of row vectors of length $ n / \F $. Suppose
+ 
+ \[ V \text{ basis } e_{1},\cdots,e_{n}\]
+ \[ V^{*} \text{ dual basis} \varepsilon_{1},\cdots,\varepsilon_{n} \]
+ 
+ $ \alpha = \sum \alpha_{i} e_{i} \in V $, $ \alpha = \sum a_{i} \varepsilon_{i} \in V^{*} $.
+ 
+ \[ \alpha(x) = \sum_{i=1}^{n} \alpha_{i} x_{i} =   \begin{pmatrix}
+ a_{1} & \cdots & a_{n}
+ \end{pmatrix}  \begin{pmatrix}
+ x_{1} \\
+ \vdots \\
+ x_{n}
+ \end{pmatrix}  \]
+ 
+ 
+ \begin{defi}
+ 	If $ U \subseteq V $, 
+ 	
+ 	\[ U^{0} = \{  \alpha \in V^{*} \text{ st. } \alpha(u) = 0 \text{ for all }  u  \in U \} \] 
+ 	
+ 	is the \emph{annulator} of $ U $
+ 	
+ \end{defi}
+
+ 
+ \begin{lemma} 
+ 	\begin{enumerate}
+ 		\item $ U^{0} \leq V^{*} $
+ 		\item If $ U \leq V $ and $ \dim V = n < \infty $, then
+ 		
+ 		\[ \dim V = \dim U + \dim U^{0} \] 
+ 		
+ 	\end{enumerate}
+ \end{lemma}
+
+\begin{proof}
+	\begin{enumerate}
+		\item $ 0 \in U^{0} $. If $ \alpha,\alpha' \in U^{0} $, then $ (\alpha + \alpha') = \alpha(u)  + \alpha'(u) = 0 + 0 = 0$, for $ u \in U $ thus $ \alpha + \alpha' \in U^{0} $ 
+		
+		Similarly, $ \lambda \alpha \in U^{0} $ for any $ \lambda \in \F $
+		
+		\item Let $ e_{1},\cdots,e_{k} $ be a basis for $ U $. Extend to a basis for $ V $. $ e_{1},\cdots,e_{k},e_{k+1},\cdots,e_{n} $.
+		
+		Let $ \mathcal{B}^{*} $ be the dual basis to this. $ \varepsilon_{1},\cdots,\varepsilon_{n} $
+		
+			Claim: $ \varepsilon_{k+1},\varepsilon_{k+2},\cdots,\varepsilon_{n} $ is a basis for $ U^{0} $
+			
+			\begin{itemize}
+				\item If $ i > k $, $ \varepsilon_{i}(e_{j}) = 0 $ where $ j \leq k $, so $ \varepsilon_{i} $ (for $ i > k $) is in $ U^{0} $.
+				\item LI comes from the fact that $ \mathcal{B}^{*} $ is a basis. (So any subset of it is LI).
+				\item Span? If $ \alpha \in U^{0} $, then $ \sum_{i=1}^{n} \alpha_{i} \varepsilon_{i} $, some $ a_{i} \in \F $. 
+				
+				
+				\[ \left(  \sum_{i=1}^{n} a_{i} \varepsilon_{i} \right) (e_{j}) = 0 \Rightarrow a_{j} = 0 , \text{ any } j \leq k\]
+				
+				where $ e_{j} $ is a basis element for $ U $, for $ j \leq k $
+				
+				\[ \Rightarrow \alpha \in < \varepsilon_{k+1},\cdots,\varepsilon_{n} \]
+				
+			\end{itemize}
+		
+	\end{enumerate}
+
+
+\end{proof}
+
+
+\begin{lemma} 
+	Let $ V,W $ be vector spaces over $ \F $. Let $ \alpha \in L(V,W) $. Then the map 
+	
+	\[ \alpha^{*} : W^{*} \to V^{*} \]
+	\[ \varepsilon \mapsto \varepsilon \circ \alpha \text{ is linear } \]
+	
+	\begin{tikzcd}
+		V \ar[r, "\alpha"] & W \ar[r, "\varepsilon"] & F
+	\end{tikzcd}
+	
+	We'll call $ \alpha^{*} $ the \emph{dual} of $ \alpha $.
+	
+	
+\end{lemma}
+
+
+\begin{proof}
+	\begin{itemize}
+		\item $ \varepsilon \circ \alpha $ is linear, so in $ V^{*} $.
+		\item $ \alpha^{*} $ linear? Fix $ \theta_{1},\theta_{2} \in W^{*} $
+		
+		\begin{align*}
+		\alpha^{*}(\theta_{1} + \theta_{2}) & = (\theta_{1} + \theta_{2})\alpha \\
+		& = \theta_{1} \circ \alpha + \theta_{2} \circ \alpha \\
+		& = \alpha^{*} \theta_{1} + \alpha^{*} \theta_{2}
+		\end{align*} 
+	\end{itemize}
+Similarly, $ \alpha^{*}(\lambda \theta)  = \lambda \alpha^{*} \theta $
+\end{proof}
+
+
+\begin{prop} 
+	Let $ V,W $ be v-spaces over $ \F $, with basis $ \mathcal{B},\mathcal{C} $ respectively. Let $ \mathcal{B}^{*},\mathcal{C}^{*} $ be the dual basis. Consider $ \alpha \in L(V,W) $ with dual $ \alpha^{*} $ .
+	
+	
+	\[ [\alpha^{*}]_{\mathcal{C}^{*},\mathcal{B}^{*}} = [\alpha]_{\mathcal{B},\mathcal{C}}^{T} \]
+\end{prop}
+
+\begin{proof}
+	 Say $ \mathcal{B} = \{ b_{1},\cdots,b_{n} \} $, $ \mathcal{C} \{ c_{1},\cdots,c_{n} \} $
+	 
+	 $ \mathcal{B}^{*} = \{  \beta_{1},\cdots,\beta_{n} \} $, $ \mathcal{C}^{*} = \{  \gamma_{1},\cdots,\gamma_{n} \} $
+	 
+	 and $ [\alpha]_{\mathcal{B},\mathcal{C}} = (a_{ij}) \quad m \times n $
+
+
+\begin{align*}
+\alpha^{*}(\gamma_{r}) (b_{s}) & = \gamma_{i} \circ \alpha(b_{s}) \\
+& = \gamma_{r} (\alpha(b_{s})) \\
+& = \gamma_{r} \left( \sum_{t} a_{ts}c_{t} \right) \\
+& = \sum_{t} \alpha_{ts}\gamma_{r}(c_{t}) \\
+& = a_{rs} \\
+& = \left(  \sum_{i} \alpha_{ri} \beta_{i} \right)(b_{s})
+\end{align*}
+
+\[ \Rightarrow \alpha^{*}(\gamma_{r}) = \sum_{i} a_{r_{i}} \beta_{i} \]
+
+\[ \Rightarrow [\alpha^{*}]_{\mathcal{C}^{*},\mathcal{B}^{*}} = [\alpha]_{\mathcal{B},\mathcal{C}}^{T} \]
+
+\end{proof}
+
+
+
 
 
 
