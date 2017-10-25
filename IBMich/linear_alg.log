@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6100 64-bit) (preloaded format=pdflatex 2017.1.3)  24 OCT 2017 21:06
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6100 64-bit) (preloaded format=pdflatex 2017.1.3)  25 OCT 2017 11:56
 entering extended mode
 **./linear_alg.tex
 (linear_alg.tex
@@ -1659,23 +1659,23 @@ a-sis for $\OML/cmm/m/it/10 V$\OT1/cmr/m/n/10 (-20) . $\OML/cmm/m/it/10 e[]; []
   ; e[]; e[]; []  ; e[]$\OT1/cmr/m/n/10 (-20) . 
  []
 
-[25] [26]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1674.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1674.
+[25] [26] [27] [28] [29]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1859.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1859.
  (linear_alg.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1674.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1674.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1859.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1859.
 
 Package rerunfilecheck Info: File `linear_alg.out' has not changed.
-(rerunfilecheck)             Checksum: FC367DD85D8B72D8860D4C67C38A1206;862.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1674.
+(rerunfilecheck)             Checksum: D66FE417B378393C01CAB74745408754;925.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1859.
  ) 
 Here is how much of TeX's memory you used:
- 47024 strings out of 493333
- 1054914 string characters out of 3139195
+ 47039 strings out of 493333
+ 1055035 string characters out of 3139195
  1278370 words of memory out of 3000000
- 49576 multiletter control sequences out of 15000+200000
- 21489 words of font info for 125 fonts, out of 3000000 for 9000
+ 49577 multiletter control sequences out of 15000+200000
+ 21540 words of font info for 126 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  66i,19n,98p,10400b,1091s stack positions out of 5000i,500n,10000p,200000b,50000s
 <C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Pr
@@ -1699,9 +1699,9 @@ m Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Program Files/
 MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti8.pfb><C:/Program Files/MiKTeX 2.
 9/fonts/type1/public/amsfonts/symbols/msbm10.pfb><C:/Program Files/MiKTeX 2.9/f
 onts/type1/public/amsfonts/symbols/msbm7.pfb>
-Output written on linear_alg.pdf (26 pages, 385733 bytes).
+Output written on linear_alg.pdf (29 pages, 397941 bytes).
 PDF statistics:
- 364 PDF objects out of 1000 (max. 8388607)
- 92 named destinations out of 1000 (max. 500000)
- 29389 words of extra memory for PDF output out of 29859 (max. 10000000)
+ 390 PDF objects out of 1000 (max. 8388607)
+ 104 named destinations out of 1000 (max. 500000)
+ 29397 words of extra memory for PDF output out of 29859 (max. 10000000)
 

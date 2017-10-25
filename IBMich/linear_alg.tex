@@ -1363,7 +1363,6 @@ For row operations, multiply on the left
 \end{pmatrix} \]	
 \end{ex}
 
-\subsection{Constructive proof that any $ m \times n $ matrix is equivalent to the following matrix, for some $ r $ }
  
 \[ \begin{pmatrix}
 I_{r} & \cdots & 0 \\
@@ -1472,6 +1471,7 @@ one recipe for inverses.
 
 
 \section{Dual Spaces and Dual Maps}
+\subsection{Dual Vector Spaces}
 
 \begin{defi}
 	Let $ V $ be a vector space over $ \F $. The \emph{dual vector space} $ V^{*} $ of $ V $
@@ -1557,7 +1557,7 @@ $ V^{*} $ is a vector space over $ \F $. Its elements are sometimes called linea
  	
  	\[ U^{0} = \{  \alpha \in V^{*} \text{ st. } \alpha(u) = 0 \text{ for all }  u  \in U \} \] 
  	
- 	is the \emph{annulator} of $ U $
+ 	is the \emph{annihilator} of $ U $
  	
  \end{defi}
 
@@ -1603,6 +1603,8 @@ $ V^{*} $ is a vector space over $ \F $. Its elements are sometimes called linea
 
 \end{proof}
 
+
+\subsection{Dual Maps}
 
 \begin{lemma} 
 	Let $ V,W $ be vector spaces over $ \F $. Let $ \alpha \in L(V,W) $. Then the map 
@@ -1666,8 +1668,193 @@ Similarly, $ \alpha^{*}(\lambda \theta)  = \lambda \alpha^{*} \theta $
 \end{proof}
 
 
+Let $ V $ be a finite dim $ \F $ vector space.
+
+Bases $ \varepsilon = \{   e_{1},\cdots,e_{n} \} $, $ F = \{ f_{1},\cdots,f_{n} \} $
+
+Dual bases $ \varepsilon^{*} = \{  \varepsilon_{1},\cdots,\varepsilon_{n} \} $, $ \mathcal{F} = \{ \eta_{1},\cdots,\eta_{n} \} $
+
+And let us condisder $ P = [\id]_{\mathcal{F}\mathcal{E}} $
+
+\begin{lemma} 
+	Change of basis matrix from $ \mathcal{F}^{*} $ to $ \mathcal{E}^{*} $ is $ (P^{-1})^{T} $
+\end{lemma}
+
+\begin{proof}
+	\[ [\id]_{\mathcal{F}^{*},\mathcal{E}^{*}} = [\id]_{\mathcal{E}\mathcal{F}}^{T} = ([\id]_{\mathcal{F}\mathcal{E}}^{-1})^{T}  \]
+\end{proof}
+
+CAUTION: $ V \simeq V^{*} $ only if $ V $ is finite dimensional.
+
+Let $ V = \mathcal{P} $, the space of all real polynomials, with basis
+
+\[ p_{j},j = 0,1,2,\cdots \qquad p_{j}(t) = t^{j} \]
+
+Ex sheet 2 Q 9:
+
+\[ P^{*} \simeq \R^{\N} \]
+\[ \varepsilon \mapsto (\varepsilon(p_{0}), \varepsilon(p_{1}),\cdots  \]
+
+Ex sheet 1, Q3 g) $ P \not \simeq \R^{\N} $ does NOT have a countable basis
+
+\begin{lemma} 
+	Let $ V,W $ be vector spaces over $ \F $. Fix $ \alpha \in L(V,W) $, let $ \alpha^{*} \in L(W^{*},V^{*}) $ be the dual map. Then
+	\begin{enumerate}
+		\item $ N(\alpha^{*})  = (\Im(\alpha))^{0} $ ie. $ \alpha^{*} $ injective iff $ \alpha $ is surjective
+		\item $ \Im(\alpha^{*}) \leq (N(\alpha))^{0} $, with equality if $ V $
+and $ W $ are finite dimensional. ie. $ \alpha^{*} $ surjective iff $ \alpha $ is injective	
+	\end{enumerate}
+\end{lemma}
 
 
+\begin{proof}
+	\begin{enumerate}
+		\item Let $ \varepsilon \in W^{*} $. Then 
+		
+		
+		
+		\begin{align*}
+		\varepsilon \in N(\alpha^{*}) & \iff \alpha^{*} \varepsilon = 0 \\
+		& \iff \varepsilon \circ \alpha = 0  \\
+		& \iff \varepsilon(\mu) = 0 \text{ for all } u \in \Im \alpha\\
+		&  \iff \varepsilon \in \left(  \Im(\alpha) \right)^{0}
+		\end{align*}
+		
+		\item Let $ \varepsilon \in \Im \alpha^{*} $. Then $ \varepsilon = \alpha^{*} \varphi $, for some $ \varphi \in W^{*} $.
+		
+		For any $ u \in N(\alpha) $,
+		
+		\begin{align*}
+		\varepsilon(u) & = (\alpha^{*}  \varphi )(u) \\
+		& = (\varphi \circ \alpha) (u)\\
+		& = \varphi(\alpha(u)) \\
+		& = \varphi(0) \\
+		& = \mathbf{0}
+		\end{align*}
+		
+		So $ \varepsilon \in N(\alpha^{0}) $
+		
+		
+		Now use the fact that $ \dim V $, $ \dim W $ are finite. 
+		
+		
+		\begin{align*}
+		\dim \Im(\alpha^{*}) & = r(\alpha^{*}) \\
+		& = r(\alpha) \qquad \text{ as } r(A) = r(A^{T})  \\
+		& =  \dim V - \dim N(\alpha) \qquad \text{ by R-N} \\
+		& = \dim (N(\alpha))^{0}
+		\end{align*}
+		
+	\end{enumerate}
+
+\end{proof}
+
+
+\subsection{Double Duals}
+
+\begin{defi}
+	Let $ V $ be an $ \F $ vector space, $ V^{*}  = L(V,\F) $ dual of $ V $. Then the \emph{double dual} of $ V $ is the dual of $ V^{*} $, given by
+	
+	\[ V^{**} = L(V^{*},\F) \] 
+\end{defi}
+
+\begin{thm} 
+	If $ V $ is a finite dimensional vector space over $ \F $, then the map 
+	
+	\[ \hat{} \; : V \to V^{**} \]
+	\[ v \mapsto \hat{v}, \quad \hat{v}(\varepsilon) = \varepsilon(v) \]
+	
+	is an isomorphism 
+\end{thm}
+
+
+\begin{proof}
+	Firstly, for $ v \in V $, the map $ \hat{v} : V^{*} \to \F $ is linear, so $ \; \hat{} \;  $ does indeed give a map from $ V $ to $ V^{**} $
+	
+	\begin{itemize}
+		\item $ \; \hat{} \; $ is linear. If $ v_{1},v_{2} \in V $, $ \lambda_{1},\lambda_{2} \in \F, \varepsilon \in V^{*} $.
+		
+		
+		
+		\begin{align*}
+		(\lambda_{1} v_{1} + \lambda_{2} v_{2} ) (\varepsilon) & = \varepsilon(  \lambda_{1}v_{1} + \lambda_{2}v_{2} )\\
+		& = \lambda_{1} \varepsilon(v_{1}) + \lambda_{2} \varepsilon(v_{2})\\
+		& = \lambda_{1} \hat{v_{1}} (\varepsilon) + \lambda_{2} \hat{v_{2}} (\varepsilon)
+		\end{align*}
+		
+		
+		\item $ \; \hat{} \; $ is injective: Let $ e \in V \setminus \{ \mathbf{0} \} $. Extend it to a basis of $ V $, say $ e_{1},e_{2},\cdots,e_{n} $. Let $ \varepsilon_{1},\varepsilon_{2},\cdots,\varepsilon_{n} $ be the dual basis for $ V^{*} $.
+		
+		$ \hat{e}(\varepsilon) = \varepsilon(e) = 1 $. So $ \hat{e} \neq 0 $.
+		
+		Thus $ N(\; \hat{} \;) = \{ \mathbf{0} \} $, so $ \; \hat{} \; $ is injective.
+		
+		\item $ V $ is finite dim, so $ \dim V = \dim V^{*} = \dim V^{**} $. 
+		
+	\end{itemize}
+
+Thus $ \; \hat{} \; $ is an isomorphism	
+	
+\end{proof}
+
+\begin{lemma} 
+	Let $ V $ be a finite dim vector space over $ \F $ and $ U \leq V $.
+	
+	Then $ \hat{U} = U^{00} $, so after identification of $ V $ with $ V^{**} $, we have that $ U^{00} = U$.  
+\end{lemma}
+
+\begin{proof}
+	\begin{itemize}
+		\item First show $ \hat{U} \leq U^{00} $.
+		
+		\begin{align*}
+		u \in U & \Rightarrow \varepsilon(u) = 0 \qquad \forall \; \varepsilon \in U^{0} \\
+		& = \hat{u}(\varepsilon) = 0 \\
+		& \Rightarrow \hat{u} \in (U^{0})^{0} = U^{00}
+		\end{align*}
+		
+		
+		\begin{align*}
+		\dim U^{00}& = \dim V^{*} - \dim U^{0} \\
+		& = \dim V - \dim U^{0} \\
+		& = \dim U
+		\end{align*}
+	\end{itemize}
+
+Thus $ \hat{U} = U^{00} $
+
+\end{proof}
+
+\begin{lemma} 
+	Let $ V $ be a finite dim vector space of $ \F $, Let $ U_{1},U_{2} \leq V $. Then
+	
+	
+	\begin{enumerate}
+		\item $ (U_{1} + U_{2})^{0} = U_{1}^{0} \cap U_{2}^{0} $
+		\item $ (U_{1} \cap U_{2})^{0} = U_{1}^{0} + U_{2}^{0} $
+		
+	\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+	\begin{enumerate}
+		\item Let $ \theta \in V^{*} $
+		
+		\begin{align*}
+		\theta \in (U_{1} + U_{2})^{0} & \iff \theta(u_{1} + u_{2}) = 0 \text{ for all } u_{1} \in U_{1},u_{2} \in U_{2} \\
+		& = \theta(u) = 0 \text{ for all } u \in U_{1} \cap U_{2} \\
+		& \theta \in U_{1}^{0} \cap U_{2}^{0}
+ 		\end{align*}
+		
+		\item Apply annihilator to (i).
+		
+		\[ w_{i} = U_{i}^{0} \qquad u_{i} = W_{i}^{0} \]
+		
+		\[ (W_{1}^{0} + W_{2}^{0} )^{0} = W_{1} \cap W_{2} \]
+		\[ W_{1}^{0} + W_{2}^{0} = (W_{1} \cap W_{2} )^{0} \]
+		
+	\end{enumerate}
+\end{proof}
 
 
 
