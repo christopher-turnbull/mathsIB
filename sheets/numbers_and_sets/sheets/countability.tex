@@ -1,0 +1,70 @@
+\documentclass[a4paper]{article}
+\usepackage{amsmath}
+\def\npart {IA}
+\def\nterm {Michaelmas}
+\def\nyear {2017}
+\def\nlecturer {Dr Forster}
+\def\ncourse {Extra Countability Questions}
+
+\input{header}
+
+\newtheorem*{soln}{Solution}
+
+\renewcommand{\thesection}{}
+\renewcommand{\thesubsection}{\arabic{section}.\arabic{subsection}}
+\makeatletter
+\def\@seccntformat#1{\csname #1ignore\expandafter\endcsname\csname the#1\endcsname\quad}
+\let\sectionignore\@gobbletwo
+\let\latex@numberline\numberline
+\def\numberline#1{\if\relax#1\relax\else\latex@numberline{#1}\fi}
+\makeatother
+
+
+\begin{document}
+	
+\maketitle
+
+\section{QUESTION 1}
+\begin{enumerate}
+	\item 
+	\begin{prop} 
+		\[ \aleph_{0} + 2^{\aleph_{0}} = 2^{\aleph_{0}} \]
+	\end{prop}
+
+\begin{proof}
+	It is clear that $ 2^{\aleph_{0}} \leq \aleph_{0} + 2^{\aleph_{0}} $.
+	Going the other direction,
+	
+	\[ 2^{\aleph_{0}} + \aleph_{0} \leq \aleph_{0}^{\aleph_{0}} + \aleph_{0} \leq \aleph_{0}^{\aleph_{0} + 1} \leq (2^{\aleph_{0}})^{\aleph_{0} + 1} \leq 2^{\aleph_{0}}  \]
+	
+	as $ (\aleph_{0} + 1)\aleph_{0} = \aleph_{0} $. Hence we infer the proof by Cantor-Bernstein on
+	
+	\[  \aleph_{0} + 2^{\aleph_{0}} \leq 2^{\aleph_{0}} \text{ and } 2^{\aleph_{0}} \leq \aleph_{0} + 2^{\aleph_{0}}  \]
+	
+	
+\end{proof}
+\item Bernstein's Lemma says 
+
+\[ \delta + \gamma = \alpha \cdot \beta \Rightarrow \text{ surjection } \gamma \to \alpha \text{ or injection } \beta \to \delta \]
+
+
+Want to show that if $ \aleph_{0} + \alpha = 2^{\aleph_{0}} $ then $ \alpha $ must be equal to $ 2^{\aleph_{0}} $.
+
+\end{enumerate}
+
+
+
+
+
+\section{QUESTION 5}
+\section{QUESTION 6}
+\section{QUESTION 7}
+\section{QUESTION 8}
+\section{QUESTION 9}
+\section{QUESTION 10}
+\section{QUESTION 11}
+\section{QUESTION 12}
+\section{QUESTION 13}
+
+
+\end{document}

@@ -1736,7 +1736,7 @@ and $ W $ are finite dimensional. ie. $ \alpha^{*} $ surjective iff $ \alpha $ i
 		
 		
 		\begin{align*}
-		\dim \Im(\alpha^{*}) & = r(\alpha^{*}) \\
+		\dim (\Im(\alpha^{*})) & = r(\alpha^{*}) \\
 		& = r(\alpha) \qquad \text{ as } r(A) = r(A^{T})  \\
 		& =  \dim V - \dim N(\alpha) \qquad \text{ by R-N} \\
 		& = \dim (N(\alpha))^{0}
@@ -1774,7 +1774,7 @@ and $ W $ are finite dimensional. ie. $ \alpha^{*} $ surjective iff $ \alpha $ i
 		
 		
 		\begin{align*}
-		(\lambda_{1} v_{1} + \lambda_{2} v_{2} ) (\varepsilon) & = \varepsilon(  \lambda_{1}v_{1} + \lambda_{2}v_{2} )\\
+		\overbrace{(\lambda_{1} v_{1} + \lambda_{2} v_{2} )}^{\hat{}} (\varepsilon) & = \varepsilon(  \lambda_{1}v_{1} + \lambda_{2}v_{2} )\\
 		& = \lambda_{1} \varepsilon(v_{1}) + \lambda_{2} \varepsilon(v_{2})\\
 		& = \lambda_{1} \hat{v_{1}} (\varepsilon) + \lambda_{2} \hat{v_{2}} (\varepsilon)
 		\end{align*}
@@ -1853,6 +1853,235 @@ Thus $ \hat{U} = U^{00} $
 	\end{enumerate}
 \end{proof}
 
+
+
+\section{Bilinear Forms I}
+
+\begin{defi}
+	Let $ U,V $ be vector spaces over $ \F $.
+	
+	\[ \varphi : U \times V \to \F \]
+	
+	is \emph{bilinear} or a \emph{bilinear form} if its linear in both arguments
+	
+	\[ \varphi(u,-) : V \to \F \quad \in V^{*} \; \forall u \in U \]
+	\[ \varphi(-,v) : U \to \F \quad \in U^{*} \; \forall v \in V \]
+\end{defi}
+
+\begin{eg}
+	\begin{enumerate}
+		\item $ V \times V^{*} \to \F $ with $ (v,\theta) \mapsto \theta(v) $
+		
+		\item $ U = V = \R^{n} $ with $ \varphi(x,y) = \sum_{i=1}^{n} x_{i} y_{i} $ for $ x \in U, y \in V $
+		\item $ A \in M_{m,n}(\F) $ with $ \varphi : \F^{m} \times \F^{n} \to \F $, $ (u,v) \mapsto u^{T} A v $
+		
+		\item (infinite dim) $ U = V = C( [0,1] ,\R ) $ with $ \varphi(f,g) = \int_{0}^{1} f(t) g(t) \; \d t $ for $ f \in U, g \in V $
+		
+	\end{enumerate}
+\end{eg}
+
+
+\begin{defi}
+	$ \mathcal{B} = \{ e_{1},\cdots,e_{m} \} $ basis for $ U $,
+	
+	$ \mathcal{C} = \{ f_{1},\cdots,f_{n} \} $ basis for $ V $
+	
+	
+	$ \varphi : U \times V \to \F $ bilinear,
+	
+	The matrix of $ \varphi $ wrt $ \mathcal{B} $ and $ \mathcal{C} $ 
+	
+	\[ [\varphi]_{\mathcal{B},\mathcal{C}} = \left(  \varphi(e_{i},f_{j}) \right)  \] $ m \times n $, $ i,j $th entry
+\end{defi}
+
+
+\begin{lemma} 
+	\[ \varphi(u,v) = [u]_{\mathcal{B}}^{T} [\varphi]_{\mathcal{B},\mathcal{C}} [ v]_{\mathcal{C}} \]
+\end{lemma}
+
+
+\begin{proof}
+	Say $ u = \sum \lambda_{i} e_{i} $, $ v = \sum \mu_{j} f_{j} $
+	
+	
+	\begin{align*}
+	\varphi(u,v) & = \varphi \left( \sum \lambda_{i} e_{i}, \sum \mu_{j} f_{j} \right)  \\
+	& = \sum_{i} \lambda_{i} \varphi(e_{i},\sum_{j} \mu_{j}f_{j}) \\
+	& = \sum_{i,j} \lambda_{i} \varphi(e_{i},f_{j}) \mu_{j} 
+	\end{align*}
+\end{proof}
+
+Note: $ [\varphi]_{\mathcal{B},\mathcal{C}} $ is the unique representation with this property
+
+Note: $ \varphi: U \times V \to \F $ bilinear, determines linear maps 
+
+\[ \varphi_{L} U \to V^{*} \qquad \text{ and } \qquad \varphi_{R} : V \to U^{*} \]
+
+\[ \varphi_{L}(u)(v) = \varphi(u,v) \qquad \text{ and } \qquad \varphi_{R}(v)(u) = \varphi(u,v) \]
+
+
+\begin{lemma} 
+	$ \mathcal{B} = \{ e_{1},\cdots,e_{m} \} $ basis for $ U $,
+	
+	dual $ \mathcal{B}^{*} = \{ \varepsilon_{1},\cdots,\varepsilon_{m} \} $ basis for $ U^{*} $.
+	
+	Similarly, $ \mathcal{C} = \{ f_{1},\cdots,f_{n} \} $ for $ V $,
+	$ \mathcal{C}^{*} = \{  \eta_{1},\cdots,\eta_{n} \} $ for $ V^{*} $
+	                                                                                                  
+	                                                                                                  
+	If $ [ \varphi ]_{\mathcal{B},\mathcal{C}} = A $, then $ [ \varphi_{R} ]_{\mathcal{C},\mathcal{B}^{*}}  = A$,  $ [ \varphi_{L}]_{\mathcal{B},\mathcal{C}^{*}} = A^{T} $
+	
+	 
+\end{lemma}
+
+
+\begin{proof}
+\[ 	 \varphi_{L}(e_{i})(f_{j}) = A_{ij} \Rightarrow \varphi_{L}(e_{i}) = \sum_{j} A_{ij} \eta_{j} \]
+	
+	
+	\[ \varphi_{R}(f_{j})(e_{i}) = A_{ij} \Rightarrow \varphi_{R}(f_{j}) = \sum_{i} A_{ij} \varepsilon_{i}  \]
+\end{proof}
+
+
+\begin{defi}
+	Left kernel of $ \varphi = \ker \varphi_{L} $, Right kernel of $ \varphi = \ker \varphi_{R} $
+\end{defi}
+
+\begin{defi}
+	$ \varphi $ is \emph{non-degenerate} if $ \ker \varphi_{L} = 0 $ and $ \ker \varphi_{R} = 0 $. Otherwise $ \varphi $ is \emph{degenerate}
+\end{defi}
+
+\begin{lemma} 
+	Let $ U, \mathcal{B} $, $ V,\mathcal{C} $ as before,
+	
+	\[ \varphi: U \times V \to \F \]
+	
+	\[ A = [ \varphi ]_{\mathcal{B},\mathcal{C}} \]
+	 
+	 assume $ \dim U, \dim V $ finite. Then
+	 
+	 \[ \varphi \text{ non-degenerate} \iff A \text{ invertible } \]
+\end{lemma}
+
+\begin{proof}
+	
+	
+	\begin{align*}
+	 \varphi \text{ non-degenerate } & \iff \ker \varphi_{L} = \mathbf{0} \text{ and } \ker \varphi_{R} = \{ \mathbf{0} \} \\
+	& \iff n(A^{T}) = 0 \text{ and } n(A) = 0 \\
+	& \iff r(A^{T}) = \dim V \text{ and } r(A) = \dim U \\
+	& \iff A \text{ invertible } \quad \text{ (and neccessarily ) } \dim U = \dim V \end{align*}
+	 
+\end{proof}
+
+\begin{cor} 
+	If $ \varphi $ is non-degenerate and $ U $ and $ V $ are finite, then 
+	
+	\[ \dim U = \dim V \]
+\end{cor}
+
+
+\begin{cor} 
+	When $ U $ and $ V $ are finite dim, choosing a non-degenerate bilinear form $ \varphi: U \times V \to \F $ is equivalent to picking an isomorphism $ \varphi_{L} : U \to V^{*} $
+\end{cor}
+
+
+\begin{defi}
+	For $ T \subset U $, $ T^{\perp} = \{ v \in V \; | \; \varphi(t,v) = 0 \; \forall t \in T \} \leq V $
+	
+	For $ S \subset T $, $ ^{\perp}S = \{ u \in U \; | \; \varphi(u,s) = 0 \; \forall s \in S \} \leq U $ 
+	
+	(Generalisation of annihilators)
+\end{defi}
+
+\begin{prop} 
+	$ U $ bases $ \mathcal{B},\mathcal{B'} $, $ P = [\id]_{\mathcal{B}',\mathcal{B}} $
+	
+	$ V $ bases $ \mathcal{C},\mathcal{C}' $ with $ Q =[ \id]_{\mathcal{C'},\mathcal{C}} $
+	
+	Let $ \varphi: U \times V  \to \F $ bilinear. Then
+	
+	
+	\[ [\varphi]_{\mathcal{B}',\mathcal{C}'} = P^{T} [ \varphi]_{\mathcal{B},\mathcal{C}}Q \]
+\end{prop}
+
+\begin{proof}
+	
+	\begin{align*}
+	\varphi_{u,v} & = [u]_{\mathcal{B}}^{T} [\varphi]_{\mathcal{B},\mathcal{C}} [v]_{\mathcal{C}} \\
+	& = (P[u]_{\mathcal{B}'})^{T} [\varphi]_{\mathcal{B},\mathcal{C}} (Q[v]_{\mathcal{C}'}) \\
+	& = [u]_{\mathcal{B}'}^{T} [\varphi]_{\mathcal{B},\mathcal{C}} [v]_{\mathcal{C}'}
+	\end{align*}
+	
+\end{proof}
+
+
+\begin{defi}
+	The rank of $ \varphi $, $ r(\varphi) $ is the rank of any matrix representing it (well-def) by prev thm.
+\end{defi}
+
+Note: $ r(\varphi) = r(\varphi_{L}) = r(\varphi_{R}) $
+
+
+\section{Determinant and Trace}
+
+\subsection{Trace}
+
+\begin{defi}
+	For $ A \in M_{n}(\F) $ (this is $ M_{n,n}(\F) $), then
+	
+	\[ \text{tr}(A) = \sum_{i}A_{ii}  \]
+	
+	is the \emph{trace} of $ A $. This is a linear map.
+\end{defi}
+
+\begin{lemma} 
+	For $ A,B \in M_{n}(\F) $, 
+	\[ \text{tr}(AB) = \text{tr}(BA) \]
+\end{lemma}
+
+\begin{proof}
+	\begin{align*}
+	\text{tr}(AB) & = \sum_{i} \sum_{j} a_{ij} b_{ji}  \\
+	& = \sum_{j} \sum_{i} b_{ji} a_{ij} \\
+	& = \text{tr}(BA)
+	\end{align*}
+\end{proof}
+
+
+\begin{lemma} 
+	Similar (= conjugate) matrices have the same trace.
+\end{lemma}
+
+\begin{proof}
+	$ B = P^{-1} A P $, $ A,B \in M_{n}(\F) $.
+	
+	
+	\begin{align*}
+	\text{tr}(B) & = \text{tr}(P^{-1}AP) \\
+	& = \text{tr}(AP P^{-1}) \\
+	& = \text{tr}A
+	\end{align*}
+\end{proof}
+
+\begin{defi}
+	If $  \alpha : V \to V $ linear, define $ \text{tr } \alpha = \text{tr}[\alpha]_{\mathcal{B},\mathcal{B}} $. By the above, this is well defined. 
+\end{defi}
+
+\begin{lemma}  
+	Let $ \alpha : V \to V $ linear, and $ \alpha^{*} : V^{*} \to V^{*} $ its dual. Then
+	
+	\[ \text{tr }\alpha = \text{tr }\alpha^{*} \]
+\end{lemma}
+
+\begin{proof}
+	\begin{align*}
+	\text{tr }\alpha & = \text{tr}[\alpha]_{\mathcal{B},\mathcal{B}}  \\
+	& = \text{tr}[\alpha]_{\mathcal{B},\mathcal{B}}^{T} \\
+	& = \text{tr}[\alpha^{*}]_{\mathcal{B}^{*}} \\
+	& = \text{tr } \alpha^{*	} 
+	\end{align*}
+\end{proof}
 
 
 \end{document}

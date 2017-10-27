@@ -52,20 +52,385 @@ W & = h\nu_{1} - K_{1} \\
 
 \section{QUESTION 2}
 
-Let the light have energy flux $ E = 10^{-10} $, with the wavelength $ \lambda = 5 \times 10^{-7} $. These are related by
+Let the light have energy flux $ E = 10^{-10} \text{Jm}^{-2}\text{s}^{-1} $ , with the wavelength $ \lambda = 5 \times 10^{-7} $. The energy of one photon is given by
 
-\[ E = h \nu = \frac{h c}{\lambda}  \]
+\begin{align*}
+E_{p} & = \frac{h c}{\lambda} \\
+& = \frac{6.63 \times 10^{-34} \times 3 \times 10^{8} }{5 \times 10^{-7}}\\
+& = 3.987 \times 10^{-19} \text{ J}
+\end{align*}
+
+Take human eye to have area $ 1 \text{ cm}^{2} = 10^{-4} \text{ m}^{2}$, so energy flux $ E_{e} $ entering human eye is  $ E_{e} = 10^{-14} \text{Jm}^{-2}\text{s}^{-1} $.
+
+Thus number of photons entering the eye $ N $ is given as
+
+\[ N = \frac{E_{e}}{E_{p}} \approx 2.51 \times 10^{5}  \]
 
 
 
 
 
 \section{QUESTION 3}
+
+Classical equations of motion imply that the total energy $ E_{n} $ for an electron at level $ n $ ( $ n = 1,2,\cdots $) for the electron must be constant, and is given by
+
+\[ E_{n} = \frac{1}{2} m v_{n}^{2} - \frac{e^{2}}{4 \pi \varepsilon_{0}} \frac{1}{r_{n}} \]
+
+Resolving radial acceleration gives
+
+\[ \frac{m v_{n}^{2}}{r_{n}}  =  \frac{e^{2}}{4 \pi \varepsilon_{0}} \frac{1}{r_{n}^{2}} \quad (1) \]
+
+which simplifies are expression for energy levels to 
+
+\[ E_{n} = - \frac{1}{2} m v_{n}^{2} \]
+
+Next, angular momentum quantisation yields 
+\[ m v_{n} r_{n} = n\hbar \quad (2) \]
+
+Rearranging (1) and (2)
+
+\[ r_{n} = \frac{e^{2}}{4 \pi \varepsilon_{0}} \frac{1}{m v_{n}^{2}} \qquad r_{n} = \frac{n \hbar}{m v_{n}} \]
+
+Thus setting equal and solving for $ v_{n} $ gives
+
+\[ v_{n} = \frac{1}{n \hbar } \frac{e^{2}}{4 \pi \varepsilon_{0}} = c \alpha \frac{1}{n} \]
+
+where $ \alpha = e^{2} / 4 \pi \varepsilon_{0} \hbar c $ is the fine structure constant. 
+
+
+Substituting this into the expression for energy gives
+
+\begin{align*}
+ E_{n} & = - \frac{1}{2} m c^{2} \alpha^{2} \frac{1}{n^{2}}
+\end{align*}
+
+
+\begin{enumerate}
+	\item It is consistent. $ \alpha \approx \frac{1}{137} $, so the highest speed an electron can have is $ \frac{1}{137}  c$ (when $ n = 1 $, this decreases for larger $ n $), which is less that $ 1 \% $ of the speed of light.
+
+	
+	
+	\item Suppose th electron makes a transition between levels $ n' $ and $ n $, (with $ n' > n $ say), accompanied by emission or a photon of frequency $ \nu $. Then
+	
+	\[ h \nu = E_{n'} - E_{n} = \frac{1}{2} m c^{2} \alpha^{2} \left(  \frac{1}{n^{2}} - \frac{1}{n'^{2}} \right)  \]
+	
+	  $ E = \frac{hc}{\lambda} $, so smallest wavelength $ \Rightarrow $ most amount of energy, which is emitted when the electron falls from `infinity' to level 1, ie. $ (1/n^{2} - 1/n'^{2} ) = 1 $. ie.
+	  
+	  \begin{align*}
+	  \lambda & = \frac{hc}{E}  \\
+	  & = \frac{2hc}{mc^{2}\alpha^{2} } \\
+	  & = \frac{4\pi \hbar }{mc \alpha^{2}} \\
+	  & =  \frac{e^{2}}{\varepsilon_{0} c}\frac{4\pi \varepsilon_{0} \hbar c }{e^{2}} \frac{1}{mc \alpha^{2}} \\
+	  & = \frac{e^{2}}{\varepsilon_{0} m c^{2} \alpha }
+	  \end{align*}
+	  
+	  Bohr radius is given by:
+	  
+	  \[ r_{1} = \frac{4 \pi \varepsilon_{0} \hbar^{2}}{m e^{2}} \]
+	
+\end{enumerate}
+
+
+
+
+
+
+
+
 \section{QUESTION 4}
+
+Bohr radius $ r_{1} $ and corresponding ($ n=1 $) radius $ r_{1}' $ of muon are given by 
+
+\[ r_{1} = \frac{\hbar}{m_{e} c \alpha} \qquad r_{1}'  = \frac{\hbar}{m_{m} c \alpha} \]
+
+where $ m_{e} $ is the mass of the electron, and $ m_{m} = 207 m_{e} $ is the mass of the muon.
+
+So the radius the $ n=1 $ state of muonic Hydrogen is 207 times smaller than normal Hydrogen.
+
 \section{QUESTION 5}
 
+Given $ \psi_{0}(x) = C_{0} e^{-x^{2}/2\alpha} $, we calculate 
+
+\[ \psi_{0}'(x) = - \frac{x}{\alpha} \psi_{0}(x) \text{ and } \psi_{0}''(x) = - \frac{1}{\alpha} \psi_{0}(x) + \frac{x^{2}}{\alpha^{2}} \psi_{0}(x) \]
 
 
+Substituting into the time-indep SE gives
+
+\[ - \frac{\hbar^{2}}{2m} \left(  -\frac{1}{\alpha} + \frac{x^{2}}{\alpha^{2}} \right) \psi_{0}  + \frac{1}{2} K x^{2} \psi_{0} = E_{0} \psi_{0} \]
+
+Comparing constants and $ x^{2} $ coefficients respectively
+
+\[ \frac{\hbar^{2}}{2m\alpha} = E_{0} \quad \text{ and } \quad \frac{\hbar^{2}}{2m} \frac{1}{\alpha^{2}} = \frac{1}{2} K \]
+
+Thus $ \alpha = \sqrt{\frac{\hbar^{2}}{Km}} $ and hence energy eigenvalue $ E_{0}  = \frac{\hbar}{2} \sqrt{ \frac{K}{m}} $.
+
+Similarly, given $ \psi_{1}(x) = C_{1}x e^{-x^{2}/2\alpha} = x \phi(x)$, where $ \phi(x) =C_{1} e^{-x^{2}/2\alpha}  $,
+
+\[ \psi_{1}'(x) = \phi(x) - \frac{x^{2}}{\alpha} \phi(x) \quad \text{ and } \quad \psi_{1}''(x) = \frac{-x}{\alpha} \phi(x) - \frac{2x}{\alpha} \phi(x) + \frac{x^{3}}{\alpha^{2}} \phi(x)  \]
+
+Substituting into time-indep SE yields,
+
+\[ - \frac{\hbar^{2}}{2m} \left(  -\frac{3x}{\alpha} + \frac{x^{3}}{\alpha^{2}} \right) \phi(x)  + \frac{1}{2} K x^{2} x \phi(x) = E_{1} x \phi(x) \]
+
+Comparing $ x $ and $ x^{3} $ coefficients respectively,
+
+\[  \frac{3\hbar^{2}}{2m\alpha} = E_{1}  \quad \text{ and } \quad  \frac{\hbar^{2}}{2m} \frac{1}{\alpha^{2}} = \frac{1}{2} K    \]
+
+Hence as before $ \alpha = \sqrt{\frac{\hbar^{2}}{Km}} $ and $ E_{1} = 3 E_{0} = \frac{3 \hbar}{2} \sqrt{ \frac{K}{m}} $
+
+\begin{center}
+	%label axis x,y as x, |psi(x)|^{2}
+	\begin{tikzpicture}[yscale=0.35]
+	\draw [->] (-3, 0) -- (3, 0) node [right] {$x$};
+	\draw [->](0, -9)  -- (0, 9) node [above] {$ V(x) $};
+	\draw [domain=-3:3,samples=50, mblue] plot (\x, {\x *\x});
+	\end{tikzpicture}
+\end{center}
+
+\section{QUESTION 6}
+
+Wavefunction $ \Psi(x,t) $ under one-dimensional harmonic oscillator potential $ V(x) = \frac{1}{2}Kx^{2} $ has time-dependent Schr\"odinger equation:
+
+\[ i \hbar \frac{\partial \Psi }{\partial t} = - \frac{\hbar^{2}}{2m} \frac{\partial^{2} \Psi }{\partial x^{2}} + \frac{1}{2}Kx^{2} \Psi \]
+
+For separable $ \Psi(x,t) = \psi(x)f(t) $, have solutions of type
+
+\[ \Psi(x,t) = \psi(x)e^{-iEt/\hbar} \quad \text{ with } \quad H \psi = E \psi \]
+
+\begin{enumerate}
+	\item $ \Psi(x,0) = \psi_{0}(x) \Rightarrow \psi(x) = \psi_{0}(x)$ and $ E = \frac{\hbar}{2}\sqrt{\frac{K}{m}} $ from question 5, so we have 
+	
+	\[ \Psi(x,t) = C_{0} e^{-x^{2}/2\alpha} \exp\left( - \frac{i}{2}\sqrt{\frac{K}{m}} t \right)  \] 
+	
+	For some normalisation constant $ C_{0} $
+	
+	\item Similarly $ \psi(x) = \psi_{1}(x) $ and again using results for $ E $ from question 5,
+	
+	\[ \Psi(x,t) = C_{1} x e^{-x^{2}/2\alpha} \exp\left( - \frac{3i}{2}\sqrt{\frac{K}{m}} t \right)  \] 
+	
+	For some normalisation constant $ C_{1} $
+	
+	\item For $ \Psi(x,0)  = \frac{1}{2}  ( \sqrt{3} \psi_{0}(x) - i \psi_{1}(x)) = \psi(x) $, and solving $ H \psi = E \psi $ for $ E $, $ \psi_{0} $ and $ \psi_{1} $ are two linearly independent solutions of this equation so must have
+	
+	
+	\begin{align*}
+	E & = \frac{1}{2}(\sqrt{3} E_{0} - i E_{1} )  \\
+	& = \frac{\sqrt{3} - 3i}{2} \left( \frac{\hbar}{2} \sqrt{\frac{K}{m}} \right) 
+	\end{align*}
+	
+	Thus \[ \Psi(x,t) =  \]
+ 	
+\end{enumerate}
+
+
+\section{QUESTION 7}
+
+Note that $ \Psi(x,t) = C \gamma(t)^{-1/2} \exp(-x^{2}/2\gamma(t)) $ is not separable.
+
+
+$ t $ -dep SE 
+
+\[ i \hbar \frac{\partial \Psi }{\partial t} = - \frac{\hbar^{2}}{2m} \frac{\partial^{2} \Psi }{\partial x^{2}} + \frac{1}{2}Kx^{2} \Psi \]
+
+Calculating the partial derivatives
+
+\begin{align*}
+\frac{\partial \Psi }{\partial t}& = -\frac{1}{2} \gamma' C \gamma^{-3/2} \exp(-x^{2}/2\gamma)  + C \gamma^{-1/2}  \left(\frac{x^{2}}{2 \gamma^{2}}\exp(-x^{2}/2\gamma) \right)    \\
+& = \left( - \frac{1}{2} \frac{\gamma'}{\gamma} + \frac{x^{2}}{2 \gamma^{2}} \right) C \gamma^{-1/2} \exp(-x^{2}/2\gamma) \\
+& = \left( - \frac{1}{2} \frac{\gamma'}{\gamma} + \frac{x^{2}}{2 \gamma^{2}} \right) \Psi
+\end{align*}  
+and 
+\begin{align*}
+\frac{\partial^{2} \Psi }{\partial x^{2}} & = \frac{\partial }{\partial x} \left[ -  \frac{x}{\gamma} \Psi \right] \\
+& =  -  \frac{1}{\gamma} \Psi + \frac{x^{2}}{\gamma^{2}} \Psi   \\
+\end{align*}      
+
+So t-dep SE becomes
+
+\[ i \hbar \left( - \frac{1}{2} \frac{\gamma'}{\gamma} + \frac{x^{2}}{2 \gamma^{2}} \right) \Psi = - \frac{\hbar^{2}}{2m} \left(   -\frac{1}{\gamma} + \frac{x^{2}}{\gamma^{2}} \right) \Psi + \frac{1}{2} K x^{2} \Psi \]    
+
+Comparing constant and $ x^{2} $ coefficients repectively,        
+
+\[ - i \hbar \frac{1}{2} \frac{\gamma'}{\gamma} = \frac{\hbar^{2}}{2m} \frac{1}{\gamma} \quad \text{ and } \quad i\hbar \frac{1}{2\gamma^{2}} = - \frac{\hbar^{2}}{2m} \frac{1}{\gamma^{2}} +  \frac{1}{2} K  \]
+
+Giving 
+
+
+
+\[ \gamma' = - \frac{i \hbar}{m} \quad \text{ and } \quad  \]
+
+check notse
+
+
+Probability density given as 
+
+\begin{align*}
+|   \Psi(x,t)  |^{2} & = \\
+& = 
+\end{align*}
+
+\section{QUESTION 8}
+
+
+\begin{enumerate}
+	\item \[ H \psi_{1} = E \psi_{1} \]
+	\[ H \psi_{2} = E \psi_{2} \]
+	
+	Time indep SE with $ V(x) \to 0 $ rapidly, is
+	
+	Time-indep SE is
+	
+	\[ - \frac{\hbar^{2}}{2m}\psi''(x)  = E \psi(x) \]
+	
+	Note that 
+	
+	\[ \det \begin{pmatrix}
+	\psi_{1} & \psi_{2} \\
+	\psi'_{1} & \psi_{2}'
+	\end{pmatrix} = \psi_{1} \psi_{2}'  - \psi_{2} \psi_{1}'  \] 
+	
+	\item 
+	\item
+	
+\end{enumerate}
+
+
+\section{QUESTION 9}  
+
+Time dependent SE is    
+
+\[ i \hbar \frac{\partial \Psi }{\partial t} = - \frac{\hbar^{2}}{2m} \frac{\partial^{2} \Psi }{\partial x^{2}} + -U \delta(x) \Psi \]
+
+Integrating from $ x - \varepsilon $ to $  x + \varepsilon $ gives
+
+\[ \int_{x-\varepsilon}^{x+\varepsilon}  i \hbar \frac{\partial \Psi }{\partial t} \; \d x= - \frac{\hbar^{2}}{2m} \left[ \frac{\partial \Psi }{\partial x} \right]_{x - \varepsilon}^{x + \varepsilon} -  U \Psi  \]
+
+Taking $ \frac{\partial \Psi }{\partial t} $ to be sufficiently smooth, LHS $ = 0 $ and we have
+
+\[  \left[ \frac{\partial \Psi }{\partial x} \right]_{x - \varepsilon}^{x + \varepsilon} = -  \frac{2mU }{\hbar^{2}}  \Psi   \]
+
+
+
+\section{QUESTION 10}
+
+	\begin{center}
+	\begin{tikzpicture}
+	\draw [->] (-2.5, 0) -- (2.5, 0) node [right] {$x$};
+	\draw [->] (0, -0.5) -- (0, 2) node [above] {$V(x)$};
+	\draw [mred, semithick, dashed] (-1.5, 0) node [above] {$-a$} -- (-1.5, -1.5);
+	\draw [mred, semithick, dashed] (1.5, 0) node [above] {$a$} -- (1.5, -1.5);
+	\draw [mred, semithick] (-1.5, -1.5) -- (1.5, -1.5) node[right] {$ -  U $}  ;
+	\end{tikzpicture}
+\end{center}
+
+Seek energy functions and eigenvalues given by
+
+\[ -\frac{\hbar^{2}}{2m} \psi''  + V(x) \psi = E \psi \]
+
+with energies in range $ -U < E < 0 $
+
+SE becomes 
+
+\[ \underbrace{-\frac{\hbar^{2}}{2m} \psi'' = (E+U) \psi}_{| x | < a} \text{ and } \underbrace{-\frac{\hbar^{2}}{2m} \psi'' = E \psi}_{| x | > a}  \]
+
+Set 
+
+\[ U + E = \frac{\hbar^{2}k^{2}}{2m} \text{ and } E = \frac{-\hbar^{2}\kappa^{2}}{2m}   \]
+
+\[ k > 0 \qquad \text{ and } \qquad \kappa > 0 \]
+
+then SE is 
+
+\[ \psi''  + k^{2} \psi = 0 \text{ and } \psi'' - \kappa^{2} \psi = 0 \]
+
+\[ | x | < a \qquad \text{ and } \qquad | x | > a \]
+
+At $ x = \pm a $, $ \psi,\psi' $ continuous ($ \psi'' $ discontinuous, matching step in $ V(x) $ )
+
+[ Integrate SE from $ a - \varepsilon $ to $ a + \varepsilon $, then provided $ U $, $ \psi $ bounded, find $ [\psi']_{a - \varepsilon}^{a + \varepsilon} \to 0 $ as $ \varepsilon \to 0^{+} $ ]
+
+Consider \emph{odd parity} solutions, ie. those with $ \psi(-x) = -\psi(x) $,
+
+\[ \psi = \begin{cases} A \sin k x  & \text{ if } | x | < a \\ Be^{-\kappa x} & \text{ if } x > a \end{cases} \]
+
+Note the solution for $ x < -a $ fixed by parity. Matching at $ x = a $,
+
+\[ \psi \text{ cts }: A \sin k a = B e^{-\kappa a} \]
+\[ \psi' \text{ cts }: k A \cos k a = - B \kappa e^{-\kappa a} \]
+
+These equations give same solution for $ A $ or $ B $ iff:
+
+\[ \kappa \tan k a = - k  \]
+
+
+To find when solutions exists it is convenient to set
+
+\[ \xi = a k, \quad \eta = a \kappa \quad \text{ dimensionless and positive} \]
+
+So 
+
+\[ \eta = - \frac{\xi}{\tan \xi} \]
+
+but also 
+
+\[ \xi^{2} +\eta^{2}= \frac{2ma^{2}U}{\hbar^{2}} \quad \text{ from definitions of } k \text{ and } \kappa \]
+
+Intersection of $ \nu = \xi \tan \xi $ with circle of $ (\text{radius})^{2} = \frac{2ma^{2} U}{\hbar^{2}} $. Have energy eigenstate for each point of intersection ($ a,U $ fixed parameters, determining $ \xi,\nu $ determines $ E $)
+
+We can look for solutions by plotting these two equations. We first plot the curve $\eta =  - \frac{\xi}{\tan \xi}$:
+
+\begin{center}
+	\begin{tikzpicture}
+	\draw [->] (0, 0) -- (6, 0) node [right] {$\xi$};
+	\draw [->] (0, 0) -- (0, 4) node [right] {$\eta$};
+	\end{tikzpicture}
+\end{center}
+
+The other equation is the equation of a circle. Depending on the size of the constant $2ma^2 U/\hbar^2$, there will be a different number of points of intersections.
+
+Can see that circle must have radius $ \geq \frac{\pi}{2} $ for intersection; anything smaller will produce no intersections, ie. no intersections if
+
+\[ 2ma^2 U/\hbar^2 < \left( \frac{\pi}{2}\right)^{2} \]
+
+which rearranges to
+
+\[  a U^{2}  < (\pi \hbar)^{2} / 8m \]
+
+as required
+
+
+\section{QUESTION 11}                                  
+
+Potential $ V(x) = - \frac{\hbar^{2}}{2m} \sech^{2} x $
+
+\begin{center}
+	%draw lines 
+	\begin{tikzpicture}[yscale=1.5]
+	\draw [->] (-3, 0) -- (3, 0) node [right] {$x$};
+	\draw [->](0, -1.3)   -- (0, 1.3) node [above] {$V(x)$};
+	\draw [domain=-3:3,samples=50, mblue] plot (\x, - {exp(-\x * \x)});
+	\end{tikzpicture}
+\end{center}
+
+Time-indep SE is
+
+\[ - \frac{\hbar^{2}}{2m}\psi''(x)  - \frac{\hbar^{2}}{m} \sech^{2}(x) \psi(x) = E \psi(x) \]
+
+which is
+
+\[ -\psi''(x) - 2 \sech^{2}(x) \psi(x) =  \varepsilon \psi(x) \quad (*) \]
+
+where $ \varepsilon = 2mE / \hbar^{2}  $.
+
+\begin{align*}
+A^{\dagger} A \psi & = A^{\dagger} \left[ \psi'(x) + \tanh(x) \psi(x)  \right]   \\
+& = -\psi''(x) - \sech^{2}(x) \psi(x) - \tanh(x) \psi'(x) + \tanh(x) \psi'(x) + \tanh^{2}(x) \psi(x) \\
+& = - \psi'' -2 \sech^{2}(x) \psi + \psi \qquad \text{ using } \tanh^{2}(x) = 1 - \sech^{2}(x)
+\end{align*}
+
+Hence, adding $ \psi(x) $ to both sides of $ (*) $ it is rewritten as
+
+\[ A^{\dagger} A \psi = (\varepsilon + 1)\psi \]
 
 
 
