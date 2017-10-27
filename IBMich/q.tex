@@ -733,7 +733,7 @@ Study in this chapter normalisable solutions of $ t $-indep SE (energy eigenvalu
 	\draw [->] (0, -0.5) -- (0, 2) node [above] {$V(x)$};
 	\draw [mred, semithick, dashed] (-1.5, 0) node [above] {$-a$} -- (-1.5, -1.5);
 	\draw [mred, semithick, dashed] (1.5, 0) node [above] {$a$} -- (1.5, -1.5);
-	\draw [mred, semithick] (-1.5, -1.5) -- (1.5, -1.5) node[right] {$ U $}  ;
+	\draw [mred, semithick] (-1.5, -1.5) -- (1.5, -1.5) node[right] {$ - U $}  ;
 	\end{tikzpicture}
 \end{center}
 
@@ -774,8 +774,8 @@ Consider \emph{even parity} solutions, ie. those with $ \psi(-x) = \psi(x) $,
 
 Note the solution for $ x < -a $ fixed by parity. Matching at $ x = a $,
 
-\[ \psi \text{ cts }: A \cos k a = B e^{-kappa a} \]
-\[ \psi' \text{ cts }: - A \sin k a = - B \kappa e^{-kappa a} \]
+\[ \psi \text{ cts }: A \cos k a = B e^{-\kappa a} \]
+\[ \psi' \text{ cts }: - k A \sin k a = - B \kappa e^{-\kappa a} \]
 
 These equations give same solution for $ A $ or $ B $ iff:
 
@@ -783,15 +783,15 @@ These equations give same solution for $ A $ or $ B $ iff:
 
 To find when solutions exists it is convenient to set
 
-\[ \xi = a k, \quad \nu = a \kappa \quad \text{ dimensionless and positive} \]
+\[ \xi = a k, \quad \eta = a \kappa \quad \text{ dimensionless and positive} \]
 
 So 
 
-\[ \nu = \xi \tan \xi \]
+\[ \eta = \xi \tan \xi \]
 
 but also 
 
-\[ \xi^{2} + \nu^{2} = \frac{2ma^{2}U}{\hbar^{2}} \quad \text{ from definitiens of} k \text{ and } \kappa \]
+\[ \xi^{2} + \nu^{2} = \frac{2ma^{2}U}{\hbar^{2}} \quad \text{ from definitions of } k \text{ and } \kappa \]
 
 Intersection of $ \nu = \xi \tan \xi $ with circle of $ (\text{radius})^{2} = \frac{2ma^{2} U}{\hbar^{2}} $. Have energy eigenstate for each point of intersection ($ a,U $ fixed parameters, determining $ \xi,\nu $ determines $ E $)
 
@@ -1075,8 +1075,209 @@ There are many important applications of these results.
 \end{enumerate}
 
 
+\section{Expectation and Uncetainty}
+
+\subsection{Hermitian Operators}
+
+Recall definition:
+
+\[ (\phi,\psi)  = \int_{-\infty}^{\infty} \phi(x)^{*} \; \d x \]
+
+which obeys
+
+\[ (\phi,\alpha \psi) = \alpha (\phi,\psi) = (\alpha^{*} \phi,\psi ) \]
+
+and
+
+\[ (\phi,\psi) = (\psi,\phi)^{*} \]
+
+Regrading this as an inner product on wavefns, define the norm $ | | \psi | | $ of a wavefn $ \psi $ by
+
+\[ | | \psi | |^{2} = (\psi,\psi) = \int_{-\infty}^{\infty} | \psi(x) |^{2} \; \d x \]
+
+so $ \psi $ normalised iff $ | | \psi | | =1 $.
+
+An operator $ Q $ is \emph{hermitian} if
+
+\[ (\psi, Q \psi) = (Q \psi, \psi) \qquad \forall \text{ normalisiable } \psi, \phi \]
+
+or 
+
+\[ \int_{-\infty}^{\infty} \phi^{*} Q \psi \; \d x = \int_{-\infty}^{\infty} (Q \phi)^{*} \psi \; \d x \]
+
+This implies 
+\[ (\psi, Q \psi) = (Q \psi, \psi) = (\psi, Q \psi)^{*} \]
+
+or
+
+\[ \langle Q \rangle_{\psi} =  \langle Q \rangle_{\psi}^{*}\]
+
+The operators $ \hat{x} $, $ \hat{p} $ and $ H  = \frac{\hat{p}^{2}}{2m} + V(\hat{x}) $ are hermitian for $ V $ real.
+
+\begin{proof}
+	\begin{align*}
+	& (\phi, \hat{x} \psi ) = (\hat{x}\phi, \psi ) \\
+	\iff &   \int_{-\infty}^{\infty} \phi(x)^{*} (x \psi(x)) \; \d x \\
+	\iff &  \int_{-\infty}^{\infty} (x \psi(x))^{*} \phi(x) \; \d x
+	\end{align*}
+	
+	$ x $ real
+	
+	
+	\begin{align*}
+	& = (\phi, \hat{p} \psi ) = (\hat{p}\phi, \psi ) \\\iff &   \int_{-\infty}^{\infty} \phi^{*} (-i \hbar \psi') \; \d x \\
+	\iff &  \int_{-\infty}^{\infty} (-i\hbar \phi')^{*} \psi(x) \; \d x
+	\end{align*}
+	
+	by parts, since $  - i \hbar \left[  \phi^{*} \psi \right]_{-\infty}^{\infty}  $
+	
+	To show 
+	
+	\[ (\phi, H \psi) = (H \phi,\psi) \]
+	
+	consider k.e and p.e terms separately
+	
+	ke
+	%table
+	
+	$ (\phi, \psi'') = - (\phi',\psi') = (\phi'',\psi) $
+	
+	pe
+	$ (\phi,V(\hat{x})\psi  )  = (V(\hat{x})\phi, \psi )  $ since $ V $ real.
+	
+	This gives better understanding why $ <\hat{x}>, <\hat{p}> $ and $ <H>$ are real	
+\end{proof}
+	
+\subsection{Ehrenfest's Theorem - QM is like classical mechanics}
+	
+Consider normalised $ \Psi(x,t) $ satisfying time-dep SE
+
+$ i \hbar \dot{\Psi} = H \Psi = \left(  \frac{1}{2m} \hat{p}^{2} + V (\hat{x}) \right) \Psi = - \frac{\hbar^{2}}{2m} \Psi'' + V(x) \Psi  $.
+
+The expectation values $ <\hat{x}>_{\Psi} = (\Psi, \hat{x} \Psi) $ and $  <\hat{p}>_{\Psi} = (\Psi, \hat{p} \Psi) $ depend on $ t $ through $ \Psi $
+
+Ehrenfest's Thm states
+
+\[ \frac{\d }{\d t}  <\hat{x}>_{\Psi} = \frac{1}{m} <\hat{p}>_{\Psi} \]
+
+and
+
+\[ \frac{\d }{\d t}  <\hat{p}>_{\Psi} = - <V'(\hat{x})>_{\Psi} \]
+	
+quantum counterparts of classical eqns of motion.
+
+\begin{proof}
+	\[ \frac{\d }{\d t} <\hat{x}>_{\Psi} = (\dot{\Psi}, \hat{x} \Psi ) + (\Psi, \hat{x} \dot{\Psi} ) \]
+	
+	\[  = (\frac{1}{i \hbar}  H \Psi, \hat{x} \Psi  )   + (\Psi,  \hat{x} \frac{1}{i \hbar}  H \Psi   ) \qquad \text{SE} \]
+	
+	\[ = \frac{1}{i \hbar}(  H \Psi, \hat{x} \Psi  )   + \frac{1}{i \hbar}(\Psi,  \hat{x} H \Psi   ) \]
+	
+	\[ = \frac{1}{i \hbar}( \Psi, H \hat{x} \Psi  )   + \frac{1}{i \hbar}(\Psi,  \hat{x} H \Psi   ) \]
+	
+		\[ = \frac{1}{i \hbar}( \Psi, (\hat{x} H - H \hat{x}  ) \Psi   ) \]
+	
+	Now
+	
+	\begin{align*}
+	(\hat{x} H - H \hat{x}  ) \Psi & = - \frac{\hbar^{2}}{2m}(x \Psi'' - (x \Psi)'') + (xV - Vx) \Psi  \\
+	& = - \frac{\hbar^{2}}{2m} \Psi' = \frac{i\hbar}{m} \hat{p} \Psi \quad \text{ as req}
+	\end{align*}
+	
+	
+	Similarly, 
+	
+	\begin{align*}
+	\frac{\d }{\d t}  <\hat{p}>  & =  (\dot{\Psi}, \hat{p} \Psi )  + (\Psi, \hat{p}  \dot{\Psi} )  \\
+	& = (+ \frac{1}{i \hbar}H \Psi, \hat{p} \Psi  ) + (\Psi, \hat{p} \frac{1}{i \hbar } H \Psi  ) \\
+	& = \frac{1}{i \hbar} (\Psi, (\hat{p}H - H\hat{p})\Psi  ) 
+	\end{align*}
+	
+	But
+	
+	\begin{align*}
+	(\hat{p}H - H\hat{p})\Psi& = - i \hbar \left( - \frac{\hbar^{2}}{2m} \right) \left(  (\psi'')' - (\psi')'' \right)   \\
+	& = - i \hbar \left(  (V(x)\Psi)' - V(x)  \Psi' \right) \\
+	& = - i \hbar V'(x) \Psi \qquad \text{ as req}
+	\end{align*}
+	
+	In each case it is the \emph{commutator} that appears:
+	
+	\[ \hat{x} H - H \hat{x}  \text{ and } \hat{p}H - H\hat{p})\Psi\]
+	
+	
+	
+\end{proof}
 
 
+\subsection{Heisenberg's Uncertainty Relation - QM is NOT like classical mechanics}
+
+Statement: If $ \psi $ is any normalised state (at fixed time) define the \emph{uncertainty} $ m $ position and momentum $ (\Delta x)_{\psi} $ and $ (\Delta p)_{\psi} $ by
+
+\[ (\Delta x)_{\psi}^{2} = < (\hat{x}  - <\hat{x}>_{\psi} )^{2} > = <\hat{x}^{2} > - <\hat{x}>_{\psi}^{2} \]
+
+\[ (\Delta p)_{\psi}^{2} = < (\hat{p}  - <\hat{p}>_{\psi} )^{2} > = <\hat{p}^{2} > - <\hat{p}>_{\psi}^{2} \]
+
+These quantify the `spread' of possible results. Heisenberg's Uncertainty Relation or Principle, states
+
+\[ (\Delta x)_{\psi} (\Delta p)_{\psi} \geq \frac{\hbar}{2} \]
+
+Interpretation: we can never reduce combined uncertainty in position and momentum below this threshold. 
+
+
+Note $ X = \hat{x} - \alpha $ and $ P = \hat{p} - \beta $ both hermitian for any real constants $ \alpha $ and $ \beta $. This implies 
+
+\begin{align*}
+(\psi, X^{2}\psi)& = (X\psi, X\psi)  = | | X \psi | |^{2} \geq 0
+\end{align*}
+
+and 
+
+\begin{align*}
+(\psi, P^{2}\psi)& = (P\psi, P\psi)  = | | P \psi | |^{2} \geq 0
+\end{align*}
+
+Choosing $ \alpha = <\hat{x}>_{\psi} $ and $ \beta = <\hat{p}>_{\psi} $ we deduce that $ (\Delta x)_{\psi}^{2}  $ and $ (\Delta p)_{\psi}^{2} $ are indeed real and positive
+
+\begin{eg}
+	Gaussian \[ \psi(x) = \frac{1}{\alpha \pi}^{\frac{1}{4}} e^{- \frac{x^{2}}{2 \alpha}} \]
+	
+	has $ \langle \hat{x} \rangle_{\psi} = \langle \hat{p} \rangle_{\psi} = 0$
+
+and $ (\Delta x)_{\psi}^{2}  = \frac{\alpha}{2} $ and $ (\Delta p)_{\psi}^{2} = - \frac{\hbar^{2}}{2 \alpha}$
+
+So 
+
+\[ (\Delta x)_{\psi} (\Delta p)_{\psi} = \frac{\hbar}{2} \]
+
+minimum allowed by Heisenberg.
+
+Furthermore, this is ground state of the Harmonic oscillator for 
+
+\[ \alpha = \frac{\hbar}{m \omega} \]
+
+Classically, lowest energy from oscillator is when $ x = p = 0 $. 
+
+%particle sitting at bottom of potential doing nothing
+
+In QM can't have exact values for $ x $ and $ p $ in this way, and minimum energy $ E_{0} = \frac{1}{2} \hbar \omega $ consistent with this. 
+
+
+Particle of mass $ m $ in a potential 
+
+
+\begin{center}
+	%label axis x,y as x, |psi(x)|^{2}
+	\begin{tikzpicture}[yscale=0.5]
+	\draw [->] (-3, 0) -- (3, 0) node [right] {$x$};
+	\draw [->, mred, dashed] (-3, 1) -- (3, 1) node [right] {$\frac{1}{2} \hbar \omega$};
+	\draw [->](0, 0)  -- (0, 9) node [above] {$ V(x) $};
+	\draw [domain=-3:3,samples=50, mblue] plot (\x, {\x *\x});
+	\end{tikzpicture}
+\end{center}
+
+
+\end{eg}
 
 
 

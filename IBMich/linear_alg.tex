@@ -1502,7 +1502,7 @@ $ V^{*} $ is a vector space over $ \F $. Its elements are sometimes called linea
 \begin{lemma} 
 	Let $ V $ be a vector space over $ \F $ with finite basis $ \mathcal{B} = \{ e_{1},\cdots,e_{n} \} $. Then there is a basis for $ V^{*} $, given by $ \mathcal{B}^{*} = \{  \varepsilon_{1},\cdots,\varepsilon_{n} \}  $ where 
 	
-	\[ \varepsilon_{j} = \underbrace{\left(   \sum_{i=1}^{m}  a_{i} e_{i}  \right) }_{\in V} = a_{j}  \qquad 1 \leq j \leq m \]
+	\[ \varepsilon_{j} \underbrace{\left(   \sum_{i=1}^{m}  a_{i} e_{i}  \right) }_{\in V} = a_{j}  \qquad 1 \leq j \leq n \]
 	
 	$ \mathcal{B}^{*} $ is called the dual basis to $ \mathcal{B} $
 \end{lemma}
@@ -1510,23 +1510,19 @@ $ V^{*} $ is a vector space over $ \F $. Its elements are sometimes called linea
 
 \begin{proof}
 \begin{itemize}
-	\item Independence
+	\item LI
 	
 	\begin{align*}
-	\sum_{j=1}^{n} \lambda_{j} \varepsilon_{j} & \Rightarrow \left(  \sum_{j=1}^{n}  \lambda_{j} \varepsilon_{j} \right) e_{i}   \\
+	\sum_{j=1}^{n} \lambda_{j} \varepsilon_{j} = \mathbf{0} & \Rightarrow \left(  \sum_{j=1}^{n}  \lambda_{j} \varepsilon_{j} \right) e_{i} = \mathbf{0}   \\
 	& = \sum_{j} \lambda_{j} \underbrace{\varepsilon_{j} (e_{i})}_{\delta_{ij}} 
 	\end{align*}
 	
-	where 
 	
-	\[ \delta_{ij} = \begin{cases} 0  & \text{ if } i \neq j \\ & 1 \text{ if } i = j\end{cases} \]
+	\[ \Rightarrow  \lambda_{i} = 0 \quad \forall \; i = 1,\cdots,n \]
 	
+	\item Span: If $ \alpha \in V^{*} $, then $ \alpha = \sum_{i=1}^{n} \alpha(e_{i}) \varepsilon_{i} $
 	
-	\[ \Rightarrow  \lambda_{i} = 0 \quad \forall \; i = 1,\cdots,m \]
-	
-	\item Span: If $ \alpha \in V^{*} $, then $ \alpha = \sum_{i=1}^{m} \alpha(e_{i}) \varepsilon_{i} $
-	
-	(``linear mapse are determined by their action on a basis'')
+	(``linear maps are determined by their action on a basis'')
 	
 \end{itemize}
 \end{proof}
@@ -1536,12 +1532,13 @@ $ V^{*} $ is a vector space over $ \F $. Its elements are sometimes called linea
 \end{cor}
  
  
- Remark: Someties useful to think about $ (\F^{n})^{*} $ as the space of row vectors of length $ n / \F $. Suppose
+ Remark: Someties useful to think about $ (\F^{n})^{*} $ as the space of row vectors of length $ n $ over $ \F $. Suppose
  
  \[ V \text{ basis } e_{1},\cdots,e_{n}\]
- \[ V^{*} \text{ dual basis} \varepsilon_{1},\cdots,\varepsilon_{n} \]
+ \[ V^{*} \text{ dual basis } \varepsilon_{1},\cdots,\varepsilon_{n} \]
  
- $ \alpha = \sum \alpha_{i} e_{i} \in V $, $ \alpha = \sum a_{i} \varepsilon_{i} \in V^{*} $.
+\[   x = \sum x_{i} e_{i} \in V \] 
+\[ \alpha = \sum a_{i} \varepsilon_{i} \in V^{*}  \]
  
  \[ \alpha(x) = \sum_{i=1}^{n} \alpha_{i} x_{i} =   \begin{pmatrix}
  a_{1} & \cdots & a_{n}
