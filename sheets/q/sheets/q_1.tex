@@ -3,7 +3,7 @@
 \def\npart {IB}
 \def\nterm {Michaelmas}
 \def\nyear {2017}
-\def\nlecturer {?}
+\def\nlecturer {Dr Warnick}
 \def\ncourse {Quantum Mechanics Example Sheet 1}
 
 \input{header}
@@ -210,7 +210,7 @@ For separable $ \Psi(x,t) = \psi(x)f(t) $, have solutions of type
 	
 	For some normalisation constant $ C_{1} $
 	
-	\item For $ \Psi(x,0)  = \frac{1}{2}  ( \sqrt{3} \psi_{0}(x) - i \psi_{1}(x)) = \psi(x) $, and solving $ H \psi = E \psi $ for $ E $, $ \psi_{0} $ and $ \psi_{1} $ are two linearly independent solutions of this equation so must have
+	\item For $ \Psi(x,0)  = \frac{1}{2}  ( \sqrt{3} \psi_{0}(x) - i \psi_{1}(x)) = \psi(x) $, and solving $ H \psi = E \psi $ for $ E $, $ \psi_{0} $ part only has constant and $ x^{2} $ terms, whereas $ \psi_{1} $ only contains $ x $ and $ x^{3} $ terms. Thus from parts (i) and (ii) we have
 	
 	
 	\begin{align*}
@@ -218,14 +218,14 @@ For separable $ \Psi(x,t) = \psi(x)f(t) $, have solutions of type
 	& = \frac{\sqrt{3} - 3i}{2} \left( \frac{\hbar}{2} \sqrt{\frac{K}{m}} \right) 
 	\end{align*}
 	
-	Thus \[ \Psi(x,t) =  \]
+	Thus \[ \Psi(x,t) =  \frac{1}{2}  ( \sqrt{3} \psi_{0}(x) - i \psi_{1}(x)) \exp \left( - \frac{3 - i\sqrt{3}}{4} \sqrt{\frac{K}{m}} t   \right)  \]
  	
 \end{enumerate}
 
 
 \section{QUESTION 7}
 
-Note that $ \Psi(x,t) = C \gamma(t)^{-1/2} \exp(-x^{2}/2\gamma(t)) $ is not separable.
+Note that $ \Psi(x,t) = C \gamma(t)^{-1/2} \exp(-x^{2}/2\gamma(t)) $ is not separable, $ V = 0 $.
 
 
 $ t $ -dep SE 
@@ -235,9 +235,9 @@ $ t $ -dep SE
 Calculating the partial derivatives
 
 \begin{align*}
-\frac{\partial \Psi }{\partial t}& = -\frac{1}{2} \gamma' C \gamma^{-3/2} \exp(-x^{2}/2\gamma)  + C \gamma^{-1/2}  \left(\frac{x^{2}}{2 \gamma^{2}}\exp(-x^{2}/2\gamma) \right)    \\
-& = \left( - \frac{1}{2} \frac{\gamma'}{\gamma} + \frac{x^{2}}{2 \gamma^{2}} \right) C \gamma^{-1/2} \exp(-x^{2}/2\gamma) \\
-& = \left( - \frac{1}{2} \frac{\gamma'}{\gamma} + \frac{x^{2}}{2 \gamma^{2}} \right) \Psi
+\frac{\partial \Psi }{\partial t}& = -\frac{1}{2} \gamma' C \gamma^{-3/2} \exp(-x^{2}/2\gamma)  + C \gamma^{-1/2}  \left(\frac{x^{2}}{2 \gamma^{2}} \gamma' \exp(-x^{2}/2\gamma) \right)    \\
+& = \left( - \frac{1}{2} \frac{\gamma'}{\gamma} + \gamma' \frac{x^{2}}{2 \gamma^{2}} \right) C \gamma^{-1/2} \exp(-x^{2}/2\gamma) \\
+& = \left( - \frac{1}{2} \frac{\gamma'}{\gamma} + \gamma' \frac{x^{2}}{2 \gamma^{2}} \right) \Psi
 \end{align*}  
 and 
 \begin{align*}
@@ -247,27 +247,39 @@ and
 
 So t-dep SE becomes
 
-\[ i \hbar \left( - \frac{1}{2} \frac{\gamma'}{\gamma} + \frac{x^{2}}{2 \gamma^{2}} \right) \Psi = - \frac{\hbar^{2}}{2m} \left(   -\frac{1}{\gamma} + \frac{x^{2}}{\gamma^{2}} \right) \Psi + \frac{1}{2} K x^{2} \Psi \]    
+\[ i \hbar \left( - \frac{1}{2} \frac{\gamma'}{\gamma} + \gamma '\frac{x^{2}}{2 \gamma^{2}} \right) \Psi = - \frac{\hbar^{2}}{2m} \left(   -\frac{1}{\gamma} + \frac{x^{2}}{\gamma^{2}} \right) \Psi  \]    
 
 Comparing constant and $ x^{2} $ coefficients repectively,        
 
-\[ - i \hbar \frac{1}{2} \frac{\gamma'}{\gamma} = \frac{\hbar^{2}}{2m} \frac{1}{\gamma} \quad \text{ and } \quad i\hbar \frac{1}{2\gamma^{2}} = - \frac{\hbar^{2}}{2m} \frac{1}{\gamma^{2}} +  \frac{1}{2} K  \]
+\[ - i \hbar \frac{1}{2} \frac{\gamma'}{\gamma} = \frac{\hbar^{2}}{2m} \frac{1}{\gamma} \quad \text{ and } \quad i\hbar \frac{\gamma'}{2\gamma^{2}} = - \frac{\hbar^{2}}{2m} \frac{1}{\gamma^{2}}   \]
 
-Giving 
+Both reveal that
 
 
 
-\[ \gamma' = - \frac{i \hbar}{m} \quad \text{ and } \quad  \]
+\[ \gamma' = \frac{i \hbar}{m} \quad \text{ and hence } \quad \gamma = \alpha + \frac{i \hbar}{m} t  \]
 
-check notse
+where $ \alpha = \gamma(0) $
 
 
 Probability density given as 
 
 \begin{align*}
-|   \Psi(x,t)  |^{2} & = \\
-& = 
+|   \Psi(x,t)  |^{2} & = \frac{| C |^{2}}{| \gamma(t) |} e^{- \alpha x^{2} / | \gamma(t) |^{2} } \\
 \end{align*}
+
+
+localised around $ x = 0 $ on scale 
+
+\[ \frac{| \gamma(t) |}{\sqrt{\alpha}} \qquad \text{ solution "diffuses"}\]
+
+how quickly does solution ``diffuse''?
+
+Time scale $ m \alpha / \hbar  $
+
+For $ m = m_{e} $, and $ \sqrt{\alpha} = 10^{-12} $ m $ \Rightarrow $ time scale $ \sim 10^{-20} $ s
+
+For $ m = 10^{-6} $ kg, $ \sqrt{\alpha} = 10^{-6} $ m, $ \Rightarrow $ time scale $ \sim 10^{16} $ s. 
 
 \section{QUESTION 8}
 
