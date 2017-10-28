@@ -125,8 +125,10 @@ $ f(x) $ satisfies the Dirichlet conditions. The $ 1^{\text{st}} $ derivative is
 
 \section{QUESTION 2}
 
+Extending on range $ (-\pi,\pi) $ so $ L = \pi $ and
+
 \begin{enumerate}[label = (\alph*)]
-	\item \[ \frac{f(x_{+} + f(x_{-}))}{2} =  \sum_{n=1}^{\infty} b_{n} \sin \left( \frac{n \pi x}{L} \right)  \]
+	\item \[ \frac{f(x_{+} + f(x_{-}))}{2} =  \sum_{n=1}^{\infty} b_{n} \sin  n x   \]
 	
 	where 
 	\begin{align*}
@@ -163,7 +165,7 @@ $ f(x) $ satisfies the Dirichlet conditions. The $ 1^{\text{st}} $ derivative is
 	
 	\item Similarly,
 	
-	\[ \frac{f(x_{+} + f(x_{-}))}{2} =  \frac{a_{0}}{2} + \sum_{n=1}^{\infty} a_{n} \cos \left( \frac{n \pi x}{L} \right)  \]
+	\[ \frac{f(x_{+} + f(x_{-}))}{2} =  \frac{a_{0}}{2} + \sum_{n=1}^{\infty} a_{n} \cos n x  \]
 	
 	where 
 	
@@ -238,11 +240,167 @@ $ f(x) $ satisfies the Dirichlet conditions. The $ 1^{\text{st}} $ derivative is
 
 \end{enumerate}
 
+Fourier series for $ g(x) = 2x $ (odd function) in the range $ (-\pi,\pi) $ given by
+
+
+\[ \frac{f(x_{+} + f(x_{-}))}{2} =  \sum_{n=1}^{\infty} b_{n} \sin  n x   \]
+
+where 
+\begin{align*}
+b_{n} & = \frac{1}{L} \int_{-L}^{L} f(x) \sin \left( \frac{n \pi x}{L} \right) \; \d x  \\
+& = \frac{2}{\pi} \int_{-\pi}^{\pi} x \sin n x \; \d x
+\end{align*}
+
+Integrating by parts,
+
+\begin{align*}
+\int_{-\pi}^{\pi} x \sin n x \; \d x & = \left[  \frac{- x \cos n x}{n} + \frac{1}{n} \int \cos n x \; \d x \right]_{-\pi}^{\pi} \\
+& = \frac{- 2 \pi \cos n \pi}{n} + \frac{1}{n} \left[ \frac{\sin n x}{n \pi} \right]_{-\pi}^{\pi} \\
+& = \frac{- 2 \pi (-1)^{n}}{n}
+\end{align*}
+
+Whence 
+
+\[ g(x) = \sum_{n=1}^{\infty} \frac{ 4 \pi^{2} (-1)^{n+1}}{n^{2}} \sin  n x  \]
+
+
+Fourier series for $ h(x) = 2| x | $ (even function) in the range $ (-\pi,\pi) $ given by
+
+
+\[ \frac{f(x_{+} + f(x_{-}))}{2} =  \frac{1}{2} a_{0} +  \sum_{n=1}^{\infty} a_{n} \cos  n x   \]
+
+
+where 
+
+\begin{align*}
+\frac{1}{2} a_{0} & = \frac{1}{2L} \int_{-L}^{L} f(x) \; \d x \\
+& = \frac{1}{2\pi} \int_{-\pi}^{\pi} 2| x | \; \d x \\
+& = \frac{2}{\pi} \int_{0}^{\pi} x \; \d x \\
+& = \pi
+\end{align*}
+and 
+\begin{align*}
+a_{n} & = \frac{1}{L} \int_{-L}^{L} f(x) \cos \left( \frac{n \pi x}{L} \right) \; \d x  \\
+& = \frac{2}{\pi} \int_{-\pi}^{\pi} | x | \cos n x \; \d x
+\end{align*}
+
+
+
+
+
+Integrating by parts,
+
+\begin{align*}
+\int_{-\pi}^{\pi} | x | \cos n x \; \d x & = 2 \int_{0}^{\pi} x  \cos n x \; \d x \\
+& = 2 \left[ \frac{x \sin n x}{n} - \frac{1}{n} \int \sin n x \; \d x \right]_{0}^{\pi}  \\
+& = - \frac{2}{n} \int_{0}^{\pi} \sin n x \; \d x \\
+& = - \frac{2}{n} \left[ - \frac{\cos n x}{n} \right]_{0}^{\pi}\\
+& = \frac{2}{n^{2}} (\cos n \pi - 1) 
+\end{align*}
+
+Whence
+
+\[ h(x) = \pi +  \sum_{n=1}^{\infty} \frac{2}{n^{2}} ((-1)^{n} - 1)  \cos  n x \]
+
+
+
+
+
+
 
 \section{QUESTION 3}
+
+
+$ f(x) = e^{x} $ on $ (-\pi,\pi) $ has Fourier series given by 
+
+
+\[ \frac{f(x_{+} + f(x_{-}))}{2} = \frac{1}{2} a_{0} + \sum_{n=1}^{\infty} \left[ a_{n} \cos n x + b_{n} \sin n x  \right]  \]
+
+
+where 
+
+\begin{align*}
+\frac{1}{2} a_{0} & = \frac{1}{2\pi} \int_{-\pi}^{\pi} e^{x} \; \d x \\
+& = \frac{1}{2\pi} \left(  e^{\pi} - e^{-\pi} \right) \\
+& = \frac{1}{\pi} \sinh \pi
+\end{align*}
+and 
+\begin{align*}
+a_{n} & = \frac{1}{\pi} \underbrace{ \int_{-\pi}^{\pi} e^{x} \cos n x \; \d x}_{I_{a}}  \\
+I_{a} & =  \left[   e^{x} \cos n x + \int e^{x} n \sin n x  \; \d x  \right]_{-\pi}^{\pi} \\
+& = (e^{\pi} - e^{-\pi}  )\cos n \pi + n \int_{-\pi}^{\pi} e^{x} \sin n x \;\d x \\
+& = 2 \sinh \pi \;  (-1)^{n} + n \left[  e^{x} \sin n x - \int e^{x} n \cos x \; \d x  \right]_{-\pi}^{\pi} \\
+& =  2 \sinh \pi \;  (-1)^{n} + -n^{2} \int_{-\pi}^{\pi} e^{x} \cos n x \; \d x \\
+& =  2 \sinh \pi \;  (-1)^{n} + -n^{2} I_{a}
+\end{align*}
+
+Hence 
+
+\[ a_{n} = \frac{2}{\pi} \frac{1}{1 + n^{2}}  \sinh \pi \; (-1)^{n} \]
+
 \section{QUESTION 4}
+
+\begin{enumerate}
+	\item Reposing the Fourier Series of $ f(t) $ using complex variables,
+	
+	\begin{align*}
+	f(t) & = \frac{a_{0}}{2} + \sum_{n=1}^{\infty}  \left[   \frac{a_{n}}{2} \left(   e^{\frac{i n \pi t}{L}} + e^{\frac{- i n \pi t}{L}} \right) + \frac{b_{n}}{2i} \left( e^{\frac{i n \pi t}{L}} - e^{\frac{-i n \pi t}{L}} \right)   \right]  \\
+	& = \sum_{n=-\infty}^{\infty}  c_{n} e^{\frac{i n \pi t}{L}}, \\
+	c_{n} & = \frac{a_{n} - i b_{n}}{2} \; n > 0 ; \\
+	c_{-n} & = \frac{a_{n} + i b_{n}}{2} \; n > 0 ; \\
+	c_{0} & = \frac{a_{0}}{2}
+	\end{align*}
+	
+	Using the orthogonality of complex exponentials and the properties of complex Fourier coefficients, we deduce that
+	
+	\begin{align*}
+	\int_{-L}^{L} \left[  f(t) \right]^{2} \; \d t  & = \sum_{n = - \infty}^{\infty} \sum_{m = -\infty}^{\infty} c_{n} c_{m} \int_{-T}^{T} \exp \left[   \frac{i \pi t (n + m)}{L} \right]  \; \d t \\
+	& = \sum_{n = - \infty}^{\infty} \sum_{m = -\infty}^{\infty} c_{n} c_{m} 2 T \delta_{n[-m]}  \; \\ 
+	& = 2 T \sum_{n = - \infty}^{\infty} c_{n} c_{-n} \\
+	& = 2 T \sum_{n = - \infty}^{\infty} c_{n} c_{n}^{*} \\
+	& = 2 T \sum_{n = - \infty}^{\infty} | c_{n} |^{2} \\
+	\end{align*}
+	
+	This can be then re-expressed in terms of the $ a_{n} $ and $ b_{n} $ as 
+	
+	\[ \int_{-L}^{L} \left[  f(t) \right]^{2} \; \d t  = L  \left[   \frac{a_{0}^{2}}{2} +\sum_{n=1}^{\infty} (a_{n}^{2} + b_{n}^{2}) \right]  \]
+	
+	as required. 
+	 
+	\item 
+	
+\end{enumerate}
+
+
+
 \section{QUESTION 5}
 
+\section{QUESTION 6}
+
+Call $ -\d^{2} / \d x^{2} = \mathcal{L} $, and search for solutions to:
+
+\[ \mathcal{L} y_{n} = \lambda_{n} y_{n}, \quad y_{n}(0) = 0, \;  y_{n}(1) + y_{n}'(1) = 0  \]
+      
+Then  
+      
+\[ y_{n}'' + \lambda_{n} y_{n} = 0 \Rightarrow y_{n} = A \cos \sqrt{\lambda} x + B \sin \sqrt{\lambda} x \]
+
+$ y_{n}(0) = 0 \Rightarrow A = 0 $, and the second condition implies
+
+\[ B \sin \sqrt{\lambda_{n}} + B \sqrt{\lambda_{n}} \cos \sqrt{\lambda_{n}} = 0 \]
+
+$ B \neq 0 $, so we have $ \sqrt{\lambda_{n}} = - \tan \sqrt{\lambda_{n}}  $,
+
+so eigenvalues are given by the squares of the solutions to $ \xi = - \tan \xi $, $ \xi > 0 $
+
+\section{QUESTION 7}
+
+\section{QUESTION 8}
+
+
+
+
+\section{QUESTION 9}
 
 
 
