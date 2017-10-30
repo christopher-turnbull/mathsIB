@@ -336,7 +336,49 @@ I_{a} & =  \left[   e^{x} \cos n x + \int e^{x} n \sin n x  \; \d x  \right]_{-\
 
 Hence 
 
-\[ a_{n} = \frac{2}{\pi} \frac{1}{1 + n^{2}}  \sinh \pi \; (-1)^{n} \]
+\[ a_{n} = \frac{1}{\pi} I_{a} \qquad I_{a} = \frac{2}{1 + n^{2}} \sinh \pi (-1)^{n} \]
+
+Also,
+
+\[ b_{n} =  \frac{1}{\pi} \underbrace{\int_{-\pi}^{\pi}  e^{x} \sin n x \; \d x }_{I_{b}} \]
+
+\begin{align*}
+I_{b} & = \left[  e^{x} \sin n x - \int e^{x} n \cos n x \; \d x  \right]_{-\pi}^{\pi}  \\
+& = -n I_{a}
+\end{align*}
+
+\[ b_{n} = - \frac{n}{\pi} I_{a} \]
+
+Combining these results, the Fourier series for $ e^{x} $ is given by
+
+\begin{align*}
+f(x) & = \frac{1}{\pi} \sinh \pi  + \sum_{n=1}^{\infty} \left[  \left(  \frac{1}{\pi} \cos n x - \frac{n}{\pi} \sin n x \right) I_{a}  \right]  \\
+& = \frac{1}{\pi} \sinh \pi + \frac{2}{\pi} \sinh \pi \sum_{n=1}^{\infty} \left[  (\cos n x - n \sin n x) \frac{(-1)^{n}}{1+n^{2}} \right] 
+\end{align*}
+
+Setting $ x = \pi $ yields
+
+\[ e^{\pi} = \frac{1}{\pi} \sinh \pi + \frac{2}{\pi} \sinh \pi \sum_{n=1}^{\infty} \frac{1}{1+n^{2}} \]
+
+Thus
+
+\begin{align*}
+\sum_{n=1}^{\infty} \frac{1}{1+n^{2}} & = \frac{\pi e^{\pi} - \sinh \pi }{2 \sinh \pi} \\
+\end{align*}
+
+Setting $ x = -\pi $ similarly yields
+
+\begin{align*}
+\sum_{n=1}^{\infty} \frac{1}{1+n^{2}} & = \frac{\pi e^{-\pi} - \sinh \pi }{2 \sinh \pi} \\
+\end{align*}
+
+Adding and dividing by two, 
+
+\begin{align*}
+\sum_{n=1}^{\infty} \frac{1}{1+n^{2}} & = \frac{\pi (e^{\pi} + e^{-\pi}) - 2 \sinh \pi }{4 \sinh \pi} \\
+& = \frac{2 \pi \cosh \pi  - 2 \sinh \pi }{4 \sinh \pi} \\
+& = \frac{1}{2} ( \pi \coth \pi - 1)
+\end{align*}
 
 \section{QUESTION 4}
 
@@ -369,33 +411,203 @@ Hence
 	 
 	\item 
 	
+	\begin{center}
+		\begin{tikzpicture}
+		\draw [->] (-5, 0) -- (5, 0) node [right] {$t$};
+		\draw [->, use as bounding box] (0, -2.5) -- (0, 2.5) node [above] {$f(t)$};
+		\draw [-, mblue] (0, 1) node [left] {$ 1 $} -- (5, 1);
+		\draw [-, mblue] (-5, -1)  -- (0, -1)  node [right] {$ -1 $};
+		\end{tikzpicture}
+	\end{center}
+	
+	The unit amplitude square wave has Fourier series (odd function)
+	
+	\[ f(t) = \sum_{n=1}^{\infty}  b_{n} \sin \left(  \frac{n \pi t}{T} \right)  \]
+	
+	Frequencies less than $ \frac{9}{2} \pi T^{-1} $ correspond to terms in the Fourier series with $ \frac{n \pi}{T} <  \frac{9}{2} \pi T^{-1} $, ie. $ n = 1,2,3,4 $.
+	
+	Also,
+	
+	\begin{align*}
+	b_{n} & = \frac{1}{T} \int_{-T}^{T} \\
+	& = 
+	\end{align*}
+	
 \end{enumerate}
 
 
 
 \section{QUESTION 5}
 
+\begin{enumerate}
+	\item \begin{center}
+	\begin{tikzpicture}
+	\draw [->] (0, 0) -- (5, 0) node [right] {$x$};
+	\draw [->, use as bounding box] (0, 0) -- (0, 4) node [above] {$f(x)$};
+	
+	\end{tikzpicture}
+\end{center}
+
+
+$ f(x) $ on $ (0,2\pi) $ has Fourier series given by 
+
+
+\[ \frac{f(x_{+} + f(x_{-}))}{2} = \frac{1}{2} a_{0} + \sum_{n=1}^{\infty} \left[ a_{n} \cos n x + b_{n} \sin n x  \right]  \]
+
+
+where 
+
+\begin{align*}
+\frac{1}{2} a_{0} & = \frac{1}{2\pi} \int_{0}^{2\pi} f(x) \; \d x \\
+& = \frac{1}{2\pi} \int_{\pi}^{2\pi} 1 \; \d x \\
+& = \frac{1}{2}
+\end{align*}
+and 
+\begin{align*}
+a_{n} & = \frac{1}{\pi} \int_{0}^{2\pi} f(x) \cos n x    \; \d x  \\
+& = \frac{1}{\pi} \int_{\pi}^{2\pi} \cos n x \; \d x \\
+& = \frac{1}{\pi} \left[  \frac{1}{n} \sin n x \right]_{\pi}^{2\pi} \\
+& = 0
+\end{align*}
+
+and 
+
+\begin{align*}
+b_{n} & = \frac{1}{\pi} \int_{0}^{2\pi} f(x) \sin n x    \; \d x  \\
+& = \frac{1}{\pi} \int_{\pi}^{2\pi} \sin n x \; \d x \\
+& = \frac{1}{\pi} \left[  -\frac{1}{n} \cos n x \right]_{\pi}^{2\pi} \\
+& = - \frac{1}{\pi n} \left[ \cos n x  \right]_{\pi}^{2\pi} \\
+& = 0 \text{ if }  n \text{ even or } - \frac{2}{n \pi} \text{ if } n \text{ odd}  
+\end{align*}
+
+Hence 
+
+\[ f(x) = \frac{1}{2}  - \frac{2}{\pi} \sum_{n=1}^{\infty} \frac{\sin(2n -1)x}{2n - 1}  \]
+
+\item Taking the hint, differentiating term by term gives
+
+\[ \frac{\d }{\d x} [S_{n}(x)] = \frac{2}{\pi} \sum_{n=1}^{N} \cos(2n-1)x \]
+
+Now
+
+\begin{align*}
+\sum_{n=1}^{N} \cos(2n-1)x & = \Re \left[  \sum_{n=1}^{N} e^{(2n-1)i} \right]   \\
+& = \Re \left[  \frac{e^{(2N + 1)i} - e^{i}}{e^{2i} - 1} \right] 
+\end{align*}
+	
+
+	
+	
+	
+\end{enumerate}
+
 \section{QUESTION 6}
 
-Call $ -\d^{2} / \d x^{2} = \mathcal{L} $, and search for solutions to:
+Assuming the solution takes the form $ y \propto e^{\sigma x},$, we have
 
-\[ \mathcal{L} y_{n} = \lambda_{n} y_{n}, \quad y_{n}(0) = 0, \;  y_{n}(1) + y_{n}'(1) = 0  \]
-      
-Then  
-      
-\[ y_{n}'' + \lambda_{n} y_{n} = 0 \Rightarrow y_{n} = A \cos \sqrt{\lambda} x + B \sin \sqrt{\lambda} x \]
+\[ y(x) = A \cos(\mu x) + B \sin(\mu x) \]
 
-$ y_{n}(0) = 0 \Rightarrow A = 0 $, and the second condition implies
+where $ A $ and $ B $ are constants, and $ \mu^{2} = \lambda $. Applying the boundary conditions, $ y(0) = 0 $ implies that $ A = 0 $. The other boundary condition implies
 
-\[ B \sin \sqrt{\lambda_{n}} + B \sqrt{\lambda_{n}} \cos \sqrt{\lambda_{n}} = 0 \]
+\[ B \sin \mu + B \mu \cos \mu = 0 \]
 
-$ B \neq 0 $, so we have $ \sqrt{\lambda_{n}} = - \tan \sqrt{\lambda_{n}}  $,
+\[  \mu = - \tan \mu  \] 
 
-so eigenvalues are given by the squares of the solutions to $ \xi = - \tan \xi $, $ \xi > 0 $
+This eigenvalue equation has an infinite number of solutions, $ \mu_{n} $ (and hence there an infinite number of positive eigenvalues $ \lambda_{n} = \mu_{n}^{2} $).
+
+As $ n \to \infty $, $ \mu_{n} \to \infty $, so $ \mu $ is close to an odd multiple of $\frac{\pi}{2} $, ie. $ \mu_{n} \approx (2n+1)\pi/2 $, and hence $ \lambda_{n} \approx (2n+1)^{2}\pi^{2} / 4 $
+
 
 \section{QUESTION 7}
 
+\begin{enumerate}
+	\item $ p(x) = \exp \left(  \int^{x} \frac{-2u}{1-u^{2}} \; \d u \right) = (1-x^{2}) $, thus integrating factor is $ -\frac{1}{1-x^{2}} \left( (1-x^{2}) \right) = -1   $. We can then rewrite the equation as
+	
+	\[ -(1-x^{2})y'' + 2x y' - n(n+1) y = 0  \] 
+	
+	and
+	
+	\[ -\frac{\d }{\d x} \left( (1-x^{2}) \frac{\d y}{\d x} \right) - n(n+1)y = 0  \]
+	
+	\item
+	
+	
+	\begin{align*}
+	p(x) & = \exp \left(  \int^{x} \frac{(1+a+b)u - c}{u(u-1)} \; \d u \right) \\
+	& = \exp \left(  \int^{x} \frac{c}{u} + \frac{1 + a + b - c}{u-1} \; \d u \right) \\
+	& = \exp \left(  c \log x + (1 + a + b - c)\log (x-1)  \right) \\
+	& = x^{c} + (x-1)^{1 + a + b - c}
+	\end{align*}
+	
+	Thus the required integrating factor is 
+	
+	\[ - \frac{x^{c} + (x-1)^{1 + a + b - c}}{x(x-1)} \]
+	
+	The equation becomes
+	
+	\[ - (x^{c} + (x-1)^{1 + a + b - c}) y''  + -[ (1 + a + b)x - c ] \frac{x^{c} + (x-1)^{1 + a + b - c}}{x(x-1)} y' - \frac{x^{c} + (x-1)^{1 + a + b - c}}{x(x-1)} ab y = 0 \]
+	
+	which, in Sturm-Liouville form, is 
+	
+	\[ -\frac{\d }{\d x} \left[  (x^{c} + (x-1)^{1 + a + b - c}) \frac{\d y }{\d x} \right] - \frac{x^{c} + (x-1)^{1 + a + b - c}}{x(x-1)} ab y = 0  \]
+	
+	\item Self-adjoint form, integrating factor $ - e^{4x} $, 
+	
+	\[ - \frac{\d }{\d x} \left( e^{4x} \frac{\d y}{\d x} \right) -4e^{4x} y = \lambda e^{4x} y \]
+	
+	weight function is hence $ e^{4x} $.
+	
+	Easier to consider original equation; assuming the solution takes the form $ y \propto e^{\sigma x}, \; \sigma $ satisfies the auxillary equation
+	
+	\[ \sigma^{2} + 4 \sigma + 4 + \lambda = 0 \Rightarrow \sigma = -2 \pm i\sqrt{\lambda}, \]
+	
+	\[ y(x) = Ae^{-2x} \cos(\mu x) + B e^{-2x} \sin(\mu x) \]
+	
+	where $ A $ and $ B $ are constants, and $ \mu^{2} = \lambda $. Applying the boundary conditions, $ y(0) = 0 $ implies that $ A = 0 $. The other boundary condition implies
+
+	\begin{align*}
+	& B e^{-2} \sin \mu  = 0 \\
+	& \Rightarrow \mu = n \pi
+	\end{align*}
+	
+	Thus infinite positive eigenvalues $ \lambda_{n} = n^{2} \pi^{2} $
+	
+	The associated eigenvectors are thus proportional to $ e^{-2x} \sin (n \pi x) $.
+	
+	Eigenvectors associated with distinct eigenvalues are indeed orthogonal on the interval, if the weight function $ e^{4x} $ is correctly included in the inner product integral $ I_{mn} $, $ (m \neq n) $ defined as
+	
+	\[ I_{mn} = \int_{0}^{1} e^{4x} Y_{n}(x)Y_{m}(x) \; \d x \]
+	
+	where $ Y_{n} $ are $ Y_{m} $ are normalized eigenfunction with distinct eigenvalues $ \lambda_{n} = n^{2} \pi^{2} $ and $ \lambda_{m} = m^{2} \pi^{2} $
+	
+	
+	
+	
+	
+\end{enumerate}
+
+
+
 \section{QUESTION 8}
+
+The Sturm-Louville problem
+
+\[ - \frac{\d }{\d x} \left(  x \frac{\d u}{\d x} \right) = \lambda x u , \quad 0 < x < 1  \]
+
+hence with weight function $ x $, can be reposed in original form as
+
+\[ xu'' + u' + \lambda x u = 0 \]
+
+We try $ u = \sum_{n=0}^{\infty} a_{n}x^{n} $, first writing the equation in equidimensional form by multiplying by $ x $
+
+\[ (x^{2}u'') + (xu') + \lambda x^{2} u = 0 \]
+
+However we cannot find any series solutions about $ x = 0 $, as it is an irregular singular point.
+
+
+
+
+
 
 
 
