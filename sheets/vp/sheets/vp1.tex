@@ -1,4 +1,4 @@
-\documentclass[a4paper]{article}
+	\documentclass[a4paper]{article}
 \usepackage{amsmath}
 \def\npart {IA}
 \def\nterm {Michaelmas}
@@ -50,7 +50,7 @@ For $ (\pm \sqrt{2},\pm \sqrt{2},\pm \sqrt{2}) $, the Hessian is
 \end{pmatrix} \]
 
 with eigenvalues $ \lambda_{1} = \lambda_{2} = 7 $, $ \lambda_{3} = 4 $.
-As all eigenvalues are positive, both of these points are minima. Hence $ \phi $ takes it's minimum value at both of these two points, and this minimum value is:
+As all eigenvalues are positive, both of these points are minima. Hence $ \phi $ takes a \emph{local} minimum value at both of these two points, and this minimum value is:
 
 \begin{align*}
 \phi (\pm \sqrt{2},\pm \sqrt{2},\pm \sqrt{2}) & = \frac{1}{4}( 3  (\sqrt{2})^{4} ) - 3(2)\\
@@ -76,7 +76,7 @@ Now let $ x_{i} = R_{ij} x_{j}' $ for some rotation matrix $ R $, which we can c
 & = \frac{1}{2}\left( x_{1}' + x_{2}' - 2x_{3}' \right)  
 \end{align*}
 
-The surface here becomes $ x_{3}' = \frac{1}{2} (x_{1}' + x_{2}') $. Geometrically, we see this is a cone with semi-angle $ \arctan \sqrt{2} $
+So for surface $ \phi = 0 $ we need $ x_{3}' = \frac{1}{2} (x_{1}' + x_{2}') $.  ie. cone with semi-angle $ \arctan \sqrt{2} $
 
 
 
@@ -106,7 +106,7 @@ The surface here becomes $ x_{3}' = \frac{1}{2} (x_{1}' + x_{2}') $. Geometrical
 	
 	\[ \iff [ (1 - t)x_ + t x' ]^{2}y y' = [(1-t) x^{2}y' + t(x')^{2}y][(1-t)y + y']  \]
 	\[ \iff 2t(1-t) xx'yy' \leq t(1-t)\left[ x^{2}(y')^{2} +  (x')^{2}y^{2}\right]  \]
-	\[ \iff \left[  xy' + x'y \right] \geq 0 \]
+	\[ \iff \left[  xy' + x'y \right]^{2} \geq 0 \]
 	
 	where the last inequality is trivially true. Hence convexity follows.
 	

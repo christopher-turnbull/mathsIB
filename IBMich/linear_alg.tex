@@ -2083,5 +2083,146 @@ Note: $ r(\varphi) = r(\varphi_{L}) = r(\varphi_{R}) $
 	\end{align*}
 \end{proof}
 
+\subsection{Determinants}
+
+
+\[ S_{n} = \text{group of permutations of } \{ 1,\cdots,n \} \]
+
+Define $ \varepsilon_{n} : S_{n} \to \{ -1,1 \} $ as
+
+\[ \varepsilon(\sigma) = \begin{cases} +1  & \text{ if } \sigma \text{ product of even no. of transposes} \\-1  & \text{ if } \sigma \text{ product of odd no. of transposes}\end{cases} \] 
+
+\begin{defi}
+	Let $ A \in M_{n}(\F), A = (a_{ij})$. Then
+	
+	\[ det(A) = \sum_{\sigma \in S} \varepsilon(\sigma) a_{\sigma(1)1}a_{\sigma(2)2}\cdots a_{\sigma(n)n} \]
+\end{defi}
+
+There are $ n! $ summands, each is sign $ \times $ product of $ n $ elements (one for each row and each column).
+
+Eg $ n = 2 $,
+
+\[ \det \begin{pmatrix}
+a_{11} & a_{12} \\
+a_{21} & a_{22}
+\end{pmatrix} = \underbrace{a_{11}a_{22}}_{\sigma = \id } - \underbrace{a_{12}a_{21}}_{\sigma = (1 2)}  \]
+
+
+\begin{lemma} 
+	If $ A = (a_{ij}) $ is an upper triangular matrix (ie. $ a_{ij} = 0  $ if $ i > j $) then $ \det A = a_{11}a_{22}\cdots a_{nn} $. Similar for lower triangular matrices (ie. $ a_{ij} = 0 $ if $ i < j $).
+\end{lemma}
+
+
+\begin{proof}
+	\[ \det(A) = \sum_{\sigma \in S_{n}}  \varepsilon(\sigma)a_{\sigma(1)1}\cdots a_{\sigma(n)n}  \]
+	
+	For a summand to be non-zero, need $ \sigma(j) \leq j \; \forall \; j $. Thus $ \sigma = \id $
+\end{proof}
+
+\begin{lemma} 
+	\[ \det(A) = \det(A^{T}) \]
+\end{lemma}
+\begin{proof}
+	\begin{align*}
+	\det(A)  & = \sum_{\sigma \in S_{n}}  \varepsilon(\sigma) \times \prod_{i=1}^{n} a_{\sigma(i)i}   \\
+	& = \sum_{\sigma \in S_{n}} \underbrace{\varepsilon(\sigma)}_{= \varepsilon^{-1}} \prod_{i=1}^{n} a_{i \sigma^{-1}(i)} \\
+	& = \sum_{\tau \in S_{n}} \varepsilon(\tau) \prod_{i=1}^{n}a_{i \tau(i)} \qquad (\sigma^{-1} = \tau)\\
+	& = \det (A^{T})
+	\end{align*}
+\end{proof}
+
+\begin{defi}
+	A \emph{volume form} on $ \F^{n} $ is a function:
+	
+	\[ d : \underbrace{\F^{n} \times \F^{n} \times \cdots \times \F^{n}}_{n \text{ copies}} \to \F  \] such that
+	
+	\begin{enumerate}
+		\item $ d $ is \emph{multilinear}: for any $ i $ and $ v_{1},\cdots,v_{i-1},v_{i},v_{i+1},\cdots,v_{n} \in \F^{n} $, \[ d(v_{1},v_{2},\cdots,v_{i-1},-,v_{i+1},\cdots,v_{n}) \in (\F^{n})^{*} \]
+		\item $ d $ is \emph{alternating}: if $ v_{i} = v_{j} $ for $ i \neq j $, then $ d(v_{1},\cdots,v_{n}) = 0$
+		
+	\end{enumerate}
+\end{defi}
+
+Note that the notation we will use will look like
+
+\[ A = (a_{ij}) = (A^{(1)} \; | \; A^{(2)} \; | \; \cdots \; | A^{(n)}   ) \]
+
+If $ \{ e_{i} \} $ is the standard basis for $ \F^{n} $ then 
+
+\[ I = (  e_{1} \; | \; \cdots \; | \; e_{n} ) \]
+
+
+\begin{lemma} 
+	\[ \det : \F^{n} \times \cdots \times \F^{n} \]
+	
+	\[ (A^{(1)},\cdots,A^{(n)} ) \mapsto \det (A) \text{ is a volume form} \]
+	
+\end{lemma}
+
+
+\begin{proof}
+	\begin{enumerate}
+		\item Multilinear: For any fixed $ \sigma \in S_{n} $, $ \prod_{i=1}^{n} a_{\sigma(i)} $ contains exactly one term from each column, and so is multilinear. Now use the fact that the sum of multilinear functions is multilinear. 
+		
+		\item Alternating: Suppose $ A^{(k)} = A^{(J)} $, for $ J \neq k $. Let $ \tau = (k J) $ transpo $ a_{ij} = a_{i \tau(J)} \; \forall \; i,j \in \{ 1,\cdots,n \}$, $ S_{n} = A_{n} \sqcup \tau A_{n} $, where $ \sqcup $ is disjoint union. 
+		
+		\begin{align*}
+		\det(A) & = \sum_{\sigma \in A_{n}} \prod a_{i\sigma(i)} - \sum_{\sigma \in A_{n}} \prod a_{i  \tau(\sigma(i))  } \\
+		& = \sum_{\sigma \in A_{n}} \prod a_{i\sigma(i)} - \sum_{\sigma \in A_{n}} \prod a_{i\sigma(i)}\\
+		& = 0
+		\end{align*}
+		
+	\end{enumerate}
+\end{proof}
+
+
+\begin{lemma} 
+	Let $ d $ be a volume form. Then swapping two entries changes the sign.
+	
+	\[ d(v_{1},\cdots,v_{i},\cdots,v_{j},\cdots,v_{n}) = -d(v_{1},\cdots,v_{j},\cdots, v_{i},\cdots,v_{n} ) \]
+\end{lemma}
+
+\begin{proof}
+	\begin{align*}
+	0 & = d(v_{1},\cdots,v_{i-1},v_{i} + v_{j},v_{i+1}\cdots,v_{j-1},v_{j} + v_{i},v_{j+1},\cdots,v_{n}) \\
+	& = d(v_{1},\cdots,v_{i},\cdots,v_{i},\cdots,v_{n}) + d(v_{1},\cdots,v_{j},\cdots,v_{i},\cdots,v_{n}) \\
+	& + d(v_{1},\cdots,v_{i},\cdots,v_{j},\cdots,v_{n})  + d(v_{1},\cdots,v_{j},\cdots,v_{j},\cdots,v_{n})  \\
+	& = d(v_{1},\cdots,v_{j},\cdots,v_{i},\cdots,v_{n}) + d(v_{1},\cdots,v_{i},\cdots,v_{j},\cdots,v_{n}) 
+	\end{align*}
+\end{proof}
+
+\begin{cor} 
+	If $ \sigma \in S_{n} $, $ d(v_{\sigma(1)}, \cdots, v_{\sigma(n)} ) = \varepsilon(\sigma)d(v_{1},\cdots,v_{n})  $
+	
+\end{cor}
+
+
+\begin{thm} 
+	Let $ d $ be a volume form on $ \F^{n} $. $ A = (A^{(1)}  \; | \; \cdots \; | \; A^{(n)}  ) $. Then 
+	
+	\[ d(A^{(1)}, \cdots, A^{(n)} ) = \det(A) \times d(e_{1},\cdots,e_{n}) \]
+\end{thm}	
+	\begin{proof}
+		\begin{align*}
+		d(A_{1},\cdots,A^{n}) & = d \left(  \sum_{i=1}^{n} a_{ij} e_{i}, A^{(2)}, \cdots, A^{(n)} \right)  \\
+		& = \sum_{i=1}^{n} a_{i1} d(e_{i}, A^{(2)},\cdots,A^{(n)} ) \\
+		& = \sum_{i} \sum_{j} a_{i1}a_{j2} d(e_{i},e_{j},A^{(3)},\cdots,A^{(n)}) \\
+		& = \sum_{i_{1},\cdots,i_{n}} \prod_{k=1}^{n} a_{ik} \underbrace{d(e_{i_{1}},e_{i_{2}}, \cdots, e_{i_{n}})}_{0 \text{ unless all of } i_{k} \text{ are distinct}\footnote{\text{ie. $ \sigma \in S_{n} $ s.t. $ i_{k} = \sigma(k)$}  }} \\
+		& = \sum_{i_{1},\cdots,i_{n}} \prod_{k=1}^{n} A_{\sigma(k)k} \underbrace{d(e_{\sigma(1)}, \cdots, e_{\sigma(n)})}_{ = \varepsilon(\sigma) d(e_{1},\cdots,e_{n}) }
+		\end{align*}
+	\end{proof}
+
+
+\begin{cor} det is the unique volume form s.t.
+	
+	\[ d(e_{1},\cdots,e_{n})  = 1\]
+	
+\end{cor}
+	
+
+
+
+
+
 
 \end{document}

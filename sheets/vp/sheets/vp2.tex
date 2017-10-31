@@ -1,0 +1,42 @@
+	\documentclass[a4paper]{article}
+\usepackage{amsmath}
+\def\npart {IA}
+\def\nterm {Michaelmas}
+\def\nyear {2017}
+\def\nlecturer {Mx Tsang}
+\def\ncourse {Variational Principles Example Sheet 2}
+
+\input{header}
+
+\newtheorem*{soln}{Solution}
+
+\renewcommand{\thesection}{}
+\renewcommand{\thesubsection}{\arabic{section}.\arabic{subsection}}
+\makeatletter
+\def\@seccntformat#1{\csname #1ignore\expandafter\endcsname\csname the#1\endcsname\quad}
+\let\sectionignore\@gobbletwo
+\let\latex@numberline\numberline
+\def\numberline#1{\if\relax#1\relax\else\latex@numberline{#1}\fi}
+\makeatother
+
+
+\begin{document}
+	
+\maketitle
+
+\section{QUESTION 1}
+
+\begin{align*}
+F[x + \delta x] - F[x] & = \int_{t_{1}}^{t_{2}} f(x + \delta x, \dot{x} + \delta \dot{x}, \ddot{x} + \delta \ddot x, t ) \; \d t - \int_{t_{1}}^{t_2} f(t,x,\dot{x},\ddot{x}) \; \d t   \\
+& = 
+\end{align*}
+
+
+
+
+
+
+
+
+
+\end{document}
