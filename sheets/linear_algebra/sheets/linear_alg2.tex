@@ -1,0 +1,258 @@
+\documentclass[a4paper]{article}
+\usepackage{amsmath}
+\def\npart {IB}
+\def\nterm {Michaelmas}
+\def\nyear {2017}
+\def\nlecturer {Mr Rawlinson ( jir25@cam.ac.uk )}
+\def\ncourse {Linear Algebra Sheet 2}
+
+\input{header}
+\newtheorem*{soln}{Solution}
+
+\renewcommand{\thesection}{}
+\renewcommand{\thesubsection}{\arabic{section}.\arabic{subsection}}
+\makeatletter
+\def\@seccntformat#1{\csname #1ignore\expandafter\endcsname\csname the#1\endcsname\quad}
+\let\sectionignore\@gobbletwo
+\let\latex@numberline\numberline
+\def\numberline#1{\if\relax#1\relax\else\latex@numberline{#1}\fi}
+\makeatother
+
+
+\begin{document}
+	
+	\maketitle
+	
+\section{QUESTION 1}
+
+The three types of elementary matrices are:
+
+\begin{enumerate}
+	\item $ \begin{pmatrix}
+	1\\
+	& \ddots\\
+	& & 1\\
+	& & & 0 & & & & 1\\
+	& & & & 1\\
+	& & & & & \ddots\\
+	& & & & & & 1\\
+	& & & 1 & & & & 0\\
+	& & & & & & & & 1\\
+	& & & & & & & & & \ddots\\
+	& & & & & & & & & 1
+	\end{pmatrix} $
+	
+	The zeros appear in row $ i $, row $ j $.
+	This swaps column $ i $ and column $ j $, and is self-inverse.
+	
+	\item $ \begin{pmatrix}
+	1 & & & & & &\\
+	& \ddots & & & & & \\
+	& & 1 & & & & \\
+	& & & \lambda & & & \\
+	& & & & 1 & & \\
+	& & & & & \ddots & \\
+	& & & & & & 1
+	\end{pmatrix} $
+	
+	with $ \lambda $ in the $ i^{\text{th}} $ row. (Multiplies column $ i $ by $ \lambda $) This has inverse
+	
+	$ \begin{pmatrix}
+	1 & & & & & &\\
+	& \ddots & & & & & \\
+	& & 1 & & & & \\
+	& & & \frac{1}{\lambda} & & & \\
+	& & & & 1 & & \\
+	& & & & & \ddots & \\
+	& & & & & & 1
+	\end{pmatrix} $
+	
+	\item $ I_{n} + \lambda E_{ij}  $, where $ E_{ij} $ is defined as $ 1 $ in the $ (i,j) $ position and $ 0 $ everywhere else. ($ i \neq j $). This has inverse $ I_{n} + \lambda E_{ij}  $.
+	
+	
+	
+\end{enumerate}
+
+To find inverse of this matrix, we
+
+\begin{itemize}
+	\item add column 1 to column 2
+	\item swap rows 2 and 3
+	\item add row 3 to row 2
+	\item multiply row 2 by $ \frac{1}{3} $.
+\end{itemize}
+
+\[ \begin{pmatrix}
+1 & -1 & 0\\
+0 & 0 & 1 \\
+0 & 3 & -1
+\end{pmatrix}
+\begin{pmatrix}
+1 & -1 & 0\\
+0 & 0 & 1 \\
+0 & 3 & -1
+\end{pmatrix}
+\]
+
+
+\section{QUESTION 2}
+
+\begin{thm} Any $ m \times n $ matrix is equivalent to \[ \begin{pmatrix}
+	I_{r} & \cdots & 0 \\
+	\vdots & \ddots & \vdots \\
+	0 & \cdots & 0  \end{pmatrix} \]  for some $ r $, where $ r $ is the (column) rank of the matrix. 
+	
+\end{thm}
+
+Therefore,
+
+??????
+
+
+\section{QUESTION 3}
+
+If $ V $ is the vector space with finite basis $\mathcal{B} =  \{ x_{1},x_{2},x_{3},x_{4} \} $ then there is a basis for $ V^{*} $, given by $ \mathcal{B}^{*} = \{  \xi_{1},\xi_{2},\xi_{3},\xi_{4} \} $ where
+
+\[ \xi_{j}  \underbrace{\left(  \sum_{i=1}^{4} a_{i}x_{i} \right)}_{\in V} = a_{j} \quad 1 \leq j \leq 4 \qquad (*) \]
+
+\begin{enumerate}[label=(\alph*)]
+	\item By (*), the dual basis is
+	
+	\[ \{  \xi_{2}, \xi_{1},\xi_{4},\xi_{3} \} \]
+	
+	\item we have $ \xi_{2}  \left(  \sum_{i=1}^{4} a_{i}x_{i} \right)  = a_{2} \Rightarrow \xi_{2} (  a_{2}x_{2} ) = a_{2} $. Hence clear to see dual basis is  
+	
+	\[ \{  \xi_{1}, \frac{1}{2} \xi_{2}, 2 \xi_{3},\xi_{4} \} \]
+	
+	\item Call the new dual basis $ \{  \eta_{1},\eta_{2},\eta_{3},\eta_{4} \} $. It is clear that $ \eta_{1} = \xi_{1} $. To find $ \eta_{2} $, we aim to solve the system of linear equations
+	
+	
+\begin{align*}
+\eta_{2}(x_{1} +x_{2})  & = 0  \\
+\eta_{2}(x_{2}+x_{3}) & = 1 \\
+\eta_{2}(x_{3} + x_{4}) & = 0 \\
+\eta_{2} (x_{4}) & = 0
+\end{align*} 
+
+
+and we deduce that $ \eta_{2} = \xi_{2} - \xi_{1} $. Similarly, $ \eta_{3} = \xi_{3} - \xi_{2} $, $ \eta_{4} = \xi_{4} - \xi_{3} $.
+
+\[ \{  \xi_{1}, \xi_{2} - \xi_{1}, \xi_{3} - \xi_{2}, \xi_{4} - \xi_{3}  \} \]
+
+\item Similar method to (c), the dual basis is:
+
+\[ \{  \xi_{1} + \xi_{2}, \xi_{2} + \xi_{3}, \xi_{3} + \xi_{4}, \xi_{4}  \} \]
+
+\end{enumerate}
+
+
+
+
+
+\section{QUESTION 4}
+
+We have that $ \tau_{A}(B) = \sum_{i} \sum_{j} a_{ij} b_{ji}    $, so linearity follows immediately by the definition of the sum. 
+
+Next, want to show that $ \tau_{A}(A) $ defines an iso from $ \text{Mat}_{m,n}(\F) $ to $ \text{Mat}_{m,n}(\F)^{*} $, ie. $ L ( \text{Mat}_{m,n}(\F), \F  ) $ Have already show linearity. Easy to see this is well defined. 
+\begin{itemize}
+	\item Injective: (Not sure)
+	
+	\item Surjective: Can we just pick a matrix such that the trace gives us any scalar in $ \F $ to show surjectivity?
+\end{itemize}
+
+
+\section{QUESTION 5}
+
+\begin{enumerate} [label = (\alph*)]
+	\item Suppose two such endomorphisms exists, with matrices $ A $, $  $ respectively. Take the trace of both sides of the equation. As $ \text{tr}(AB) = \text{tr}(BA)  $, clearly the LHS is zero, but the RHS is $ \dim V $. Contradiction. 
+	
+	\item Define
+	
+	\[ \alpha : V \to V \qquad \beta : V \to V \]
+	\[ f(x) \mapsto xf(x) \qquad f(x) \mapsto f'(x) \]
+	
+	Then
+	
+	\begin{align*}
+	(\alpha\beta - \beta \alpha)(f) & = (xf)'  - xf'  \\
+	& = f
+	\end{align*}
+	
+	That is, $ \alpha \beta- \beta \alpha = \id_{V} $
+	
+\end{enumerate}
+
+
+
+
+
+\section{QUESTION 6}
+
+Say $ u = \underbrace{\sum x_{i} e_{i}}_{\in U} $, $ v = \underbrace{  \sum  y_{j}f_{j}}_{\in V} $.
+
+\begin{align*}
+\psi(u,v) & = \psi \left(   \sum x_{i} e_{i},  \sum  y_{j}f_{j} \right)  \\
+& = \sum_{i} x_{i} \psi \left(  e_{i}, \sum_{j} y_{j} f_{j}  \right) \\
+& = \sum_{i,j} x_{i} \psi(e_{i},f_{j}) y_{j}
+\end{align*}
+
+
+So in some basis where $  \psi(e_{i},f_{j}) = \delta_{ij} $, this is $ \sum_{i} x_{i} y_{i} $
+
+(not sure why this exists?)
+
+The left and right maps are determined by
+
+\[ \varphi_{L} : U \to V^{*} \qquad \text{ and } \qquad \varphi_{R} : V \to U^{*} \]
+
+\[ \varphi_{L}(u)(v) = \varphi(u,v) \qquad \text{ and } \qquad \varphi_{R}(v)(u) = \varphi(u,v) \]
+
+
+
+\section{QUESTION 7}
+
+\begin{enumerate}[label = (\alph*)]
+	\item Since $ a_{i} $ distinct, all columns of $ A $ are linearly independent, so the matrix is of full rank. Thus $ n(A) = 0 $ by rank nulity, and $ \det A \neq 0 $
+	
+	
+	
+	
+\end{enumerate}
+
+
+\section{QUESTION 8}
+
+\begin{enumerate}
+	\item \begin{align*}
+	\text{adj }(AB)  & =  \det(AB) (AB)^{-1}  \\
+	& = \det(A)\det(B)B^{-1}A^{-1} \\
+	& = \det(B) B^{-1} \det(A) A^{-1} \\
+	& = \text{adj }(B) \text{adj }(A)
+	\end{align*}
+	
+	\item \begin{align*}
+	\det (\text{adj } A)& = \\
+	& = \det ( \det (A) A^{-1} ) \\
+	& = \det ( \det(A) I ) \det (A^{-1})
+	& = (\det A)^{n} (\det A)^{-1} \\
+	& = (\det A)^{n-1}
+	\end{align*}	
+	
+	\item \begin{align*}
+	\text{adj } (\text{adj } A)& = \text{adj } (  \det(A) A^{-1} ) \\
+	& = \det ( \det (A) A^{-1} ) ( \det (A) A^{-1} )^{-1} \\
+	& = (\det A)^{n-1} A (\det A)^{-1} \\
+	& = (\det A)^{n-2} A 
+	\end{align*}
+\end{enumerate}
+
+
+
+\section{QUESTION 9}
+\section{QUESTION 10}
+\section{QUESTION 11}
+
+	
+	
+	
+\end{document}	

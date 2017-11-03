@@ -1363,11 +1363,15 @@ For row operations, multiply on the left
 \end{pmatrix} \]	
 \end{ex}
 
- 
-\[ \begin{pmatrix}
-I_{r} & \cdots & 0 \\
-\vdots & \ddots & \vdots \\
-0 & \cdots & 0  \end{pmatrix} \]
+
+
+
+\begin{thm} Any $ m \times n $ matrix is equivalent to \[ \begin{pmatrix}
+	I_{r} & \cdots & 0 \\
+	\vdots & \ddots & \vdots \\
+	0 & \cdots & 0  \end{pmatrix} \]  for some $ r $
+	
+\end{thm}
 
 \begin{proof}
 	Start with $ A $. If all entries of $ A $ are $ 0 $, we're done ($ r = 0 $). If not, some $ a_{ij} = \lambda \neq 0 $.
@@ -1915,7 +1919,7 @@ Note: $ [\varphi]_{\mathcal{B},\mathcal{C}} $ is the unique representation with 
 
 Note: $ \varphi: U \times V \to \F $ bilinear, determines linear maps 
 
-\[ \varphi_{L} U \to V^{*} \qquad \text{ and } \qquad \varphi_{R} : V \to U^{*} \]
+\[ \varphi_{L} : U \to V^{*} \qquad \text{ and } \qquad \varphi_{R} : V \to U^{*} \]
 
 \[ \varphi_{L}(u)(v) = \varphi(u,v) \qquad \text{ and } \qquad \varphi_{R}(v)(u) = \varphi(u,v) \]
 
