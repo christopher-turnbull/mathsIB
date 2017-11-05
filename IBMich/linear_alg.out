@@ -16,3 +16,9 @@
 \BOOKMARK [1][-]{section.5}{Determinant and Trace}{}% 16
 \BOOKMARK [2][-]{subsection.5.1}{Trace}{section.5}% 17
 \BOOKMARK [2][-]{subsection.5.2}{Determinants}{section.5}% 18
+\BOOKMARK [3][-]{subsubsection.5.2.1}{Determinants of Linear Maps}{subsection.5.2}% 19
+\BOOKMARK [3][-]{subsubsection.5.2.2}{Determinants of Block Triangular Matrices}{subsection.5.2}% 20
+\BOOKMARK [3][-]{subsubsection.5.2.3}{Elementary Operations and Det}{subsection.5.2}% 21
+\BOOKMARK [3][-]{subsubsection.5.2.4}{Column Expansion and Adjugate Matrices}{subsection.5.2}% 22
+\BOOKMARK [2][-]{subsection.5.3}{Systems of Linear Equations}{section.5}% 23
+\BOOKMARK [3][-]{subsubsection.5.3.1}{The Cramer Rule}{subsection.5.3}% 24

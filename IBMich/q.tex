@@ -1381,7 +1381,7 @@ In one dimension, we can consider an incident wavepacket $ \Psi_{\text{inc}} $ i
 	\begin{tikzpicture}[xscale=0.75, yscale=1.5]
 	\draw [ ->](-9, 0) -- (9, 0) node[right] {$x$};
 	\draw [ ->](0, 0) -- (0,1.3) node[above] {$ V(x) $};
-	\draw [dashed] (-6, -0.5) node[below] {$ \Psi_{\text{inc}}  $} -- (-6,1.3) ;
+	\draw [dashed] (-6, -0.5) node[below] {$ \Psi_{\text{ref}}  $} -- (-6,1.3) ;
 	\draw [->] (-6, 1) -- (-7, 1);
 	\draw [->] (6, 1) -- (7, 1);
 	\draw [dashed] (6, -0.5) node[below] {$ \Psi_{\text{tr}}  $} -- (6,1.3) ;
@@ -1401,7 +1401,7 @@ Recall eigenstates of $ \hat{p} = - i \hbar \frac{\partial }{\partial x} $ are
 
 and these are \emph{not} normalisable on $ - \infty < x < \infty $.
 
-Could impose \emph{periodic boundary conditions} $ \phi(x + l) = \phi(x) $ and restrict to an interval or ``box'' $ - \frac{l}{2} \leq x \leq \frac{l}{2} $. Then eigenstates can be normalised and we can talk $ l \to \infty $ after completing calculations.
+Could impose \emph{periodic boundary conditions} $ \phi(x + l) = \phi(x) $ and restrict to an interval or ``box'' $ - \frac{l}{2} \leq x \leq \frac{l}{2} $. Then eigenstates can be normalised and we can take $ l \to \infty $ after completing calculations.
 
 A convenient alternative is to allow \emph{non-normalisable} but bounded wavefunctions. For $ V = 0 $:
 
@@ -1412,7 +1412,7 @@ stationary state with $ E = \hbar^{2} k^{2} / 2m $
 Interpretation:
 
 \begin{enumerate}
-	\item bean of particles, each with momentum and $ p = \hbar k $ and energy $ E = - \hbar^{2} k^{2} / 2m $.
+	\item beam of particles, each with momentum and $ p = \hbar k $ and energy $ E = - \hbar^{2} k^{2} / 2m $.
 	\item average particle density (number per unit length) is $ | C |^{2} $.
 	\item \emph{Flux} on particles is given by the current 
 	
@@ -1423,7 +1423,7 @@ Interpretation:
 	
 	\[ \Psi(x,t) = (  C_{+} e^{ikx}   + C_{-}  e^{-ikx}   ) e^{-iEt/\hbar}  \]
 	
-	$ p = \hbar k $, $ p = -hbar k $ same energy.
+	$ p = \hbar k $, $ p = -\hbar k $ same energy.
 	
 	\begin{align*}
 	\Rightarrow J(x,t) & = | C_{+} |^{2} \frac{\hbar k}{m} + | C_{-} |^{2}  \left(  - \frac{\hbar k}{m} \right) \qquad (\text{cross terms cancel})   \\
@@ -1514,8 +1514,210 @@ Consider solution $ \Psi(x,t) = \phi(x) e^{-iEt/\hbar} $ to SE with potential
 	\[ P_{\text{tr}} = \frac{| J_{\text{tr}} |}{ | J_{\text{inc}} |} = \frac{| T |^{2}}{| I |^{2}} \frac{l}{k}  = \frac{4kl}{(k+1)^{2}}  \]	
 		
 		
+	\item $ 0 < E < U $
+	
+	
+		Set 
+	
+	\[ E = \frac{\hbar^{2} k^{2}}{2m}  \qquad U - E = \frac{\hbar^{2} \lambda^{2}}{2m} \quad (k,\lambda > 0) \]
+	
+	SE becomes
+	
+	\[ \phi'' + k^{2} \phi = 0 \qquad  \phi'' - \lambda^{2} \phi = 0 \]
+	
+	\[ x < 0 \qquad x > 0 \]
+	
+	Interpret as inc, ref beams with
+	
+	\begin{align*}
+	J & = J_{\text{inc}} + J_{\text{ref}} \\
+	& = | I |^{2} \frac{\hbar k}{m} + | R |^{2} \left(  - \frac{\hbar k}{m} \right)  
+	\end{align*}
+	
+	for $ x < 0 $, and $ J = 0 $ for $ x > 0 $.
+	
+	Match solutions at $ x = 0 $
+	
+	
+	\[ \phi \text{ continuous } I + R = c \]
+	\[ \phi' \text{ continuous } ik I - i k R = - \lambda c \]
+	
+	\[ \Rightarrow  R = \frac{k-i \lambda}{k+ i \lambda} I \qquad c = \frac{2k}{k+i \lambda}I \]
+	
+	
+	Probability of reflection 
+	
+	\[ P_{\text{ref}} = \frac{| J_{\text{ref}} |}{ | J_{\text{inc}} |} = \frac{|R|^{2}}{| I |^{2}} = 1  \]
+	
+	All particles reflected: consistent with $ J_{\text{tr}} = 0 $.
+	
+		
 	\end{enumerate}
 
+
+Note that in case (i), non-zero probability of reflection, contrary to classical explanation. In case (ii) all particles reflected but $ \psi \neq 0 $ for $ (x > 0) $.
+
+\subsection{Potential Barrier and Tunneling}
+
+Consider the following potential:
+\begin{center}
+	\begin{tikzpicture}
+	\draw [->] (-3, 0) -- (5.5, 0) node [right] {$x$};
+	\draw [->] (2, 0) -- (2, 3) node [above] {$V$};
+	\node [left] at (2, 2) {$U$};
+	\node [below] at (2, 0) {$0$};
+	
+	\node [below] at (3, 0) {$a$};
+	\draw [mred, semithick] (-3, 0) -- (2, 0) -- (2, 2) -- (3, 2) -- (3, 0) -- (5, 0);
+	\end{tikzpicture}
+\end{center}
+
+\[
+V(x) =
+\begin{cases}
+0 & x \leq 0\\
+U & 0 < x < a\\
+0 & x \geq a
+\end{cases}
+\]
+
+We consider a stationary state with energy $E$ with $0 < E < U$. We set the constants
+\[
+E = \frac{\hbar^2 k^2}{2m},\quad U - E = \frac{\hbar^2\kappa^2}{2m}.
+\]
+Then the Schr\"odinger equations become
+\begin{align*}
+\psi'' + k^2 \psi &= 0 && x < 0\\
+\psi'' - \kappa^2 \psi &= 0 && 0 < x < a\\
+\psi'' + k^2 \psi &= 0 && x > a
+\end{align*}
+So we get
+\begin{align*}
+\psi &= I e^{ikx} + Re^{-ikx}&& x < 0\\
+\psi &= Ae^{\kappa x} + Be^{-\kappa x}&& 0 < x < a\\
+\psi &= Te^{ikx} && x > a
+\end{align*}
+Matching $\psi$ and $\psi'$ at $x = 0$ and $a$ gives the equations
+\begin{align*}
+I + R &= A + B\\
+ik(I - R) &= \kappa (A - B)\\
+A e^{\kappa a} + Be^{-\kappa a} &= Te^{ika}\\
+\kappa(Ae^{\kappa a} - Be^{-\kappa a}) &= ik Te^{ika}.
+\end{align*}
+We can solve these to obtain
+\begin{align*}
+I + \frac{\kappa - ik}{\kappa + ik}R &= Te^{ika} e^{-\kappa a}\\
+I + \frac{\kappa + ik}{\kappa - ik}R &= Te^{ika} e^{\kappa a}.
+\end{align*}
+After \st{lots of} \emph{some} algebra, we obtain
+\begin{align*}
+T &= I e^{-ika}\left(\cosh \kappa a - i\frac{k^2 - \kappa^2}{2k\kappa} \sinh \kappa a\right)^{-1}
+\end{align*}
+To interpret this, we use the currents
+\[
+j = j_{\mathrm{inc}} + j_{\mathrm{ref}} = (|I|^2 - |R|^2) \frac{\hbar k}{m}
+\]
+for $x < 0$. On the other hand, we have
+\[
+j = j_{\mathrm{tr}} = |T|^2 \frac{\hbar k}{m}
+\]
+for $x > a$. We can use these to find the transmission probability, and it turns out to be
+\[
+P_{\mathrm{tr}} = \frac{|j_{\mathrm{tr}j}|}{|j_{\mathrm{inc}}|} = \frac{|T|^2}{|I|^2} = \left[1 + \frac{U^2}{4E(U - E)} \sinh^2 \kappa a\right]^{-1}.
+\]
+This demonstrates \emph{quantum tunneling}. There is a non-zero probability that the particles can pass through the potential barrier even though it classically does not have enough energy. In particular, for $\kappa a \gg 1$, the probability of tunneling decays as $e^{-2\kappa a}$. This is important, since it allows certain reactions with high potential barrier to occur in practice even if the reactants do not classically have enough 
+energy to overcome it.
+
+\subsection{General features of stationary states}
+We are going to end the chapter by looking at the difference between bound states and scattering states in general.
+
+Consider the time-independent Schr\"odinger equation for a particle of mass $m$
+\[
+H\psi = -\frac{\hbar^2}{2m}\psi'' + V(x) \psi = E\psi,
+\]
+with the potential $V(x) \to 0$ as $x \to \pm \infty$. This is a second order ordinary differential equation for a complex function $\psi$, and hence there are two complex constants in general solution. However, since this is a linear equation, this implies that 1 complex constant corresponds to changing $\psi \mapsto \lambda \psi$, which gives no change in physical state. So we just have one constant to mess with.
+
+As $|x| \to \infty$, our equation simply becomes
+\[
+-\frac{\hbar^2}{2m} \psi'' = E\psi.
+\]
+So we get
+\[
+\psi \sim
+\begin{cases}
+Ae^{ikx} + Be^{-ikx} & E = \frac{\hbar^2 k^2}{2m} > 0\\\
+Ae^{\kappa x} + Be^{-\kappa x} & E = -\frac{\hbar^2 \kappa^2}{2m} < 0.
+\end{cases}
+\]
+So we get two kinds of stationary states depending on the sign of $E$. These correspond to bound states and scattering states.
+
+\subsubsection*{Bound state solutions, \texorpdfstring{$E < 0$}{E \lt 0}}
+If we want $\psi$ to be normalizable, then there are 2 boundary conditions for $\psi$:
+\[
+\psi \sim
+\begin{cases}
+Ae^{\kappa x} & x \to -\infty\\
+B e^{-\kappa x} & x \to +\infty
+\end{cases}
+\]
+This is an overdetermined system, since we have too many boundary conditions. Solutions exist only when we are lucky, and only for certain values of $E$. So bound state energy levels are quantized. We may find several bound states or none.
+
+\begin{defi}[Ground and excited states]
+	The lowest energy eigenstate is called the \emph{ground state}. Eigenstates with higher energies are called \emph{excited states}.
+\end{defi}
+
+\subsubsection*{Scattering state solutions, \texorpdfstring{$E > 0$}{E \gt 0}}
+Now $\psi$ is not normalized but bounded. We can view this as particle beams, and the boundary conditions determines the direction of the incoming beam. So we have
+\[
+\psi \sim
+\begin{cases}
+I e^{ikx} + R e^{-ikx} & x \to -\infty\\
+Te^{ikx} & x \to +\infty
+\end{cases}
+\]
+This is no longer overdetermined since we have more free constants. The solution for any $E > 0$ (imposing condition on one complex constant) gives
+\[
+j \sim
+\begin{cases}
+j_{\mathrm{inc}} + j_{\mathrm{ref}}\\
+j_{\mathrm{tr}}
+\end{cases}
+=
+\begin{cases}
+|I|^2 \frac{\hbar k}{m} - |R|^2 \frac{\hbar k}{m} & x \to -\infty\\
+|T|^2 \frac{\hbar k}{m} & x \to +\infty
+\end{cases}
+\]
+We also get the reflection and transmission probabilities
+\begin{align*}
+P_{\mathrm{ref}} &= |A_{\mathrm{ref}}|^2 = \frac{|j_{\mathrm{ref}}|}{|j_{\mathrm{inc}}|}\\
+P_{\mathrm{tr}} &= |A_{\mathrm{tr}}|^2 = \frac{|j_{\mathrm{tr}}|}{|j_{\mathrm{inc}}|},
+\end{align*}
+where
+\begin{align*}
+A_{\mathrm{ref}}(k) &= \frac{R}{I} \\
+A_{\mathrm{tr}}(k) &= \frac{T}{I}
+\end{align*}
+are the reflection and transmission \emph{amplitudes}. In quantum mechanics, ``amplitude'' general refers to things that give probabilities when squared.
+
+\section{Axioms of Quantum Mechanics}
+
+We now consider quantum systems more generally, with abstract states $ \psi, \psi $ (at fixed time) or $ \Psi(t), \Phi(t) $ - no longer restricted to one dimension. We will describe any such system in terms of axioms and then recover (P1),(P2),(P3).
+
+\subsection{States and Operators }
+
+Axiom (A1): State's not of a quantum system correspond to non-zero elemnets of complex vector space $ V $, with $ \psi $ and $ \phi $ physically equivalent for $ \alpha \neq 0 $. Furthermore, 
+\begin{enumerate}
+	\item A complex inner product $ (\psi,\phi) $ is defined on $ V $ with 
+	
+	\[ (\phi, \alpha_{1} \psi_{1} + \alpha_{2} \psi_{2}) = \alpha_{1} (\phi,\psi_{1}) + \alpha_{2}(\phi,\psi_{2})  \]
+	\[ (B_{1}\phi_{1} + B_{2} \phi_{2}, \psi) = B_{1}^{*}(\phi_{1},\psi) + B_{2}^{*} (\phi_{2},\psi) \]
+	\[ (\phi,\psi) = (\psi,\phi)^{*} \]
+	\[ | | \psi^{2}  | | : = (\psi,\psi) \geq 0 \qquad \text{ and } =0 \text{ iff } \psi = 0 \]
+	
+	\item $ V $ is \emph{complete}: well-behaved series (Cauchy sequences) converge. $ V $ typically infinite dimensional, a Hilbert space.
+	
+\end{enumerate}
 
 
 

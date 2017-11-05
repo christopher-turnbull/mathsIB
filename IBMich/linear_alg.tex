@@ -2157,7 +2157,7 @@ If $ \{ e_{i} \} $ is the standard basis for $ \F^{n} $ then
 
 
 \begin{lemma} 
-	\[ \det : \F^{n} \times \cdots \times \F^{n} \]
+	\[ \det : \underbrace{\F^{n} \times \cdots \times \F^{n}}_{n \text{ copies}} \to \F  \]
 	
 	\[ (A^{(1)},\cdots,A^{(n)} ) \mapsto \det (A) \text{ is a volume form} \]
 	
@@ -2222,7 +2222,329 @@ If $ \{ e_{i} \} $ is the standard basis for $ \F^{n} $ then
 	\[ d(e_{1},\cdots,e_{n})  = 1\]
 	
 \end{cor}
+
+
+Recall: 	\[ \det : \underbrace{\F^{n} \times \cdots \times \F^{n}}_{n \text{ copies}} \to \F  \]
+
+\[ (v_{1},\cdots,v_{n}) \mapsto \det (v_{1} \; | \; \cdots \; | v_{n}) \text{ is a volume form} \]
+
+
+\begin{prop} 
+	Let $ A,B \in M_{n}(\F) $. Then $ \det(AB) = \det(A)\det(B) $
+\end{prop}
+
+\begin{proof}
+	Let $ d_{A}: \underbrace{\F^{n} \times \cdots \times \F^{n}}_{n \text{ copies}} \to \F  $,
+	\[ (v_{1},\cdots,v_{n}) \mapsto \det (Av_{1} \; | \; \cdots \; | Av_{n}) \]
 	
+	\begin{itemize}
+		\item $ d_{A} $ is multilinear: $ v_{i} \mapsto Av_{i} $ linear, and $ d $ multilinear
+		\item $ d_{A} $ is alternating: $ v_{i} = v_{j} \Rightarrow A v_{i} = A v_{j} $ and $ d $ is alternating 
+	\end{itemize}
+	Thus $ d_{A} $ is a volume form. 
+	
+	
+	\begin{align*}
+	d_{A} (Be_{1},\cdots,Be_{n}) & = \det B d_{A} (e_{1},\cdots,e_{n}) \quad (d_{A} \text{ a v.f.}) \\
+	& = \det B \det A
+	\end{align*}
+	
+	Also $ d_{A}(Be_{1},\cdots,Be_{n}) = \det(AB e_{1} | \; \cdots \; | A B e_{n}) = \det (AB) $. 
+	
+	
+	
+\end{proof}
+	
+	
+\begin{defi}
+	$ A \in M_{n}(\F) $ is singular if $ \det A = 0 $. Otherwise $ A $ is non-singular. 
+\end{defi}
+
+\begin{lemma} 
+	if $ A $ is invertible, then $ A $ is non-singular, $ \det(A^{-1}) = \frac{1}{\det A} $
+\end{lemma}
+
+\begin{proof}
+	\begin{align*}
+	1 & = \det(I_{n}) \\
+	& = \det(A A^{-1}) \\
+	& = \det(A)\det(A^{-1}) \\
+	& \Rightarrow \det(A) \neq 0, \det(A^{-1}) = (\det(A))^{-1}
+	\end{align*}
+\end{proof}
+
+\begin{thm} 
+	Let $ A \in M_{m,n}(\F) $. TFAE:
+	\begin{enumerate}
+		\item $ A $ is invertible
+		\item $ A $ is non-singular
+		\item $ r(A) = n $
+	\end{enumerate}
+\end{thm}
+
+\begin{proof}
+	\begin{itemize}
+		\item (i) $ \Rightarrow $ (ii) done
+		\item (ii) $ \Rightarrow $ (iii): Suppose that $ r(A) < n $. By rank-nullity, $ n(A) > 0 $, so $ \exists \; \lambda \in \F^{n} \setminus \{ \mathbf{0} \} $ st. $ A \lambda = \mathbf{0} $. Say $ \lambda = (\lambda_{i}) $, say $ \lambda_{k} \neq 0 $. Have $ \sum_{i=1}^{n} A^{(i)}\lambda_{i} = \mathbf{0} $.
+		
+		Let $ B = ( e_{1} \; | \; \cdots \; | \; e_{k-1} \; | \; \lambda \; | \; e_{k+1} | \; \cdots \; | e_{n}  ) $.
+		
+		\begin{align*}
+		AB \text{ has } k^{\text{th}} \text{ column zero } \Rightarrow \det(AB) = 0 \\
+		& = \det(A)\det(B) \\
+		& = \det(A)\underbrace{\lambda_{k}}_{\neq 0}
+		\end{align*}
+		
+		Thus $ \det A = 0 $
+		
+		\item (iii) $ \Rightarrow $ (i) by rank-nullity
+	\end{itemize}
+\end{proof}
+
+
+\subsubsection{Determinants of Linear Maps}
+\begin{lemma} 
+	Conjugate matrices have the same determinant.
+\end{lemma}
+
+\begin{proof}
+	Let $ B = P^{-1}AP $. Then
+	
+	\begin{align*}
+	\det B & = \det(P^{-1}AP) \\
+	& = \det(P^{-1})\det(A)\det(P) \\
+	& = (\det P)^{-1}(\det A)(\det P) \\
+	& = \det A
+	\end{align*}
+\end{proof}
+
+
+\begin{defi}
+	Let $ \alpha : V \to V $, $ V $ a finite-dim $ v $-space. Define $ \det \alpha = \det [\alpha]_{\mathcal{B},\mathcal{B}} $, where $ \mathcal{B} $ is any basis for $ V $. This is well-defined by the previous lemma.  
+\end{defi}
+
+\begin{thm} 
+	$ \det: L(V,V) \to \F $ satisfies:
+	\begin{enumerate}
+		\item $ \det(I_{d}) = 1 $
+		\item $ \det(\alpha \circ \beta) = \det(\alpha) \det(\beta) $
+		\item $ \det(\alpha) \neq 0 \iff \alpha $ invertible, and if $ \alpha $ invertible then $ \det(\alpha^{-1}) = (\det \alpha)^{-1} $
+	\end{enumerate}
+\end{thm}
+
+\subsubsection{Determinants of Block Triangular Matrices}
+
+\begin{lemma} 
+	$ A \in M_{k}(\F) $, $ B \in M_{l}(\F) $, $ C \in M_{k,l}(\F) $.
+	
+	\[ \det \begin{pmatrix}
+	A & C\\
+	0 & B
+	\end{pmatrix}  = \det A \det B\]
+\end{lemma}
+
+\begin{proof}
+	set $ n = k + l $. Let $ X = \begin{pmatrix}
+	A & C\\
+	0 & B
+	\end{pmatrix} \in M_{n}(\F) $, $ X = (x_{ij}) $. 
+	
+	\[ \det(X) = \sum_{\sigma \in S_{n}} \varepsilon(\sigma) \prod_{i=1}^{n} x_{\sigma(i)i}  \]
+	
+	Note: $ x_{\sigma(i)i} = 0 $ if $ i \leq k $ and $ \sigma(i) > k $. Thus we're summing over all $ \sigma $ with 
+	\begin{enumerate}
+		\item if $ j \in [1,k], \sigma(j) \in [1,k] $ AND
+		\item if $ j \in [k+1,n] $, $ \sigma(j) \in [k+1,n] $ 
+ 	\end{enumerate}
+	this means
+	\begin{enumerate}
+		\item get $ x_{\sigma(i)i} = \underbrace{x_{\sigma_{1}(i)i}}_{=a_{\sigma_{1}(i)i}} $ where $ \sigma_{1} = $ restriction of $ \sigma $ to $ [1,k] $
+		\item get $ x_{\sigma(i)i} = \underbrace{x_{\sigma_{2}(i)i}}_{=b_{\sigma_{2}(i)i}} $ where $ \sigma_{2} =  $ restriction of $ \sigma $ to $ [ k+1,n ] $. 
+		
+		
+		\[ \sigma = \sigma_{1}\sigma_{2} \Rightarrow \varepsilon(\sigma) = \varepsilon(\sigma_{1})\varepsilon(\sigma_{2}) \]
+		
+		We get 
+		
+		\begin{align*}
+		\det X & = \left(  \sum_{\sigma_{1} \in S_{k}} \varepsilon(\sigma_{1}) \prod_{j=1}^{k} a_{\sigma_{1}(j)j}  \right) \left(  \sum_{\sigma_{2} \in S_{l}} \varepsilon(\sigma_{2}) \prod_{j=k+1}^{n} b_{\sigma_{2}(j)j}  \right)   \\
+		& = \det A \det B
+		\end{align*}
+	\end{enumerate}
+\end{proof}
+
+\begin{cor} 
+	For square matrices $ A_{1},\alpha,A_{k} $, the upper-triangular matrix  with $ A_{1},\alpha,A_{k} $ along the diagonal has determinant $ = \prod_{i=1}^{k} \det A_{i} $. 
+\end{cor}
+\begin{proof}
+	Apply lemma immediately.
+\end{proof}
+
+Caution: In general,
+
+\[ \det \begin{pmatrix}
+A & B \\
+C & D
+\end{pmatrix} \neq \det A \det D - \det B \det C \]
+
+Aside: Volume Interpretation of Determinants:
+
+$ \R^{2} $ $ \det( \mathbf{u} | \mathbf{v} ) $ is the signed area of parallelogram made by extending $ \mathbf{u} $ and $ \mathbf{v} $. 
+
+$ \R^{3} $ $ \det( \mathbf{u} | \mathbf{v} | \mathbf{w}) = $ singed volume of parallelepiped.
+
+There are analogous interpretations in higher dimensions. 
+
+\subsubsection{Elementary Operations and Det}
+
+\begin{enumerate}
+	\item $ E_{1} $ swaps 2 columns/rows. $ \det E_{1}  = -1 $
+	\item $ E_{2} $ multiplies a column/row by $ \lambda \neq 0 $. $ \det E_{2} = \lambda  $
+	\item $ E_{3} $ add $ \lambda $(column $ i $) to column $ j $ (/rows). $ \det E_{3} = 1 $
+	
+\end{enumerate} 	
+
+One could prove properties of $ \det $ (eg $ \det (AB) = \det A \det B $) by using the factorisation of matrices into products of $ E_{i} $.
+
+\subsubsection{Column Expansion and Adjugate Matrices}
+\begin{lemma} 
+	Let $ A \in M_{n}(\F) $, $ A = (a_{ij}) $. Define $ A_{\hat{ij}} $ by deleting row $ i $ and col $ j $ from $ A $. Then
+	\begin{enumerate}
+		\item for a fixed $ j $, 
+		
+		\[ \det A = \sum_{i=1}^{n} (-1)^{i+j}a_{ij}\det A_{\hat{ij}} \]
+		
+		`expansion in column $ j $'
+		\item for a fixed $ i $,
+		
+		\[ \det A = \sum_{j=1}^{n} (-1)^{i+j}a_{ij}\det A_{\hat{ij}} \]
+		
+		`expansion in row $ i $'
+	\end{enumerate}
+\end{lemma} 
+
+Remark: could use 1) to define determinants iteratively, starting with $ \det a = a $ for $ n = 1 $.
+
+\begin{eg}
+\[ 	\begin{vmatrix}
+		a & b & c\\
+		d & e & f\\
+		g & h & i
+	\end{vmatrix} = a\begin{vmatrix}
+	e & f\\
+	h & i
+	\end{vmatrix} - b \begin{vmatrix}
+	d & f\\
+	g & i
+	\end{vmatrix} + c \begin{vmatrix}
+	d & e\\
+	g & h
+	\end{vmatrix}  \]
+\end{eg}	
+
+\begin{proof}
+	We will only prove (i), and get (ii) by transposition
+	\begin{align*}
+	\det(A) & = \det( A^{(1)} \; | \; A^{(2)} \; | \; \cdots\; | \; \sum_{i=1}^{n} a_{ij}e_{i} | \; \cdots\; A^{(n)} ) \\
+	& = \sum_{i=1}^{n} a_{ij} \det( A^{(1)} \; | \; \cdots\; e_{i} \; | \; A^{(ji)} \; | \; \cdots \; | \; A^{(n)}  ) \\
+	& = \sum_{i=1}^{n} \underbrace{a_{ij} (-1)^{(i-1) +(j-1)}}_{\text{row and col swaps}} \det \begin{pmatrix}
+	1 & 0 \\
+	0 & A_{\hat{ij}} \\
+	& = \sum_{i=1}^{n} a_{ij} (-1)^{i+j}\det(A_{\hat{ij}})
+	\end{pmatrix}
+	\end{align*}
+	
+	
+\end{proof}
+
+\begin{defi}
+	Let $ A \in M_{n}(\F) $. The \emph{adjugate matrix} of $ A $, $ \text{adj }(A) $, is the $ n \times n $ matrix
+	
+	\[ (\text{adj }A)_{ij} = (-1)^{i+j}\det(A_{\hat{ij}}) \]
+	
+	
+\end{defi}
+
+
+\begin{thm} 
+	\begin{enumerate}
+		\item 
+		
+		\[ (\text{adj }A) A = (\det A)I = \begin{pmatrix}
+		\det A & \cdots & 0 \\
+		\vdots & \ddots & \vdots \\
+		0 & \cdots & \det A
+		\end{pmatrix} \]
+		
+		\item If $ A $ is invertible, then $ A^{-1} = \frac{1}{\det A}\text{adj}(A) $.
+		
+	\end{enumerate}
+
+\end{thm}
+
+\begin{proof}
+	\begin{enumerate}
+		\item $ \det A = \sum_{i}(\text{adj }A)_{ji}a_{ij} =  j^{\text{th}},j^{\text{th}}$ entry of $ (\text{adj }A)A $
+		
+		For $ j \neq k $, 
+		
+		\begin{align*}
+		0 & = \det( A^{(1)} \; | \; \cdots \; \underbrace{| \; A^{k} \; |}_{j^{\text{th}} \text{ col}} \; \cdots ;\ | \; A^{k} \; | \; \cdots \; | \; A^{(n)}  \\
+		& = \sum_{i} (\text{adj }A)_{ji} a_{ik} \\
+		& = j,k^{\text{th}} \text{ entry of } (\text{adj }A)A
+		\end{align*}
+		\item If $ A $ invertible, then $\det A \neq 0  $, so $ I = \frac{\text{adj}(A)}{\det A} A $ 
+	\end{enumerate}
+\end{proof}
+
+\subsection{Systems of Linear Equations}
+
+\begin{itemize}
+	\item $ A \mathbf{x} = \mathbf{b} $ is $ m $ equations in $ n $ unknowns ($ A: m \times n $ and $ \mathbf{b} : m \times 1 $ known, $ \mathbf{x} = (x_{1},\cdots,x_{n}) = n \times 1$ unknown  )
+	
+	\item $ A \mathbf{x} = \mathbf{b} $ has solution iff $ r(A) = r(A | b) $ where $ A | b $ is the augmented matrix: $ A  $ with extra column $ b $ (ie. iff $ \mathbf{b} $ is a linear combo of columns in $ A $).
+	
+	\item The solution is unique iff $ r(A) = n $
+	
+	\item Special case: $ m = n $. If $ A $ is non-singular then there is a unique solution $ \mathbf{x} = A^{-1} \mathbf{b} $.
+\end{itemize}
+
+\subsubsection{The Cramer Rule}
+
+
+If $ A \in M_{n} (\F) $ invertible, the system $ A \mathbf{x} = \mathbf{b} $ has unique solution $ \mathbf{x} =  (x_{i}) $, 
+
+\[ x_{i} = \frac{\det(A_{\hat{ib}})}{\det A} \]
+
+where $ A_{\hat{ib}} $ is obtained from $ A $ by deleting $ i^{\text{th}} $ column and replacing it with $ \mathbf{b} $.
+
+\begin{proof}
+	Assume that $ \mathbf{x} $ is a solution of $ A \mathbf{x} = \mathbf{b} $.
+	
+	\begin{align*}
+	\det(A_{\hat{ib}})& = \det (  A^{(1)} \; | \; \cdots \; | \; A^{(i-1)} \; | \; b \; | \; A^{(i+1)} \; | \; \cdots \; | \; A^{(n)} ) \\
+	& = \det (  A^{(1)} \; | \; \cdots \; | \; A\mathbf{x} \; | \; \cdots \; | \; A^{(n)} ) \\
+	& = \sum_{j=1}^{n} x_{j} \det (  A^{(1)} \; | \; \cdots \; | \; A^{(i-1)} \; | \; A^{(j)} \; | \; A^{(i+1)} \; | \; \cdots \; | \; A^{(n)} ) \; \text{ as } A\mathbf{x} = \sum_{j} A^{(j)}x_{j} \\ 
+	& = x_{i} \det A
+	\end{align*}	
+\end{proof}
+
+\begin{cor} 
+	If $ A \in M_{n}(\Z) $ ie. $ (n \times n) $ with integer entries, with $ \det A = \pm 1 $, then 
+	
+	\begin{itemize}
+		\item $ A^{-1} \in M_{n}(\Z) $ also, 
+		
+		\[ A^{-1} = \frac{\text{adj }A}{\pm 1} \qquad \text{ with adj } A \text{ entries in } \Z  \]
+		
+		\item $ \mathbf{b} \in \Z^{n} $, can solve $ A \mathbf{x} = \mathbf{b} $ for integer solution. 
+	\end{itemize}
+\end{cor}
+
+	
+
+
+
 
 
 

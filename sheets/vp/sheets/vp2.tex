@@ -3,7 +3,7 @@
 \def\npart {IA}
 \def\nterm {Michaelmas}
 \def\nyear {2017}
-\def\nlecturer {Mx Tsang}
+\def\nlecturer {Mx Tsang (jmft2@cam.ac.uk)}
 \def\ncourse {Variational Principles Example Sheet 2}
 
 \input{header}
@@ -28,8 +28,100 @@
 
 \begin{align*}
 F[x + \delta x] - F[x] & = \int_{t_{1}}^{t_{2}} f(x + \delta x, \dot{x} + \delta \dot{x}, \ddot{x} + \delta \ddot x, t ) \; \d t - \int_{t_{1}}^{t_2} f(t,x,\dot{x},\ddot{x}) \; \d t   \\
-& = 
+& = \int_{t_{1}}^{t_{2}} \left\{  \delta x \frac{\partial f }{\partial x} + (\delta \dot{x}) \frac{\partial f }{\partial \dot{x}} + (\delta \ddot{x}) \frac{\partial f }{\partial \ddot{x}}  \right\} \; \d t + O(t^{2})
 \end{align*}
+
+Discarding the (small )terms of $ O(t^{2}) $, we call the first order variation $ \delta F[x] $ and integrating by parts (twice), we have
+
+\begin{align*}
+\delta F[x]  & = \int_{t_{1}}^{t_{2}} \left\{   \delta x \left[   \frac{\partial f }{\partial x }  - \frac{\d }{\d t} \left(  \frac{\partial f }{\partial \dot{x}} \right)    \right]  - (\delta \dot{x}) \frac{\d }{\d t} \left(  \frac{\partial f }{\partial \ddot{x}} \right)   \right\} \; \d t + \left[  \delta x \frac{\partial f }{\partial \dot{x}} + ( \delta \dot{x}) \frac{\partial f }{\partial \ddot{x}} \right]_{t_{1}}^{t_{2}}   \\
+& = \int_{t_{1}}^{t_{2}} \left\{   \delta x \left[   \frac{\partial f }{\partial x }  - \frac{\d }{\d t} \left(  \frac{\partial f }{\partial \dot{x}} \right)  +  \frac{\d^{2} }{\d t^{2}} \left(  \frac{\partial f }{\partial \ddot{x}} \right)   \right] \right\} \; \d t + \left[  \delta x \left\{  \frac{\partial f }{\partial \dot{x}} - \frac{\d }{\d t} \left(  \frac{\partial f }{\partial \ddot{x}} \right)  \right\}  + ( \delta \dot{x}) \frac{\partial f }{\partial \ddot{x}}  \right]_{t_{1}}^{t_{2}}
+\end{align*}
+
+We have fixed end boundary conditions, so $ \delta x(t_{1}) = \delta x(t_{2}) = 0 $ and also $ \delta \dot{x} (t_{1}) = \delta \dot{x} (t_{2}) = 0  $. Thus the boundary term is zero and we can write $ \delta F[x] $ in the form
+
+
+\[ \delta F[x] = \int_{t_{1}}^{t_{2}} \left\{ \delta x(t) \frac{ \delta F[x]}{\delta x(t)}  \right\}  \; \d t  \]
+
+
+where the \emph{function derivative} $ \frac{ \delta F[x]}{\delta x(t)} $ is defined as 
+
+
+\[ \frac{ \delta F[x]}{\delta x(t)} := \frac{\partial f }{\partial x} -  \frac{\d }{\d t} \left(  \frac{\partial f }{\partial \dot{x}} \right)  +  \frac{\d^{2} }{\d t^{2}} \left(  \frac{\partial f }{\partial \ddot{x}} \right)   \]
+
+The functional $ F $ is stationary when its functional derivative is zero ( assuming that the b.c.s are such that this derivative is defined) and the condition for this to be true is the following Euler-Lagrange equation:
+
+\[ \frac{\partial f }{\partial x} -  \frac{\d }{\d t} \left(  \frac{\partial f }{\partial \dot{x}} \right)  +  \frac{\d^{2} }{\d t^{2}} \left(  \frac{\partial f }{\partial \ddot{x}} \right) = 0, \qquad t_{1} < t < t_{2} \]
+
+
+Given the functional
+
+\[ L[x] = \int_{1}^{2} t^{4} |  \ddot{x}(t)  |^{2} \; \d t  \]
+
+In this case, $ f =  t^{4} |  \ddot{x}(t)  |^{2}  $, so $   \frac{\partial f }{\partial x} = \frac{\partial f }{\partial \dot{x}} = 0 $ and the EL equation can be immediately twice integrated to give 
+
+\[ \frac{\partial }{\partial \ddot{x}} \left[ t^{4} |  \ddot{x}(t)  |^{2}  \right] = At + B   \]
+
+for some constants $ A $ and $ B $.
+
+
+\section{QUESTION 2}
+
+
+Our aim is to maximise $ A[x,y] $ subject to the constraint $ P[x,y] = L $, where $ L $ is the fixed length and $ P[x,y] = \int_{0}^{2\pi} \sqrt{  (x')^{2}  + (y')^{2} } \; \d \theta  $
+
+Using a Lagrange multiplier $ \lambda $ to impose this, we seek to maximize the functional
+
+\begin{align*}
+\phi_{\lambda}[x,y]  & = A[x,y] - \lambda ( P[y] - L )  \\
+& = \int_{0}^{2 \pi} \underbrace{\frac{1}{2} ( xy' - yx' ) - \lambda \sqrt{  (x')^{2}  + (y')^{2} }}_{=f_{\lambda}(\mathbf{x},\mathbf{x}')} \; \d \theta + \lambda L
+\end{align*}
+
+$ f_{\lambda}(\mathbf{x},\mathbf{x}') $ has no explicit $ \theta $ dependence, setting $ \frac{\d \phi_{\lambda}[x,y]}{\d y} = 0 $ the E-L equations imply (under the assumption of appropriate boundary conditions)
+
+
+\[ f_{\lambda}(y,y') - y' \frac{\partial f_{\lambda} }{\partial y'} = \text{ constant}  \]
+
+\begin{align*}
+& \Rightarrow f - y' \left(  \frac{1}{2} x - \frac{\lambda y'}{\sqrt{  (x')^{2}  + (y')^{2} }} \right) = \text{constant} \\
+& \Rightarrow  -\frac{1}{2} yx' - \lambda \frac{ ( (x')^{2}  + (y')^{2} )}{\sqrt{  (x')^{2}  + (y')^{2} }} + \lambda \frac{(y')^{2}}{\sqrt{  (x')^{2}  + (y')^{2} }} = \text{constant} \\
+& \Rightarrow - \frac{1}{2} y x' - \lambda \frac{(x')^{2}}{\sqrt{  (x')^{2}  + (y')^{2} }} = \text{constant}
+\end{align*}
+
+Similarly considering $ f_{\lambda}(x,x') $ we have
+
+\[ - \frac{1}{2} x y' - \lambda \frac{(y')^{2}}{\sqrt{  (x')^{2}  + (y')^{2} }} = \text{constant} \]
+
+Adding,
+
+\[ -\frac{1}{2}(xy' - yx' ) - \lambda \sqrt{  (x')^{2}  + (y')^{2} } = \text{ constant} \]
+
+
+
+
+\section{QUESTION 3}
+
+Using Lagrange multiplier $ \lambda $, wish to minimize
+
+\[ I[\psi]_{\lambda} = \int_{-\infty}^{\infty} \underbrace{(\psi')^{2} + (x^{2} - \lambda \psi^{2} )}_{f_{\lambda}(\psi,\psi' ; x)} \; \d x + \lambda   \]
+
+
+Euler-Lagrange equations imply:
+
+$  $
+
+
+
+
+
+\section{QUESTION 4}
+\section{QUESTION 5}
+\section{QUESTION 6}
+\section{QUESTION 7}
+\section{QUESTION 8}
+\section{QUESTION 9}
+\section{QUESTION 10}
+\section{QUESTION 11}
 
 
 
