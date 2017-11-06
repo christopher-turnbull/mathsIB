@@ -2542,8 +2542,202 @@ where $ A_{\hat{ib}} $ is obtained from $ A $ by deleting $ i^{\text{th}} $ colu
 \end{cor}
 
 	
+	
+\section{Endomorphisms}
+
+Let $ V $ be a vector space over $ \F $, $ \dim V = n < \infty $, and $ \alpha \in L(V) = L(V,V) $, with $ \mathcal{B} = \{  v_{1},\cdots,v_{n} \} $ basis. 
+
+Problem: Choose $ \mathcal{B} $ st. $ [\alpha]_{\mathcal{B}} ( = [\alpha])_{\mathcal{B},\mathcal{B}} $ has "nice from". $ \mathcal{B}' $ other basis, $ P $ change of basis matrix $ [ \alpha]_{\mathcal{B}} = P^{-1} [\alpha]_{\mathcal{B}'}P $.
+
+Problem: $ A \in M_{n}(\F) $, want $ A' $ conjugate to it which has a nice from.
 
 
+\begin{defi}
+	$ \alpha \in L(V) $ is \emph{diagonalisable} if there exists $ \mathcal{B} $ st. 
+	
+	\[ [\alpha]_{\mathcal{B}} \text{ is diagonal} \]
+	
+\end{defi}
+
+A weaker possibility is
+
+\begin{defi}
+	$ \alpha \in L(V) $ is \emph{triangulable} if $ \exists \; \mathcal{B} $ st. $ [\alpha]_{\mathcal{B}} $ is upper triangular
+\end{defi}
+
+($ A \in M_{n}(\F) $  is diagonalisable if its conjugate to a diagonal matrix, similarly for triangular.  )
+
+\begin{defi}
+\begin{enumerate}
+	\item $ \lambda  \in \F $ is an \emph{eigenvalue} of $ \alpha $ if there exists some $ v  \in V \setminus \{ \mathbf{0} \} $ st. $ \alpha(v) = \lambda v $
+	
+	\item $ v \in V $ is an eigenvector for $ \alpha $ if $ \alpha(v) = \lambda v $ for some eigenvalue $ \lambda $
+	
+	\item $ V_{\lambda} = \{  v \in V \; | \; \alpha(v) = \lambda v \} $ $ \lambda $-eigenspace of $ \alpha $, Note $ V_{\lambda} \leq V $
+	
+\end{enumerate}
+\end{defi}
+
+Shorthand: evector, evalue, espace.
+
+Remark: \begin{enumerate}
+	\item $ \lambda $ evalue, $ \iff $ $ \alpha - \lambda \iota $ singular$ \iff \det(\alpha - \lambda \iota ) = 0$. 
+	
+	\[ V_{\lambda} = \ker(\alpha - \lambda \iota) \]
+	
+	Note $ \iota $ is the identity map.
+	
+	\item If $ \alpha(v_{j}) = \lambda v_{j} $, then $ j^{\text{th}} $ col of $ [\alpha]_{\mathcal{B}} $ is 
+	
+	\[ \begin{pmatrix}
+	0\\
+	\vdots\\
+	\lambda\\
+	\vdots\\
+	0
+	\end{pmatrix} \]
+	
+	($ j^{\text{th}} $ entry)
+	
+	\item  $ [\alpha]_{\mathcal{B}} $ diagonal $ \iff $ $ \mathcal{B} $ consists of evectors.
+	
+	$ [\alpha]_{\mathcal{B}} $ upper triangular $ \iff $ $ \alpha(v_{j}) \in < v_{1},\cdots,v_{j} >  $ for all $ j $. In particular, $ v_{1} $ is an eigenvector.
+	
+\end{enumerate}
+
+\subsection{Aside on Polynomials}
+
+\[ F[t] \{ \text{polys w/  coefficients in } \F \} \]
+
+\begin{itemize}
+	\item $ \text{deg}(f+g) \leq \max(\text{deg } f, \text{deg } g) $
+	\item $ \text{deg } 0 = - \infty $
+	\item $ \text{deg}(fg) = \text{deg } f + \text{deg } g $
+	\item If $ \lambda \in \F $ is a root of $ f \in F[t] $ (ie. $ f(\lambda) = 0 $), then $ (t - \lambda) $ divides $ f $: 
+	
+	\[ f(t) = (t - \lambda) g(t), \qquad \text{some } g(t) \in F[t] \]
+	
+	\item We say $ \lambda $ is a root of $ f \in F[t] $ with multiplicity $ e (\in \N) $ if $ (t - \lambda)^{e} $ divides $ f $, but $ (t - \lambda)^{e + 1} $ does not. 
+	\item A poly of degree $ n $ has at most $ n $ roots, counted with multiplicity 
+\end{itemize}
+
+\begin{thm} Fundamental Theorem of Algebra
+	Any $ f \in \C [t] $ of positive degree has a root (hence deg $ f $ roots.)
+\end{thm}
+
+\begin{defi}
+	The characteristic polynomial of $ \alpha: \chi_{\alpha}(t) = \det (\alpha - t \iota) $. ($ \alpha \in L(V), A \in M_{n}(\F)  $).
+	
+	
+\end{defi}
+Conjugate matrices have same characteristic poly.
+
+\begin{thm} 
+	$ \alpha $ triangulable iff $ \chi_{\alpha}(t) $ can be written as a product of linear factors \emph{over} $ \F $.
+	
+	In particular, if $ \F = \C $, every matrix is triangulable.  
+\end{thm}
+
+\begin{proof}
+	$ (\Rightarrow) $ Suppose $ \alpha $ is triangulable, and represented by 
+	
+	\[ \begin{pmatrix}
+	a_{1} &  & * \\
+	 & \ddots &  \\
+	0 &  & a_{n}
+	\end{pmatrix} \]
+	
+	
+	wrt. some basis.
+	
+	Then $ \chi_{\alpha}(t) = \det \begin{pmatrix}
+	a_{1}  - t&  & * \\
+	 & \ddots &  \\
+	0 &  & a_{n} - t
+	\end{pmatrix} = \prod_{i=1}^{n}(a_{i} - t) $
+	
+	
+	$ (\Leftarrow) $ Induction on $ n = \dim V $
+	
+	\begin{itemize}
+		\item $ n = 0 $ or $ 1 $ Done.
+		\item Suppose $ n > 1 $, and the thm holds for all endomorphisms of spaces of smaller dimension.
+	\end{itemize}
+
+	By hypothesis, $ \chi_{\alpha}(t) $ has a root in $ \F $, say $ \lambda $. Let $ U : = V_{\lambda} $ ($ \neq \{ \mathbf{0} \} $) 
+	
+	\[ \alpha(U) \leq U \Rightarrow \alpha \text{ induces  } \bar{a} : V / U \to V / U  \]
+	
+	Pick basis $ v_{1} | \cdots | v_{k} $ for $ U $, extend it to basis 
+	
+	\[ \mathcal{B} = \{  v_{1}, \cdots, v_{n} \} \text{ for } V \]
+	
+	wrt $ \mathcal{B} $, $ \alpha $ is represented by:
+	
+	\[ \begin{pmatrix}
+	\lambda I_{k} & * \\
+	0 & C
+	\end{pmatrix} \]
+	
+	
+	where $ \lambda I_{k} $ is the matrix of $ \alpha $ restricted to $ U $, $ \alpha |_{U} $, and $ C $ represents $ \bar{\alpha} $ wrt $ v_{k+1} + U, \alpha, v_{n} + U $.
+	
+	\begin{align*}
+	\chi_{\alpha}(t) & = \det(\alpha - t \iota) \\
+	& = (\lambda - t)^{k} \chi_{\bar{\alpha}}(t)
+	\end{align*}
+	
+	Thus $ \chi_{\alpha} $ is \emph{also} a product of linear factors. By induction hypothesis, (since $ \bar{\alpha} $ is acting on a lower dimensional vector space ) there is a basis for $ V / U $, say $ w_{k+1} + U,\cdots,w_{n} + U $ wrt. which $ \bar{\alpha} $ is represented by an upper-triangular matrix, say $ T $.
+	
+	wrt $ v_{1},\cdots,v_{k},w_{k+1},\cdots,w_{n} $, $ \alpha $ is represented by 
+	
+	\[ \begin{pmatrix}
+	\lambda I_{k} & * \\
+	0 & T
+	\end{pmatrix} \] 
+	
+\end{proof}
+
+\begin{eg}
+	$ \F = \R $, $ V = \R^{2} $, $ \alpha $ rotation
+	
+	\[ \begin{pmatrix}
+	\cos \theta & \sin \theta \\
+	- \sin \theta & \cos \theta
+	\end{pmatrix} \]
+	
+	$ \chi_{\alpha}(t) = t^{2} - 2 \cos \theta t + 1 $ NOT triangulable over $ \R $
+	
+	(Conjugate to a diagonal matrix over $ \C $).
+\end{eg}
+
+\begin{lemma} 
+	Let $ V $ be $ n $-dim over $ \F $, $ \alpha \in L(V) $. 
+	
+	\[ \chi_{\alpha}(t) = (-1)^{n}t^{n} + c_{n-1}t^{n-1} + \cdots + c_{0} \]
+	
+	Then:
+	
+	\begin{itemize}
+		\item $ c_{0} = \det \alpha $
+		\item for $ \F $ in $ \R $ or $ \C $, $ c_{n-1} = (-1)^{n-1} \text{tr }\alpha $
+	\end{itemize}
+\end{lemma}
+
+\begin{proof}
+	\begin{itemize}
+		\item 	$ c_{0} = \chi_{\alpha}(0) = \det(\alpha - 0) = \det \alpha $
+		\item For $ \F = \R  $, $ [\alpha]_{\mathcal{B}} $ can be thought of as a matrix over $ \C $ that happens to have real coeffs.
+		
+		\[ \chi_{\alpha}(t) = \det \begin{pmatrix}
+		a_{0} - t & & *\\
+		& \ddots & \\
+		0 & & a_{n} - t
+		\end{pmatrix} = \prod_{i=1}^{n} (a_{i} - t)  \]
+		
+		$ \sum_{i=1}^{n} a_{i} = \text{tr } \alpha $
+	\end{itemize}
+\end{proof}
 
 
 
