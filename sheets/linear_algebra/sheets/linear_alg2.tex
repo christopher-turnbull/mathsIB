@@ -97,17 +97,64 @@ To find inverse of this matrix, we
 
 \section{QUESTION 2}
 
-\begin{thm} Any $ m \times n $ matrix is equivalent to \[ \begin{pmatrix}
-	I_{r} & \cdots & 0 \\
-	\vdots & \ddots & \vdots \\
-	0 & \cdots & 0  \end{pmatrix} \]  for some $ r $, where $ r $ is the (column) rank of the matrix. 
+
+
+\begin{itemize}
+	\item \emph{Minimality of} $ r $: 
 	
-\end{thm}
+	Suppose we have 
+	
+	\[ \underbrace{A}_{m \times n} = \underbrace{B}_{m \times k} \underbrace{C}_{k \times n} \]
+	
+	wrt. standard basis for $ \R^{n}, \R^{k}, \R^{n} $ the matrices $ A,B,C $ correspond to lin. maps $ \alpha, \beta, \gamma $ st. $ \alpha = \beta \circ \gamma $
+	
+	\begin{center}
+		\begin{tikzcd}
+			\R^{m} \ar[r, "\gamma"] \ar[rr, bend right, "\alpha"] & \R^{k} \ar[r, "\beta"] & \R^{n}
+		\end{tikzcd}
+	\end{center}
 
-Therefore,
+for some $ k $, $ r \leq k \leq n  $, and 
 
-??????
+\[ \Im \alpha \leq \Im \beta \]
 
+since if $ v \in \Im \alpha $, then $ v = \alpha(\omega) $ for some $ \omega $, then $ v = \beta(\gamma \omega) $ so $ v \in \Im \beta $
+
+Taking dimensions,
+
+\[ r \leq r(\beta) \leq k \]
+
+where the last inequality follows from Rank Nullity. 
+
+\item $ r $\emph{ is possible}: $ \alpha $ has rank $ r $ so we seek a map such that
+
+\begin{center}
+	\begin{tikzcd}
+		\R^{m} \ar[r, "\gamma"] \ar[rr, bend right, "\alpha"] & \im \alpha \ar[r, "\beta"] & \R^{n}
+	\end{tikzcd}
+\end{center}
+
+Define $ \gamma: \R^{m} \to \Im \alpha $ by $ \gamma(v) = \alpha(v) $. Define $ \beta : \Im(\alpha) \to \R^{n} $ by $ \beta(\omega) = \omega $.
+
+Then, picking bases for $ \R $, $ \Im (\alpha) $, $ \R^{m} $, we get corresponding matrices $ A,B,C $ st.
+
+\[ A = \underbrace{B}_{m \times r} \underbrace{C}_{r \times n} \]
+
+	
+\end{itemize}
+
+For the last part, define $ r' = \text{ col rank of } A^{T} $
+
+We know that $ A = BC $ with $ B $ $ m \times r $ ...
+So 
+
+\[ A^{T} = C^{T} B^{T} \text{ with } C^{T} \; n \times r \]
+
+so $ r' \leq r $ by previous work
+
+Applying this argument to $ A^{T}, (A^{T})^{T} (= A) $, we also see that $ \gamma \leq r' $. So $ r = r' $.
+
+ 
 
 \section{QUESTION 3}
 
@@ -153,11 +200,34 @@ and we deduce that $ \eta_{2} = \xi_{2} - \xi_{1} $. Similarly, $ \eta_{3} = \xi
 
 We have that $ \tau_{A}(B) = \sum_{i} \sum_{j} a_{ij} b_{ji}    $, so linearity follows immediately by the definition of the sum. 
 
-Next, want to show that $ \tau_{A}(A) $ defines an iso from $ \text{Mat}_{m,n}(\F) $ to $ \text{Mat}_{m,n}(\F)^{*} $, ie. $ L ( \text{Mat}_{m,n}(\F), \F  ) $ Have already show linearity. Easy to see this is well defined. 
+Next, want to show that 
+
+	\begin{center}
+	\begin{tikzcd}
+		\text{Mat}_{m,n(\F)} \ar[r, "\phi"] & \text{Mat}_{m,n(\F)}^{*}
+	\end{tikzcd}
+\end{center}
+
+defined by
+
+\[ A \mapsto \tau_{A} \]
+
+ defines an iso. Have already show linearity. Easy to see this is well defined. 
 \begin{itemize}
-	\item Injective: (Not sure)
+	\item Injective: Suppose $ \phi(A) = 0 $. Then $ \tau_{A}(B) = 0 \; \forall \; B $, ie. $ \text{tr}(AB) = 0 \; \forall \; B $.
 	
-	\item Surjective: Can we just pick a matrix such that the trace gives us any scalar in $ \F $ to show surjectivity?
+	In particular, for each $ i,j $, we have that
+	
+	\[ \text{tr}(AE_{ij}) = 0 \]
+	
+	where $ E_{ij} $ is the matrix with 1 in the $ i,j $ position and zeroes everywhere else. 
+	
+	Hence by definition of trace, $ \sum_{k,l} A_{k,l}(e_{ij})_{k,l} = A_{ji} $. So $ A = 0 $.
+	
+	\item  $ \dim(\Mat_{m,n}(\F)^{*}) = \dim(\Mat_{m,n}(\F)) = mn $, and $ \dim(\Mat_{m,n}(\F)) = mn $. So isomorphism. 
+	
+
+	
 \end{itemize}
 
 
@@ -188,31 +258,124 @@ Next, want to show that $ \tau_{A}(A) $ defines an iso from $ \text{Mat}_{m,n}(\
 
 \section{QUESTION 6}
 
-Say $ u = \underbrace{\sum x_{i} e_{i}}_{\in U} $, $ v = \underbrace{  \sum  y_{j}f_{j}}_{\in V} $.
+Let $ \psi: U \times V \to \F $ represent our bilinear form. Pick any bases, 
+
+\[ e_{1}', \cdots, e_{m}'  \text{ for }  U  \]
+\[ f_{1}',\cdots,f_{n}'  \text{ for }  V  \]
+
+
+If $ \psi(e_{i}',f_{j}') = 0 \; \forall \; i,j $ then $ \psi = 0 $ and we're done. Otherwise pick some 
+
+\[ e_{i}',f_{j}' \text {s.t. } \psi(e_{i}',f_{j}') \neq 0 \]
+
+(After rescaling, assume $ \psi(e_{i}',f_{j}') = 1 $).
+
+Set $ e_{1} = e_{i}' $, $ f_{1} = f_{j}' $. Pick a basis $ \{ f_{2},\cdots,f_{n} \} $ for $ \ker(\psi_{L}(e_{1})) $.
+
+Pick a basis $ \{ e_{2},\cdots,e_{m} \} $ for $ \ker(\psi_{R})(f_{1}) $. Then, wrt. $ \{ e_{1},\cdots,e_{m}\}, \{  f_{1},\cdots,f_{n} \} $, have matrix 
+
+\[ \begin{pmatrix}
+1 & 0 & \cdots & 0\\
+0 & & & \\
+\vdots & & \text{something}& \\
+0 & & &
+\end{pmatrix} \]
+
+Continue inductively, end up with
+
+\[ \begin{pmatrix}
+I_{r} & 0 \\
+0 & 0
+\end{pmatrix} \]
+
+Hence
+
 
 \begin{align*}
-\psi(u,v) & = \psi \left(   \sum x_{i} e_{i},  \sum  y_{j}f_{j} \right)  \\
-& = \sum_{i} x_{i} \psi \left(  e_{i}, \sum_{j} y_{j} f_{j}  \right) \\
-& = \sum_{i,j} x_{i} \psi(e_{i},f_{j}) y_{j}
+\psi( \sum_{i=1}^{m}  x_{i}e_{i}  , \sum_{j=1}^{n}  y_{j} f_{j} ) & = \sum_{i=1}^{m} \sum_{j=1}^{n}  x_{i} y_{j} \psi(e_{i},f_{j}) \text{ by linearity of } \psi \\
+& = \sum_{k=1}^{r} x_{k}y_{k} 
 \end{align*}
 
-
-So in some basis where $  \psi(e_{i},f_{j}) = \delta_{ij} $, this is $ \sum_{i} x_{i} y_{i} $
-
-(not sure why this exists?)
-
-The left and right maps are determined by
-
-\[ \varphi_{L} : U \to V^{*} \qquad \text{ and } \qquad \varphi_{R} : V \to U^{*} \]
-
-\[ \varphi_{L}(u)(v) = \varphi(u,v) \qquad \text{ and } \qquad \varphi_{R}(v)(u) = \varphi(u,v) \]
-
+The dimensions of the left and right kernels are $ m - r $ and $ n - r $ respectively, by R-N.
 
 
 \section{QUESTION 7}
 
 \begin{enumerate}[label = (\alph*)]
-	\item Since $ a_{i} $ distinct, all columns of $ A $ are linearly independent, so the matrix is of full rank. Thus $ n(A) = 0 $ by rank nulity, and $ \det A \neq 0 $
+	\item We show the rows are linearly independent: suppose
+	
+	\[ \lambda_{0} \begin{pmatrix}
+	1 \\
+	1 \\
+	\vdots \\
+	1
+	\end{pmatrix} + 
+	\lambda_{1} \begin{pmatrix}
+	a_{0}\\
+	a_{1} \\
+	\vdots\\
+	a_{n}
+	\end{pmatrix} + \cdots + 
+	\lambda_{n} \begin{pmatrix}
+	a_{0}^{n}\\
+	a_{1}^{n} \\
+	\vdots\\
+	a_{n}^{n}
+	\end{pmatrix} = 0 \]
+	
+	This says that the polynomial 
+	
+	\[ f(x) = \lambda_{0} + \lambda_{1} x + \cdots + \lambda_{n} x^{n} \]
+	
+	has roots $ a_{0},a_{1},\cdots,a_{n} $. $ f $ of degree $ n $ has $ n+1 $ distinct roots; but this can only be the case if $ f $ is the zero polynomial. So $ \lambda_{1} = \lambda_{2} = \cdots = \lambda_{n} = 0 $.
+	
+	
+	Rows are linearly independent, so the matrix is of full rank. Thus $ n(A) = 0 $ by rank nulity, and $ \det A \neq 0 $
+	
+	\item $ e_{x} \in P_{n}^{*} $ with $ e_{x}(p) = p(x) $. Want to show that with respect to the standard basis, $ \{ e_{0},\cdots,e_{n} \} $ is linearly independent.
+	
+	\begin{proof}
+		Suppose $ \lambda_{0} e_{0} + \cdots + \lambda_{n} e_{n} = 0 $.
+		
+		Then
+		
+		\begin{align*}
+		\lambda_{0} + \cdots + \lambda_{n} e_{n} & = 0 \\
+		0 \cdot \lambda_{0} + \cdots + n \cdot \lambda_{n} & = 0 \\
+		\vdots \\
+		0^{n} \cdot \lambda_{0} + \cdots + n^{n} \cdot \lambda_{n} & = 0
+		 \end{align*}
+		 
+		 
+		 ie. 
+		 
+		 \[ \lambda_{0} \begin{pmatrix}
+		 1 \\
+		 0^{1} \\
+		 \vdots \\
+		 0^{n}
+		 \end{pmatrix} + 
+		  \cdots + 
+		 \lambda_{n} \begin{pmatrix}
+		 1\\
+		 n^{1} \\
+		 \vdots\\
+		 n^{n}
+		 \end{pmatrix} = 0 \]
+		 
+		 So by (a), $ \lambda_{1} = \lambda_{2} = \cdots = \lambda_{n} = 0 $.
+		 
+		 
+	\end{proof}
+
+	Now, $ \dim P_{n}^{*} = n+1 $, and $ \{ e_{0},\cdots,e_{n+1} \} $ is a linearly independent set. Hence it is a basis for $ P_{n}^{*} $
+	
+	\item For the basis of $ P_{n} $ for which $ (e_{0},\cdots,e_{n}) $ is dual, we want $ \{ p_{0},\cdots,p_{n} \} $ with $ e_{i}(p_{j}) = \delta_{ij} $.
+	So this polynomial is zero for all $ i \in \{ 0,1,\cdots,i-1,i+1,n \} $. Hence $ p_{i} \propto (x-1)(x-2)\cdots(x-(i-1))(x-(i+1))\cdots(x-n) $
+	
+	As $ p_{i}(i) = 1 $,
+	
+	\[ p_{i} = \frac{(x-1)(x-2)\cdots(x-(i-1))(x-(i+1))\cdots(x-n)}{(i-1)(i-2)\cdots(i-(i-1))(i-(i+1))\cdots(i-n)  } \]
 	
 	
 	
@@ -247,8 +410,80 @@ The left and right maps are determined by
 \end{enumerate}
 
 
+\begin{itemize}
+	\item If $ r(A) = n $, then
+	\[ \text{adj } A = \underbrace{\det A}_{\neq 0} \underbrace{A^{-1}}_{\text{invertible}} \]
+	
+	So $ \text{adj} A $ invertible so $ r(\text{adj } A) = n $
+	
+	\item If $ r(A) = n-1  $, recall that
+	
+	\[ (\text{adj } A) A = 0 \text{ in this case}  \]
+	
+	So $ \text{adj} A $ maps $ \Im A $ to $ 0 $
+	
+	ie. $ \ker(\text{adj } A) $ has dimension at least $ \dim(\Im A) = n-1 $. So $ r(\text{adj } A)  = 0 $ or $ 1 $.
+	
+	However, $ \text{adj }A \neq 0 $: We can remove some column $ i $ st. the remaining cols are L.I $ (r(A) = n -1) $. This gives us an $ n \times (n-1) $ matrix with row rank $ n - 1 $ (since row rank $ = $ column rank.) So we can remove a row $ j $ st. remaining rows are LI.
+	
+	
+	
+	Then $ A_{\hat{ij}} \neq 0 $ ($ (n-1) \times (n-1) $ matrix left over has full rank). So $ \text{adj } A \neq 0 $. So $ r(\text{adj } A) = 1 $.
+	
+	\item If $ r(A) = n - 2 $
+	
+	If we remove a col, the remaining cols are L.D (still). This does not change if we further remove a row. So $ \text{adj } A = 0 $.
+	
+\end{itemize}
+
+Singular case: 
+
+\begin{enumerate}
+	\item Define $ f(\lambda) = \text{adj}((A + \lambda I) B) - \text{adj}(B)\text{adj}(A + \lambda I) $. We know that $ f(\lambda) $ is zero whenever $ \lambda $ is st. 
+	
+	\[ \det(A + \lambda I) \neq 0 \]
+	
+	ie. $ f(\lambda) $ is a poly with infinitely many roots.
+	
+	(since $ \det(A + \lambda I) $ is a non-zero poly so has at most $ n $ roots). So $ f $ is the zero polynomial, and (i) holds in general. 	
+\end{enumerate}
+
 
 \section{QUESTION 9}
+
+Let $ \alpha $ be the map $ \alpha : P^{*} \to \R^{\N}  $ defined by 
+
+\[ [\xi : P \to \R] \mapsto (\xi(1),\xi(t),\xi(t^{2}),\cdots)  \]
+
+\begin{align*}
+\alpha (\lambda \xi_{1} + \mu \xi_{2}) & = ( (\lambda \xi_{1} + \mu \xi_{2})(1),(\lambda \xi_{1} + \mu \xi_{2})(t),(\lambda \xi_{1} + \mu \xi_{2})(t^{2}),\cdots)  \\
+& = (\lambda \xi_{1}(1)  + \mu \xi_{2}(1), \lambda \xi_{1}(t)  + \mu \xi_{2}(t), \lambda \xi_{1}(t^{2})  + \mu \xi_{2}(t^{2}), \cdots  ) \\
+& = \lambda(  \xi_{1}(1), \xi_{1}(t), \xi_{1}(t^{2}), \cdots ) + \mu ( \xi_{2}(1),\xi_{2}(t),\xi_{2}(t^{2}),\cdots )    
+\end{align*}
+
+Hence $ \alpha $ is linear. 
+
+Let the map $ B : \R^{\N} \to P^{*} $ be defined as
+
+\[ (a_{0},a_{1},a_{2},\cdots) \mapsto [ \xi : P \to \R \; | \; \xi(t^{n}) = a_{n} ] \]
+
+As this defines $ \xi $ on the basis of $ P $, it fully defines $ \xi $ so this is well defined. This is an inverse to $ \alpha $ so $ \alpha $ is a bijective map. Hence $ \alpha $ is an isomorphism and $ P^{*} \simeq \R^{\N} $
+
+
+Let the sequence $ (a_{0},a_{1},a_{2},\cdots) $ correspond to the linear map $ \xi : P  \to \R $ with $ \xi(t^{n}) = a_{n} $. For $ \alpha \in L(P,P) $
+
+$ \alpha^{*} $ dual to $ \alpha $ is defined by $ \alpha^{*} : P^{*} \to P^{*} $, $ \varepsilon \mapsto  \varepsilon \circ \alpha $.
+
+\begin{enumerate}[label = (\alph*)]
+	\item $ D^{*} (\xi) \mapsto \xi \circ D $ where $ \xi \circ D : P \to \R $ with $ \xi \circ D (t^{n}) = \xi(n t^{n-1})  = n a_{n-1}$ 
+	
+	\item $ S^{*}(\xi) \mapsto \xi \circ S $ where $ \xi \circ S : P \to \R $ with $ \xi \circ S(t^{n}) = \xi(t^{2n}) = a_{2n} $
+	
+	\item $ (DS)^{*} (\xi) \mapsto \xi \circ D S $ where $ \xi \circ DS : P \to \R $ with $ \xi \circ DS (t^{n}) = \xi(2n t^{2n-1})  = 2n a_{2n-1}$ 
+		
+	\item $ (SD)^{*} (\xi) \mapsto \xi \circ SD $ where $ \xi \circ SD : P \to \R $ with $ \xi \circ SD (t^{n}) = \xi(n t^{2(n-1)})  = n a_{2(n-1)}$ 
+\end{enumerate}
+
 \section{QUESTION 10}
 \section{QUESTION 11}
 

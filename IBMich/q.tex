@@ -1720,6 +1720,178 @@ Axiom (A1): State's not of a quantum system correspond to non-zero elemnets of c
 \end{enumerate}
 
 
+An \emph{operator} (or linear operator) is a linear map $ V \to V $
+
+\[ A(\alpha \psi + \beta \phi) = \alpha A \psi + \beta A 
+\phi \]
+
+Axiom(A2): A measurable quantity or \emph{observable} corresponds to  \emph{Hermitian} operator on $ V $. Mathematical elaboration: for any vector $ A $, the \emph{hermitian conjugate} $ A^{\dag} $ is defined by
+
+\[ (A^{\dag},\psi) = (\phi, A \psi) \qquad \forall \phi, \psi \]
+
+It follows that
+
+\[ (\alpha A + \beta B)^{\dag} = \alpha^{*} A^{\dag} + \beta^{*} B^{
+	\dag} \]
+
+\[ (AB)^{\dag} = B^{\dag} A^{\dag} \]
+
+An operator $ Q $ is \emph{hermitian} if $ Q^{\dag} = Q $ (also called self-adjoint)
+
+Axiom (A3): The state of the system $ \Psi(t) $ obeys the Schr\"odinger Equation
+
+\[ i \hbar \dot{\Psi} = H \Psi \]
+
+where $ H $ is a hermitian operator, the \emph{Hamilotian}.
+
+This holds \emph{except} at the instant when a measurement is made (see below)
+
+\subsection{Observables and Measurements}
+
+A state $ \chi (\neq 0 )$ is an \emph{eigenstate} of an operator $ Q $ with eigenvalue $ \lambda $ if
+
+\[ Q \chi = \lambda \chi \]
+
+The set of all eigenvalues of $ Q $ is called the \emph{spectrum}.
+
+\subsubsection{Key Results for Hermitian Operators}
+
+Let $ Q $ be hermitian ($ Q^{\dag} = Q $). Then
+
+\begin{enumerate}
+	\item Eigenvalues of $ Q $ are real
+	
+	\begin{proof}
+		if $ Q \chi = \lambda \chi $ then
+		
+		\begin{align*}
+		& \quad \; \; (\chi, Q \chi) = (Q \chi, \chi) \qquad (Q^{\dag} = Q) \\
+		& \Rightarrow (\chi, \lambda \chi) = (\lambda \chi, \chi) \\
+		& \Rightarrow \lambda(\chi,\chi) = \lambda^{*} (\chi,\chi)
+		\end{align*}
+	\end{proof}
+
+
+	\item Eigenstates of $ Q $ with different eigenvalues are orthogonal wrt. the inner product. 
+	
+	\begin{proof}
+		\[ \begin{cases}   & Q \chi = \lambda \chi \\ & Q \phi = \mu \phi  \end{cases} \text{ then} \]
+		
+			\begin{align*}
+		& \quad \; \; (\phi, Q \chi) = (Q \phi, \chi)  \\
+		& \Rightarrow (\phi, \lambda \chi) = (\mu  \phi, \chi) \\
+		& \Rightarrow \lambda(\phi,\chi) = \mu (\phi,\chi)
+		\end{align*}
+		
+		So $ \lambda \neq \mu \Rightarrow (\phi, \chi) = 0 $
+		
+	\end{proof}
+
+	\item Any state can be expressed as a linear combination (in general an finite sum) of eigenstates of $ Q $.
+	Eigenstates of $ Q $ provide a \emph{basis} for $ V $, or set of eigenstates is \emph{complete}.
+	
+\end{enumerate}
+
+We will not attempt to justify (iii) or to discuss issues of convergence.
+
+\subsubsection{Measurement Axioms}
+
+Consider an observable $ Q $ with discrete spectrum and normalised eigenstates and eigenvalues labelled by $ n $, such that
+
+\[ Q \chi_{n} = \lambda_{n} \chi_{n} \qquad (\chi_{m},\chi_{n}) = \delta_{mn} \]
+
+From part (a) any state can be written 
+
+\[ \psi = \sum_{n} \alpha_{n} \chi_{n} \qquad \text{ with } \alpha_{n} = (\chi_{n},\psi) \]
+
+Assume that the eigenvalues are distinct ( $ \lambda_{n} \neq \lambda_{m} $ for $ m \neq n $). Suppose $ Q $ is measured when the system is in a normalised state $ \psi $ as above. Then 
+
+Axiom (M1): The outcome of the measurement is some eigenvalue of $ Q $
+
+Axiom (M2): The probability of obtaining $ \lambda_{n} $ is
+
+\[ P_{n} = | \alpha_{n} |^{2} \qquad \text{where } \alpha_{n} = (\chi_{n},\psi) \text{is called the \emph{amplitude}} \]
+
+Axiom (M3): The measurement is instantaneous and it forces the system into  the state $ \chi_{n} $: this is the state immediately after the result $ \lambda_{n} $ is obtained.
+
+This implies that if $ Q $ is measured again immediately afterwards, then $ \lambda_{n} $ is obtained again with probability one
+
+Note
+
+\begin{enumerate}
+	\item $ \psi $ normalised $ \Rightarrow $
+	
+	\begin{align*}
+	(\psi,\psi)& = (  \sum_{n} \alpha_{n} \chi_{n}, \sum_{m} \alpha_{m} \chi_{m} ) \\
+	& = \sum_{n,m}  \alpha_{n}^{*}\alpha_{m} (\chi_{n},\chi_{m}) \\
+	& = \sum_{n} | \alpha_{n} |^{2} \\
+	& = \sum_{n} P_{n} = 1
+	\end{align*}
+	
+	\item Postulate (P3) follows immediately: if $ \alpha_{k} = 1 $ and $ \alpha_{n} = 0 $ $ n \neq k $, then $ \lambda_{k} $ is obtained with probability $ 1 $. $ (\psi = \lambda_{k}) $
+\end{enumerate}
+
+
+\begin{eg}(Harmonic Oscillator, see 3.3)
+	with $ Q = H $, $ \chi_{n} = \psi_{n} $, $ \lambda_{n} = E_{n} = \hbar \omega (n + \frac{1}{2}) $ for $ n = 0,1,2,\cdots $
+	
+	
+	Suppose
+	
+	\[ \psi = \frac{1}{\sqrt{6}}  (\psi_{0} + 2\psi_{1} - i \psi_{4} ) \]
+	
+	is state of system. 
+	
+	$ \alpha_{0} = \frac{1}{\sqrt{6}} $, $ \alpha_{1} = \frac{2}{\sqrt{6}} $, $ \alpha_{4} = \frac{-i}{\sqrt{6}} $ and $ \alpha_{n} = 0 $ else.
+	
+	
+	Measuring energy gives result:
+	
+	$ E_{0} = \frac{1}{2} \hbar \omega $ with probability $ P_{0} = \frac{1}{6} $
+	or $ E_{1} = \frac{3}{2} \hbar \omega $ with probability $ P_{1} = \frac{2}{3} $
+	or $ E_{4} = \frac{9}{2} \hbar \omega $ with probability $ P_{4} = \frac{1}{6} $ 
+	and probability $ 0 $ for any other result.
+	
+	
+	
+\end{eg}
+
+
+\subsubsection{Expressions for Expectation and Uncertainty}
+
+\begin{enumerate}
+	\item The expectation value of $ Q $ in a normalised state $ \psi $ is
+	
+	\[ \langle Q \rangle_{\psi}  = (\psi, Q \psi) = \sum_{n} \lambda_{n} P_{n} \]
+	
+	(usual definition of mean). All notation as in part 6.2.2 above
+	
+	\begin{proof}
+		\begin{align*}
+		\psi = \sum_{m} \alpha_{m} \chi_{m} & \Rightarrow Q \psi = \sum_{m} \alpha_{m} \lambda_{m} \chi_{m} \\
+		& \Rightarrow (\psi,Q\psi) = \sum_{m,n} (\alpha_{n}\chi_{n}, \alpha_{m} \lambda_{m} \chi_{m} ) = \sum_{n} | \alpha_{n} |^{2} \lambda_{n} \text{ as expected}
+		\end{align*}
+	\end{proof}
+
+This justifies (P2):
+Note: $ \langle Q \rangle_{\psi} $ is the average result of a large number of measurements of $ Q $ ($ N $, with $ N \to \infty $) with the system prepared in state $ \psi $ each time. (contrast this with (M3)).
+
+\begin{eg} (Harmonic Oscillator with details as above)
+	
+	\[ \langle H \rangle_{\psi}  = \sum_{n} E_{n} P_{n} = ( \frac{1}{2} \times \frac{1}{6}   + \frac{3}{2} \times \frac{2}{3} + \frac{9}{2} \times \frac{1}{6}  )\hbar \omega = \frac{11}{6} \hbar \omega \]
+	
+\end{eg}
+	
+	
+	\item The uncertainty $ (\Delta Q)_{\psi} $ is given by
+	
+	\[ (\Delta Q)_{\Psi} = \langle (Q - \langle Q \rangle_{\psi})^{2} \rangle_{\psi} = \langle Q^{2} \rangle_{\psi} - \langle Q \rangle_{\psi}^{2} = \sum_{n} (\lambda_{n} \langle Q \rangle_{\psi} )^{2} P_{n} \]
+	
+	\begin{proof}
+		Check directly form first expression above 
+	\end{proof}
+\end{enumerate}
+
 
 
 

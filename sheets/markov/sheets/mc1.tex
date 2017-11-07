@@ -1,0 +1,222 @@
+\documentclass[a4paper]{article}
+\usepackage{amsmath}
+\def\npart {IA}
+\def\nterm {Michaelmas}
+\def\nyear {2017}
+\def\nlecturer {Prof Weber (rrw1@cam.ac.uk)}
+\def\ncourse {Markov Chains Example Sheet 1}
+
+\input{header}
+
+\newtheorem*{soln}{Solution}
+
+\renewcommand{\thesection}{}
+\renewcommand{\thesubsection}{\arabic{section}.\arabic{subsection}}
+\makeatletter
+\def\@seccntformat#1{\csname #1ignore\expandafter\endcsname\csname the#1\endcsname\quad}
+\let\sectionignore\@gobbletwo
+\let\latex@numberline\numberline
+\def\numberline#1{\if\relax#1\relax\else\latex@numberline{#1}\fi}
+\makeatother
+
+
+\begin{document}
+	
+\maketitle
+
+\section{QUESTION 1}
+
+$ X = (X_{n}) $ is a Markov Chain, and so satisfies the Markov Property
+
+\[ \P( X_{n+1} = i_{n+1} \; | \; X_{0} = i_{0}, \cdots, X_{n} = i_{n} ) = \P(X_{n+1} = i_{n+1} \; | \; X_{n} = i_{n} ) \]
+
+Given that $ Z_{k} = X_{m+k} $, with $ k \geq 0 $, want to show that $ Z_{k} $ is a Markov Chain, ie.
+
+\[ \P(Z_{n+1}  \; | \; Z_{0},\cdots,Z_{n} ) = \P(Z_{n+1} \; | \; Z_{n} ) \qquad (*) \]
+
+Substituting in our definition of $ Z_{k} $,
+
+\begin{align*}
+\P(Z_{n+1}  \; | \; Z_{0},\cdots,Z_{n} ) & = \P(X_{m+n+1}|X_{m},\cdots,X_{m+n}) \\
+& = \P(X_{m+n+1} | X_{m+n}) \qquad \text{ as } X \text{ is Markov}\\
+& = \P(Z_{n+1} \; | \; Z_{n} )
+\end{align*}
+
+Hence $ Z_{k} $ satisfies the Markov property, and is thus a Markov Chain.
+
+$ Z_{0} = X_{m} = i $, so $ Z_{k} $ has starting state $ i $.
+
+\section{QUESTION 2}
+
+Let $ X_{1},\cdots,X_{n} $ be independent random variables, so $ \P(X_{n+1} = i_{n+1} \; | \; X_{n} = i_{n} ) = \P(X_{n+1} = i_{n+1}  ) $. But then 
+
+\[ \P( X_{n+1} = i_{n+1} \; | \; X_{0} = i_{0}, \cdots, X_{n} = i_{n} ) = \P(X_{n+1} = i_{n+1}) \] 
+
+also by independence, so Markov property is satisfied.
+
+Homogeneous if $ \P(X_{n+1} = i_{n+1} \; | \; X_{n} = i_{n}) $ does not depend on the value of $ n $, so must have $ X_{n} $ identically distributed. 
+
+
+
+\section{QUESTION 3}
+
+As $ X_{n} $ is the \emph{maximum} reading obtained after $ n $ throws, this depends only on the last maximum, so $ X_{n} $ is a Markov chain. In particular, the state transition matrix is
+
+
+\[ \begin{pmatrix}
+1/6 & 1/6 & 1/6 & 1/6 & 1/6 & 1/6  \\
+0 & 2/6 & 1/6 & 1/6 & 1/6 & 1/6  \\
+0 & 0 & 3/6 & 1/6 & 1/6 & 1/6  \\
+0 & 0 & 0 & 4/6 & 1/6 & 1/6 \\
+0 & 0 & 0 & 0 & 5/6 & 1/6  \\
+0 & 0 & 0 & 0 & 0 & 6/6 
+\end{pmatrix} \]
+
+
+\section{QUESTION 4}
+
+We have
+
+\[ S_{n+1} = \begin{cases} S_{n} + 1  & \text{ with probability } p  \\ S_{n} - 1& \text{ with probability } q \end{cases} \]
+
+and $ S_{0} = 0 $.
+
+Let $ X_{n} = | S_{n} | $
+
+Clearly $ X_{n} $ satisfies the Markov property (where the walk is now only depends on where it was one step before), so $ X $ is a Markov Chain with initial state $ X_{0} = 0 $. The transition probabilities are given by the transition matrix
+
+\[ \begin{pmatrix}
+0 & 1 & 0 & 0 & \cdots \\
+q & 0 & p & 0 & \cdots \\
+0 & q & 0 & p & \cdots \\
+\vdots & \vdots & \vdots & \vdots & \ddots
+\end{pmatrix} \]
+
+Define $ M_{k} := \max \{ S_{k} \; | \; 0 \leq k \leq n \} $, and $ Y_{n} = M_{n} - S_{n} $
+
+\section{QUESTION 5}
+
+$ X $ is a Markov chain, thus
+
+\[ \P( X_{n+1} = i_{n+1} \; | \; X_{0} = i_{0}, \cdots, X_{n} = i_{n} ) = \P(X_{n+1} = i_{n+1} \; | \; X_{n} = i_{n} ) \]
+
+Have
+
+\begin{align*}
+\P(Y_{r+1}  \; | \; Y_{0},\cdots,Y_{r} ) & = \P(X_{n_{r+1}} \; | \; X_{n_{0}},\cdots,X_{n_{r}}  ) \\
+\end{align*}
+
+If $ n_{r} = 2r $ and $ X $ is a simple random walk on $ Z $ st. 
+
+\[ X_{n+1} = \begin{cases} X_{n} + 1 & \text{ with probability } p \\ X_{n} - 1 & \text{ with probability } q \end{cases} \] 
+
+the allowed states are $ \{ \cdots,-2,-1,0,1,2,\cdots \} $. Of course, the probability of finding oneself in an odd state is always zero (we are always taking an even number of states).
+
+It is difficult to visualise the state transition matrix as the state space is infinite, but a general row has the form
+
+\[ \begin{pmatrix}
+\cdots & 0 & q^{2} & 0 & 2pq & 0 & p^{2} & \cdots
+\end{pmatrix} \]
+
+With probability $ 2pq $ of returning to the current state, $ p^{2} $ moving two to the right and $ q^{2} $ moving two to the left. (Thus rows summing to $ (p + q)^{2} = 1 $)
+
+
+
+
+\section{QUESTION 6}
+
+I think the answer should be no. $ X $ and $ Y $ are both Markov chains, so the value of $ X_{n+1} + Y_{n+1} $ only depends on $ X_{n} $, and $ Y_{n} $. But we only have the value of $ X_{n} + Y_{n} $ (loss of information)
+
+\section{QUESTION 7}
+
+\begin{enumerate}
+	\item Let the probability of the flea being on the original vertex after $ n $ hops be $ p_{n} $. Then
+
+\[ p_{n} = \begin{cases} 0  & \text{ if flea on first vertex after } n-1 \text{ hops}  \\ \frac{1}{2} & \text{ otherwise } \end{cases} \]
+
+Hence we set up the recurrence, with $ p_{0} = 1 $
+
+\begin{align*}
+p_{n} & = 0 \cdot p_{n-1} + \frac{1}{2} (1 - p_{n-1})  \\
+& = \frac{1}{2} (1 - p_{n-1}) \\
+\end{align*}
+
+Solving this difference equation gives general solution $ p_{n} = \frac{1}{3} + \frac{2}{3}\left( - \frac{1}{2} \right)^{n}   $.
+
+\item Let $ p_{n} $ be defined as before. We have \[ p_{n} = \begin{cases} 0  & \text{ if flea on first vertex after } n-1 \text{ hops}  \\ \frac{2}{3} & \text{ if flea on anticlockwise vertex '''' } \\
+\frac{1}{3} & \text{if flea on clockwise vertex '''' } \end{cases} \]
+
+This can be though of as a Markov chain on the state space of triangle vertices, with transition matrix
+
+\[ P = \begin{pmatrix}
+0 & \frac{2}{3} & \frac{1}{3} \\
+\frac{1}{3} & 0 & \frac{2}{3} \\
+\frac{2}{3} & \frac{1}{3} & 0
+\end{pmatrix} \]
+	
+We seek $ (P^{n})_{11} $	
+
+
+\end{enumerate}
+
+
+
+
+
+\section{QUESTION 8}
+
+Let $ X_{n} $ be the score of the die on the $ n^{\text{th}} $ roll; this is a Markov Chain. Define $ Y_{n} $ as
+
+\[ Y_{n} = \begin{cases} 1  & \text{ if } X_{n} = 6 \\ 0 & \text{ if } X_{n} \neq 6 \end{cases} \]
+
+This has transition matrix
+
+\[ P = \begin{pmatrix}
+\frac{4}{5} & \frac{1}{5} \\
+1 & 0
+\end{pmatrix} \]
+
+We wish to find $ P(Y_{n} = 1 \; | \; Y_{0} = 0) $
+
+\section{QUESTION 9}
+\section{QUESTION 10}
+
+Possible transitions of the chain are illustrated below:
+  \begin{center}
+	\begin{tikzpicture}
+	\node [mstate] (1) at (0, 0) {$1$};
+	\node [mstate] (5) at (2, 0) {$5$};
+	\node [mstate] (3) at (3, -1.4) {$3$};
+	\node [mstate] (4) at (4, 0) {$4$};
+	\node [mstate] (2) at (6, 0) {$2$};
+	\draw (1) edge [loop below, ->] (1);
+	\draw (2) edge [bend left, ->] (4);
+	\draw (4) edge [bend left, ->] (2);
+	\draw (4) edge [loop above, ->] (4);
+	\draw (5) edge [loop below, ->] (6);
+	\draw (1) edge [bend left, ->] (5);
+	\draw (5) edge [bend left, ->] (1);
+	\draw (4) edge [->] (5);
+	\draw (4) edge [->] (3);
+	\draw (3) edge [loop below, ->] (3);
+	\end{tikzpicture}
+\end{center}
+
+The communicating classes are $ C_{1} = \{ 1,5 \}, C_{2} = \{ 3 \} $ and $ C_{3} = \{ 2,4 \} $. The classes $ C_{1} $ and $ C_{3} $ are not closed, but $ C_{2} $ is closed.
+
+\section{QUESTION 11}
+
+Pick some $ i \in S $. If there are no $ j $ such that $ i \to j $, then $ \{ i \} $ is a closed communicating class, and we are done. 
+Else $ \exist \; j $ st. $ i \to j $. 
+
+\section{QUESTION 12}
+
+
+
+
+
+\section{QUESTION 13}
+\section{QUESTION 14}
+
+
+\end{document}
