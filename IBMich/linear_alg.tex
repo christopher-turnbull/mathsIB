@@ -2740,6 +2740,123 @@ Conjugate matrices have same characteristic poly.
 \end{proof}
 
 
+Notation: $ p(t) $ is a poly over $ \F $, $ p(t) = a_{n}t^{n} + \cdots + a_{0} $, $ a_{i} \in \F $. For $ A \in M_{n}(\F)$, define $ P(A) = a_{n}A^{n} + a_{n-1} A^{n-1} + \cdots+ a_{0} I $, $ \alpha \in L(V) $ (over $ \F $), $ p(\alpha) = a_{n}\alpha^{n} + \cdots + \alpha_{0} \iota \in L(V)  $. ( where $ \alpha^{n} $)
+
+\begin{thm} $ V $ v space over $ \F $, $ \dim V < \infty $. Let $ \alpha \in L(V) $. Then $ \alpha $ is diagonalisable iff $ p(\alpha) = 0 $ for some poly $ p \in F[t] $ which is the product of distinct linear factors.
+	
+	
+	
+\end{thm}	
+	\begin{proof}
+		$ (\Leftarrow) $ Suppose $ \alpha $ is diagonalisable, distinct evalues, $ \lambda_{1},\cdots,\lambda_{k} $. Let $ p(t) = (t - \lambda_{1})\cdots(t - \lambda_{k}) $. Let $ \mathcal{B} $ be a basis of evectors. For $ v \in \mathcal{B} $, $ \alpha(v) = \lambda_{i} v $ for some $ i $. This means
+		
+		\[ \Rightarrow (\alpha - \lambda_{i} \iota ) v = 0 \Rightarrow p(\alpha)(v)  = 0 \]
+		
+		As this holds for all $ v \in \mathcal{B} $, we have $ p(\alpha) = 0 $, done.
+		
+		$ (\Rightarrow) $ Suppose $ p(\alpha) = 0 $, for $ p(t) = \prod_{i=1}^{k}  (t - \lambda_{i}) $ wlog $ p(t) $ monic.
+		
+		Claim: $ V = \bigoplus_{i=1}^{k} V_{\lambda_{i}} $
+		
+		Proof of claim: Let $ q_{j}(t) = \prod_{i \neq j}^{k} \frac{t - \lambda_{i}}{\lambda_{j} - \lambda_{i} }   $ for $ j = 1, \cdots, k $ and $ q_{j}(\lambda_{i}) = \delta_{ij} $
+		
+		Let $ q(t) : = q_{1}(t) + \cdots + q_{k}(t) $
+		
+		$ q(t) $ has degree at most $ k - 1 $ (each of the $ q_{i} $ have deg at most $ k - 1 $). $ q(\lambda_{i}) = 1 $ for all $ i = 1,\cdots,k $. The only possibility is $ q(t) = 1 $ (constant map)
+		
+		
+		Let $ \pi_{j} = q_{j}(\alpha): V \to V $. By construction, $ \sum_{j=1}^{k} \pi_{j} = q(\alpha) = \iota \in L(V) $.
+		
+		Given $ v \in V $, $ v = q(\alpha)v = \sum_{j=1}^{k} \pi_{j}(v)  $.
+		
+		Also, \[ (\alpha - \lambda_{j}\iota) (\pi_{j}(v)) = (\alpha - \lambda_{j} \iota) (q_{j}(\alpha)) (v) = \frac{1}{\prod_{i \neq j}  (\lambda_{j} - \lambda_{i}) }  p(\alpha) v = \mathbf{0}  \]
+		
+		So
+		
+		\[ \pi_{j}(v) \in \ker(\alpha - \lambda_{j} \iota   )V_{\lambda_{j}}   \] 
+		
+		Thus $ V = \sum V_{\lambda_{j}} $.
+		
+		To see that the sum is direct, suppose
+		
+		\[ v \in V_{\lambda_{j}} \cap \left(  \sum_{j \neq i}^{k}V_{\lambda_{i}} \right) \text{ and apply } \pi_{j} \text{ to } v \]
+		
+		$ v \in V_{\lambda_{j}} \Rightarrow  \pi_{j}(v) = \prod_{j \neq i}^{k}  \frac{\lambda_{j}  - \lambda_{i} }{\lambda_{j} - \lambda_{i}} v = v \qquad \left(  \alpha v = \lambda_{j} v \right)  $
+		
+		$ v \in \sum_{i \neq j} V_{\lambda_{i}} \Rightarrow \pi_{j}(v) = 0  $. Thus $ v = 0 $ and the sum is direct. 
+		
+		
+		Now take the union of bases for $ V_{\lambda_{i}} $ as a basis for $ V $
+		
+	\end{proof}
+	
+
+
+Remarks:
+
+\begin{itemize}
+	\item Morally speaking, $ \pi_{j} $ is `projecting' to the $ V_{\lambda_{j}} $
+	
+	\item Proof shows that for $ k $ distinct evalues $ \lambda_{1},\cdots,\lambda_{k} $ of $ \alpha $, the sum $ \sum V_{\lambda_{j}} $ is direct: $ \sum V_{\lambda_{j}} = \bigoplus V_{\lambda_{j}} $.
+	
+	\item The only way diagonalisation fails is if $ \sum V_{\lambda_{j}} $ is not a subspace of $ V $. $ (\not\leq) $
+\end{itemize}
+
+
+\begin{cor} 
+	If $ A \in M_{n}(\C) $ has finite order, ($ A^{m} = I $ for some $ m $). Then $ A $ is diagonalisable. 
+\end{cor}
+
+\begin{proof}
+	$ p(A) = 0 $ for $ p(t) = t^{m} - 1 =  \prod_{i=0}^{m-1} (t - \xi^{i}) $ where $ \xi $ is $ m^{\text{th}} $ root of $ 1 $. (Now over complex numbers)
+\end{proof}
+
+\begin{thm} 
+	Simultaneous diagonalisation:
+	Let $ \alpha,\beta \in L(V) $ diagonalisable. Then $ \alpha,\beta $ are simultaneously diagonalisable (there exists a basis wrt which they're both diagonal) iff $ \alpha $ and $ \beta $ commute.
+\end{thm}
+
+\begin{proof}
+	($ \Rightarrow $) Suppose there is a basis $ \mathcal{B} $ st. $ A = [ \alpha ]_{\mathcal{B}} $ and $ B = [\beta]_{\mathcal{B}}  $ diagonal. Any two diagonal matrices commute, so $ AB = BA $, so $ \alpha \beta = \beta\alpha $.
+	
+	
+	($ \Leftarrow $) Suppose $ \alpha,\beta $ commute, both diagonalisable. We have $ V = V_{1} \oplus \cdots \oplus V_{k} $, where $ V_{i} = \ker (\alpha - \lambda_{i} \iota ) $ ($ V_{i} $ is an eigenspace for $ \alpha $).
+	
+	Claim: $ \beta(V_{j}) \leq V_{j} $ (still lands inside)
+	
+	Suppose $ v \in V_{j} $, $ \alpha \beta(v) = \beta \alpha(v) = \beta \lambda_{j} v = \lambda_{j} \beta (v)  $.
+	
+	As $ \beta $ is diagonalisable, theres a poly $ p $ with distinct linear factors st. $ p(\beta) = 0 $. 
+	
+	Now $ p(\beta |_{V_{i}}) = p(\beta)|_{V_{i}} = 0 \Rightarrow \beta |_{V_{i}} \in L(V_{i}) $ is diagon. 
+	
+	Pick a basis $ \beta_{i} $ of $ V_{i} $ consisting of evectors for $ \beta $. By construction, these are real evectors for $ \alpha $, and wrt $ \mathcal{B} = \cup_{i} \mathcal{B}_{i}  $ both $ \alpha $ and $ \beta $ are diagonal. 
+ 	
+	
+\end{proof}
+
+
+\begin{lemma} 
+	Euclidean alg for polynomails:
+	
+	Given $ a,b \in \F[t] $, with $ b \neq 0 $, then there exists polynomials $ q,r \in F[t] $ with deg $ r  < \deg b$ and $ a = qb + r $ 
+\end{lemma}
+
+\begin{proof}
+	exercise (induction on deg) or see GRM
+\end{proof}
+
+\begin{defi}
+	$ \alpha \in L(V) $, $ \dim V < \infty $. The minimal poly of $ \alpha $, $ m_{\alpha} $, is the non zero monic poly of smallest deg st. $ m_{\alpha}(\alpha) = 0 $
+\end{defi}
+
+
+Remarks (Existence and Uniqueness)
+\begin{itemize}
+	\item Say $ \dim_{\F} V = n < \infty $, $ \dim L(V) = n^{2} $.
+	
+	So $ \iota, \alpha,\alpha^{2},\cdots,\alpha^{n^{2}} \in L(V) $ must be linearly dependent, so $ \alpha_{n^{2}}  \alpha^{n^{2}} + \cdots + \alpha_{1} \alpha  + \alpha_{0} \iota $ for some $ \alpha_{i} \in \F $ not all zero. So min poly existt.  
+\end{itemize}
 
 
 

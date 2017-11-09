@@ -35,7 +35,8 @@ Discarding the (small )terms of $ O(t^{2}) $, we call the first order variation 
 
 \begin{align*}
 \delta F[x]  & = \int_{t_{1}}^{t_{2}} \left\{   \delta x \left[   \frac{\partial f }{\partial x }  - \frac{\d }{\d t} \left(  \frac{\partial f }{\partial \dot{x}} \right)    \right]  - (\delta \dot{x}) \frac{\d }{\d t} \left(  \frac{\partial f }{\partial \ddot{x}} \right)   \right\} \; \d t + \left[  \delta x \frac{\partial f }{\partial \dot{x}} + ( \delta \dot{x}) \frac{\partial f }{\partial \ddot{x}} \right]_{t_{1}}^{t_{2}}   \\
-& = \int_{t_{1}}^{t_{2}} \left\{   \delta x \left[   \frac{\partial f }{\partial x }  - \frac{\d }{\d t} \left(  \frac{\partial f }{\partial \dot{x}} \right)  +  \frac{\d^{2} }{\d t^{2}} \left(  \frac{\partial f }{\partial \ddot{x}} \right)   \right] \right\} \; \d t + \left[  \delta x \left\{  \frac{\partial f }{\partial \dot{x}} - \frac{\d }{\d t} \left(  \frac{\partial f }{\partial \ddot{x}} \right)  \right\}  + ( \delta \dot{x}) \frac{\partial f }{\partial \ddot{x}}  \right]_{t_{1}}^{t_{2}}
+& = \int_{t_{1}}^{t_{2}} \left\{   \delta x \left[   \frac{\partial f }{\partial x }  - \frac{\d }{\d t} \left(  \frac{\partial f }{\partial \dot{x}} \right)  +  \frac{\d^{2} }{\d t^{2}} \left(  \frac{\partial f }{\partial \ddot{x}} \right)   \right] \right\} \; \d t\\
+& \quad + \left[  \delta x \left\{  \frac{\partial f }{\partial \dot{x}} - \frac{\d }{\d t} \left(  \frac{\partial f }{\partial \ddot{x}} \right)  \right\}  + ( \delta \dot{x}) \frac{\partial f }{\partial \ddot{x}}  \right]_{t_{1}}^{t_{2}}
 \end{align*}
 
 We have fixed end boundary conditions, so $ \delta x(t_{1}) = \delta x(t_{2}) = 0 $ and also $ \delta \dot{x} (t_{1}) = \delta \dot{x} (t_{2}) = 0  $. Thus the boundary term is zero and we can write $ \delta F[x] $ in the form
@@ -44,26 +45,51 @@ We have fixed end boundary conditions, so $ \delta x(t_{1}) = \delta x(t_{2}) = 
 \[ \delta F[x] = \int_{t_{1}}^{t_{2}} \left\{ \delta x(t) \frac{ \delta F[x]}{\delta x(t)}  \right\}  \; \d t  \]
 
 
-where the \emph{function derivative} $ \frac{ \delta F[x]}{\delta x(t)} $ is defined as 
+where the \emph{functional derivative} $ \frac{ \delta F[x]}{\delta x(t)} $ is defined as 
 
 
 \[ \frac{ \delta F[x]}{\delta x(t)} := \frac{\partial f }{\partial x} -  \frac{\d }{\d t} \left(  \frac{\partial f }{\partial \dot{x}} \right)  +  \frac{\d^{2} }{\d t^{2}} \left(  \frac{\partial f }{\partial \ddot{x}} \right)   \]
 
-The functional $ F $ is stationary when its functional derivative is zero ( assuming that the b.c.s are such that this derivative is defined) and the condition for this to be true is the following Euler-Lagrange equation:
+The functional $ F $ is stationary when its functional derivative is zero ( assuming that this derivative is defined on $ (t_{1},t_{2}) $) and the condition for this to be true is the following Euler-Lagrange equation:
 
 \[ \frac{\partial f }{\partial x} -  \frac{\d }{\d t} \left(  \frac{\partial f }{\partial \dot{x}} \right)  +  \frac{\d^{2} }{\d t^{2}} \left(  \frac{\partial f }{\partial \ddot{x}} \right) = 0, \qquad t_{1} < t < t_{2} \]
 
 
 Given the functional
 
-\[ L[x] = \int_{1}^{2} t^{4} |  \ddot{x}(t)  |^{2} \; \d t  \]
+\[ L[x] = \int_{1}^{2} t^{4}  [\ddot{x}(t)]^{2} \; \d t  \]
 
-In this case, $ f =  t^{4} |  \ddot{x}(t)  |^{2}  $, so $   \frac{\partial f }{\partial x} = \frac{\partial f }{\partial \dot{x}} = 0 $ and the EL equation can be immediately twice integrated to give 
+In this case, $ f =  t^{4} [\ddot{x}(t)]^{2}  $, so $   \frac{\partial f }{\partial x} = \frac{\partial f }{\partial \dot{x}} = 0 $ and the EL equation can be immediately twice integrated to give 
 
-\[ \frac{\partial }{\partial \ddot{x}} \left[ t^{4} |  \ddot{x}(t)  |^{2}  \right] = At + B   \]
+\[ \frac{\partial }{\partial \ddot{x}} \left[ t^{4} [\ddot{x}(t)]^{2} \right] = At + B   \]
 
 for some constants $ A $ and $ B $.
 
+ie.
+
+\[  2 t^{4}  \ddot{(x)}(t) = At + B \]
+\[ \Rightarrow \ddot{x}(t) = At^{-3} + B t^{-4} \qquad t \neq 0 \]
+
+\[ \Rightarrow \dot{x}(t) = A' t^{-2} + B' t^{-3} + C \]
+Using b.c.s we have
+
+\[ -2 = A' + B' + C \]
+\[ -\frac{1}{4} = \frac{1}{4} A' + \frac{1}{8} B' + C \Rightarrow -2 = 2 A' + B' + 8C \]
+
+Subtracting immediately yields $ A' = 7 C $:
+
+\[ -2 = 8 C + B' \]
+\[ -2 = 22C + B' \]
+
+Therefore $ C' = 0 $, $ B' = -2 $, and $ \dot{x}(n) = -2 t^{-3} $.
+
+Integrating, we get
+
+\[ x(t) = t^{-2} + D \]
+
+b.c.s $ \Rightarrow D = 0 $, so $ x(t) = \frac{1}{t^{2}} $. 
+
+This function is a global minimum? Hard to see. 
 
 \section{QUESTION 2}
 
@@ -77,24 +103,26 @@ Using a Lagrange multiplier $ \lambda $ to impose this, we seek to maximize the 
 & = \int_{0}^{2 \pi} \underbrace{\frac{1}{2} ( xy' - yx' ) - \lambda \sqrt{  (x')^{2}  + (y')^{2} }}_{=f_{\lambda}(\mathbf{x},\mathbf{x}')} \; \d \theta + \lambda L
 \end{align*}
 
-$ f_{\lambda}(\mathbf{x},\mathbf{x}') $ has no explicit $ \theta $ dependence, setting $ \frac{\d \phi_{\lambda}[x,y]}{\d y} = 0 $ the E-L equations imply (under the assumption of appropriate boundary conditions)
-
+where $ \mathbf{x} = (x,y) $. The boundary conditions fix $ x, x',y,y' $ at the endpoints, so the functional is stationary for solutions of the E-L equation.  $ f_{\lambda}(\mathbf{x},\mathbf{x}') $ has no explicit $ \theta $ dependence, so considering the $ y $ E-L equation we have that:
 
 \[ f_{\lambda}(y,y') - y' \frac{\partial f_{\lambda} }{\partial y'} = \text{ constant}  \]
 
 \begin{align*}
 & \Rightarrow f - y' \left(  \frac{1}{2} x - \frac{\lambda y'}{\sqrt{  (x')^{2}  + (y')^{2} }} \right) = \text{constant} \\
 & \Rightarrow  -\frac{1}{2} yx' - \lambda \frac{ ( (x')^{2}  + (y')^{2} )}{\sqrt{  (x')^{2}  + (y')^{2} }} + \lambda \frac{(y')^{2}}{\sqrt{  (x')^{2}  + (y')^{2} }} = \text{constant} \\
-& \Rightarrow - \frac{1}{2} y x' - \lambda \frac{(x')^{2}}{\sqrt{  (x')^{2}  + (y')^{2} }} = \text{constant}
+& \Rightarrow - \frac{1}{2} y x' - \lambda \frac{(x')^{2}}{\sqrt{  (x')^{2}  + (y')^{2} }} = C
 \end{align*}
 
-Similarly considering $ f_{\lambda}(x,x') $ we have
+for some constant $ C $. Similarly considering $ f_{\lambda}(x,x') $ we have
 
-\[ - \frac{1}{2} x y' - \lambda \frac{(y')^{2}}{\sqrt{  (x')^{2}  + (y')^{2} }} = \text{constant} \]
+\[ - \frac{1}{2} x y' - \lambda \frac{(y')^{2}}{\sqrt{  (x')^{2}  + (y')^{2} }} = D \]
 
-Adding,
+for some constant $ D $. Squaring and adding,
 
-\[ -\frac{1}{2}(xy' - yx' ) - \lambda \sqrt{  (x')^{2}  + (y')^{2} } = \text{ constant} \]
+\[ (C + \frac{1}{2} y x')^{2} + (D + \frac{1}{2} x y')^{2} = \lambda^{2} \]
+
+Feel like the $ x' $ and $ y' $ shouldn't be here, and it would be a circle?
+
 
 
 
@@ -103,23 +131,221 @@ Adding,
 
 Using Lagrange multiplier $ \lambda $, wish to minimize
 
-\[ I[\psi]_{\lambda} = \int_{-\infty}^{\infty} \underbrace{(\psi')^{2} + (x^{2} - \lambda \psi^{2} )}_{f_{\lambda}(\psi,\psi' ; x)} \; \d x + \lambda   \]
 
+\begin{align*}
+\Phi_{\lambda}[\psi] & = I[\psi] - \lambda  \left[    \int_{-\infty}^{\infty}  \psi^{2} \; \d x = 1  \right] \\
+& = \int_{-\infty}^{\infty} \underbrace{(\psi')^{2} + (x^{2} - \lambda  ) \psi^{2} }_{f_{\lambda}(\psi,\psi' ; x)} \; \d x + \lambda
+\end{align*}
 
+Normalisation condition, can assume $ \phi = 0 $ at endpoints, so the functional is stationary for solutions of the E-L equation.
 Euler-Lagrange equations imply:
 
-$  $
+\[ 2(x^{2} - \lambda) \psi - \frac{\d }{\d x} \left[  2 \psi' \right] = 0  \]
+
+\[ \Rightarrow \psi'' + (x^{2} - \lambda) \psi = 0 \]
+
+Note that
+
+\begin{align*}
+I[\psi]  & =  \int_{-\infty}^{\infty}  (\psi' + x^{2} \psi^{2} )^{2} - 2 x \psi \psi' \; \d x    \\
+& =  \int_{-\infty}^{\infty}  (\psi' + x^{2} \psi^{2} )^{2} \; \d x  - \int_{-\infty}^{\infty}  x \frac{\d }{\d x}[\psi^{2}] \; \d x \\
+& =  \int_{-\infty}^{\infty}  (\psi' + x^{2} \psi^{2} )^{2} \; \d x  - \left[     x \psi^{2} \right]_{-\infty}^{\infty} + \int_{-\infty}^{\infty} \psi^{2} \; \d x  \quad \text{by parts} \\
+& =   \int_{-\infty}^{\infty}  (\psi' + x^{2} \psi^{2} )^{2} \; \d x + 1   \end{align*}
+
+As $ (psi' + x^{2} \psi^{2}) $ is real valued, its square gives a positive function, thus the integral is positive and $ I[\psi] \geq 1 $. Equality holds for 
+
+\begin{align*}
+& \quad \; \; (\psi' + x \psi) = 0 \\
+& \Rightarrow \psi'+ x \psi = 0 \\
+& \Rightarrow \frac{\d }{\d x}  \left( \psi e^{x^{2}/2} \right) = 0 \\
+& \Rightarrow \psi = C e^{- x^{2} / 2 }  
+\end{align*}
+
+for some constant $ C $ (which we recognise as the Gaussian Wave Function).
+The normalisation condition implies that $ C = \left(  \frac{1}{\pi} \right)^{1/4}  $. 
+
+Showing it satisfies E-L: $ \psi'' = -C e^{-x^{2}/2}  + x^{2} C e^{-x^{2}/2} $
 
 
 
 
 
 \section{QUESTION 4}
+                                                 
+Using Lagrange multiplier $ \lambda $ with constraint $ | \mathbf{x} | = 1 $ wish to minimize
+                                                 
+\begin{align*}
+\Phi_{\lambda}[\mathbf{x}] & = I[\mathbf{x}] - \lambda(  | \mathbf{x} | - 1 ) \\
+& = \int_{t_{1}}^{t_{2}} \underbrace{| \dot{\mathbf{x}} |^{2} - \lambda | \mathbf{x} |}_{f_{\lambda}(\mathbf{x},\dot{\mathbf{x}} ; t )  } \; \d t + \lambda
+\end{align*}   
+
+The E-L equation for $ x_{i} $ component is $ \frac{\partial f }{\partial x_{i}} - \frac{\d }{\d t} \left(  \frac{\partial f}{\partial \dot{x}_{i}} \right) = 0   $, giving
+
+\[ - \frac{\lambda x_{i}}{| \mathbf{x} |}  - \frac{\d }{\d t} (  2 \dot{x}_{i} ) = 0 \]     
+
+\[ 2 \ddot{x_{i}} + \lambda x_{i} = 0  \qquad \text{as } | \mathbf{x} | = 1 \]        
+
+\[ \Rightarrow \ddot{\mathbf{x}}  + \frac{\lambda}{2} \mathbf{x} = 0 \]    
+
+Also, there is no $ t $ dependence in $ f_{\lambda} $, so E-L equations imply that
+
+\[ f - \dot{x}_{i} \frac{\partial f }{\partial \dot{x}_{i}} = \text{ constant} \]    
+
+\[ f - 2  \dot{x}_{i}^{2} = \text{ constant} \]                         
+
+
+
+
 \section{QUESTION 5}
+
+
+Have the Lagrangian
+
+\[ L = \underbrace{\frac{1}{2} m a^{2} \dot{\theta}^{2}  + \frac{1}{2} m a^{2} \dot{\theta}^{2}  }_{T} + \underbrace{mga \cos \theta}_{- V} \]
+
+Note that $ \frac{\partial L}{\partial \phi} = 0 $ so we have the first integral
+
+\[ \text{const. } = \frac{\partial L }{\partial \dot{\phi}} = m a^{2} \sin^{2} \theta  \]
+
+Note too that $ \frac{\partial L }{\partial t} = 0 $ (no t dependence) so we have another first integral
+
+\begin{align*}
+\text{const. } & = L - \dot{\phi} \frac{\partial L }{\partial \dot{\phi}} - \dot{\theta} \frac{\partial L }{\partial \dot{\theta}} \\
+& = - T - V
+\end{align*}
+
+from which we deduce that
+
+\[ \frac{1}{2} m a^{2} \dot{\theta}^{2}  + \frac{1}{2} m a^{2} \dot{\theta}^{2}  - mga \cos \theta = E \]
+
+for the total energy.
+
+The Hamiltonian is defined as the Legendre transform of the Lagrangian with respect to velocity $ \mathbf{v} = \dot{\mathbf{x}} $:
+
+\[ H(\mathbf{x},\mathbf{p};t)  = [ \mathbf{p} \cdot \mathbf{v}  - L(\mathbf{x},\mathbf{v}) ]_{\mathbf{v} = \mathbf{v(\mathbf{p})}} \]
+
+where $ \mathbf{v}(\mathbf{p}) $ is the solution to $ \frac{\partial L }{\partial \mathbf{v}} = \mathbf{p} $.
+
+The momentum $ p_{\theta} $ is given by
+
+\begin{align*}
+p_{\theta}  & = \frac{\partial  L}{\partial \dot{\theta}} \\
+& = m a^{2} \dot{\theta}
+\end{align*}
+
+Similarly,
+
+\begin{align*}
+p_{\phi} & = \frac{\partial  L}{\partial \dot{\phi}}  \\
+& = m a^{2} (\sin^{2} \theta ) \dot{\phi}
+\end{align*}
+
+Thus $ \mathbf{v} = (\dot{\theta},\dot{\phi}) = \left(  \frac{p_{\theta}}{ma^{2}},  \frac{p_{\phi}}{ma^{2}\sin^{2}\theta   } \right)   $ and
+
+\begin{align*}
+H & = \frac{p_{\theta}^{2}}{ma^{2}} +  \frac{p_{\phi}^{2}}{ma^{2}\sin^{2}\theta } - \left(  \frac{1}{2} m a^{2} \left(  \frac{p_{\theta}}{ma^{2}}\right)^{2}   + \frac{1}{2} m a^{2} \left( \frac{p_{\phi}}{ma^{2}\sin^{2}\theta } \right)^{2}  + mga \cos \theta  \right)    \\
+& =  \frac{1}{2} \frac{p_{\theta}^{2}}{ma^{2}} + \frac{1}{2} \frac{p_{\phi}^{2}}{ma^{2}\sin^{2}\theta } -mga \cos \theta
+\end{align*}
+
+Hamilton's equations are given by
+
+\[ \dot{\mathbf{x}} = \frac{\partial H }{\partial \mathbf{p}}, \qquad \dot{\mathbf{p}} = - \frac{\partial H }{\partial \mathbf{x}}   \]
+
+ie.
+
+\[ \dot{\theta}  = \frac{p_{\theta}}{ma^{2}} \]
+\[ \dot{\phi}  = \frac{p_{\phi}}{ma^{2} \sin^{2} \theta } \]
+
+\[ \dot{p_{\theta}} = \frac{-p_{\phi}^{2} \sin(2\theta) }{2 ma^{2} \sin^{4} \theta}  - mga \cos \theta \]
+\[ \dot{p_{\phi}} = 0 \]
+
 \section{QUESTION 6}
+
+\begin{enumerate}
+	\item Consider the variation directly, $ u_{t} \to u_{t} + (\delta u)_{t} $ and $ u_{x} \to u_{x} + (\delta u)_{x} $. Then
+	
+	\begin{align*}
+	\delta I[u] & = I[u + \delta u] - I[u] \\
+	& = \int \left[ \frac{1}{2}\left(  u_{t} + (\delta u)_{t} \right)^{2} - F(u_{x} + (\delta u)_{x}) \right]  \; \d x \; \d t - \int \left[  \frac{1}{2} u_{t}^{2} - F(u_{x}) \; \d x \; \d t    \right]\\
+	& = \int u_{t} (\delta u)_{t} - (\delta u)_{x} \frac{\partial F(u_{x}) }{\partial x} \; \d x \; \d t +   O(t^{2}) \\
+	& = \int u_{tt} (\delta u) - (\delta u) \frac{\partial F(u_{x})  }{\partial x^{2}}\; \d x \; \d t + \text{boundary terms} \qquad \text{by parts}
+	\end{align*}
+	
+	ignoring boundary terms
+	
+	So the Euler-Lagrange equation is 
+	
+	\[ \frac{\partial^{2} u}{\partial t^{2}} - \frac{\partial F(u_{x}) }{\partial x^{2}} = 0  \]
+	
+	\item 
+	
+	Discarding second order terms throughout:
+	
+	\begin{align*}
+	\delta I[u] & = \int \left[ (u_{x} + (\delta u)_{x})^{2} + (  u_{y} + (\delta u)_{y} )^{2} + e^{2(u + \delta u)}  \right] \; \d x \; \d y - \int u_{x}^{2} + u_{y}^{2} + e^{2u} \; \d x \; \d y   \\
+	& = \int 2 u_{x} (\delta u)_{x} + 2 u_{y} ( \delta u)_{y} + \left(  e^{2(u + \delta u)} - e^{2u} \right) \; \d x \; \d y + O(u^{2}) \\
+	& = \int 2 u_{x} (\delta u)_{x} + 2 u_{y} ( \delta u)_{y} + \left( 2 \delta u  \right) \; \d x \; \d y  \qquad \text{ using } e^{x} \approx 1 + x\\
+	& = 2 \int (\delta u) \{ u_{xx} + u_{yy}  + 1 \} \; \d x \; \d y
+	\end{align*}
+	
+	So E-L equation is 
+	
+	\[ u_{xx} + u_{yy} = -1  \]
+	
+	
+	
+	
+	
+\end{enumerate}
+
+
 \section{QUESTION 7}
+
+The E-L equations are of the form $ \frac{\partial L }{\partial x_{i} } - \frac{\d }{\d t} \left(  \frac{\partial L}{\partial \dot{x}_{i}} \right) = 0 $
+
+We have
+\[ \frac{\partial L }{\partial x_{i}} = - q \nabla_{i} \phi + q \frac{\partial }{\partial x_{i}} (\mathbf{v} \cdot \mathbf{A}) \]
+
+and
+
+\[ \frac{\partial L }{\partial \dot{x}_{i}} = m \gamma v_{i} + q A_{i} \]
+
+
+E-L equations imply
+
+\begin{align*}
+& \quad \quad - q \nabla_{i} \phi + q \frac{\partial }{\partial x_{i}} (\mathbf{v} \cdot \mathbf{A}) - \frac{\d }{\d t}  \left(  m \gamma v_{i} + q A_{i} \right) = 0   \\
+& \Rightarrow  \frac{\d }{\d t}  \left(  m \gamma v_{i} \right) = - q \nabla_{i} \phi + q \frac{\partial }{\partial x_{i}} (\mathbf{v} \cdot \mathbf{A}) - q \frac{\d }{\d t}( A_{i})
+ \end{align*}
+ 
+ 
+Using the chain rule:
+ 
+\begin{align*}
+\frac{\d A_{i}}{\d t} & = \frac{\partial A_{i} }{\partial t} \frac{\d t}{\d t } + \frac{\partial A_{i} }{\partial x_{j}} \frac{\d x_{j}}{\d t} \\
+& = \frac{\partial A_{i} }{\partial t} +  v_{j} \frac{\partial A_{i} }{\partial x_{j}} 
+\end{align*}
+
+and
+
+\[ \frac{\partial }{\partial x} (\mathbf{v} \cdot \mathbf{A}) = v_{j} \frac{\partial A_{j} }{\partial x_{i}}  \]
+
+
+\begin{align*}
+\Rightarrow  \frac{\d }{\d t}  \left(  m \gamma v_{i} \right) & = - q \nabla_{i} \phi + q v_{j} \frac{\partial A_{j} }{\partial x_{i}} - q \left[  \frac{\partial A_{i} }{\partial t} +  v_{j} \frac{\partial A_{i} }{\partial x_{j}} \right] \\
+ & = q \left( \underbrace{\nabla_{i} \phi - \frac{\partial A_{i} }{\partial t}}_{E_{i}}  + \left[ v_{j} \frac{\partial A_{j} }{\partial x_{i}}  -  v_{j} \frac{\partial A_{i} }{\partial x_{j}} \right]    \right)  
+\end{align*}
+
+and 
+
+
 \section{QUESTION 8}
+
+
+
 \section{QUESTION 9}
+
+
 \section{QUESTION 10}
 \section{QUESTION 11}
 
