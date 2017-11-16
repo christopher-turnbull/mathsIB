@@ -161,7 +161,10 @@ Extending on range $ (-\pi,\pi) $ so $ L = \pi $ and
 	
 	Hence Fourier sine series given by:
 	
-	\[ f(x) = \sum_{n=1}^{\infty} \frac{2}{\pi n^{3}} \left(   - 2 + (2 - (\pi n)^{2} ) (-1)^{n} \right) \sin n x  \]
+	\begin{align*}
+	f(x)_{s} & = \sum_{n=1}^{\infty} \frac{2}{\pi n^{3}} \left(   - 2 + (2 - (\pi n)^{2} ) (-1)^{n} \right) \sin n x \\
+	& = \sum_{n=1}^{\infty}\left\{  \frac{2 \pi (-1)^{n+1}  }{n} + \frac{4[(-1)^{n} - 1   ]}{n^{3} \pi}   \right\} \sin n x
+	\end{align*}
 	
 	\item Similarly,
 	
@@ -256,7 +259,7 @@ Integrating by parts,
 \begin{align*}
 \int_{-\pi}^{\pi} x \sin n x \; \d x & = \left[  \frac{- x \cos n x}{n} + \frac{1}{n} \int \cos n x \; \d x \right]_{-\pi}^{\pi} \\
 & = \frac{- 2 \pi \cos n \pi}{n} + \frac{1}{n} \left[ \frac{\sin n x}{n \pi} \right]_{-\pi}^{\pi} \\
-& = \frac{- 2 \pi (-1)^{n}}{n}
+& = \frac{2 \pi (-1)^{n+1}}{n}
 \end{align*}
 
 Whence 
@@ -300,10 +303,49 @@ Integrating by parts,
 
 Whence
 
-\[ h(x) = \pi +  \sum_{n=1}^{\infty} \frac{2}{n^{2}} ((-1)^{n} - 1)  \cos  n x \]
+\[ h(x) = \pi +  \sum_{n=1}^{\infty} \frac{4[(-1)^{n} - 1]}{n^{2} \pi }  \cos  n x \]
 
+Note that differentiating the Fourier sine series for $ x^{2} $ gives
 
+\[ \frac{\d }{\d x} [ f_{s}(x) ] = \sum_{n=1}^{\infty} \left\{ 2 
+\pi (-1)^{n+1} + \frac{4[(-1)^{n} - 1]}{n^{2} \pi }   \right\} \cos  n x   \]
 
+These don't quite match up: what is $ \sum_{n=1}^{\infty}  2 
+\pi (-1)^{n+1} \cos n x  $ the Fourier series for?
+
+Note that the cos coefficients $ a_{n} = O(1) $ as $ n \to \infty $, so this function is terrible. Using the direchlet conditions, $ a_{n} = O(\frac{1}{n})  $, so $ f $ is discontinuous. 
+
+This motivates us to check the Fourier series for the dirac delta function $ \delta(x) $, with period $ (- \pi, \pi) $
+
+\begin{align*}
+\delta (x) & \sim \frac{a_{0}}{2} + \sum_{n=1}^{\infty}  \left\{  a_{n} \cos n x + b_{n} \sin n x \right\}   \\
+\end{align*} 
+
+We find that
+
+\begin{align*}
+a_{n} & = \frac{1}{\pi} \int_{-pi}^{\pi} \delta(x) \cos n x \; \d x  \\
+& = \frac{\cos 0}{\pi}\\
+&  = \frac{1}{\pi}
+\end{align*}
+
+and similarly
+
+\[ b_{n} = \frac{\sin 0}{\pi} = 0  \]
+
+ie.
+
+\[ \delta(x) \sim \sum_{n=1}^{\infty}  \frac{1}{\pi} \cos n x + \frac{1}{2 \pi}   \]
+
+This isn't quite what we wanted, but making a small adjustment:
+
+\[ \delta(x - \pi): a_{n} = \frac{\cos n \pi}{\pi} = \frac{(-1)^{n}}{\pi}  \quad b_{n} = 0\]
+
+Finally, we conclude that
+
+\[ f_{s}'(x) = 2 | x |  - 2 \pi^{2}  \delta(x - \pi) \]
+
+I guess the morale is, don't differentiate term by term if $ f $ is discontinuous...
 
 
 
@@ -590,19 +632,100 @@ As $ n \to \infty $, $ \mu_{n} \to \infty $, so $ \mu $ is close to an odd multi
 
 \section{QUESTION 8}
 
-The Sturm-Louville problem
+\begin{enumerate}
+	\item Using $ L $ to denote the operator, 
 
-\[ - \frac{\d }{\d x} \left(  x \frac{\d u}{\d x} \right) = \lambda x u , \quad 0 < x < 1  \]
+\[ L : = \frac{\d }{\d x} \left(  x \frac{\d u}{\d x} \right)  \]
 
-hence with weight function $ x $, can be reposed in original form as
+the Sturm-Liouville form is
 
-\[ xu'' + u' + \lambda x u = 0 \]
+\[ L u = - \lambda x u , \quad 0 < x < 1  \]
 
-We try $ u = \sum_{n=0}^{\infty} a_{n}x^{n} $, first writing the equation in equidimensional form by multiplying by $ x $
+hence with weight function $ x $.
 
-\[ (x^{2}u'') + (xu') + \lambda x^{2} u = 0 \]
+We seek a linear substitution to turn this into Bessel's equation of order zero. We cannot make a substitution for $ u $ as the linearity of the operator makes this redundant; after trying a few things, we see that $ x = \frac{z}{\sqrt{\lambda}} $ is the way forward. Turns it into
 
-However we cannot find any series solutions about $ x = 0 $, as it is an irregular singular point.
+\[ \frac{\d }{\d z} \left(  z \frac{\d}{\d z} \right) y = - z y   \]
+
+which is Bessel's equation, and we are told the general solution is of the form
+
+\[ y(z) = A J_{0}(z) + B[ R(z) + J_{0}(z)\log(z) ] \]
+
+where $ A,B $ are constants and $ R(z) $ is a `regular function'.
+
+Now we have $ u(x) $ bounded as $ x \to 0 $, same must be true for $ y(z) $ as $ z \to 0 $. From the series definition of $ J_{0} $, we know that $ J_{0}(0) = 1 $. Hence as $ \log(z) \to - \infty $ as $ z \to 0 $, we have $ B = 0 $, concluding that $ y(z) = A J_{0}(z) $, ie. 
+
+\[ u(x) = A J_{0} (\sqrt{\lambda}  x)  \]
+
+and $ u(1) = 0 \Rightarrow A J_{0} (\sqrt{\lambda}) = 0 $, so $ \sqrt{\lambda} = j_{0} $ for $ n = 1,2,\cdots $.
+
+Thus the operator $ L $ has eigenfunctions $ u_{n}(x) = J_{0}(j_{n}x) $ with eigenvalues $ \lambda_{n} = j_{n}^{2} $.
+
+
+\item Acting the operator $ L $ on its eigenfunction $ J_{0}(\alpha x) $ given 
+
+\[ \frac{\d }{\d x}\left(  x \frac{\d }{\d x} \right) J_{0}(\alpha x) = - \alpha^{2} x J_{0} (\alpha x)  \]
+
+Multiplying by $ J_{0}(\beta x) $ and integrating gives
+
+\[ \int_{0}^{1}  J_{0}(\beta x) \frac{\d }{\d x}\left(  x \frac{\d }{\d x} \right) J_{0}(\alpha x) \; \d x = - \alpha^{2} \int_{0}^{1}  x J_{0} (\alpha x)J_{0}(\beta x ) \; \d x \]
+
+\[ \cdots \]
+
+Next part: setting $ \alpha = j_{n} $, $ \beta = j_{m} $, we note that $ J_{0}(j_{n}) = J_{0}(j_{m}) = 0 $, thus the identity follows.
+
+Next: note that our first result is only valid for when $ \beta \neq \alpha $. So we set $ \alpha = j_{n} $, $ \beta = j_{n} + \varepsilon $, and the result should pop out.
+
+\item Summarising what we have so far.
+
+\[ L : = \frac{\d }{\d x} \left(  x \frac{\d }{\d x}   \right)  \qquad \text{with weight } w = x \]
+
+\[ \lambda_{n} = j_{n}^{2}, \qquad u_{n}(x) = J_{0} (j_{n} x )   \]
+
+\[ \text{orth. relation: } \int_{0}^{1} x J_{0}(j_{n} x) J_{0} (j_{m} x) \; \d x= \frac{1}{2} \left[  J_{0}'(j_{n}) \right]^{2} \delta_{mn}   \]
+
+
+To solve 
+
+\[ L u + \tilde{\lambda} x u = x f(x) \qquad (*)  \]
+
+Seek eigenfunction expansions
+
+\[ u = \sum_{n=1}^{\infty} a_{n} J_{0} (j_{n} x) \qquad f(x) = \sum_{n=1}^{\infty} b_{n} J_{0} (j_{n} x )   \]
+
+Substitute into $ (*) $
+
+\[ \sum_{n=1}^{\infty} a_{n} \underbrace{L [J_{0} (j_{n} x) ] }_{-j_{n}^{2} x J_{0}(j_{n}x) } + \tilde{\lambda}  x \sum_{n=1}^{\infty} a_{n} J_{0} (j_{n} x)  = x \sum_{n=1}^{\infty} b_{n} J_{0} (j_{n} x )    \]
+
+Comparing coefficients (note how the $ x $ makes this easy)
+
+\begin{align*}
+& - a_{n} j_{n}^{2} + \tilde{\lambda} a_{n} = b_{n} \\
+& \Rightarrow a_{n} = \frac{b_{n}}{\tilde{\lambda} - j_{n}^{2} }
+\end{align*}
+
+Noting that $ \tilde{\lambda} $ is not an eigenvalue, ie. $ \tilde{\lambda} \neq \lambda_{n} = j_{n}^{2} $.
+
+To find the eigenfunction expansion of $ u $ it remains to find $ b_{n} $ st. 
+
+\[ f(x) = \sum_{n=1}^{\infty} b_{n} J_{0}(j_{n}x)  \]
+
+
+Multiply by $ x J_{0}(j_{n} x) $ and integrate, thus
+
+\begin{align*}
+\int_{0}^{1}  x f(x) J_{0}(j_{m} x) \; \d x  & =  \sum_{n=1}^{\infty} b_{n} \int_{0}^{1}  x J_{0}(j_{n} x) J_{0}(j_{m} x) \; \d x   \\
+& = \sum_{n=1}^{\infty} b_{n} \frac{1}{2}  [  J_{0}'(j_{n}) ]^{2} \delta_{mn} \\
+& = b_{m} \frac{1}{2}  [  J_{0}'(j_{m}) ]^{2} \\
+\end{align*}
+ie.
+\[ b_{n}  = \frac{ 2 \int_{0}^{1}  t f(t) J_{0}(j_{m} t) \; \d t}{  [ J_{0}1(j_{n}) ]^{2} }  \]
+
+Hence
+
+\[ u(x) = 2 \sum_{n=1}^{\infty} \frac{\int_{0}^{1}  t f(t) J_{0}(j_{m} t) \; \d t}{ [ J_{0}1(j_{n}) ]^{2}  (\tilde{\lambda}   -j_{n}^{2} )   }J_{0}(j_{n} x)  \]
+	
+\end{enumerate}
 
 
 

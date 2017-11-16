@@ -1,0 +1,128 @@
+\documentclass[a4paper]{article}
+\usepackage{amsmath}
+\def\npart {IB}
+\def\nterm {Michaelmas}
+\def\nyear {2017}
+\def\nlecturer {Mr Rawlinson ( jir25@cam.ac.uk )}
+\def\ncourse {Linear Algebra Sheet 3}
+
+\input{header}
+\newtheorem*{soln}{Solution}
+
+\renewcommand{\thesection}{}
+\renewcommand{\thesubsection}{\arabic{section}.\arabic{subsection}}
+\makeatletter
+\def\@seccntformat#1{\csname #1ignore\expandafter\endcsname\csname the#1\endcsname\quad}
+\let\sectionignore\@gobbletwo
+\let\latex@numberline\numberline
+\def\numberline#1{\if\relax#1\relax\else\latex@numberline{#1}\fi}
+\makeatother
+
+
+\begin{document}
+	
+\maketitle
+	
+\section{QUESTION 1}
+
+
+\[ A_{1} = \begin{pmatrix}
+1 & 1 & 0 \\
+0 & 3 & -2\\
+0 & 1 & 0
+\end{pmatrix}, A_{2} = \begin{pmatrix}
+1 & 1 & 1 \\
+0 & 3 & -2\\
+0 & 1 & 0
+\end{pmatrix}, A_{3} = \begin{pmatrix}
+1 & 1 & 0 \\
+0 & 3 & -2\\
+0 & 1 & 0
+\end{pmatrix} \]
+
+This matrix has characteristic polynomial
+
+\[ \chi_{A_{1}}(\lambda) = (\lambda - 1)^{2} (\lambda - 2) \]
+
+
+For $ \lambda = 2 $ eigenvectors satisfy
+
+\[ \begin{pmatrix}
+-1 & 1 & 0 \\
+0 & 1 & -2\\
+0 & 1 & -2
+\end{pmatrix} \begin{pmatrix}
+v_{1} \\
+v_{2} \\
+v_{3}
+\end{pmatrix} = \mathbf{0} \]
+
+So $ \mathbf{v} = (2,2,1) $, and we take this as a basis for the $ \lambda = 2 $ eigenspace. Similarly for $ \lambda= 1 $ we have
+
+\[ \begin{pmatrix}
+0 & 1 & 0 \\
+0 & 2 & -2\\
+0 & 1 & -1
+\end{pmatrix} \begin{pmatrix}
+v_{1} \\
+v_{2} \\
+v_{3}
+\end{pmatrix} = \mathbf{0} \]
+
+This implies $ v_{2} = v_{3} = 0 $, so eigenvector must be of the form $ (1,0,0) $, again a basis with one element.
+
+
+$ A_{2} $:  Next, we note that $  \chi_{A_{1}}(\lambda) = \chi_{A_{2}}(\lambda)  $ as the determinant calculation expanding down the first column will remain unchanged, so same eigenvalues. We can see that for $ \lambda = 2 $, $ \mathbf{v} = (1,2,1) $ is a basis. For $ \lambda = 1 $ we have $ v_{2} = v_{3}  $, so an eigenvector basis is given by
+
+\[ \left\{ \begin{pmatrix}
+1\\
+0\\
+0
+\end{pmatrix}, \begin{pmatrix}
+0\\
+1\\
+-1
+\end{pmatrix} \right\} \]
+
+Next, $ \chi_{A_{3}}(\lambda) = (\lambda - 1) (\lambda - 2)^{2} $. For $ \lambda = 1 $ the eigenspace basis is $ \{ (1,1,1) \} $, for $ \lambda = 2 $ it is $ \{  (1,-2,1) \} $.
+
+
+
+\section{QUESTION 2}
+
+Consider $ \det(A - \kappa \iota) $.
+
+
+Add all the columns to the first column; it becomes a column where all entries are equal to $ \lambda - \mu + (n-1) $. Now subtract first row from all others. We are left with $ \det(A - \kappa \iota) = (\lambda - \mu + (n-1)) \det (M) $ where $ M $ is an $ n-1 \times n-1 $ lower triangular matrix with $ \lambda - \mu - 1 $ in every diagonal entry.
+
+Hence 
+
+\begin{align*}
+\det(A - \kappa \iota) & =  (\lambda - \mu + (n-1))(\lambda - \mu - 1)^{n-1}  
+\end{align*}
+
+So $ n  $ eigenvalues are given as
+
+\[ \mu = \lambda + n-1, \underbrace{\lambda - 1,\cdots,\lambda - 1}_{n-1 \text{ times}}  \]
+
+
+\section{QUESTION 3}
+
+Define $ \pi_{j} = q_{j}(\alpha) : V \to V $ by
+
+\[ q_{j}(\alpha) = \prod_{i \neq j}^{k}  \frac{\alpha - \lambda_{i}}{\lambda_{j} - \lambda_{i}} \]
+
+\section{QUESTION 4}
+\section{QUESTION 5}
+\section{QUESTION 6}
+\section{QUESTION 7}
+\section{QUESTION 8}
+\section{QUESTION 9}
+\section{QUESTION 10}
+\section{QUESTION 11}
+\section{QUESTION 12}
+
+	
+	
+	
+\end{document}	

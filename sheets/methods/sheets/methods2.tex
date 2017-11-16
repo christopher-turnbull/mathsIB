@@ -33,11 +33,11 @@ Assume $ \phi(x,y,z) = X(x) Y(y) Z(z) $, so we have
 
 Solving $ X'' = - \lambda_{p} X $ such that $ X(0) = X(a) = 0 $ implies that
 
-\[ \lambda_{p} = \frac{p^{2} \pi^{2}}{a^{2}}, X_{l} = \sqrt{\frac{2}{a}} \sin \left( \frac{p \pi x}{a} \right), l = 1,2,3,\cdots  \]
+\[ \lambda_{p} = \frac{p^{2} \pi^{2}}{a^{2}}, X_{l} = \sqrt{\frac{2}{a}} \sin \left( \frac{p \pi x}{a} \right), p = 1,2,3,\cdots  \]
 
 Similarly, solving $ Y'' = - \mu_{q} Y  $, such that $ Y(0) = Y(b) = 0 $ implies that
 
-\[ \mu_{q} = \frac{q^{2} \pi^{2}}{b^{2}}, Y_{q} = \sqrt{\frac{2}{b}} \sin \left(  \frac{q \pi x}{b} \right), m = 1,2,3,\cdots  \]
+\[ \mu_{q} = \frac{q^{2} \pi^{2}}{b^{2}}, Y_{q} = \sqrt{\frac{2}{b}} \sin \left(  \frac{q \pi x}{b} \right), q = 1,2,3,\cdots  \]
 
 Now solving for $ Z $ using the eigenvalues:
 
@@ -45,21 +45,310 @@ Now solving for $ Z $ using the eigenvalues:
 
 \[ Z = \alpha \cosh \left[  \left(    \frac{p^{2}}{a^{2}} + \frac{q^{2}}{b^{2}} \right)^{1/2} \pi z  \right] + \beta \sinh \left[  \left(    \frac{p^{2}}{a^{2}} + \frac{q^{2}}{b^{2}} \right)^{1/2} \pi z  \right]  \]
 
+We can rewrite the z-dependent part (why??) as
+
+
+\[ Z = \alpha \cosh \left[ l(c-z)  \right] + \beta \sinh \left[ l(c-z)  \right]  \]
+
+Using the boundary conditions, 
+
+$ Z(c) = 0 \Rightarrow \alpha = 0 $, $ Z(0) = 1 \Rightarrow \beta= \frac{1}{\sinh cl}  $
+
+
 Therefore, the general solution is 
 
 \[ \psi(x,y,z) 
-= \frac{2}{\sqrt{ab}} \sum_{p = 0} \sum_{q = 0} a_{pq} \sin \left(  \frac{p \pi}{a} x \right) \sin \left(  \frac{q \pi}{b} y \right)  \sinh \left[  \left(    \frac{p^{2}}{a^{2}} + \frac{q^{2}}{b^{2}} \right)^{1/2} \pi z  \right]     \]
+= \frac{2}{\sqrt{ab}} \sum_{p = 0} \sum_{q = 0} a_{pq} \sin \left(  \frac{p \pi}{a} x \right) \sin \left(  \frac{q \pi}{b} y \right)  \sinh \left[  l(c - z)\right] \frac{1}{\sinh cl}      \]
+
+
+Now, using orthogonality on the surface $ z = 0 $
+
+%
 
 
 
 
 
 \section{QUESTION 2}
+
+The general solution for Laplace's equation in polar coordinates is
+
+\[ \phi(r,\theta) = c_{0} + d_{0} \log r + \sum_{n=1}^{\infty}  (a_{n} \cos n \theta  + b_{n} \sin n \theta )(c_{n}r^{n}  + d_{n}r^{-n} )  \]
+
+by requiring regularity at the origin, $ d_{0}=0,d_{n} = 0 $, then absorb $ c_{n} $ as a general rescaling, we can write this solution as
+
+\[ \psi(r,\theta)  = \frac{a_{0}}{2} + \sum_{n=1}^{\infty} (a_{n}  \cos n \theta + b_{n} \sin n \theta ) r^{n}  \]
+
+Using boundary conditions,
+
+\[ f(\theta) = \psi(1,\theta)  = \frac{a_{0}}{2} + \sum_{n=1}^{\infty} (a_{n}  \cos n \theta + b_{n} \sin n \theta ) \]
+
+
+The function is odd, hence 
+
+\[ f(\theta) = \psi(1,\theta)  = \sum_{n=1}^{\infty} b_{n} \sin n \theta \]
+
+Then
+
+\begin{align*}
+\int_{0}^{2\pi} f(\theta) \sin m \theta \; \d \theta  & = \sum_{n=1}^{\infty} b_{n}  \int_{0}^{2\pi} \sin n \theta   \sin m \theta  \; \d \theta \\
+\int_{0}^{\pi} \frac{\pi}{2}  \sin m \theta  \; \d \theta + \int_{\pi}^{2\pi} - \frac{\pi}{2}  \sin m \theta \; \d \theta & = b_{m}
+\end{align*}
+
+This gives $ b_{m} = \pi / m $, hence
+
+\[ \psi(r,\theta)  =  \sum_{n=1}^{\infty}  \frac{\pi r^{n} \sin n \theta }{n}  \]
+
+
+
+
+
+
+
+
+
+
 \section{QUESTION 3}
+
+
+$ \psi(r,\theta) $ satisfies $ \nabla^{2} = 0 $, in spherical polars this is
+
+\[ \frac{1}{r^{2}} \frac{\partial }{\partial r} \left(  r^{2}  \frac{\partial }{\partial r} \psi     \right) + \frac{1}{r^{2} \sin \theta}  \frac{\partial }{\partial \theta} \left(  \sin \theta \frac{\partial }{\partial \theta \psi }   \right) = 0    \]
+
+and $ \psi(r,\theta) $ satisfies the boundary conditions
+
+\[ \psi(r,\theta) = \begin{cases} V  & \text{ if } 0 \leq \theta < \frac{\pi}{2} \\ -V & \text{ if } \frac{\pi}{2} < \theta \leq \pi \end{cases} \]
+
+Assume 
+
+\[ \psi(r,\theta) = R(r) \Theta(\theta) \]
+
+we obtain 
+
+\begin{align*}
+(\sin \theta \Theta'  )' + \lambda \sin \theta \Theta & = 0 \\
+ (r^{2} R' )' - \lambda R & = 0 
+\end{align*}
+
+Making the substitution $ x = \cos \theta $ in the first equation yields Legendre's equation
+
+\[ - \frac{\d }{\d x}  \left[   (1-x^{2}) \frac{\d }{\d x}  \Theta \right]   = \lambda \Theta \]
+
+substituting  $ \Theta = \sum_{n=0}^{\infty} a_{n} x^{n}  $ yielding Legendre Polynomials as the answer:
+
+\begin{align*}
+\Theta_{e} & = a_{0}  \left[  1 + \frac{(-\lambda)x^{2}}{2!} \cdots  \right]   \\
+\Theta_{o} & = a_{1} \left[   x + \frac{(2 - \lambda) x^{3} }{3!} + \cdots \right]  
+\end{align*}
+
+Solution must remain bounded at $ x = \pm 1 $, so $ \lambda = m(m+1) $ for some integer $ m $. Call this  $ \Theta_{n}(\theta) = P_{n}(x) = P_{n} (\cos \theta )  $, with $ \lambda= n(n+1) $. Then the DE for $ R $ becomes
+
+
+\begin{align*}
+(r^{2} R_{n}' )' - n(n+1) R_{n} & = 0 
+\end{align*}
+
+Have
+
+\[ \psi_{n} (r,\theta) = (a_{n} r^{n}  + b_{n} r^{-(n+1)}    ) P_{n} (\cos \theta)   \]
+
+So GS is
+
+\[ \psi (r,\theta) =  \sum_{n=0}^{\infty} (a_{n} r^{n}  + b_{n} r^{-(n+1)}    ) P_{n} (\cos \theta)   \]
+
+
+for solution to be regular at origin must have $ b_{n} = 0 $, so
+
+\[ \psi (r,\theta) =  \sum_{n=0}^{\infty} a_{n} r^{n} P_{n} (\cos \theta)   \]
+
+We can apply our boundary condition easiest by setting $ r=1 $, then
+
+\begin{align*}
+f(\theta) & = \sum_{n=0}^{\infty}  a_{n} P_{n} \cos (\theta), \quad 0 \leq \theta \leq \pi  \\
+F(x) & = \sum_{n=0}^{\infty}  a_{n} P_{n} (x), \qquad x = \cos \theta, -1 \leq x \leq 1 \\
+a_{n} & = \frac{(2n + 1)}{2} \int_{-1}^{1} F(x) P_{n}(x) \; \d x  
+\end{align*}
+
+For $ 0 \leq \theta < \pi / 2 $ we have $ f(\theta) = V $, ie. for $ 0 \leq x <1 $ we have $ F(x) = V $. Similarly $ F(x) = - V $ if $ -1 \leq x < 0  $. So
+
+\[ a_{n} = \frac{(2n + 1)}{2} V \int_{-1}^{1} P_{n}(x) \; \d x \qquad \text{ for } 0 \leq x <1  \]
+\[ a_{n} = - \frac{(2n + 1)}{2} V \int_{-1}^{1} P_{n}(x) \; \d x \qquad \text{ for } -1 \leq x <0  \]
+
+
 \section{QUESTION 4}
+
+
+$ y_{m} $ is an eigenfunction, hence satisfies the Sturm-Liouville equation, so we may write
+
+\[ \frac{\d }{\d x} \left( p y_{m}' \right) = - ( \lambda_{m} - q)y_{m}     \]
+
+Then, integrating by parts,
+
+\begin{align*}
+& = \\
+& = 
+\end{align*}
+
+
 \section{QUESTION 5}
+
+
+(a)
+\begin{enumerate}
+	\item 
+	
+	\[ q_{n} = \frac{1}{2^{n} n!} \frac{\d^{n} }{\d x^{n}} \underbrace{\left(  x^{2n} - \binom{n}{2} x^{2n - 2} + \cdots  \right)}_{(*)}    \]
+	
+	Differentiating (*) $ n $ times produces a polynomial with highest power $ \frac{\d^{n} }{\d x^{n} } (x^{2n}) = x^{n} $. Hence $ q_{n}(x) $ is of degree $ n $.
+	
+	\item By induction: 
+	
+	\begin{align*}
+	 q_{1}(1) & = \frac{1}{2} \frac{\d }{\d x} (x^{2} - 1) \Big|_{x=1} \\
+	& = \frac{1}{2} 2x \Big|_{x=1} \\
+	& = 1
+	\end{align*}
+	
+	True for $ n = 1 $. Now suppose $ q_{k}(1) = 1 $ for some $ k > 0 $.
+	
+	\begin{align*}
+	q_{k+1}(x) & = \frac{1}{2^{k+1} (k+1)!} \frac{\d^{n} }{\d x^{k+1}} (x^{2} - 1)^{k+1}   \\
+	& =  \frac{1}{2 (k+1)} \left[  \frac{1}{2^{k} k!} \frac{\d^{k} }{\d x^{k}} \left(  2(k+1)x(x^{2} - 1)^{k}  \right)   \right]  \\
+	& =  \frac{1}{2^{k} k!} \frac{\d^{k} }{\d x^{k}} \left( x(x^{2} - 1)^{k}  \right) 
+	\end{align*}
+	
+	
+	
+\end{enumerate}
+
 \section{QUESTION 6}
+
+
+$ y(x,t) $ satisfies the 1D wave equation
+
+\[ \frac{\partial^{2} }{\partial t^2} y(x,t) = c^{2} \frac{\partial^{2} }{\partial x^{2}} y(x,t) \qquad c^{2} = \frac{T}{\mu} \]
+
+
+Assume $ y(x,t) = X(x) T(t) $ and separate variables:
+
+\begin{align*}
+X \ddot{T} & = c^{2} X'' T \\
+\Rightarrow \frac{1}{c^{2}} \frac{\ddot{T}}{T}  & = \frac{X''}{X} = - \lambda 
+\end{align*}
+
+for some $ \lambda > 0 $, so we have
+
+\begin{align*}
+X'' + \lambda X& =0 \\
+\ddot{T}  + \lambda c^{2} T & = 0 
+\end{align*}
+
+Solving the spatial equation first,
+
+\[ X = \alpha \cos ( \sqrt{\lambda} x ) + \beta \sin ( \sqrt{\lambda} x ) \]
+
+Applying initial conditions
+
+\begin{itemize}
+	\item $ X(0) = 0 \Rightarrow \alpha = 0$
+	\item $ X(l) = 0 \Rightarrow \beta \sin ( \sqrt{\lambda} x ) = 0 \Rightarrow \lambda = n^{2} \pi^{2} / l^{2} $, for integer $ n $
+\end{itemize}
+
+The normal modes are the associated eigenfunctions given by
+
+\[ X_{n}(x) = \beta_{n} \sin \left(  \frac{n \pi x}{L} \right)  \]
+
+The associated $ T_{n}(t) $ is given by
+
+\begin{align*}
+ \ddot{T}_{n} + \frac{n^{2} \pi^{2} c^{2} }{L^{2}}  T_{n} & = 0 \\
+\Rightarrow T_{n}(t) & = \gamma_{n} \cos \left(  \frac{n \pi c t}{L} \right) + \delta_{n} \sin \left(  \frac{n \pi c t}{L} \right)  
+\end{align*}
+
+Hence the specific solution is 
+
+\[ y_{n} = X(x) T(t)   = \sin \left(  \frac{n \pi x}{L} \right)  \left(  A_{n} \cos  \left(  \frac{n \pi ct}{L} \right) + B_{n} \sin  \left(  \frac{n \pi ct}{L} \right) \right)    \]
+
+
 \section{QUESTION 7}
+
+
+\begin{enumerate}
+	\item \begin{itemize}
+		\item Assume all displacements are sufficiently small $ ( y < < l) $
+		\item Assume all displacements are vertical
+		\item Consider two points $ x $ and $ x + \delta x $. The angle of the string to the horizontal at $ x $ is $ \theta_{1} $, and the angle at $ x + \delta x $ is $ \theta_{2} $.
+		\item Resolving vertically 
+		
+		\begin{align*}
+		T \sin \theta_{2} -  T \sin \theta_{1} - \mu g \delta x - 2k \mu \delta x \frac{\partial  }{\partial t}y  & = \mu \delta x \frac{\partial^{2} }{\partial t^{2}} y   \qquad (*) \\
+		\end{align*} 
+		
+		
+		\item Assume angles are small
+		\[ \sin \theta_{2} \approx tan \theta_{2} =  \frac{\partial y }{\partial x} \Big|_{x + \delta x} \approx \frac{\partial y }{\partial x} \Big|_{x} + \delta x \frac{\partial^{2} y }{\partial x^{2}} \Big|_{x}   \]
+		
+		\[ \sin \theta_{1} \approx \tan \theta_{1} = \frac{\partial y }{\partial x} \Big|_{x} \]
+	
+		\item (*) becomes 
+		
+		\begin{align*}
+		T \delta x \frac{\partial^{2} y }{\partial x^{2}}   - \mu g \delta x & - 2k \mu \delta x \frac{\partial  }{\partial t}y   = \mu \delta x \frac{\partial^{2} }{\partial t^{2}} y   \\
+		\Rightarrow \frac{T}{\mu} \frac{\partial^{2} y }{\partial x^{2}}  & = \frac{\partial^{2} }{\partial t^{2}} y +  2k \frac{\partial  }{\partial t}y + g
+		\end{align*} 
+		
+		\item Further assume the weight is insignificant $ (g \to 0) $
+		
+		\item Hence arrive at the equation of motion 
+		
+		\[ c^{2} \frac{\partial^{2} y }{\partial x^{2}}   = \frac{\partial^{2} }{\partial t^{2}} y +  2k \frac{\partial  }{\partial t}y \]
+		
+		where $ c^{2} = \frac{T}{\mu} $
+		
+	\end{itemize}
+		
+		Assume $ y(x,t) = X(x)T(t) $ and separating variables gives
+		
+		\begin{align*}
+		c^{2} \frac{X''}{X} & = \frac{\ddot{T}}{T} + 2k \frac{\dot{T}}{T}    \\
+		\Rightarrow  \frac{X''}{X} & = \frac{\ddot{T} + 2k \dot{T} }{T} = - \lambda 
+		\end{align*}
+		
+		for some $ \lambda > 0 $, so we have
+		
+		\begin{align*}
+		X'' + \lambda X& =0 \\
+		\ddot{T}  + 2k \dot{T} + \lambda c^{2} T & = 0 
+		\end{align*}
+		
+		Solving the spatial equation first,
+		
+		\[ X = \alpha \cos ( \sqrt{\lambda} x ) + \beta \sin ( \sqrt{\lambda} x ) \]
+		
+		Applying initial conditions
+		
+		\begin{itemize}
+			\item $ X(0) = 0 \Rightarrow \alpha = 0$
+			\item $ X(l) = 0 \Rightarrow \beta \sin ( \sqrt{\lambda} x ) = 0 \Rightarrow \lambda = n^{2} \pi^{2} / l^{2} $, for integer $ n $
+		\end{itemize}
+	
+		These $ \lambda $ are eigenvalues, with associated eigenfunctions
+		
+		\[ X_{n}(x) = \beta_{n} \sin \left(  \frac{n \pi x}{L} \right)  \]
+		
+		The associated $ T_{n}(t) $ is given by
+		
+		\begin{align*}
+		\qquad  & \ddot{T}_{n} + 2k \dot{T}_{n}  + \frac{n^{2} \pi^{2} c^{2} }{L^{2}}  T_{n} = 0 \qquad k = \frac{\pi c}{l}\\
+		\Rightarrow T_{n}(t) & = e^{-kt} \left(    \gamma_{n} \cos \left(  \frac{\sqrt{n^{2} - 1} \pi c }{L} t \right) + \delta_{n} \sin \left(  \frac{\sqrt{n^{2} - 1} \pi c }{L} t \right)  \right)
+		\end{align*}
+		
+		Hence the specific solution is 
+		
+		\[ y_{n}  = e^{-kt}\sin \left( \frac{\sqrt{n^{2} - 1} \pi c }{L} t \right)  \left(  A_{n} \cos  \left(  \frac{\sqrt{n^{2} - 1} \pi c }{L} t \right) + B_{n} \sin  \left(  \frac{\sqrt{n^{2} - 1} \pi c }{L} t \right) \right)    \]
+		
+		
+\end{enumerate}
 \section{QUESTION 8}
 \section{QUESTION 9}
 \section{QUESTION 10}

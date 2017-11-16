@@ -89,7 +89,9 @@ Integrating, we get
 
 b.c.s $ \Rightarrow D = 0 $, so $ x(t) = \frac{1}{t^{2}} $. 
 
-This function is a global minimum? Hard to see. 
+This function is a global minimum as it is convex. 
+
+Note: $ \delta^{2} F > 0 \not \implies  $ global min. Need to use convexity. of $ \int_{1}^{2} t^{4} [ \ddot{x}(t) ]^{2} \; \d t $. (Clearly convex as we're just doing linear things, then squaring.)
 
 \section{QUESTION 2}
 
@@ -103,26 +105,18 @@ Using a Lagrange multiplier $ \lambda $ to impose this, we seek to maximize the 
 & = \int_{0}^{2 \pi} \underbrace{\frac{1}{2} ( xy' - yx' ) - \lambda \sqrt{  (x')^{2}  + (y')^{2} }}_{=f_{\lambda}(\mathbf{x},\mathbf{x}')} \; \d \theta + \lambda L
 \end{align*}
 
-where $ \mathbf{x} = (x,y) $. The boundary conditions fix $ x, x',y,y' $ at the endpoints, so the functional is stationary for solutions of the E-L equation.  $ f_{\lambda}(\mathbf{x},\mathbf{x}') $ has no explicit $ \theta $ dependence, so considering the $ y $ E-L equation we have that:
+where $ \mathbf{x} = (x,y) $. The boundary conditions imply that $ x(0) = x(2\pi), x'(0) = x'(2\pi) $ and similarly for y at the endpoints, so boundary terms vanish and functional is stationary for solutions of the E-L equation.  $ f_{\lambda}(\mathbf{x},\mathbf{x}') $ has no explicit $ \theta $ dependence, so considering the $ y $ E-L equation we have that:
 
-\[ f_{\lambda}(y,y') - y' \frac{\partial f_{\lambda} }{\partial y'} = \text{ constant}  \]
+\[ f - x'\frac{\partial f_{\lambda} }{\partial x'}  - y'\frac{\partial f_{\lambda} }{\partial y'}  = \text{ constant}  \]
 
 \begin{align*}
-& \Rightarrow f - y' \left(  \frac{1}{2} x - \frac{\lambda y'}{\sqrt{  (x')^{2}  + (y')^{2} }} \right) = \text{constant} \\
-& \Rightarrow  -\frac{1}{2} yx' - \lambda \frac{ ( (x')^{2}  + (y')^{2} )}{\sqrt{  (x')^{2}  + (y')^{2} }} + \lambda \frac{(y')^{2}}{\sqrt{  (x')^{2}  + (y')^{2} }} = \text{constant} \\
-& \Rightarrow - \frac{1}{2} y x' - \lambda \frac{(x')^{2}}{\sqrt{  (x')^{2}  + (y')^{2} }} = C
+& \Rightarrow f - y' \left(  \frac{1}{2} x - \frac{\lambda y'}{\sqrt{  (x')^{2}  + (y')^{2} }} \right)  - x'\left(  - \frac{1}{2} y - \frac{\lambda x'}{\sqrt{  (x')^{2}  + (y')^{2} }}   \right)    = \text{constant} \\
+& \Rightarrow  - \lambda \frac{ ( (x')^{2}  + (y')^{2} )}{\sqrt{  (x')^{2}  + (y')^{2} }} + \lambda \frac{(y')^{2}}{\sqrt{  (x')^{2}  + (y')^{2} }} + \lambda \frac{(x')^{2}}{\sqrt{  (x')^{2}  + (y')^{2} }} = \text{constant} \\
+& \Rightarrow 0 = C
 \end{align*}
 
-for some constant $ C $. Similarly considering $ f_{\lambda}(x,x') $ we have
-
-\[ - \frac{1}{2} x y' - \lambda \frac{(y')^{2}}{\sqrt{  (x')^{2}  + (y')^{2} }} = D \]
-
-for some constant $ D $. Squaring and adding,
-
-\[ (C + \frac{1}{2} y x')^{2} + (D + \frac{1}{2} x y')^{2} = \lambda^{2} \]
-
-Feel like the $ x' $ and $ y' $ shouldn't be here, and it would be a circle?
-
+Hmm?
+Try E-L directly...
 
 
 
@@ -152,7 +146,7 @@ I[\psi]  & =  \int_{-\infty}^{\infty}  (\psi' + x^{2} \psi^{2} )^{2} - 2 x \psi 
 & =  \int_{-\infty}^{\infty}  (\psi' + x^{2} \psi^{2} )^{2} \; \d x  - \left[     x \psi^{2} \right]_{-\infty}^{\infty} + \int_{-\infty}^{\infty} \psi^{2} \; \d x  \quad \text{by parts} \\
 & =   \int_{-\infty}^{\infty}  (\psi' + x^{2} \psi^{2} )^{2} \; \d x + 1   \end{align*}
 
-As $ (psi' + x^{2} \psi^{2}) $ is real valued, its square gives a positive function, thus the integral is positive and $ I[\psi] \geq 1 $. Equality holds for 
+As $ (\psi' + x^{2} \psi^{2}) $ is real valued, its square gives a positive function, thus the integral is positive and $ I[\psi] \geq 1 $. Equality holds for 
 
 \begin{align*}
 & \quad \; \; (\psi' + x \psi) = 0 \\
@@ -164,7 +158,7 @@ As $ (psi' + x^{2} \psi^{2}) $ is real valued, its square gives a positive funct
 for some constant $ C $ (which we recognise as the Gaussian Wave Function).
 The normalisation condition implies that $ C = \left(  \frac{1}{\pi} \right)^{1/4}  $. 
 
-Showing it satisfies E-L: $ \psi'' = -C e^{-x^{2}/2}  + x^{2} C e^{-x^{2}/2} $
+Note: We're minimising the energy of a harmonic oscillator. What does $ \lambda $ represent here?
 
 
 
@@ -191,7 +185,9 @@ Also, there is no $ t $ dependence in $ f_{\lambda} $, so E-L equations imply th
 
 \[ f - \dot{x}_{i} \frac{\partial f }{\partial \dot{x}_{i}} = \text{ constant} \]    
 
-\[ f - 2  \dot{x}_{i}^{2} = \text{ constant} \]                         
+\[ f - 2  \dot{x}_{i}^{2} = \text{ constant} \]
+
+Not too sure what to do with these.                         
 
 
 
@@ -267,15 +263,17 @@ ie.
 	\begin{align*}
 	\delta I[u] & = I[u + \delta u] - I[u] \\
 	& = \int \left[ \frac{1}{2}\left(  u_{t} + (\delta u)_{t} \right)^{2} - F(u_{x} + (\delta u)_{x}) \right]  \; \d x \; \d t - \int \left[  \frac{1}{2} u_{t}^{2} - F(u_{x}) \; \d x \; \d t    \right]\\
-	& = \int u_{t} (\delta u)_{t} - (\delta u)_{x} \frac{\partial F(u_{x}) }{\partial x} \; \d x \; \d t +   O(t^{2}) \\
-	& = \int u_{tt} (\delta u) - (\delta u) \frac{\partial F(u_{x})  }{\partial x^{2}}\; \d x \; \d t + \text{boundary terms} \qquad \text{by parts}
+	& = \int u_{t} (\delta u)_{t} - (\delta u)_{x} \frac{\partial F(u_{x}) }{\partial u_{x}} \; \d x \; \d t +   O(t^{2}) \\
+	& = \int u_{tt} (\delta u) - (\delta u) \frac{\d }{\d x} \left[ \frac{\partial F(u_{x})  }{\partial u_{x}} \right]  \; \d x \; \d t + \text{boundary terms} \qquad \text{(by parts)}
 	\end{align*}
 	
 	ignoring boundary terms
 	
 	So the Euler-Lagrange equation is 
 	
-	\[ \frac{\partial^{2} u}{\partial t^{2}} - \frac{\partial F(u_{x}) }{\partial x^{2}} = 0  \]
+	\[ \frac{\partial^{2} u}{\partial t^{2}} - \frac{\d }{\d x} \left[  \frac{\partial F(u_{x}) }{\partial u_{x}} \right]   = 0  \]
+	
+	ie $ u_{tt} = u_{xx} \frac{\partial^{2} F }{\partial u_{x}^{2}} $
 	
 	\item 
 	
@@ -284,13 +282,13 @@ ie.
 	\begin{align*}
 	\delta I[u] & = \int \left[ (u_{x} + (\delta u)_{x})^{2} + (  u_{y} + (\delta u)_{y} )^{2} + e^{2(u + \delta u)}  \right] \; \d x \; \d y - \int u_{x}^{2} + u_{y}^{2} + e^{2u} \; \d x \; \d y   \\
 	& = \int 2 u_{x} (\delta u)_{x} + 2 u_{y} ( \delta u)_{y} + \left(  e^{2(u + \delta u)} - e^{2u} \right) \; \d x \; \d y + O(u^{2}) \\
-	& = \int 2 u_{x} (\delta u)_{x} + 2 u_{y} ( \delta u)_{y} + \left( 2 \delta u  \right) \; \d x \; \d y  \qquad \text{ using } e^{x} \approx 1 + x\\
-	& = 2 \int (\delta u) \{ u_{xx} + u_{yy}  + 1 \} \; \d x \; \d y
+	& = \int 2 u_{x} (\delta u)_{x} + 2 u_{y} ( \delta u)_{y} + e^{2u}\left( 1 + 2 \delta u \right) - e^{2u}  \; \d x \; \d y  \qquad \text{ using } e^{x} \approx 1 + x\\
+	& = 2 \int (\delta u) \{ u_{xx} + u_{yy}  + 2 e^{2u} \} \; \d x \; \d y
 	\end{align*}
 	
 	So E-L equation is 
 	
-	\[ u_{xx} + u_{yy} = -1  \]
+	\[ \nabla^{2} u  = -2e^{u}  \]
 	
 	
 	
@@ -333,16 +331,35 @@ and
 
 \begin{align*}
 \Rightarrow  \frac{\d }{\d t}  \left(  m \gamma v_{i} \right) & = - q \nabla_{i} \phi + q v_{j} \frac{\partial A_{j} }{\partial x_{i}} - q \left[  \frac{\partial A_{i} }{\partial t} +  v_{j} \frac{\partial A_{i} }{\partial x_{j}} \right] \\
- & = q \left( \underbrace{\nabla_{i} \phi - \frac{\partial A_{i} }{\partial t}}_{E_{i}}  + \left[ v_{j} \frac{\partial A_{j} }{\partial x_{i}}  -  v_{j} \frac{\partial A_{i} }{\partial x_{j}} \right]    \right)  
+ & = q \left( \underbrace{\nabla_{i} \phi - \frac{\partial A_{i} }{\partial t}}_{E_{i}}  + \underbrace{\left[ v_{j} \frac{\partial A_{j} }{\partial x_{i}}  -  v_{j} \frac{\partial A_{i} }{\partial x_{j}} \right]}_{(*)}    \right)  
 \end{align*}
 
-and 
+Lastly, want to show (*) is equal to $[  \mathbf{v} \times \mathbf{B}  ]_{i} = [\mathbf{v} \times \nabla \times A ]_{i}   $
+
+\begin{align*}
+[\mathbf{v} \times \nabla \times A ]_{i} & = \varepsilon_{ijk} v_{j} [nabla \times A ]_{k}  \\
+& = \varepsilon_{kij}\varepsilon_{kpq} v_{j} \frac{\partial A_{q} }{\partial x_{p}}  \\
+& = \delta_{ip}\delta_{jq} v_{j} \frac{\partial A_{q} }{\partial x_{p}} - \delta_{iq}\delta_{jp} v_{j} \frac{\partial A_{q} }{\partial x_{p}} \\
+& = \frac{\partial A_{i} }{\partial t} +  v_{j} \frac{\partial A_{i} }{\partial x_{j}}
+\end{align*}
+
+as required.
 
 
 \section{QUESTION 8}
 
 
+\[ S[\rho, \mathbf{v},\phi] =  \int  \d t \;  \int \d^{3}  x  \;  \left\{  \frac{1}{2} \rho | \mathbf{v} |^{2} - u(\rho) + \phi [   \dot{\rho} + \nabla \cdot ( \rho \mathbf{v}) ] \right\}  \]
 
+Note we need a Lagrange multiplier field $ \phi(t,\mathbf{x}) $ to impose the condition at an infinite number of points. This looks like an action for sure (KE + PE). We will have 2 E-L equations, one from varying $ \rho $ and the other from varying $ \mathbf{v}  $.
+
+
+
+Taking variations directly,
+
+\begin{align*}
+S[\rho + \delta \rho , \mathbf{v},\phi] & = S[\rho, \mathbf{v},\phi] + \int  \d t \;  \int \d^{3}  x  \;  \left\{  \frac{1}{2} \delta \rho | \mathbf{v} |^{2} - \delta \rho \frac{\partial u }{\partial \rho} + \phi [   \dot{\delta \rho} +  \nabla \cdot ( \delta \rho \mathbf{v}) ] \right\} \\
+& = \end{align*}
 \section{QUESTION 9}
 
 

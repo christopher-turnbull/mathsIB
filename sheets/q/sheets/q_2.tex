@@ -1,0 +1,461 @@
+\documentclass[a4paper]{article}
+\usepackage{amsmath}
+\def\npart {IB}
+\def\nterm {Michaelmas}
+\def\nyear {2017}
+\def\nlecturer {Dr Warnick}
+\def\ncourse {Quantum Mechanics Example Sheet 2}
+
+\input{header}
+\newtheorem*{soln}{Solution}
+
+\renewcommand{\thesection}{}
+\renewcommand{\thesubsection}{\arabic{section}.\arabic{subsection}}
+\makeatletter
+\def\@seccntformat#1{\csname #1ignore\expandafter\endcsname\csname the#1\endcsname\quad}
+\let\sectionignore\@gobbletwo
+\let\latex@numberline\numberline
+\def\numberline#1{\if\relax#1\relax\else\latex@numberline{#1}\fi}
+\makeatother
+
+
+\begin{document}
+	
+\maketitle
+
+\section{QUESTION 1}
+
+
+The potential $ V(x) = 0 $ so our time independent SE is:
+
+\[ -\frac{\hbar^{2}}{2m} \frac{\d^{2} \psi}{\d x^{2}} = E \psi  \]
+
+\[ \iff \psi'' + k^{2} \psi = 0 \]
+
+setting $ E = k^{2} \hbar^{2} / 2m $, thus 
+
+\[ \psi(x) = A \cos k x + B \sin k x \]
+
+Using BCs, $ \psi(0) = 0 \Rightarrow A = 0 $
+
+$ \psi(a) = 0 \Rightarrow \sin k a = 0 \Rightarrow k a =  n \pi  $ for integer $ n $, thus energy eigenvalues are $ E_{n} = n^{2} \pi^{2} \hbar^{2} / 2m a^{2} $ with corresponding energy eigenstates $ B_{n} \sin k_{n} x = B_{n} \sin ( \sqrt{2 m a^{2 }E_{n} / \hbar^{2} } x ) $, and 
+
+\begin{align*}
+1 & = \int_{0}^{a} |  \psi(x) |^{2} \; \d x \\
+& = \int_{0}^{a} B_{n}^{2} \sin^{2} ( k_{n} x ) \; \d x  \\
+& = B_{n}^{2} \left[  \frac{x}{2}  - \frac{1}{4} \sin ( 2 k_{n} x ) \right]_{0}^{a} \\
+& = B_{n}^{2} \frac{a}{2}
+\end{align*}
+
+\begin{align*}
+\Rightarrow \; & B_{n}  = \sqrt{\frac{2}{a}} \\
+\Rightarrow & \text{ norm. states are } \psi_{n}(x) = \sqrt{\frac{2}{a}} \sin \left(    \sqrt{\frac{2m a^{2} E_{n}}{\hbar^{2}} } x \right)
+\end{align*} 
+
+Let $ \psi_{n} $ denote the expectation value of $ \hat{x} $ in state $ \psi_{n} $, then
+
+\begin{align*}
+\langle \hat{x} \rangle_{n} & = (\psi_{n},\hat{x} \psi_{n} )  \\
+& = \int_{0}^{a} \psi_{n}^{*} x \psi_{n} \; \d x \\
+& = \frac{2}{a} \int_{0}^{a}  x \sin^{2} k_{n} x \; \d x \\
+\end{align*}
+
+By parts,
+
+\begin{align*}
+\int_{0}^{a}  x \sin^{2} k_{n} x \; \d x & = \left[  \frac{x^{2}}{2}  - \frac{1}{4 k_{n}} x \sin ( 2 k_{n} x ) \right]_{0}^{a} - \int_{0}^{a} \frac{x}{2}  - \frac{1}{4 k_{n}} \sin ( 2 k_{n} x ) \; \d x \\
+& = \frac{a^{2}}{2} - \left[  \frac{x^{2}}{4}  + \frac{1}{8 k_{n}^{2}} \cos(2 k_{n} x)  \right]_{0}^{a} \\
+& = \frac{a^{2}}{2} - \left[  \frac{x^{2}}{4}  + \frac{1}{8 k_{n}^{2}} \left( 1 - \sin^{2} (k_{n} x )   \right) \right]_{0}^{a}\\
+& = \frac{a^{2}}{2} -  \frac{a^{2}}{4} \\
+& = \frac{a^{2}}{4}
+\end{align*}
+  
+Thus $ \langle \hat{x} \rangle_{n} = a / 2 $ as required.
+
+Next, uncertainty of measurement of $ \hat{x} $ in state $ \psi $ given by
+
+\begin{align*}
+(\Delta x)_{n}^{2} & = \langle \hat{x}^{2} \rangle_{\psi} -  \langle \hat{x} \rangle_{\psi}^{2} \\
+& = \frac{2}{a} \int_{0}^{a} x^{2} \sin^{2} (k_{n} x ) \; \d x - \frac{a^{2}}{4}
+\end{align*}
+
+By parts,
+
+\begin{align*}
+\int_{0}^{a} x^{2} \sin^{2} (k_{n} x ) \; \d x & = \left[  \frac{x^{3}}{2} - \frac{1}{4 k_{n}} x^{2} \sin(2k_{n} x)     \right]_{0}^{a} - \int_{0}^{a} x^{2} - \frac{1}{2 k_{n} } x \sin(2 k_{n} x) \; \d x    \\
+& = \frac{a^{3}}{2} - \frac{a^{3}}{3} + \frac{1}{2 k_{n}} \int_{0}^{a} x \sin(2 k_{n} x) \;  \d x \\
+& = \frac{a^{3}}{6} + \frac{1}{2 k_{n}} \left(  \left[  - \frac{1}{2 k_{n}} x \cos(2k _{n} x)  \right]_{0}^{a} + \frac{1}{2k_{n}} \int_{0}^{a} \frac{1}{2k_{n}} \cos(2k_{n} x) \; \d x  \right) \\
+& = \frac{a^{3}}{6} - \frac{a}{4k_{n}^{2}} \cos (2 k_{n} a) \\
+& = \frac{a^{3}}{6} - \frac{a}{4k_{n}^{2}} \left(  1 - \sin^{2} k_{n} a \right) \\
+& =  \frac{a^{3}}{6}  - \frac{a^{3}}{4 n^{2}\pi^{2}}
+\end{align*}
+
+Hence
+
+\begin{align*}
+(\Delta x)_{n}^{2} & = \frac{a^{2}}{3}  - \frac{a^{2}}{2 n^{2}\pi^{2}}  - \frac{a^{2}}{4} \\
+& = \frac{a^{2}}{12} \left( 1 - \frac{6}{\pi^{2} n^{2}} \right) 
+\end{align*}
+
+as required.
+
+
+
+\section{QUESTION 2}
+
+
+Harmonic oscillator, mass $ m $, frequency $ \omega $, has potential $ V(x) = \frac{1}{2} m \omega^{2} x^{2} $, hence Hamiltonian is given by
+
+\[ H \psi = - \frac{\hbar^{2}}{2m} \psi'' + \frac{1}{2} m \omega^{2} x^{2} \psi  \]
+
+Writing $ H $ in terms of momentum and position operators, we show that
+
+\begin{align*}
+\langle H \rangle_{\psi} & = ( \psi, H \psi )  \\
+& = ( \psi,  \frac{1}{2m} \hat{p}^{2} \psi + \frac{1}{2} m \omega^{2} \hat{x}^{2} \psi   ) \\
+& = \frac{1}{2m} ( \psi, \hat{p}^{2} \psi) + \frac{1}{2} m \omega^{2} (\psi, \hat{x}^{2} \psi) \\
+& = \frac{1}{2m} \left(  (\Delta p)_{\psi}^{2} + \langle \hat{p} \rangle_{\psi}^{2}  \right)  + \frac{1}{2} m \omega^{2} \left(  ( \Delta x)_{\psi}^{2} + \langle \hat{x} \rangle_{\psi}^{2}  \right)
+\end{align*}
+
+Energy eigenvalues given by
+
+
+\begin{align*}
+\langle H \rangle_{\psi} & \geq \frac{1}{2m} (\Delta p)_{\psi}^{2} +   + \frac{1}{2} m \omega^{2}( \Delta x)_{\psi}^{2} \\
+& = \frac{1}{2m} \left( (\Delta p)_{\psi}^{2} +   + m^{2} \omega^{2}( \Delta x)_{\psi}^{2}  \right)  \\
+& \geq  \frac{1}{2m} \left(  \hbar m \omega \right) = \frac{\hbar \omega}{2} 
+\end{align*}
+
+where the last inequality follows from the uncertainty relation.
+\section{QUESTION 3}
+
+Let $  \Psi(x,t) $ be a solution of the time-dependent SE for a free particle ie. $ \Psi(x,t) $ satisfies
+
+\[ i \hbar \dot{\Psi} = - \frac{\hbar^{2}}{2m} \Psi'' \]
+
+Define $ \Phi(x,t) = \Psi(x-ut,t)e^{ikx}e^{-i \omega t} $, and setting $ \Psi(\xi,\eta) = \Psi(x-ut,t) $,
+
+\begin{align*}
+\frac{\partial }{\partial t} \Psi(\xi,\eta) & = \frac{\partial \xi }{\partial t} \frac{\partial \Psi }{\partial \xi} + \frac{\partial \eta }{\partial  t}\frac{\partial \Psi}{\partial \eta}  \\
+& = - u \frac{\partial \Psi }{\partial \xi} +\frac{\partial \Psi}{\partial \eta} 
+\end{align*}
+
+and 
+
+\begin{align*}
+\frac{\partial }{\partial x} \Psi(\xi,\eta) & = \frac{\partial \xi }{\partial x} \frac{\partial \Psi }{\partial \xi} + \frac{\partial \eta }{\partial  x}\frac{\partial \Psi}{\partial \eta}  \\
+& = \frac{\partial \Psi }{\partial \xi} 
+\end{align*}
+
+similarly the second derivative is
+
+\[ \frac{\partial^{2} \Psi }{\partial x^{2}} = \frac{\partial^{2} \Psi }{\partial \xi^{2}}  \]
+
+
+First calculate time derivatives,
+
+\begin{align*}
+\dot{\Phi} &  = e^{ikx} \left(  e^{-i \omega t} \frac{\partial }{\partial t} \Psi(\xi,\eta) - i \omega e^{-i \omega t} \Psi(\xi,\eta)  \right)   \\
+& = e^{ikx}e^{-i \omega t} \left(  - u \frac{\partial \Psi }{\partial \xi} +\frac{\partial \Psi}{\partial \eta}   - i \omega \Psi \right) 
+\end{align*}
+
+Next, spatial 
+
+\begin{align*}
+\Phi'& = e^{- i \omega t} \left(  e^{i k x } \frac{\partial }{\partial x} \Psi(x - ut,t) + i k e^{i k x} \Psi(x-ut,t)  \right)   \\ 
+\end{align*}
+
+\begin{align*}
+\Phi'' & = e^{- i \omega t} \left(  e^{i k x } \frac{\partial^{2} }{\partial x^{2}} \Psi(x - ut,t) + 2 i k e^{i k x} \frac{\partial }{\partial x}\Psi(x-ut,t)  - k^{2} e^{i k x} \Psi(x-ut,t)  \right)   \\ 
+& = e^{- i \omega t}  e^{i k x } \left( \frac{\partial^{2} \Psi }{\partial \xi^{2}} + 2 i k \frac{\partial \Psi }{\partial \xi}  - k^{2} \Psi  \right)   \\ 
+\end{align*}
+
+
+So time-dependent SE becomes
+
+\begin{align*}
+i \hbar \left(  - u \frac{\partial \Psi }{\partial \xi} +\frac{\partial \Psi}{\partial \eta}   - i \omega \Psi \right)  & = - \frac{\hbar^{2}}{2m} \left( \frac{\partial^{2} \Psi }{\partial \xi^{2}} + 2 i k \frac{\partial \Psi }{\partial \xi}  - k^{2} \Psi  \right) 
+\end{align*}
+
+Linear independence allows us to compare the coefficients of $ \frac{\partial \Psi }{\partial \xi}  $ and $ \Psi $ to obtain
+
+\[ - i \hbar u = - \frac{\hbar^{2}}{2m} 2 i k  \qquad \qquad  \hbar \omega =  \frac{\hbar^{2} k^{2}}{2m} \]
+
+\[  m u = \hbar k \qquad \qquad 2m \omega = \hbar k^{2} \]
+
+Thus $ \Phi $ is a solution if $ k = \frac{m u}{\hbar} $ and $ \omega = \frac{\hbar}{2m} k^{2} = \frac{m u^{2}}{2 \hbar} $
+
+Next, comparing expectation values. 
+
+Note
+
+\begin{align*}
+\langle \hat{x} \rangle_{\Psi} & =  (\Psi, \hat{x} \Psi)\\
+& = \int_{-\infty}^{\infty} x | \Psi |^{2} \; \d x
+\end{align*}
+
+Clearly
+
+\[ | \Phi |^{2} = | \Psi |^{2}  \]
+
+and so
+
+\[ \langle \hat{x} \rangle_{\Phi} = \langle \hat{x} \rangle_{\Psi} \]
+
+But
+
+\begin{align*}
+\langle \hat{p} \rangle_{\Phi}& = \int_{-\infty}^{\infty} \Phi^{*} ( - i \hbar \Phi') \; \d x   \\
+& = \int_{-\infty}^{\infty} \Psi^{*} ( - i \hbar \Psi') \; \d x  + \int_{-\infty}^{\infty} \Psi^{*} \Psi \; \d x  \\
+& = \langle \hat{p} \rangle_{\Psi} + \hbar k
+\end{align*}
+
+To show consistency with Ehrenfest's Thm, want to check
+
+\[ \frac{\d }{\d t} \langle \hat{x} \rangle_{\Phi}  = \frac{1}{m} \langle \hat{p}  \rangle_{\Psi}  \]
+
+However since $ \langle \hat{x} \rangle_{\Phi} = \langle \hat{x} \rangle_{\Psi} $, their derivatives must also be equal; this cannot happen as $ \langle \hat{p} \rangle_{\Phi} \neq \langle \hat{p} \rangle_{\Psi} $, so the first part of Ehrenfest's does not hold. 
+
+The next part 
+
+\[ \frac{\d }{\d t} \langle \hat{p} \rangle_{\Phi}  = - \langle V'(\hat{x})  \rangle_{\Psi}  \]
+
+does hold, as the difference in momenta does not depend on $ t $.
+
+\section{QUESTION 4}
+
+We have
+
+\[ H \psi_{n}(x) = E_{n} \psi_{n}(x)  \]
+
+For energy levels $ E_{n} = (n + \frac{1}{2}) \hbar \omega $ with corresponding energy eigenstates $ \psi_{n}(x) = h_{n}(y) e^{-y^{2}/2} $ where $ y = (m \omega / \hbar )^{1/2} x $ and $ h_{n} $ is a polynomial of degree $ n $ with $ h_{n}(-y) = (-1)^{n} h_{n}(y) $, for $ n = 0,1,2,\cdots $
+
+First, $ \psi_{0}(x) = a_{0} e^{- y^{2} / 2} $ for some constant $ a_{0} $.
+
+Know that $ \psi_{2}(x) = a_{2}(y) e^{-y^{2}/2}  $, $ h_{2}(-y) = h_{2}(y) $ even function so $ h_{2}(y) $ is of the from $ Ay^{2} + B $. By orthogonality,
+
+\begin{align*}
+0 & = (\psi_{0},\psi_{2}) \\
+& = \int_{- \infty}^{\infty} \psi_{0}^{*} \psi_{2} \; \d y  \\
+& = \int_{- \infty}^{\infty} a_{0} \left( Ay^{2} + B \right)e^{- y^{2} / 2}    \; \d y \\
+& = a_{0} \left( A \sqrt{2 \pi} + B \sqrt{2 \pi}  \right) 
+\end{align*}
+
+Thus $ A = - B $, and $ \psi_{2}(x) = a_2(y^{2} - 1) $ for some constant $ a_{2} $. Similarly, can write $ h_{3} = C y^{3} + D y $ as $ h_{3} $ odd function. Letting $ h_{1}(y) = a_{1} y $ for some constant $ a_{1} $ we have:
+
+\begin{align*}
+0 & = (\psi_{1},\psi_{3}) \\
+& = \int_{- \infty}^{\infty} \psi_{1}^{*} \psi_{3} \; \d y  \\
+& = \int_{- \infty}^{\infty} a_{1} y \left( Cy^{3} + D y \right)e^{- y^{2} / 2}    \; \d y \\
+& = a_{1} \left( 3 C   \sqrt{2 \pi} + B \sqrt{2 \pi}  \right) 
+\end{align*}
+
+
+Thus $ B = - 3 C $, and we can write $ \psi_{3}(x) = a_{3}(  y^{3} - 3 y ) $. 
+
+Next, if the initial state can be written as $ \Psi(x,0) = \sum_{n=0}^{\infty} c_{n} \psi_{n}(x)  $, then
+
+\begin{align*}
+\Psi(x,t) & = \sum_{n=0}^{\infty} c_{n} \psi_{n}(x) e^{-iE_{n}t / \hbar} \\
+& = \sum_{n=0}^{\infty} c_{n} \psi_{n}(x) e^{-i(n + \frac{1}{2}) \omega t} \\
+& = 
+\end{align*}
+
+
+
+\section{QUESTION 5}
+
+SE is
+
+\[ - \frac{\hbar^{2}}{2m} \psi''(x) + V(x) \psi(x) = E \psi(x) \]
+
+Probability current given by
+
+\[ J(x) = - \frac{i \hbar }{2m} (\psi^{*} \psi' - (\psi^{*})' \psi )  \]
+
+Differentiating with respect to $ x $,
+
+\begin{align*}
+\frac{\d J}{\d x}  & = - \frac{i \hbar }{2m}\left[ (\psi^{*})'\psi' + \psi^{*} \psi'' - (\psi^{*})'' \psi - (\psi^{*})' \psi'  \right]     \\
+& =  - \frac{i \hbar }{2m}\left[ \psi^{*} \psi'' - (\psi^{*})'' \psi \right]     \\
+& = - \frac{i \hbar }{2m}\left[ \psi^{*} \left(  - \frac{2m}{\hbar^{2}}(E - V) \psi \right)  - \left(  - \frac{2m}{\hbar^{2}}(E - V) \psi^{*} \right) \psi \right] \\
+& = 0
+\end{align*}
+
+Probability current as $ x \to - \infty $, $ \psi(x) \sim e^{ikx} + Be^{-ikx} $ given by:
+
+\begin{align*}
+J & = - \frac{i \hbar }{2m} \left[   ( e^{-ikx} + B^{*} e^{ikx} )(ik e^{ikx} - i k B e^{-ikx}  )       - ( - i k e^{-i k x} + i k B^{*} e^{ikx}    )   ( e^{ikx} + Be^{-ikx}) \right] \\
+& = - \frac{i \hbar }{2m} \left[  ik - ikBe^{-2ikx} + ikB^{*} e^{2ikx} - i k | B |^{2}  - \left(  - ik - ik B e^{-2ikx} + i k B^{*} e^{2ikx} + i k | B |^{2}     \right)    \right] \\
+& = - \frac{i \hbar }{2m} \left[  2ik  - 2i k | B |^{2}    \right] \\
+& =  \frac{\hbar k}{m} ( 1  - | B |^{2} )
+\end{align*}
+
+Probability current as $ x \to \infty $, $ \psi(x) C e^{ikx} $ given by:
+
+\begin{align*}
+J & = - \frac{i \hbar }{2m} \left[   (C^{*} e^{-ikx}  )(ik C e^{ikx}  )   - ( - i k C^{*} e^{-i k x})(C e^{ikx})  \right] \\
+& = - \frac{i \hbar }{2m} \left[ 2ik | C |^{2}  \right] \\
+& = \frac{\hbar k}{m} | C |^{2} 
+\end{align*}
+
+As independent of $ x $ these two expressions are equal, thus $ | B |^{2} + | C |^{2} = 1 $
+
+
+
+
+
+\section{QUESTION 6}
+
+Take the potential to be 
+
+\begin{center}
+	\begin{tikzpicture}
+	\draw [->] (-3, 0) -- (5.5, 0) node [right] {$x$};
+	\draw [->] (2, 0) -- (2, 3) node [above] {$V$};
+	\node [left] at (2, 2) {$U$};
+	\node [below] at (2, 0) {$0$};
+	
+	\node [below] at (3, 0) {$a$};
+	\draw [mred, semithick] (-3, 0) -- (2, 0) -- (2, 2) -- (3, 2) -- (3, 0) -- (5, 0);
+	\end{tikzpicture}
+\end{center}
+
+\[ V(x) = \begin{cases} U  & \text{ if } 0 < x < a \\ 0  & \text{ othewise } \end{cases} \]
+
+where $ U = 2E $. Set the constant
+
+\[
+E = \frac{\hbar^2 k^2}{2m}
+\]
+
+Then the Schr\"odinger equations become
+\begin{align*}
+\psi'' + k^2 \psi &= 0 && x < 0\\
+\psi'' - k^2 \psi &= 0 && 0 < x < a\\
+\psi'' + k^2 \psi &= 0 && x > a
+\end{align*}
+So we get
+\begin{align*}
+\psi &= I e^{ikx} + Re^{-ikx}&& x < 0\\
+\psi &= Ae^{k x} + Be^{-k x}&& 0 < x < a\\
+\psi &= Te^{ikx} && x > a
+\end{align*}
+(no $ e^{-ikx} $ term $ \iff $ no particles sent from right)
+
+Matching $\psi$ and $\psi'$ at $x = 0$ and $a$ gives the equations
+\begin{align*}
+I + R &= A + B\\
+ik(I - R) &= k (A - B)\\
+A e^{k a} + Be^{- k a} &= Te^{ika}\\
+k(Ae^{k a} - Be^{k a}) &= ik Te^{ika}.
+\end{align*}
+We can solve these to obtain
+\begin{align*}
+I + \frac{k - ik}{k + ik}R &= Te^{ika} e^{-k a}\\
+I + \frac{k + ik}{k - ik}R &= Te^{ika} e^{k a}.
+\end{align*}
+After \st{lots of} \emph{some} algebra, we obtain
+\begin{align*}
+T &= I e^{-ika}\left(\cosh k a\right)^{-1}
+\end{align*}
+To interpret this, we use the currents
+\[
+j = j_{\mathrm{inc}} + j_{\mathrm{ref}} = (|I|^2 - |R|^2) \frac{\hbar k}{m}
+\]
+for $x < 0$. On the other hand, we have
+\[
+j = j_{\mathrm{tr}} = |T|^2 \frac{\hbar k}{m}
+\]
+for $x > a$. We can use these to find the transmission probability, and it turns out to be
+\[
+P_{\mathrm{tr}} = \frac{|j_{\mathrm{tr}j}|}{|j_{\mathrm{inc}}|} = \frac{|T|^2}{|I|^2} = \left[ \cosh^{2} ka \right]^{-1}.
+\]
+This demonstrates \emph{quantum tunneling}. There is a non-zero probability that the particles can pass through the potential barrier even though it classically does not have enough energy.
+
+\section{QUESTION 7}
+
+
+Time independent SE is 
+
+\[ - \frac{\hbar^{2}}{2m} \psi'' - U \delta(x) \psi = E \psi  \]
+
+
+
+
+\section{QUESTION 8}
+
+\begin{enumerate}
+	\item \begin{align*}
+	1 & = \int_{0}^{a} | \Psi |^{2} \; \d x  \\
+	& = C^{2} \int_{0}^{a} x^{2} (a-x)^{2} \; \d x\\
+	& = C^{2} \frac{a^{5}}{30} 
+	\end{align*}
+	
+	So $ C = \sqrt{30 } a^{-5/2} $
+	
+	\item 
+	
+\end{enumerate}
+
+
+\section{QUESTION 9}
+
+
+$ Q \psi_{n} = 0 \; \forall \;  n > 2 \Rightarrow  $ zero is an eigenvalue. We are also given
+
+\[ Q \psi_{1} = \psi_{2}, Q \psi_{2} = \psi_{1} \]
+
+Adding (and using linearity) gives $ Q(\psi_{1} + \psi_{2})  = \psi_{1} + \psi_{2} $, thus $ 1 $ is an eigenvalue of $ Q $. Similarly subtracting shows that $ Q (\psi_{1} - \psi_{2}) = - (\psi_{1} - \psi_{2}) $, ie. $ -1 $ is an eigenvalue. 
+
+To find normalised eigenstates, 
+
+\begin{align*}
+1 & = \int | C |^{2} | \psi_{1} + \psi_{2} |^{2} \; \d x  \\
+& = | C^{2} | \int  (\psi_{1} + \psi_{2})^{*} ( \psi_{1} + \psi_{2}) \; \d x\\
+& = |  C^{2} | \int | \psi_{1} |^{2} + | \psi_{2} |^{2} \qquad ( \text{by orthoganilty of eigenstates})\\
+& = 2 | C^{2} | \quad \text{ as } \psi_{n} \text{ normalised}
+\end{align*}
+
+Thus $ \chi_{+} = \frac{1}{\sqrt{2}} (\psi_{1} + \psi_{2})  $, and similarly $ \chi_{-} = \frac{1}{\sqrt{2}} ( \psi_{1} - \psi_{2})  $
+
+
+\begin{align*}
+\langle H \rangle_{\chi_{\pm}} & = ( \chi_{\pm}, H \chi_{\pm} )  \\
+& = \frac{1}{\sqrt{2}} (  (\psi_{1} \pm \psi_{2}),  H( \psi_{1} \pm \psi_{2} ) \\
+& = \frac{1}{\sqrt{2}} (  (\psi_{1}, H \psi_{1}) \pm  ( \psi_{2}, H \psi_{2} ) \\
+& = \frac{1}{\sqrt{2}} ( E_{1} \pm E_{2} )
+\end{align*}
+
+Measurement axioms $ \Rightarrow  $ at time zero, $ Q $ is in state $ \chi_{+} $. 
+Have
+
+\[ \Psi(0) = \alpha_{+} \chi_{+} + \alpha_{-} \chi_{-} \qquad (\alpha_{\pm} = (\chi_{\pm},\Psi(0) )) \]
+
+By linearity, the solution of the t-dep SE is
+
+\begin{align*}
+\Psi(t) & = \alpha_{+} \chi_{+} e^{- i E_{+} t / \hbar } + \alpha_{-} \chi_{-} e^{- i E_{-} t / \hbar }  \\
+& = 
+\end{align*}
+
+
+
+\section{QUESTION 10}
+
+
+\begin{align*}
+\langle [H,A] \rangle_{\psi} & = \langle HA - AH \rangle_{\psi}  \\
+& = (  \psi, (HA - AH)\psi ) \\
+& = ( \psi, HA \psi) - ( \psi, AH \psi) \\
+& = ( H \psi, A \psi) - ( \psi, AH \psi)
+\end{align*}
+
+\section{QUESTION 11}
+
+
+
+
+
+
+\end{document}

@@ -1,0 +1,45 @@
+\documentclass[a4paper]{article}
+\usepackage{amsmath}
+\def\npart {IA}
+\def\nterm {Michaelmas}
+\def\nyear {2017}
+\def\nlecturer {Prof Weber (rrw1@cam.ac.uk)}
+\def\ncourse {Markov Chains Example Sheet 2}
+
+\input{header}
+
+\newtheorem*{soln}{Solution}
+
+\renewcommand{\thesection}{}
+\renewcommand{\thesubsection}{\arabic{section}.\arabic{subsection}}
+\makeatletter
+\def\@seccntformat#1{\csname #1ignore\expandafter\endcsname\csname the#1\endcsname\quad}
+\let\sectionignore\@gobbletwo
+\let\latex@numberline\numberline
+\def\numberline#1{\if\relax#1\relax\else\latex@numberline{#1}\fi}
+\makeatother
+
+
+\begin{document}
+	
+\maketitle
+
+\section{QUESTION 1}
+
+If $ s \in S $ is an absorbing state, then $ s \to s $ only. State $ i $ is recurrent if $ \P_{i}(T_{i} < \infty ) = 1 $ where $ T_{j} := \min \{  n \geq  1 : X_{n} = j \} $, and a state is transient if it is not recurrent.
+
+Suppose there exists some state $ i \in S, i \neq s $, st. $ i $ is recurrent. Then thm $ \Rightarrow $ state $ i $ is recurrent iff $ \sum_{n=0}^{\infty} p_{i,i}(n) = \infty $. But $ i \to s $, so by definition there exists some $ r > 0 $ st. $ p_{i,s}(r) > 0 $. The rest of the terms are finite, or something. zeros. blah. 
+\section{QUESTION 2}
+\section{QUESTION 3}
+\section{QUESTION 4}
+\section{QUESTION 5}
+\section{QUESTION 6}
+\section{QUESTION 7}
+\section{QUESTION 8}
+\section{QUESTION 9}
+\section{QUESTION 10}
+\section{QUESTION 11}
+\section{QUESTION 12}
+
+\end{document}
+

@@ -1892,6 +1892,528 @@ Note: $ \langle Q \rangle_{\psi} $ is the average result of a large number of me
 	\end{proof}
 \end{enumerate}
 
+\subsection{Discrete and Continuous Spectra}
+
+In statement measurement axioms we assumed spectrum of $ Q $ discrete. For a particle in 1d, spectra of $ \hat{p} $ and $ H $ may be continuous, but can be made discrete as in section 5.1 : impose periodic boundary conditions ($ \psi(x) = \psi(x + l) $  and confine to box $ -l / 2 \leq x \leq 1/2 $ ) 
+
+
+\begin{eg}
+	$ Q = \hat{p} = - i \hbar \frac{\d }{\d x} $ (particle in 1d)
+	
+	eigenstates $ \chi_{n}(x) = \frac{1}{\sqrt{l}} e^{i k_{n} x }  $ with $ k_{n} = \frac{2 \pi n}{l} $, $ n \in \Z $, and eigenvalues $ \lambda_{n} = \hbar k_{n} $. These states are indeed orthonormal. 
+\end{eg}
+
+\[ (\chi_{m},\chi_{n})  = \int_{- l / 2}^{l / 2}  \chi_{m}(x)^{*} \chi_{n}(x) \; \d x = \delta_{mn}     \]
+
+Expansion of a general state in terms of eigenstates:
+
+\[ \psi(x)  = \sum_{n} \alpha_{n} \chi_{n}(x)  \text{ with } \alpha_{n} (\chi_{n},\psi) = \int_{- l/2}^{l/2} \frac{1}{\sqrt{l}} e^{-i k_{n} x } \psi(x) \; \d x    \]
+
+ie a complex Fourier series with Fourier coefficients.
+
+\subsubsection{Alternative Approach (Non Examiniable)}
+
+Extend from discrete to continuous spectra by replacing discrete label $ n $ with continuous label $ \xi $ and $ \sum_{n} \to \int \; \d \xi $, $ \delta_{mn} \to \delta( \xi - \nu) $.
+
+Then orthonormal eigenstates of $ Q $ satisfy
+
+\[ Q \chi_{\xi} = \lambda_{\xi} \chi_{\xi} \quad \text{with} \quad (\chi_{\xi},\chi_{\iota})  = \delta(\xi - \eta)   \]
+
+Expansion in terms of eigenstates becomes
+
+\[ \psi = \int \alpha_{\xi} \chi_{\xi} \; \d \xi   \quad \text{with} \quad \alpha_{\xi} = (\chi_{\xi},\psi )  \]
+
+$  P_{\xi} = | \alpha_{\xi} |^{2} $ is now probability density with 
+
+\[ \int_{a}^{b} P_{\xi} \; \d \xi \text{ probability that result corresponds } a \leq \xi \leq b \]
+
+
+\begin{eg}
+	\begin{enumerate}
+		\item $ Q = \hat{p} $, have $ \xi_{p}(x) = \frac{1}{\sqrt{2 \pi \hbar}}   e^{ipx / \hbar}  $, $ -\infty < p < \infty $. (  $ \lambda_{p} = p $). Note
+		
+		\[ (\chi_{p},\chi_{q}) = \frac{1}{2 \pi \hbar}  \int e^{i(p-q)  x / \hbar } \; \d x = \delta(p-q)  \]
+		
+		Now
+		
+		\[ \psi(x) = \int_{-\infty}^{\infty}  \alpha_{p} \frac{1}{\sqrt{2\pi \hbar}} e^{i p x / \hbar} \; \d p  \] 
+		
+		with 
+		
+		\[ \alpha_{p} = \int_{-\infty}^{\infty}  \frac{1}{\sqrt{2 \pi \hbar}} e^{- i p x / \hbar} \psi(x) \; \d x   \]
+		
+		Fourier representation transform
+		
+		\item $ Q = \hat{x} $ have eigenstates $ \chi_{\xi}(x) = \delta(x - \xi) $ with eigenvalue $ \lambda_{\xi} = \xi $ since $ \hat{x} X_{\xi}(x) = x \delta(x - \xi) = \xi \delta(x - \xi) = \xi \chi_{\xi}(x)  $	
+		
+		Then
+		
+		\begin{align*}
+		\psi(x)   & =  \int_{-\infty}^{\infty}  \alpha_{\xi} \chi_{\xi}(x) \; \d \xi  \\
+		& = \int_{-\infty}^{\infty}  \alpha_{\xi} \delta(x - \xi) \; \d \xi\\
+		& = \alpha_{x}
+		\end{align*}
+		
+		So $ \int_{a}^{b}  P_{\xi} \; \d \xi = \int_{a}^{b}  | \alpha_{\xi} |^{2} \; \d \xi = \int_{a}^{b} | \psi(\xi) |^{2} \; \d \xi  $
+		
+		probability of measuring position to be in range $ a \leq x \leq b $	
+		
+		Hence we recover (P1)
+		
+		
+		\subsection{Evolution in Time}
+		
+		\subsubsection{Stationary States}	
+		
+		Consider energy eigenstates $ \psi_{n} $ with
+		
+		\[ H \psi_{n} = E_{n} \psi_{n} \text{ and } (\psi_{m},\psi_{n}) = \delta_{mn}  \]
+		
+		Then $ \psi_{n}e^{i E_{n} t / \hbar } $ is a solution of $ t $-dep SE for any $ n $. This, or $ \psi_{n} $, called a stationary state. Given any initial state (not necc stationary) we can expand 
+		
+		\[ \Psi(0) = \sum_{n} \alpha_{n} \psi_{n}  \qquad \text{with } \alpha_{n} = ( \psi_{n}, \Psi(0) ) \]
+		
+		By linearity, the solution of the SE is 
+		
+		\[ \Psi(t) = \sum_{n} \alpha_{n} \psi_{n} e^{-i E_{n} t / \hbar  } \]
+		
+		
+		\subsubsection{General Form of Ehrenfest's Theorem}
+		
+		If $ Q $ is any observable (with no explicit time dependence) for a quantum system with state $ \Psi(t) $, then 
+		
+		\[ \frac{\d }{\d t} \langle Q \rangle_{\Psi(t)} =  \langle \; \frac{1}{i \hbar}[Q,H]  \; \rangle_{\Psi(t)}  \]  
+		
+		where $ [Q,H]  = QH - HQ $, the commutator.
+		
+		\begin{proof}
+			Use SE and follow the same steps as for particle in 1d.
+		\end{proof}
+		
+		This closely resembles equation of motion in Hamiltonian formalism
+		
+	\end{enumerate}
+\end{eg}
+
+\subsection{Degeneracy and Simultaneous Measurements}
+
+\subsubsection{Degeneracy}
+
+For an observable $ Q $, the number of linearly independent states with eigenvalue $ \lambda $ is called the \emph{degeneracy} of $ \lambda $; this is the dimension of the \emph{eigenspace} $ V_{\lambda} = \{  \psi : Q \psi = \lambda \psi \} $. Also say eigenvalue $ \lambda $ is non-degenerate iff the degeneracy $ = 1 $. The eigenvalues are degenerate iff the degeneracy $ > 1 $. 
+
+Also say \emph{states} are degenerate if they have the same eigenvalue. 
+
+Physically - cannot distinguish degenerate states by measuring $ Q $ alone. We are free to chose any orthonormal basis of states for each $ V_{\lambda} $.
+
+Consider discussion leading to (M1), (M2), (M3) and use same notation. If there is degeneracy then:
+
+(M2)' Probability of measuring $ \lambda $ is $ \sum_{n : \lambda_{n} = \lambda} P_{n} = \sum_{n: \lambda_{n} = \lambda}  | \alpha_{n} |^{2}  $.
+
+(M3)' State after such a measurement is
+
+\[ ( \text{ const }) \sum_{n : \lambda_{n}  =\lambda } \alpha_{n} \chi_{n} \]
+
+Measurement projects onto the eigenspace $ V_{\lambda} $
+
+\subsubsection{Commuting Observables and Simultaneous Measurements}
+
+Observables $ A $ and $ B $ (hermitian operators) can be measured simultaneously iff there exist a basis for $ V $ (space of states) consisting of \emph{simultanous} or \emph{joint} eigenstates $ \chi_{n} $ which are simply eigenstates of both operators. 
+
+\[ A \chi_{n} = \lambda_{n} \chi_{n} \text{ and } B_{n} \chi_{n} = \mu_{n} \chi_{n} \]
+
+Measurement axioms $ \Rightarrow $ with system in state $ \chi_{n} $ we can measure $ A,B $ in any order, in rapid succession and get results $ \lambda_{n},\mu_{n} $ (respectively) with probability 1 each time. 
+
+A neccessary and sufficient condition for $ A $ and $ B $ to be simultaneously measurable is 
+
+\[ [  A,B] = AB - BA = 0 \]
+
+
+\begin{proof}
+	Necessity: For any joint eigenstate,
+	
+	\[ AB \chi_{n} = B A \chi_{n} = \lambda_{n} \mu_{n} \chi_{n} \Rightarrow [A,B] \chi_{n} = 0 \]
+	
+	Since this holds for all $ n $, and $ \chi_{n} $ form a basis for $ V $, we deduce that $ [A,B] = 0 $.
+	
+	Sufficiency: For any eigenvalue $ \lambda $ of $ A $, consider the eigenspace $ V_{\lambda} = \{  \psi \; | \; A \psi = \lambda \psi   \} $, ie. the subspace of $ V $ containing all the corresponding eigenstates. If $ [A,B] = 0 $ then
+	
+	\[ A \psi = \lambda \psi \Rightarrow A (B \psi) = B (A \psi) = B (\lambda \psi) = \lambda(B \psi) \]
+	
+	Hence, for every $ \lambda $, $ B $ maps $ V_{\lambda} $ to itself. Now $ V $ is the direct sum of eigenspaces $ V_{\lambda} $ over all possible eigenvalues $ \lambda $ (since $ V $ is spanned by eigenstates of $ A $).
+	
+	Furthermore, \emph{any} choice of basis for each $ V_{\lambda} $ gives a choice of basis for the entire space $ V $. But since $ B $ is Hermitian on $ V $, it is also Hermitian as an operator on each subspace of $ V_{\lambda} $. 
+	
+	It follows that $ V_{\lambda} $ has a basis of eigenstates of $ B $, all with a common eigenvalue $ \lambda $ under $ A $, by definition, and so all of which are joint eigenstates. Since this holds for every $ V_{\lambda} $, this provides a basis of joint eigenstates for $ V $, as required. 
+	
+\end{proof}
+
+	A simple case of the argument for sufficiency applies if the eigenvalues of $ A $ are non-degenerate. Then each $ V_{\lambda} $ is one-dimensional and, since $ B $ maps $ V_{\lambda} $ to itself, we must have $ B \psi = \mu \psi $ for some $ \mu $.
+
+
+A related result in the \emph{Generalised Uncertainty Relation/Principle} 
+
+\[ \langle \Delta A \rangle_{\psi} \langle \Delta B \rangle_{\psi}  \geq \frac{1}{2} |  \langle [A,B] \rangle_{\psi}  |   \]
+
+Any number of observables $ A,B,\cdots,Q $ can be measured simultaneously if every pair commutes. A \emph{complete commuting set} of observables is one for which the eigenvalues specify the basis states uniquely.
+
+
+
+\section{Quantum Mechanics in Three Dimensions}
+
+\subsection{Introduction}
+
+\begin{itemize}
+	\item Quantum state of particle in 3d is a wavefunction
+	
+	
+	 \[ \psi(\mathbf{x}) \quad \text{ or } \quad \Psi(\mathbf{x},t) \]
+	 \[ \text{ at fixed time } \quad \quad \text{ as } t \text{ varies }  \]
+	  
+	  
+	  \item Inner product 
+	  \[ (\phi, \psi)  = \int \phi(\mathbf{x})^{*} \psi(\mathbf{x}) \; \d^{3} \mathbf{x} \]
+	 
+	 (integrate over all space if limits left out)
+	 
+	 \item If $ \psi $ normalised 
+	 
+	 \[ (\psi,\psi) = \int | \psi(\mathbf{x}) |^{2} \; \d^{3} \mathbf{x} = 1 \]
+	 
+	 then
+	 
+	 \[ | \psi(\mathbf{x}) |^{2} \delta V \] is the probability of measuring particle to be in small volume $ \delta V $ at $ x $.
+	 
+	 \item Position and Momentum operators
+	 
+	 \[ \hat{\mathbf{x}} = (\hat{x}_{1},\hat{x}_{2},\hat{x}_{3})  \]
+	 
+	 \[ \hat{  \mathbf{p} }   = (\hat{p}_{1}, \hat{p}_{2}, \hat{p}_{3}  ) \]
+	 
+	 \[  = - i \hbar \nabla = - i \hbar \left(  \frac{\partial }{\partial x_{1}}, \frac{\partial }{\partial x_{2}}, \frac{\partial }{\partial x_{3}} \right)  \]
+	 
+	 \item  Canonical commutation relations 
+	                                                   
+	 \[  [ \hat{x}_{i},\hat{p}_{j} ] = i \hbar \delta_{ij}  \]
+	 
+	 \item Uncertainty relation
+	 
+	 \[ ( \Delta x_{i})(\Delta p_{i}) \geq \hbar / 2  \qquad \text{ fixed } i ( \text{no sum} )\]
+
+	\item Structureless particle $ \Rightarrow $ all observables are functions of position and momentum. For particle of mass $ m $ in potential $ V $ have Hamiltonian 
+	
+	\begin{align*}
+	H & = \frac{1}{2m} \hat{\mathbf{p}}^{2}  + V( \hat{\mathbf{x}})  \\
+	& = - \frac{\hbar^{2}}{2m}  \nabla^{2}  + V(\mathbf{x})  
+	\end{align*} 	 
+	 
+\end{itemize}
+
+
+\begin{eg}
+	Free particle ($ V = 0 $), consider $ \psi = C e^{i \mathbf{k} \cdot \mathbf{x}} $ (plain waves). 
+	
+	Joint eigenstates of momentum ops: 
+	
+	\[ \hat{p}_{i} \psi = \hbar k_{i} \psi \]
+	
+	and Hamiltonian
+	
+	\[ H \psi = - \frac{\hbar^{2} \mathbf{k}^{2} }{2m} \psi \]
+	
+	These wavefunctions not normalisable but can be used in scattering problems.
+\end{eg}
+
+
+\begin{itemize}
+	\item Time -dep SE
+	
+	\[ i \hbar \frac{\partial \Psi }{\partial t} = H \Psi = - \frac{\hbar^{2}}{2m} \nabla^{2} \Psi + V(x) \Psi  \]
+	
+	\item Probability current in 3d
+	
+	\[ \mathbf{J} = - \frac{i \hbar}{2m}  ( \Psi^{*} \nabla \Psi  - \Psi \nabla \Psi^{*}  )  \]
+	
+	satisfies
+	
+	\[ \frac{\partial }{\partial t}  |  \Psi(\mathbf{x},t) |^{2} = - \nabla \cdot J  \qquad \text{ from SE} \] 
+	
+\end{itemize}
+
+This imples that
+
+\begin{align*}
+\frac{\d }{\d t}  \int_{V}   \Psi(\mathbf{x},t) |^{2} \d^{3} \mathbf{x}  & =  \int_{V} - \nabla \cdot \mathbf{J} \d^{3} \mathbf{x} \\
+& = - \int_{\delta V} \mathbf{J} \cdot \d \mathbf{S} \quad \text{ by Divergence Thm}
+\end{align*}
+
+for any fixed volume $ V $. With boundary conditions such that $ | \Psi | \to 0 $ suff rapidly as $ | \mathbf{x} | \to \infty $, get 
+
+\[ \frac{\d }{\d t}  | \Psi(\mathbf{x},t) |^{2} \; \d^{3} \mathbf{x}  = 0 \]
+
+\begin{itemize}
+	\item Seek stationary state/energy eigenfunction solutions for various $ V $
+	
+	\[ \Psi(\mathbf{x},t) = \psi(\mathbf{x}) e^{-i E t / \hbar}, \quad \text{ where } H \psi = E \psi   \]
+\end{itemize}
+
+\subsection{Separable Solutions in Cartesian Coordinates}
+
+
+Consider $ t $-indep SE in 2d with 
+
+\[ H \psi = - \frac{\hbar^{2}}{2m} \left(  \frac{\partial^{2} }{\partial x_{1}^{2}} + \frac{\partial^{2} }{\partial x_{2}^{2}} \right)  + V(x_{1},x_{2}) \psi = E \psi \]
+
+For a potential of the form
+
+\[ V(x_{1},x_{2}) = U_{2}(x_{1}) + U_{2}(x_{2}) \] 
+
+then
+
+\[ H = H_{1} + H_{2} \]
+
+with 
+
+\[ H_{i} = - \frac{\hbar^{2}}{2m}  \frac{\partial^{2} }{\partial x_{i}^{2}} + U_{i}(x_{i}) \qquad i = 1,2 \]
+
+
+Look for separable solutions
+
+\[ \psi = \chi_{1}(x_{1})\chi_{2}(x_{2}) \]
+
+SE $ \Rightarrow  $
+
+\[ \underbrace{\left(  - \frac{\hbar^{2}}{2m} \frac{\chi_{1}''}{\chi_{1}} + U_{1} \right)}_{= E_{1}} + \underbrace{\left(  - \frac{\hbar^{2}}{2m} \frac{\chi_{2}''}{\chi_{2}} + U_{2} \right)}_{= E_{2}}   = E  \]
+
+Since each term is independent of $ x_{1} $ and $ x_{2} $, there are separation constants $ E_{1} $  and  $E_{2} $ as shown. Note 
+
+\[ H_{1}\chi_{1} = E_{1}\chi_{1} \text{ and } H_{2}\chi_{2} = E_{2} \chi_{2} \]
+
+Also, $ [ H_{1},H_{2}] = 0 $ so method amounts to finding joint eigenstates of $ H_{1} $ and $ H_{2} $, with $E = E_{1} + E_{2} $. 
+
+\begin{eg}
+	$ U_{i}(x_{i}) = \frac{1}{2} m \omega^{2} x_{i}^{2}   $
+	
+	Then
+	
+	$ H_{i} = H_{0}(x_{i}) $
+	with $ H_{0} $ the oscillator Hamiltonian
+	
+	where $ H_{0} \psi_{n} = \hbar \omega ( n + 1/2) \psi_{n }$, $ n = 0,1,2,\cdots $
+	
+	
+	\begin{align*}
+	\chi_{1}&  = \psi_{n_{1}}(x_{1}) \\
+	\chi_{2} & = \psi_{n_{2}}(x_{2}) \\
+	E_{i} & = \hbar \omega(n_{i} = 1/2) \\
+	E & = E_{1} + E_{2} = \hbar \omega (n_{1} + n_{2} + 1 )
+	\end{align*}
+	
+	 for $ \psi(x_{1},x_{2}) = \psi_{n_{1}}(x_{1}) \psi_{n_{2}}(x_{2})    $.
+	 
+	 Ground state $ E = \hbar \omega $, $ \psi = \psi_{0}(x_{1}) \psi_{0}(x_{2}) $.
+	 
+	 $ 1^{\text{st}} $ excited states, $ E = 2 \hbar \omega $, $ 
+	 \psi = \psi_{1}(x_{1}) \psi_{0}(x_{2}) $ or $ \psi_{0}(x_{1})\psi_{1}(x_{2}) $ with degeneracy 2
+	
+	
+\end{eg}
+
+\subsection{Angular Momentum}
+
+\subsubsection{Definitions}
+
+Angular momentum in QM is a vector of operators
+
+\[ \mathbf{L} = \hat{\mathbf{x}} \times \hat{\mathbf{p}} = - i \hbar \mathbf{x} \times \nabla \]
+
+or in components
+
+\[ L_{i} = \varepsilon_{ijk} \hat{x}_{j} \hat{p}_{k} = - i \hbar \varepsilon_{ijk} x_{j} \frac{\partial }{\partial x_{k}}   \]
+
+ie.
+
+\[ L_{3} = \hat{x}_{1}\hat{p}_{2} - \hat{x}_{2}\hat{p}_{1} = - i \hbar \left(  x_{1} \frac{\partial }{\partial x_{2}}  - x_{2} \frac{\partial }{\partial x_{1}} \right)  \]
+
+The \emph{total} angular momentum operator is 
+
+\[ L^{2} = \mathbf{L}^{2} = L_{i}L_{i} = L_{1}^{2} + L_{2}^{2} + L_{3}^{2} \]
+
+These operators are hermitian
+
+eg. \begin{align*}
+L_{3}^{\dag} & = (\hat{x}_{1}\hat{p}_{2}  - \hat{x}_{2}\hat{p}_{1} )^{\dag}  \\
+& = \hat{p}_{2}^{\dag} \hat{x}_{1}^{\dag} - \hat{p}_{1}^{\dag} \hat{x}_{2}^{\dag} \\
+& = \hat{p}_{2}\hat{x}_{1} - \hat{p}_{1}\hat{x}_{2} \\
+& = \hat{x}_{1} \hat{p}_{2} - \hat{x}_{2} \hat{p}_{1}
+\end{align*}
+
+In the above, we used the general result
+
+\[ (AB)^{\dag} = B^{\dag} A^{\dag} \]
+
+Furthermore,
+
+\begin{align*}
+(\mathbf{L}^{2})^{\dag}  & =  (L_{1}^{2})^{\dag} + (L_{2}^{2})^{\dag} + (L_{3}^{2})^{\dag} \\
+& = L_{1}^{2} + L_{2}^{2} + L_{3}^{2} \\
+& = \mathbf{L}^{2}
+\end{align*}
+
+
+\subsubsection{Commutation Relations}
+
+\begin{enumerate}
+	\item \[ [  L_{i},L_{j} ] = i \hbar \varepsilon_{ijk} L_{k} \]
+	
+	ie. $ [L_{1},L_{2}] = i \hbar L_{3} $ and cyclic perms
+	
+	\item $ [ \mathbf{L}^{2},L_{i} ] = 0 $
+	
+	
+	Interpretation: cannot measure different components of $ \mathbf{L} $ simultaneously, eg. $ L_{1} $ and $ L_{2} $, but can measure simultaneously eg. $ L_{3} $ and $ \mathbf{L}^{2} $
+	
+	\item Other useful commutation relations are
+	
+	\[ [ L_{i}, \hat{x}_{j} ]  = i \hbar \varepsilon_{ijk} \hat{x}_{k}  \]
+	
+	and
+	
+	\[ [L_{i}, \hat{p}_{j} ]  = i \hbar \varepsilon_{ijk} \hat{p}_{k}  \]
+	
+\end{enumerate}
+
+\subsubsection{Proof of commutation relations}
+
+\begin{enumerate}
+	\item Direct approach (can let everything act on a general function to check)
+	
+	\begin{align*}
+	L_{1}L_{2}& =  (-i \hbar)^{2} \left(  x_{2} \frac{\partial }{\partial x_{3}}  - x_{3} \frac{\partial }{\partial x_{2}}  \right) \left(  x_{3} \frac{\partial }{\partial x_{1}} - x_{1} \frac{\partial }{\partial x_{3}} \right)    \\
+	& = -\hbar^{2} \left(   x_{2} \frac{\partial }{\partial x_{3}} x_{3} \frac{\partial }{\partial x_{1}}  - x_{2}x_{1} \frac{\partial^{2} }{\partial x_{3}^{2}}   - x_{3}^{2} \frac{\partial^{2} }{\partial x_{2} \partial x_{1}}  + x_{3}x_{1} \frac{\partial^{2} }{\partial x_{2} \partial x_{3} }  \right)  
+	\end{align*} 
+
+
+First term gives $ - \hbar^{2}  \left(   x_{2} \frac{\partial }{\partial x_{1}}  + x_{2}x_{3}  \frac{\partial^{2} }{\partial_{3} \partial x_{1} }   \right)   $
+
+Finding $ L_{2}L_{1} $ similarly, and subtracting,
+
+\[ L_{1}L_{2} - L_{2}L_{1} = - \hbar^{2} \left(   x_{2}\frac{\partial }{\partial x_{1}} - x_{1} \frac{\partial }{\partial x_{2}} = i \hbar L_{3} \right)   \]
+
+as required. 
+
+\item Use (i) and the commutator identity
+
+\begin{align*}
+[A,B,C] & = [A,B] C + B[A,C] \\
+\end{align*}
+
+(compare Liebnitz property)
+
+\begin{align*}
+[L_{i},\mathbf{L}^{2}] & = [L_{i},L_{j}L_{j}] \\
+& = [L_{i},L_{j}]L_{j} + L_{j}[L_{i},L_{j}] \\
+& = i \hbar \varepsilon_{ijk} (   L_{k}L_{j} + L_{j}L_{k}  ) \\
+& = 0
+\end{align*}
+
+as $ \varepsilon $ is antisymmetric, acting on a symmetric thing. 
+
+\item Use canonical commutation relations and commutator identity
+
+\begin{align*}
+[AB,C] & =  [A,C] B + A[B,C] \\
+\end{align*}
+
+\begin{align*}
+[L_{i}, \hat{x}_{j} ] & =  [  \varepsilon_{iab} \hat{x}_{a} \hat{p}_{b} , \hat{x}_{j}  ] \\
+& = \varepsilon_{iab} \left(  [  \hat{x}_{a},\hat{x}_{j} ]  \hat{p}_{b} + \hat{x}_{a}  [  \hat{p}_{b},\hat{x}_{j} ]   \right) \\
+& = \varepsilon_{iab}\hat{x}_{a} ( - i \hbar \delta_{bj} )  \\
+& = i \hbar \varepsilon_{ija} \hat{x}_{a}  
+\end{align*}
+
+as required. momentum work, similarly
+
+Note: (iii) allows an alternative proof of (i) by calculating 
+
+\[ [L_{i},L_{j}] = [L_{i}, \varepsilon_{jab} \hat{x}_{a}\hat{p}_{b}  ]  \]
+
+and evaluating
+
+\subsubsection{Spherical Polars and Spherical Harmonics}
+
+Define $ r,\theta,\varphi $ by usual relations
+
+\begin{align*}
+x_{1} & = r \sin \theta \cos \varphi \\
+x_{2} & = r \sin \theta \sin \varphi \\
+x_{3} & = r \cos \theta 
+\end{align*}
+
+
+Routine application of the chain rule gives (eventually)
+
+\[ L_{3} = - i \hbar \frac{\partial }{\partial \varphi} \]
+
+and 
+
+\[ L_{\pm} : = L_{1} \pm i L_{2} = \pm \hbar e^{\pm i \varphi}  \left(  \frac{\partial }{\partial \theta} \pm  i \cot  \theta\frac{\partial }{\partial \varphi} \right)  \]
+
+and
+
+\[ \mathbf{L}^{2}  = -\hbar^{2} \left(  \frac{1}{\sin \theta} \frac{\partial }{\partial \theta} \sin \theta  \frac{\partial }{\partial \theta}   + \frac{1}{\sin^{2} \theta}  \frac{\partial^{2} }{\partial \varphi^{2}}  \right)      \]
+
+Note angular momentum operators only involve $ \theta $ and $ \varphi $. 
+
+Note:
+
+\[ \nabla^{2} = \frac{1}{r} \frac{\partial^{2} }{\partial r^{2}} r - \frac{1}{\hbar^{2} r^{2} } \mathbf{L}^{2}  \]
+
+So $ \mathbf{L}^{2} $ is the angular part of $ \nabla^{2} $.
+
+Because
+
+\[ [L_{3},\mathbf{L}^{2}] = 0 \]
+
+there are simultaneous eigenfunction of these operators
+
+\[ Y_{e_{m}} (\theta, \varphi) \]
+
+with $ e = 0,1,2,\cdots $ and $ m = 0,\pm 1, \pm 2, \cdots, \pm l $
+
+where $ L_{3} $ has eigenvalue $ \hbar m $ and $ \mathbf{L}^{2} $ has eigenvalue $ \hbar^{2} l(l + 1) $
+
+The solutions are \emph{spherical harmonics}
+
+\begin{align*}
+Y_{e_{m}} & = (\text{ const }) e^{i m \varphi} P_{l}^{m} ( \cos \theta)  \\
+\end{align*}
+
+This is just a label on $ P $, (not $ P $ to the $ n^{\text{th}} $ power ), the associated Legendre function.
+
+[see handout]
+
+Familiar case: $ m = 0 $,
+
+\[ Y_{l_{0}} = ( \text{ const } )  = P_{l}(\cos \theta)    \]
+
+In QM we can \emph{construct} other solutions $ (m \neq 0) $ in form:
+
+\[ Y_{l \pm r}  = ( \text{const} ) L_{\pm}^{r}  P_{l} \]
+
+eg.
+
+\begin{align*}
+Y_{1 \pm 0} & = ( \text{ const } ) \cos \theta  \\
+Y_{1 \pm 1}& = ( \text{ const } ) e^{\pm i \varphi} \sin \theta
+\end{align*}
+
+
+
+
+	
+\end{enumerate}
+
+
 
 
 

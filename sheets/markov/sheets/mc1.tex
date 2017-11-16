@@ -73,6 +73,12 @@ As $ X_{n} $ is the \emph{maximum} reading obtained after $ n $ throws, this dep
 \end{pmatrix} \]
 
 
+Now note that
+
+\[ p_{i,j}(n) = \begin{cases} 0  & \text{ if } j < i \\ \left( \frac{1}{6} \right)^{n}  & \text{ if } j = i \\
+\left(  \frac{j}{6} \right)^{n} - \left(  \frac{j-1}{6} \right)^{n} & \text{ if} j > i   \end{cases} \]
+
+
 \section{QUESTION 4}
 
 We have
@@ -81,20 +87,44 @@ We have
 
 and $ S_{0} = 0 $.
 
-Let $ X_{n} = | S_{n} | $
+To show that $ X_{n} $ is a Markov chain, consider the probability 
 
-Clearly $ X_{n} $ satisfies the Markov property (where the walk is now only depends on where it was one step before), so $ X $ is a Markov Chain with initial state $ X_{0} = 0 $. The transition probabilities are given by the transition matrix
+\[ \P (  | S_{n+1} | = i + 1 \; | \; |  S_{n} | = i, H ) \]
 
-\[ \begin{pmatrix}
-0 & 1 & 0 & 0 & \cdots \\
-q & 0 & p & 0 & \cdots \\
-0 & q & 0 & p & \cdots \\
-\vdots & \vdots & \vdots & \vdots & \ddots
-\end{pmatrix} \]
+for some past event $ H $. Conditioning, this is equal to
+
+\begin{align*}
+& = \underbrace{\P (  | S_{n+1} | = i + 1 \; | \;   S_{n} = i )}_{p} \times \underbrace{\P (  S_{n} = i \; | \ ; |  S_{n} | = i, H)}_{\pi_{1}} \\
+& \quad + \underbrace{\P (  | S_{n+1} | = i + 1 \; | \;   S_{n} = - i )}_{q} \times \underbrace{\P (  S_{n} = - i \; | \ ; |  S_{n} | = i, H)}_{\pi_{2}} 
+\end{align*}
+
+Note that
+
+\begin{align*}
+\frac{\pi_{1}}{\pi_{2}} & = \frac{  p^{n/2 + i/2} q^{n/2 - i/2}  }{  q^{n/2 + i/2} p^{n/2 - i/2} } \\
+& = \frac{p^{i}}{q^{i}}
+\end{align*}
+
+Hence $ \pi_{1} = \frac{p^{i}}{p^{i} + q^{i}} $
+
+
 
 Define $ M_{k} := \max \{ S_{k} \; | \; 0 \leq k \leq n \} $, and $ Y_{n} = M_{n} - S_{n} $
 
-Not sure about this part.
+
+\begin{center}
+	\begin{tikzpicture}
+	\draw (-3, 0) -- (3, 0);
+	\draw node at (1,0) [below] {$ S_{n} $};
+	\draw node at (2.5,0) [below] {$ M_{n} $};
+	\end{tikzpicture}
+\end{center}
+
+with the distance between $ S_{n} $ and $ M_{n} $ being $ i $, we have:
+
+\[  p_{ij} = \begin{cases}   i-1 & \text{ with probability } p \\ i + 1 & \text{ with probability } q \end{cases} \]
+
+\[  p_{0j} = \begin{cases}   0 & \text{ with probability } p \\  1 & \text{ with probability } q \end{cases} \]
 
 \section{QUESTION 5}
 
@@ -137,6 +167,13 @@ Idea: Let $ X $ be a random walk on the integers, so $ X_{1} = \pm 1 $ with some
 
 Then $ X_{n} + Y_{n}  $ depends on $ X_{1} $, not just $ X_{n-1},Y_{n-1} $
 
+
+Note that we can also make use of $ M_{n} $ as defined in question 4. 
+
+\[ \P (M_{3} = 2 \; |  \; M_{2} = 1,M_{1} = 1 ) = 0  \]
+\[ \P(M_{3} = 2 \; | \; M_{2} = 1,M_{1} = 0 ) = \frac{1}{2} \]
+
+So $ M_{n} $ not M.C.
 
 \section{QUESTION 7}
 
@@ -209,49 +246,30 @@ $ p_{1,1}(0) = 1, p_{1,1}(1) = 0, p_{1,1}(2) = 4/9 $ and hence
 
 \section{QUESTION 8}
 
-Let $ X_{n} $ be the score of the die on the $ n^{\text{th}} $ roll; this is a Markov Chain. Define $ Y_{n} $ as
 
-\[ Y_{n} = \begin{cases} 1  & \text{ if } X_{n} \neq 6 \\ 2 & \text{ if } X_{n} = 6 \end{cases} \]
+Note that
 
-This has transition matrix
+\[ p_{66}(n-1) = \frac{1}{5} (1 - p_{66}(n-2)    ) \]
 
-\[ P = \begin{pmatrix}
-\frac{4}{5} & \frac{1}{5} \\
-1 & 0
-\end{pmatrix} \]
+Hence,
 
-We wish to find $ P(Y_{n} = 1 \; | \; Y_{1} = 1) $. Diagonalising $ P $, we have
-
-\[ P^{n} = U^{-1}  \begin{pmatrix}
-1 & 0 \\
-0 & (-1/5)^{n}
-\end{pmatrix} U  \]
-
-for some invertible matrix $ U $, hence
-
-\[ p_{2,2}(n) = A + B \left( - \frac{1}{5} \right)^{n}  \]
+\[ p = \frac{1}{6} + \frac{5}{6}\left(  - \frac{1}{2} \right)^{n-1}   \]
 
 
-for probability of 6 on the $ n^{\text{th}} $  throw.  Given $ p_{2,2}(0) = 1 $ and $ p_{2,2}(1) = 0 $, this yields
+For the next part, let $ Y_{n} $ denote the die now, and this is related to the previous die by
+
+\[ Y_{n} - Y_{n-1} = X_{n} - X_{n-1} \quad (\text{mod } 6)   \]
+
+Thus
+
+\[ Y_{n}  = X_{n} + (n-1) \quad \text{mod } 6  \]
+
+Thus $ n-1 = 0 $ mod 6 $ \Rightarrow  p_{66} (n-1) = p   $, and
+$ n -1 \neq 0  $ mod 6 $ \Rightarrow \frac{1}{5} (1-p)  $
 
 
-\[ p_{1,1}(n) = - \frac{1}{4} + \frac{5}{4} \left( - \frac{1}{5} \right)^{n} \]
-
-Then $ p_{2,1}(n) = 1 - p_{2,2}(n) = 1/4  - (5/4) ( 5^{-1})^{n} $
-
-Next part: Then all other scores have probability $ 1/4 $, and transition matrix becomes 
-
-\[ P = \begin{pmatrix}
-0 & 0 & 1/4 & 1/4 & 1/4 & 1/4 \\
-1/4 & 0 & 0 & 1/4 & 1/4 & 1/4 \\
-1/4 & 1/4 & 0 & 0 & 1/4 & 1/4 \\
-1/4 & 1/4 & 1/4 & 0 & 0 & 1/4 \\
-1/4 & 1/4 & 1/4 & 1/4 & 0 & 0 \\
-0 & 1/4 & 1/4 & 1/4 & 1/4 & 0
-\end{pmatrix} \]
 
 
-I can't spot a way to simplify this. Want $ \{ 1,2,3,4 \}, \{ 5 \}, \{ 6 \}$ as states but not sure what the first row of the transition matrix is. 
 \section{QUESTION 9}
 
 
@@ -262,11 +280,11 @@ I can't spot a way to simplify this. Want $ \{ 1,2,3,4 \}, \{ 5 \}, \{ 6 \}$ as 
 	
 	\[ P^{n} = U^{-1}  \begin{pmatrix}
 	1 & 0 & 0 \\
-	0 & -1/4 & 0 \\
-	0 & 0 & - 1/12 
+	0 & (-1/4)^{n} & 0 \\
+	0 & 0 & (- 1/12)^{n} 
 	\end{pmatrix} U  \]
 	
-	for some invertible matrix $ U $, and so
+	for some invertible matrix $ U $, and so 
 	
 	\[ p_{1,1}(n) = A + B\left(  - \frac{1}{4} \right)^{n} + C \left(  - \frac{1}{12} \right)^{n}  \]
 	
@@ -274,11 +292,27 @@ I can't spot a way to simplify this. Want $ \{ 1,2,3,4 \}, \{ 5 \}, \{ 6 \}$ as 
 	
 	This gives $ A = 1/65 $, $ B = - 2/5 $ and $ C = 18/13 $
 	
-	\item For $ p = 1/6 $, the characteristic equation $ \det(P - \kappa \iota) = 0 $  gives roots $ \kappa_{1} = 1 $, $ \kappa_{2}, \kappa_{3} = -1/6 \pm i/6 = \frac{1}{\sqrt{18}} e^{\pm i \pi / 4} $, so similarly,
+	\item (Check, this is incorrect)  For $ p = 1/6 $, the characteristic equation $ \det(P - \kappa \iota) = 0 $  gives roots $ \kappa_{1} = 1 $, $ \kappa_{2}, \kappa_{3} = -1/6 \pm i/6 = \frac{1}{\sqrt{18}} e^{\pm i \pi / 4} $, so similarly,
 	
 	\[ p_{1,1}(n) = A + \left(  18^{-1/2} \right)^{n} B \cos ( \pi n / 4) + \left(  18^{-1/2} \right)^{n} C \sin ( \pi n / 4)    \]
 	
 	yielding $ A = 1/13,  B = 12/13 $, $ C = - 18/13 $
+	
+	\item 		\[ P^{n} = U^{-1}  \begin{pmatrix}
+	1 & 0 & 0 \\
+	0 & (-1/6)^{n} & 0 \\
+	0 & 0 & (- 1/6)^{n} 
+	\end{pmatrix} U  \]
+	
+	Hence, $ p_{1,1}(n) = A + B \left(  - \frac{1}{6} \right)^{n} + C n \left(  - \frac{1}{6} \right)^{n}     $
+	
+	Check, should get
+	
+	\[ \frac{1}{49} + \left(  - \frac{1}{6} \right)^{n} \left(  \frac{48}{49}  - \frac{6}{7} n  \right)    \]
+	
+
+	
+	
  	
 	
 \end{enumerate}
@@ -331,25 +365,92 @@ ie. $ i_{0} \to i_{1} \to i_{2} \to \cdots $
 
 \section{QUESTION 12}
 
-If $ X_{0} = 2 $, following the strategy we see the state space produced is 
+See Weber's Right Hand Equations
 
-$ \{  0,2,4,6,8,10 \} $. The transition matrix $ P $ is given by
+$ \alpha = P \alpha $, $ k = 1 + P k $
+
+\begin{align*}
+\alpha_{2} & =  \frac{1}{2} \cdot 0 + \frac{1}{2} \alpha_{4}  \\
+\alpha_{4} & =  \frac{1}{2} \cdot 0 + \frac{1}{2} \alpha_{8}  \\
+\alpha_{6} & =  \frac{1}{2} \alpha_{6} + \frac{1}{2} 1  \\
+\alpha_{8} & =  \frac{1}{2} \alpha_{2} + \frac{1}{2} 1  \\
+\alpha_{2} & =  \frac{1}{2}\left(   \frac{1}{2} \left(  \frac{1}{2} + \frac{1}{2} \left(    \frac{1}{2} + \frac{1}{2} \alpha_{2} \right)   \right)  \right)   \\
+& = \frac{1}{8} + \frac{1}{16} + \frac{1}{16} \alpha_{2}
+\end{align*}
+
+Hence \[ \frac{15}{16} \alpha_{2} = \frac{3}{16} \qquad \alpha_{2} = \frac{1}{5}  \]
+
+Could also argue it has to be $ 1/5 $ since it's a fair game, and the placement of $ 2 $ between 0 and 10.
+
+Similarly, 
+
+\begin{align*}
+k_{2} & = 1 + \frac{1}{2} \cdot 0 + \frac{1}{2} k_{4} \\
+k_{4} & = 1 + \frac{1}{2} \cdot 0 + \frac{1}{2} k_{8}
+\end{align*}
+
+But since $ k_{6} = k_{4} $, and $ k_{8} = k_{2} $, we have 
+
+\[ k_{2} = 1 + \frac{1}{2} \left(  1 + \frac{1}{2} k_{2} \right)  \]
+
+and we recover $ k_{2} = 2 $, as expected. 
+
+\section{QUESTION 13}
 
 
-\[ P = \begin{pmatrix}
-1 & 0 & 0 & 0 & 0 & 0\\
-1/2 & 0 & 1/2 & 0 & 0 & 0 \\
-1/2 & 0 & 0 & 0 & 1/2 & 0 \\
-0 & 1/2 & 0 & 0 & 0 & 1/2\\
-0 & 0 & 0 & 1/2 & 0 & 1/2 \\
-0 & 0 & 0 & 0 & 0 & 1
+$ \alpha_{0} = 1 $
 
-\end{pmatrix} \]
+\[ \alpha_{i}  = \frac{(i+1)^{2}}{i^{2}  + (i + 1)^{2} } \alpha_{i+1} + \frac{i^{2}}{i^{2}  + (i + 1)^{2}  } \alpha_{i-1}   \]
 
-With $ \{0\} $ and $ \{10\} $ being absorbing states.
-Want to show $ \P (  X_{n} = 10 | X_{0} = 2 ) = 1/5  $
+This is equivalent to
 
-Not sure about this bit.
+\[ (i+1)^{2}  (\alpha_{i+1}  - a_{i} ) = i^{2} ( \alpha_{i} - \alpha_{i-1})  \]
+
+Iterating down,
+
+\[ \cdots= 1^{2}  ( \alpha_{1} - \alpha_{0})  = \alpha_{1} - 1  \]
+
+
+ie.
+
+\[ \alpha_{i+1} - \alpha_{i} = \frac{1}{(i+1)^{2}}(\alpha_{1} - 1) \]
+
+Summing,
+
+\[ \alpha_{k+1} - \alpha_{0} = \left[ \frac{1}{1^{2}}  + \cdots ? \frac{1}{(k+1)^{2}}\right]  (\alpha_{1} - 1) \]
+
+The result follows, taking $ k \to \infty $.
+
+
+
+\section{QUESTION 14}
+
+
+Again, expand on the right side,
+
+\begin{align*}
+\phi(s) & = \E s^{H_{0}} \\
+& = \frac{1}{2} s^{1} + \frac{1}{2} s^{1} \underbrace{\E s^{H_{0}' + H_{0}''}}_{= \phi(s)^{2}}
+\end{align*}
+
+where $ H_{0}',H_{0}'' $ are independent variables.
+
+\[ \phi(s) = \frac{1 \pm \sqrt{1 - s^{2}}}{s} \]
+
+where we pick the $ - $ from the $ \pm $, as terms in the expansion need to be positive. 
+
+Thus
+
+\[ \phi(s) = \frac{s}{2}+\frac{s^3}{8}+\frac{s^5}{16}+O\left(s^6\right) \]
+
+Next we have the same idea,
+
+\begin{align*}
+\phi(s) & = \frac{1}{2} s^{1} + \frac{1}{2} s^{1}\phi(s)^{3}  \\
+\end{align*}
+
+Can use mathematica to solve this. The smallest root of this equation, interestingly, is the golden mean!
+
 
 
 

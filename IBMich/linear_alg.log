@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6100 64-bit) (preloaded format=pdflatex 2017.1.3)  8 NOV 2017 11:57
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6100 64-bit) (preloaded format=pdflatex 2017.1.3)  15 NOV 2017 11:59
 entering extended mode
 **./linear_alg.tex
 (linear_alg.tex
@@ -1644,23 +1644,31 @@ Overfull \hbox (32.92616pt too wide) in paragraph at lines 2529--2529
 [] 
  []
 
-[41] [42] [43] [44] [45] [46]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 2865.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 2865.
+[41] [42] [43] [44] [45] [46] [47] [48] [49] [50] [51]
+Overfull \hbox (6.23312pt too wide) detected at line 3304
+\OML/cmm/m/it/10 J[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 \OT1/cmr/m/n/10 ) = [][]
+ \OML/cmm/m/it/10 ;  J[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 \OT1/cmr/m/n/10 )\OM
+L/cmm/m/it/10 sI[] \OT1/cmr/m/n/10 = []  (\OML/cmm/m/it/10 r \OT1/cmr/m/n/10 =
+ 1\OML/cmm/m/it/10 ; [] \OT1/cmr/m/n/10 = 1)
+ []
+
+[52] [53] [54] [55] [56]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 3630.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 3630.
  (linear_alg.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 2865.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 2865.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 3630.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 3630.
 
 Package rerunfilecheck Info: File `linear_alg.out' has not changed.
-(rerunfilecheck)             Checksum: 50966BC5B361DC68AEBC74BFD8EFEC61;1782.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 2865.
+(rerunfilecheck)             Checksum: 84E515AF90A4A3AB0C7DF06E772B5C05;1835.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 3630.
  ) 
 Here is how much of TeX's memory you used:
- 47136 strings out of 493333
- 1055960 string characters out of 3139195
+ 47159 strings out of 493333
+ 1056171 string characters out of 3139195
  1280370 words of memory out of 3000000
- 49590 multiletter control sequences out of 15000+200000
- 22221 words of font info for 136 fonts, out of 3000000 for 9000
+ 49593 multiletter control sequences out of 15000+200000
+ 22272 words of font info for 137 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  66i,19n,98p,10400b,1091s stack positions out of 5000i,500n,10000p,200000b,50000s
 pdfTeX warning (dest): name{Hfootnote.9} has been referenced but does not exi
@@ -1668,27 +1676,29 @@ st, replaced by a fixed one
 
 <C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Prog
 ram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Program File
-s/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Program Files/MiKTeX
- 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Program Files/MiKTeX 2.9/fon
-ts/type1/public/amsfonts/cm/cmmi5.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/
-public/amsfonts/cm/cmmi7.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/am
-sfonts/cm/cmmi8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm
-/cmr10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.pf
-b><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Pro
-gram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr5.pfb><C:/Program Files
-/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr6.pfb><C:/Program Files/MiKTeX 2.
-9/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Program Files/MiKTeX 2.9/fonts/ty
-pe1/public/amsfonts/cm/cmr8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public
-/amsfonts/cm/cmr9.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/
-cm/cmsy10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy5
-.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/
-Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Program 
-Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti8.pfb><C:/Program Files/MiK
-TeX 2.9/fonts/type1/public/amsfonts/symbols/msbm10.pfb><C:/Program Files/MiKTeX
- 2.9/fonts/type1/public/amsfonts/symbols/msbm7.pfb>
-Output written on linear_alg.pdf (46 pages, 469049 bytes).
+s/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx7.pfb><C:/Program Files/MiKTeX 
+2.9/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Program Files/MiKTeX 2.9/font
+s/type1/public/amsfonts/cmextra/cmex7.pfb><C:/Program Files/MiKTeX 2.9/fonts/ty
+pe1/public/amsfonts/cm/cmmi10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/publ
+ic/amsfonts/cm/cmmi5.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfon
+ts/cm/cmmi7.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmm
+i8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C
+:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Program
+ Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Program Files/Mi
+KTeX 2.9/fonts/type1/public/amsfonts/cm/cmr5.pfb><C:/Program Files/MiKTeX 2.9/f
+onts/type1/public/amsfonts/cm/cmr6.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1
+/public/amsfonts/cm/cmr7.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/am
+sfonts/cm/cmr8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/
+cmr9.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb
+><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy5.pfb><C:/Prog
+ram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Program Files
+/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Program Files/MiKTeX 
+2.9/fonts/type1/public/amsfonts/cm/cmti8.pfb><C:/Program Files/MiKTeX 2.9/fonts
+/type1/public/amsfonts/symbols/msbm10.pfb><C:/Program Files/MiKTeX 2.9/fonts/ty
+pe1/public/amsfonts/symbols/msbm7.pfb>
+Output written on linear_alg.pdf (56 pages, 521301 bytes).
 PDF statistics:
- 559 PDF objects out of 1000 (max. 8388607)
- 168 named destinations out of 1000 (max. 500000)
- 29501 words of extra memory for PDF output out of 29859 (max. 10000000)
+ 624 PDF objects out of 1000 (max. 8388607)
+ 186 named destinations out of 1000 (max. 500000)
+ 29509 words of extra memory for PDF output out of 29859 (max. 10000000)
 

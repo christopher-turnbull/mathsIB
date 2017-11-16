@@ -2858,6 +2858,771 @@ Remarks (Existence and Uniqueness)
 	So $ \iota, \alpha,\alpha^{2},\cdots,\alpha^{n^{2}} \in L(V) $ must be linearly dependent, so $ \alpha_{n^{2}}  \alpha^{n^{2}} + \cdots + \alpha_{1} \alpha  + \alpha_{0} \iota $ for some $ \alpha_{i} \in \F $ not all zero. So min poly existt.  
 \end{itemize}
 
+\begin{lemma} 
+	Let $ \alpha \in L(V) $, $ p \in \F [t] $. Then $ p(\alpha) = 0 $ iff $ m_{\alpha}(t) \; | \; p(t) $.
+	
+\end{lemma}
+
+\begin{proof}
+	Have $ q,r \in \F [t] $ st. $ p(t) = m_{\alpha}(t) q(t) + r(t) ( \deg r < \deg m_{\alpha}). $
+	
+	\begin{align*}
+	0 & =p(\alpha) \\
+	& = \underbrace{m_{\alpha}(\alpha)} q(\alpha) + r(\alpha) \\
+	& \Rightarrow r(\alpha) = 0 \in L(V)
+	\end{align*}
+	
+	By minimality of $ \deg m_{\alpha} $, $ r(t) = 0 $
+\end{proof}
+
+\begin{cor}  $ m_{\alpha} $ is uniquely defined.
+	
+\end{cor}
+
+\begin{proof}
+	Say $ m_{1} $ and $ m_{2} $ both minimal. Then $ m_{1} | m_{2} $ and $ m_{2} | m_{1} $, both are monic, so $ m_{1} = m_{2}  $.
+\end{proof}
+
+\begin{thm} (Cayley Hamilton)
+	Let $ V  $ v space over $ \F $, $ \dim V < \infty $. Let $ \alpha \in L(V) $. Then $ \chi_{\alpha}(\alpha) = 0 \in L(V) $.
+\end{thm}
+
+
+\begin{proof}
+	\begin{itemize}
+		\item $ \F = \C $
+		
+		For some basis $ \mathcal{B} = \{ v_{1},\cdots,v_{n} \} $, $ [\alpha]_{\mathcal{B}} = \begin{pmatrix}
+		a_{1} & & & \\
+		& a_{2} & & \\
+		& & \ddots & \\
+		0 & & a_{n}
+		\end{pmatrix} $
+		
+		
+		
+		Let $ U_{j} := < v_{1},\cdots,v_{j} > \cdots $. Then $ (\alpha - a_{j} \iota ) U_{j} \leq U_{j-1} $. So
+		
+		\[ (\alpha - \alpha_{1} \iota)(\alpha - \alpha_{2} \iota)  \cdots  (\alpha - \alpha_{n-1} \iota)\underbrace{(\alpha - \alpha_{n} \iota) V}_{\leq U_{n-1}} \]
+		
+		also $ \underbrace{(\alpha - \alpha_{n-1} \iota) (\alpha - \alpha_{n} \iota) V}_{\leq U_{n-2}} $
+		
+		and so on, until the whole thing 
+		
+		\[ \underbrace{(\alpha - \alpha_{1} \iota)(\alpha - \alpha_{2} \iota)  \cdots  (\alpha - \alpha_{n-1} \iota)(\alpha - \alpha_{n} \iota) V}_{\leq  (\alpha - \alpha_{1} \iota)U_{1} = 
+			\{ \mathbf{0} \}  }  \]
+		
+		So $ \xi_{\alpha}(\alpha) = 0 $
+		
+		\item General Field $ \F $
+		
+		$ A \in M_{n}(\F) $. 
+		
+		\begin{align*}
+		\chi_{A}(t) (-1)^{n} & =  t^{n} + a_{n-1} t^{n-1} + \cdots + a_{1} t + a_{0} \\
+		& = \det (t I - A)
+		\end{align*}
+		
+		For any matrix $ B $, $ B \text{ adj } B = (\det B) I $.
+		
+		$ B = t I - A $ : adj ($ B $) matrix with entries in polys in $ t $, of degree $  < n $, ie. polynomials in $ t $ with coeffs in $ M_{n}(\F) $
+		
+		
+		\[ \underbrace{B_{n-1}   t^{n-1}  + \cdots + B_{1} t + B_{0}  }_{\text{adj}(B), \text{some} B_{i} \in M_{n}(\F) } \]
+		
+		\[ = \underbrace{( t^{n}   + a_{n-1}  t^{n-1}  + \cdots + a_{0}   )}_{\det B} I \]
+		
+		
+		Equate coeffs (powers of $ t $) :
+		
+		
+		\begin{align*}
+		I & = B_{n-1} \\
+		a_{n-1} I & = B_{n-2} - A B_{n-1} \\
+		\vdots \\
+		a_{0}I & = - A B_{0} 
+		\end{align*}
+		
+		
+		Multiply the first equation by $ A^{n} $, the second by $ A^{n-1} $, $ \cdots $, and the last by $ A_{0} $. Then add all these, and this yields
+		
+		\[  A^{n} + a_{n-1} A^{n-1} + \cdots + a_{1} A + a_{0} I = 0  \]
+		
+		
+		
+	\end{itemize}
+\end{proof}
+
+
+\begin{defi}
+	$ \lambda $ an evalue of $ \alpha \in L(V) $, $ \dim V < \infty $. 
+	
+	\[ \chi_{\alpha}(t) = (t - \lambda )^{\alpha_{\lambda}} q(t)  \]
+	
+	
+	some $ q \in F[t] $, $ (t - \lambda) \not | q(t) $.
+	 
+	$ a_{\lambda} $ \emph{algebraic multiplicity} of $ \lambda $ a an e value of $ \alpha $.
+	
+	
+	$ g_{\lambda} = n(\alpha - \lambda \iota) $ is the \emph{geometric multiplicity} of $ \lambda $ as an evalue of $ \alpha $. 
+\end{defi}
+
+
+\begin{lemma} If $ \lambda $ evalue, $ 1 \leq g_{\lambda} \leq \alpha_{\lambda} $. 
+	
+\end{lemma}
+
+\begin{proof}
+	\begin{itemize}
+		\item $ 1 \leq g_{\lambda} $, since $ \alpha- \lambda \iota $ is singular
+		
+		\item $ g_{\lambda} \leq a_{\lambda} $ ? Let $ \mathcal{B} = \{ v_{1},\cdots,v_{n} \} $ a basis of $ V $ with $ \{  v_{1},\cdots,v_{g} \} $ a basis of $ N(\alpha - \lambda \iota) $, ($ g = g_{\lambda} $). (Note $ N(\alpha - \lambda \iota) $ is $ V_{\lambda} $)
+		
+		\[ [\alpha]_{\mathcal{B}} = \begin{pmatrix}
+		\lambda I_{g} & * \\
+		0 & A_{1}
+		\end{pmatrix}, \text{ some } A_{1} \in M_{n-g}(\F) \]
+		
+		
+		
+		\[ \chi_{\alpha}(t) = (t - \lambda)^{g}  \chi_{A_{1}}(t), \text{ so } g_{\lambda} \leq a_{\lambda}   \]
+		
+		
+	\end{itemize}
+	
+	
+\end{proof}
+
+
+\begin{lemma} 
+	$ \lambda $ an evalue. Let $ c_{\lambda} $ be the multiplicity of $ \lambda $ as a root of $ m_{\alpha} $. Then $ 1 \leq c_{\lambda} \leq a_{\lambda} $. 
+\end{lemma}
+
+\begin{proof}
+	\begin{itemize}
+		\item $ m_{\alpha} | \chi_{\alpha}  $ (as both of them applied to $ \alpha  $ are zero ) $ \Rightarrow c_{\lambda} \leq a_{\lambda} $. 
+		
+		\item For $ 1 \leq c_{\lambda} $, $ \lambda $ an evalue, so $ \alpha v = \lambda v $ for some $ v \in V \setminus \{ \mathbf{0} \} $.
+		
+		Claim $ m_{\alpha}(\alpha) v = m_{\alpha}(\lambda) v $ as $ ( \forall \; p \in \F[t] , p(\alpha) v = p(\lambda) v )    $. This is also zero as it is the minimal poly. Hnec
+		
+		\[ m_{\alpha}(\lambda) = 0  \in \F  \quad (v \neq \mathbf{0} ) \]
+		
+		and
+		
+		\[ t - \lambda \; | \; m_{\alpha}(t) \]
+		
+		
+		
+	\end{itemize}
+\end{proof}
+
+
+\begin{eg}
+	
+	\[ A = \begin{pmatrix}
+	1 & 0 & -2 \\
+	0 & 1 & 1\\
+	0 & 0 & 2
+	\end{pmatrix} \]
+	  
+	  
+	  \[ \chi_{A}(t)  = |  A - t I | = (2 - t)(1 - t)^{2}  \]
+	
+	Choices for $ m_{\alpha} :  $
+	
+	\begin{enumerate}[label = (\alph*)]
+		\item $ (t - 2)(t - 1)^{2} $
+		\item $ (t - 2)(t - 1) $
+		
+	\end{enumerate}	
+	Check:
+	
+	\[ (A - I)(A - 2I) = 0 \]
+	
+	So (b) holds, so $ A $ diagonalisable.
+\end{eg}
+
+\begin{eg}
+	$ A = \begin{pmatrix}
+	\lambda^{1} & & 0 \\
+	& \lambda^{1} & &
+	& & \ddots & \\
+	& 0 & & \lambda^{1} 
+	\end{pmatrix} $
+	
+	
+	Check $ g_{\lambda} = 1 $, $ a_{\lambda} = n $, $ c_{\lambda} = n $.
+	
+\end{eg}
+
+\begin{lemma} $ (\F = \C) $
+	$ \alpha \in L(V) $. TFAE
+	\begin{enumerate}
+		\item $ \alpha $ diagonalisable
+		\item $ \alpha_{\lambda} = g_{\lambda} $ for all eigenvalue $ \lambda $
+		\item $ c_{\lambda} = 1 $ for all eigenvalue $ \lambda $
+		
+	\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+	\begin{itemize}
+		\item (i) $ \iff $ (ii): Let $ \lambda_{1}, \cdots, \lambda_{k} $ evalues of $ \alpha $. 
+		
+		\[ \alpha \text{ diagonalisable } \iff V = \bigoplus V_{\lambda_{k}} \]
+		
+		where with $ V $, $ \dim n  = \deg \chi_{\alpha} = a_{1} + \cdots + a_{k}$, and $ \dim  $ RHS $ = g_{1} + \cdots + g_{k} $
+		
+		fund theorem of algebra.
+		
+		$ g_{2} \leq a_{2} $ for all $ i $, so $ \alpha $ diagonalisable iff $ g_{i} = a_{i} $ for all $ i $.
+		
+		\item (ii) $ \iff $ (iii). By the fund theorem of alg, $ m_{\alpha} $ is a product of linear factors. 
+		
+		$ \alpha $ is diagonalisable iff all of these linear factors are distinct, ie. $ c_{\lambda} = 1 $ for all evalues $ \lambda $.  
+		
+		\item 
+	\end{itemize}
+\end{proof}
+
+Remark: Over $ \C $,
+
+\begin{align*}
+\chi_{\alpha}(t) & = (\lambda_{1} - t)^{\alpha_{1}}\cdots (\lambda_{k} - t)^{\alpha_{k}} \quad \lambda_{i} \text{ all evalues } \\
+m_{\alpha} (t) & = ( t - \lambda_{1})^{c_{1}} \cdots (t - \lambda_{k} )^{c_{k}} \quad \text{ with } 1 \leq c_{i} \leq a_{i}
+\end{align*}
+
+
+\begin{defi}
+	$ A \in M_{n}(\C) $ is in \emph{Jordan Normal Form} (JNF) if it is a block diagonal matrix
+	
+	\[ A = \begin{pmatrix}
+	J_{n_{1}}(\lambda_{1}) & & 0\\
+	& J_{n_{2}}(\lambda_{2}) & 
+	0 & & \cdots J_{n_{k}}(\lambda_{k})
+	\end{pmatrix} \]
+	
+	
+	where $ k \geq 1 $, $ n_{1},\cdots,n_{k} \in \N $, $ \sum n_{i} = n $, $ \lambda_{i} \in \F $ (needn't be distinct)
+	
+	
+	
+	\[ J_{m}(\lambda) = A = \begin{pmatrix}
+	\lambda^{1} & 1 & & \\
+	& \lambda^{1} & 1 & \\
+	& & \ddots & \\
+	& 0 & & \lambda^{1} 
+	\end{pmatrix} \]
+	
+	where $ J_{m}(\lambda) \in M_{m} \C  $ is a Jordan block
+	
+\end{defi}
+ 
+ 
+ \begin{thm} 
+ 	Every $ A \in M_{n}\C $ is similar to a matrix in JNF, unique up to reordering the Jordan black
+ \end{thm}
+
+\begin{proof}
+	(Non-examinable) consequence of main thm on modules in GRM.
+\end{proof}
+
+\begin{eg}
+	Possible JNFs for $ A \in M_{2} \C $
+	
+	
+	
+	\[ \begin{pmatrix}
+	\lambda_{1} & \\
+	& \lambda_{2}
+	\end{pmatrix} \; \begin{pmatrix}
+	\lambda & 0 \\
+	0 & \lambda
+	\end{pmatrix}\; \begin{pmatrix}
+	\lambda & 1\\
+	0 & \lambda
+	\end{pmatrix}
+	\]
+	
+	
+	\[ m_{A} = (t - \lambda_{1})(t - \lambda_{2}) \quad (t - \lambda) \quad (t - \lambda)^{2} \]
+	
+\end{eg}
+
+
+\begin{eg}
+	Possible JNFs for $ A \in M_{3} \C $
+	
+	$ \lambda_{i} $ distinct gives
+	
+	\[ \begin{pmatrix}
+	\lambda_{1} & & \\
+	& \lambda_{2} & \\
+	& & \lambda_{3}
+	\end{pmatrix} \]
+	
+	with $ m_{A} = (t - \lambda_{1}) (t - \lambda_{2}) (t - \lambda_{3}) $
+	
+	
+	or
+	
+	\[ \begin{pmatrix}
+	\lambda_{1} & & \\
+	& \lambda_{2} & \\
+	& & \lambda_{2}
+	\end{pmatrix} \]
+	
+	with $ m_{A} =  (t - \lambda_{1})(t - \lambda_{2})  $
+	
+	or 
+	
+		
+	\[ \begin{pmatrix}
+	\lambda & & \\
+	& \lambda & \\
+	& & \lambda
+	\end{pmatrix} \]
+	
+	with $ m_{A} = (t - \lambda) $
+	
+	or 
+	
+		\[ \begin{pmatrix}
+	\lambda_{1} & & \\
+	& \lambda_{2} 1 \\
+	& & \lambda_{2}
+	\end{pmatrix} \]
+	
+	with $ (t - \lambda_{1})(t - \lambda_{2})^{2} $
+	
+	or 
+	
+	\[ \begin{pmatrix}
+	\lambda & & \\
+	& \lambda 1 \\
+	& & \lambda
+	\end{pmatrix} \]
+	
+	with $ (t - \lambda)^{2} $
+	
+	and 
+	
+	\[ \begin{pmatrix}
+	\lambda 1 1 \\
+	& \lambda 1 \\
+	& & \lambda
+	\end{pmatrix} \]
+	
+	with $ (t - \lambda )^{3} $
+	
+\end{eg}
+
+
+\begin{thm} (Generalised eigenspace decomposition)
+	
+	$ V $ f dim v space over $ \C $, $ \alpha \in L(V ) $. Suppose that 
+	
+	\[ m_{\alpha} (t) = (t - \lambda_{1})^{c_{1}} \cdots (t - \lambda_{k})^{c_{k}}  \qquad \lambda_{i} \text{ distinct }\]
+	
+	Then
+	
+	\[ V = \bigoplus V_{j} \]
+	
+	where $ V_{j} = N(  ( \alpha - \lambda_{j} \iota )^{c_{j}} ) $
+	
+	generalised space.
+	
+\end{thm}
+
+\begin{proof}(Sketch)
+	
+	Let \[ p_{j}(t) = \prod_{i \neq j} (t - \lambda_{i})^{c_{i}}   \]
+	
+	The $ p_{j} $ have no common factor, so by Euclid's algorithm we can find $ q_{1}, \cdots, q_{k} \in \C [t]  $ st. $ \sum p_{j}(t) q_{j}(t) = 1 $
+	
+	
+	Let $ \pi_{j} = q_{j}(\alpha) p_{j}(\alpha) \in L(V)  $. Note $ \sum_{j=1}^{k} \pi_{j} = \iota$.
+	
+	These $ \pi_{j} $ are sort of like projection maps as before, now projecting to generalised eigenspaces
+	
+	\begin{itemize}
+		\item As $ m_{\alpha}(\alpha) = 0 $, so 
+		
+		\[ (  \alpha - \lambda_{j} \iota )^{c_{j}} \pi_{j} = 0 \Rightarrow \Im \pi_{j} \leq V_{j}   \]
+		
+		
+		\item Suppose $ v \in V $,
+		
+		\[ v = \iota(v) = \sum \pi_{j}(v) \Rightarrow V = \sum V_{j} \]
+
+		\item Directness $ \pi_{i} \pi_{j} = 0 $ for $ i \neq j $
+		
+		\[ \Rightarrow \pi_{i} = \pi_{i} \left( \sum_{j=1}^{n} \pi_{j} \right)  = \pi_{i}^{2} \text{ projection}  \]
+		
+		and so
+		
+		\[ \pi_{i} |_{v_{j}} = \begin{cases} \text{Id}  & \text{ if } i = j \\ 0 & \text{ if } i \neq j \end{cases}  \]
+
+		and directness follows
+	\end{itemize}
+	
+\end{proof}
+
+Remarks:
+
+\begin{enumerate}
+	\item Can use this to reduce the proof of JNF to a single eigenvalue.
+	
+	\item Considering $ \alpha - \lambda \iota  $ can reduce to the case of evalue 0.
+
+	
+\end{enumerate} 
+
+
+\begin{lemma} 
+	Let $ \alpha \in L(V) $ with JNF $ A \in M_{n} \C $.
+	
+	\begin{align*}
+	& \text{number of } \{  \text{Jordan blocks } J_{l}(\lambda) \text{ of } A \text{ with } l \geq r \} \\
+	& = n \left( ( \alpha - \lambda_{i})^{r}   \right) - n \left(  ( \alpha - \lambda_{i} )^{r - 1} \right)  
+	\end{align*}
+\end{lemma}
+
+\begin{proof}
+	Work blockwise
+	
+	\[ J_{s}(\lambda) = \begin{pmatrix}
+	\lambda & 1 & 0 \\
+	& \vdots &\\
+	0 & & \lambda
+	\end{pmatrix}_{S \times S}, \qquad J_{s}( \lambda) s \lambda I_{s} = \begin{pmatrix}
+	0 & 1 & & 0\\
+	& \vdots & & \\
+	0 & & 0
+	\end{pmatrix} \quad (r = 1, \text{nullity} = 1 ) \]
+	
+	
+	\[ ( J_{s}( \lambda) s \lambda I_{s})^{2} = \begin{pmatrix}
+	0 & 0 & 1 & & 0\\
+	& \vdots & & \\
+	0 & & 0
+	\end{pmatrix} \text{ nullity } 2 \]
+	
+	Hence 
+	
+	\[ n( ( J_{s}( \lambda) s \lambda I_{s})^{k} ) \begin{cases}  k   & \text{ if } k \leq s \\ s & \text{ if } k \geq s \end{cases}\]
+\end{proof}
+
+\begin{eg}
+	\[ A = \begin{pmatrix}
+	0 & -1 \\
+	1 & 2
+	\end{pmatrix} 
+	\]
+	
+	Want JNF and a basis $ \mathcal{B} = \{ v_{1},v_{2} \} $ wrt which $ A $ is in JNF.
+	
+	\begin{itemize}
+		\item \[ \chi_{A}(t) = \begin{vmatrix}
+		-t & -1 \\
+		1 & 2 - t
+		\end{vmatrix} = t^{2} - 2t + 1 = (t - 1)^{2} \]
+		
+		2 possibilities, either $ m_{A} = t-1 $ or $ m_{A} = (t - 1)^{2} $
+		
+		In each case,
+		
+		\[ \text{JNF } = \begin{pmatrix}
+		1 & 0 \\
+		0 & 1
+		\end{pmatrix}
+		\quad 
+		\text{JNF } = \begin{pmatrix}
+		1 & 1 \\
+		0 & 1
+		\end{pmatrix} \]
+		
+		Note: if $ A $ was conjugate to $ I $, then $ A = I $ ($ P^{-1} A P = I $ for any $ P $ invertible). So it is the second case!
+		
+		\item Espace
+		
+		\[ A - I = \begin{pmatrix}
+		-1 & -1 \\
+		1 & 1
+		\end{pmatrix}, \text{ ker spanned } v_{1} \begin{pmatrix}
+		1 \\
+		-1
+		\end{pmatrix} \]
+		
+		Aside: see Michaels Notes
+		
+		\item $ v_{2} $ satisfies $ ( A - I)v_{2} = v_{1} $. 
+		
+		\[ \begin{pmatrix}
+		-1 & -1 \\
+		1 & 1
+		\end{pmatrix} v_{2} = \begin{pmatrix}
+		1\\
+		-1
+		\end{pmatrix} \Rightarrow v_{2} = \begin{pmatrix}
+		-1\\
+		0
+		\end{pmatrix} \text{ (NOT unique!)} \]
+		
+		
+		\[ A = \begin{pmatrix}
+		-1 & -1 \\
+		-1 & 0
+		\end{pmatrix}  \begin{pmatrix}
+		1 & 1 \\
+		0 & 1
+		\end{pmatrix} \begin{pmatrix}
+		-1 & -1 \\
+		-1 & 0
+		\end{pmatrix}^{-1} \]
+		
+		$ A = P^{-1} A P $
+		
+		
+		
+	\end{itemize}
+
+
+
+Now, suppose we want to find some high power of $ A $. Can use JNF.
+
+\begin{align*}
+A^{n} & = ( P^{-1} J P )^{n} \\
+& = P^{-1} J^{n} P \\
+& = P^{-1} \begin{pmatrix}
+1 & n \\
+0 & 1
+\end{pmatrix} P 
+\end{align*}
+
+
+
+
+	
+\end{eg}
+
+
+Remark: In JNF:
+
+\begin{itemize}
+	\item $ a_{\lambda} =  $ total number of times that $ \lambda $ appears in diagonal
+	\item $ g_{\lambda} = $ number of $ \lambda $-Jordan blocks
+	\item $ c_{\lambda} =  $ size of the largest $ \lambda $-Jordan Block
+\end{itemize}
+
+
+\section{Bilnear Forms II}
+
+\[ \varphi : V \times V \to \F \]
+
+This chapter: same basis for both factors of $ V $, say $ \mathcal{B} $. For $ \dim_{\F} V < \infty $, matrix representation $ [ \varphi ]_{\mathcal{B}} ( = [  \varphi_{\mathcal{B},\mathcal{B}} ] ) $
+
+
+\begin{lemma} 
+	$ \psi : V \times V \to \F, \dim_{\F} V < \infty $, $ \mathcal{B},\mathcal{B}' $ bases for $ V $. Let $ P = [\id]_{\mathcal{B},\mathcal{B}'} $. Then
+	
+	\[ [\psi]_{\mathcal{B'}} = P^{T} [\psi]_{\mathcal{B}} P \]
+\end{lemma}
+
+\begin{proof}
+	Special case of L10.
+\end{proof}
+
+
+\begin{defi}
+	$ A,B \in M_{n}(\F) $ are \emph{congruent} if $ A = P^{T} B P $ for some invertible $ P $. 
+\end{defi}
+
+Note: This is an equivalence relation
+
+\begin{defi}
+	A bilinear form on $ V $ is \emph{symmetric} if $ \psi(u,v) = \psi(v,u) $ for all $ u,v \in V $
+\end{defi}
+
+Note: $ A \in M_{n}(\F) $ is symmetric if $ A = A^{T} $.
+
+$ \varphi $ is symmetric $ \iff $ $ [\varphi]_{\mathcal{B}} $ is symmetric for any basis $ \mathcal{B} $. (enough $ [\varphi]_{\mathcal{B}} $ symmetric for one $ \mathcal{B} $ ).
+
+Note: To be able to represent $ \varphi $ by a diagonal matrix, $ \varphi $ needs to be symmetric. 
+
+\[ P^{T} \underbrace{A}_{= [ \varphi ]_{\mathcal{B}}} P = D \]
+
+where $ D $ is diagonal, so 
+
+\[ \underbrace{\Rightarrow D^{T}}_{\text{because } D \text{ diagonal}} = P^{T} A^{T} P \Rightarrow A = A^{T}  \]
+
+\begin{defi}
+	A map $ Q : V \to \F $ is \emph{quadratic form} if there is a bilinear form $ \varphi: V \times V \to \F  $ s.t. $ Q(v)= \varphi(v,v)  $ for all vectors $ v \in V $.
+\end{defi}
+
+
+\begin{eg}
+	$ V = \R^{2} $
+	
+	
+	\[ \begin{pmatrix}
+	x\\
+	y
+	\end{pmatrix}  \mapsto \begin{pmatrix}
+	x & y
+	\end{pmatrix} \begin{pmatrix}
+	a & b\\
+	c & d
+	\end{pmatrix} \begin{pmatrix}
+	x \\
+	y
+	\end{pmatrix} = ax^{2} + (b+c)xy + dy^{2}  \]
+\end{eg}
+
+Rk: Wouldn't change if replace $ A $ with $ \frac{1}{2} (A + A^{T})  $
+
+\begin{prop} ( Assume $ 1 + 1 \neq 0 \in \F $)
+	If $ Q : V \to \F $ is a quadratic form then there exists a unique symmetric bilinear form $ \varphi: V \times V \to \F $ st. $ Q(u) = \varphi(u,u)  $ for all $ u \in V $
+\end{prop}
+
+\begin{proof}
+	\begin{itemize}
+		\item Existance: Let $ \psi  $ bilinear form on $ V $ st. $ Q(u) = \psi(u,u) $. Let 
+		
+		\[ \varphi(u,v) = \frac{1}{2} (    \psi(u,v) + \psi(v,u ) \]
+		
+		\item bilinear, symmetric.
+		\item $ \varphi(u,u) = \psi(u,u) = Q(u) $
+		
+		\item Uniqueness: Suppose $ \varphi $ is such a symmetric bilnear from. 
+		
+		
+		\begin{align*}
+		Q(u+v)& = \varphi(u+v,u+v)  \\
+		& = \varphi(u,u) + \varphi(u,v) + \varphi(v,u) + \varphi(v,v) \\
+		& = Q(u) + 2\varphi(u,v) + Q(v)
+		\end{align*}
+		so
+		
+		(POLARISATION IDENTITY)
+		\[ \varphi(u,v) = \frac{1}{2} \left(  Q(u+v) - Q(u) - Q(v) \right)  \]
+
+		Any such $ \varphi $ is determined by a starting $ Q $, so uniquely determined.
+		
+	\end{itemize}
+\end{proof}
+
+\begin{thm} 
+	Let $ \varphi : V \times V \to \F $ symmetric bilinear from, assume $ 1 + 1 \neq 0 \in \F $ (eg $ \F = \R $ or $ \C $), $ \dim_{\F}V < \infty $.
+	
+	Then there's a basis $ \mathcal{B} $ of $ V $ st. $ [\varphi]_{\mathcal{B}} $ is diagonal
+\end{thm}
+
+\begin{proof}
+	(Induction on the dimension of $ V $, a pretty common technique) ($ n = \dim V $)
+	
+	\begin{itemize}
+		\item $ n = 0,1 $ Done.
+		\item Suppose thm holds for all spaces of $ \dim < n $. If $ \varphi(u,u) = 0 $ for all $ u $, then by polarisation identity, $ \varphi $ is identically zero, done.
+		Otherwise choose $ e_{1} \in V  $ s.t. $ \varphi(e_{1},e_{1}) \neq 0 $.
+		
+		Let 
+		
+	\[ U = < e_{1} >^{\perp} = \{  u \in V \; | \; \varphi(e_{1},e_{1}) = 0 \} \]
+	
+	\[ = \ker\{ \varphi(e_{1},-) \; | \; V \to \F  \} \]
+	
+	
+	$ \dim U = n - 1$ by rank nullity. Moreover,
+	
+	\[ V = <e_{1}> \oplus \; U \]
+	
+	
+	Note: $ <e_{1}>   \cap \; U = \{  \mathbf{0} \} $, $ \dim (  <e_{1}>  \oplus \; U ) = 1 + n - 1 = n$
+	
+	
+	Consider $ \varphi \big|_{U} : U \times U \to \F  $, bilinear, symmetric. By the induction hypothesis, there is a basis of $ U $, say $ e_{2},\cdots,e_{n} $ wrt. which $ \varphi \big|_{U} $ is diagonal.
+	
+	Now $ \varphi $ is diagonal wrt $ e_{1},\cdots,e_{n} $
+	
+	\end{itemize}                                                   
+\end{proof}     
+
+
+\begin{eg},
+	
+	
+	$ V = \R^{3} $, std $ e_{1},e_{2},e_{3} $
+	
+	
+	\[ Q(\underbrace{x_{1},x_{2},x_{3}}_{\sum_{i=1}^{3}x_{i}e_{i}  }) = x_{1}^{2} + x_{2}^{2} + 2x_{3}^{2} + 2x_{1}x_{2} + 2 x_{1}x_{3} - 2 x_{2}x_{3}  \]
+	
+	Want a basis $ f_{1},f_{2},f_{3} $ of $ \R^{3} $ st. 
+	
+	\[ Q(af_{1} + b f_{2} + c f_{3})  = \lambda a^{2} + \mu b^{2} + \nu c^{2} \] 
+	
+	some $ \lambda,\mu, \nu  \in \R $. (diagonal entries)
+	
+	The matrix wrt. std basis for bilinear symmetric form is 
+	
+	\[ \begin{pmatrix}
+	1 & 1 & 1\\
+	1 & 1 & -1 \\
+	1 & -1 & 2 
+	\end{pmatrix} \]
+	
+	How to diagonalise?
+	
+	Method 1: Complete the square. Use up all terms in $ x_{1} $, then use up all terms in $ x_{2} $ or $ x_{3} $, whichever easier!
+	
+	\begin{align*}
+	Q(x_{1},x_{2},x_{3})  & =  (x_{1} + x_{2} + x_{3} )^{2} + x_{3}^{2} - 2 x_{2}x_{3} - 2 x_{2}x_{3}  \\
+	& =  (x_{1} + x_{2} + x_{3} )^{2} - (x_{3}  - 2x_{2} )^{2} - 4 x_{2}^{2}
+	\end{align*}
+	
+	
+	So for some $ P $, $ P^{T} A P =\begin{pmatrix}
+	1 & & 0 \\
+	& 1 & \\
+	0 & & -1
+	\end{pmatrix} $
+	
+	To find $ P $, notice that 
+	
+	\[ \begin{pmatrix}
+	x_{1}' \\
+	x_{2}' \\
+	x_{3}'
+	\end{pmatrix} = \begin{pmatrix}
+	1 & 1 & 1 \\
+	0 & -2 & 1\\
+	0 & 2 & 0
+	\end{pmatrix}\begin{pmatrix}
+	x_{1} \\
+	x_{2} \\
+	x_{3}
+	\end{pmatrix} \]
+	
+	where the matrix is $ P^{-1} $.
+	
+	Method 2: Follow steps in diag prof.
+	
+\end{eg}                                                 
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
