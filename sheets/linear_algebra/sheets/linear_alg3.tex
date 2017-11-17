@@ -112,16 +112,127 @@ Define $ \pi_{j} = q_{j}(\alpha) : V \to V $ by
 
 \[ q_{j}(\alpha) = \prod_{i \neq j}^{k}  \frac{\alpha - \lambda_{i}}{\lambda_{j} - \lambda_{i}} \]
 
+There's a bit about this in the notes, but I don't understand the proof and am having difficulty recreating it here. 
+
 \section{QUESTION 4}
+
+Let $ \alpha: V \to V $, complex finite dimensional vector space. 
+$ \lambda $ eigenvalue for $ \alpha $  $ \Rightarrow \; \alpha v = \lambda v $. Then
+
+\begin{align*}
+\alpha^{2}(v) & = \alpha( \alpha(v)) \\
+& = \alpha (\lambda v) \\
+& = \lambda (\alpha v) \quad \text{ by linearity} \\
+& = \lambda^{2} v
+\end{align*}
+
+Thus $ \lambda^{2} $ is an eigenvalue of $ \alpha^{2} $. 
+
 \section{QUESTION 5}
+
+Suppose $ \alpha_{1},\alpha_{2} : V \to V $, and $ \dim V = n $.
+
+Let $ \tilde{\alpha}_{2} $ be the restriction of $ \alpha_{2} $ to $ \Im(\alpha_{1}) $. We have 
+
+\[ \Im(\tilde{\alpha}_{2}) = \Im(\alpha_{2}\alpha_{1}) \]
+\[ \ker(\tilde{\alpha}_{2}) = \ker(\alpha_{2}) \cap \Im \alpha_{1}  \]
+
+By rank-nullity (note the domain of $ \tilde{\alpha}_{2} $ is $ \Im(\alpha_{1}) $).
+
+\begin{align*}
+r(\alpha_{2}\alpha_{1})  & =  r(\alpha_{1}) - \dim(\ker(\alpha_{2}) \cap \Im \alpha_{1})  \\
+& \geq r(\alpha_{1}) - n(\alpha_{2}) \\
+%& = r(\alpha_{1}) - ( n - r(\alpha_{2}))
+& = (n - n(\alpha_{1})) -n(\alpha_{2})
+\end{align*}
+
+Thus
+
+\[ n - n(\alpha_{2}\alpha_{1}) \geq (n - n(\alpha_{1})  - n(\alpha_{2} ) \]
+
+ie.
+
+\[n(\alpha_{1}\alpha_{2}) \leq   n(\alpha_{1}) + n(\alpha_{2})  \]
+
+Not sure about the last bit. 
+
 \section{QUESTION 6}
+
+Clearly the identity matrix is only similar to itself, as $ P^{-1} I P = P^{-1} P = I $ for all invertible matrices $ P $. 
+
+Not sure how to show dissimilarity of the first two. They both have characteristic polynomial $ \det(M - \lambda \iota) = (\lambda - 1)^{3} $. 
+
 \section{QUESTION 7}
 \section{QUESTION 8}
+
+Set of $ n = \dim V $ vectors, only need to check for linear independence to see this is a basis. Suppose
+
+\[ A_{0} y + A_{1} \alpha(y) + A_{2} \alpha^{2}(y) + \cdots + A_{n-1} \alpha^{n-1}(y) = 0 \]
+
+Taking $ \alpha $ of both sides repeatedly
+
+\[  A_{0} \alpha(y) + A_{1} \alpha^{2}(y) + \cdots + A_{n-2}  \alpha^{n-1}(y) +  \underbrace{A_{n-1} \alpha^{n}(y)}_{=0} = 0 \]
+
+\[ \vdots \]
+
+\[ A_{0} \alpha^{n-2}(y) + A_{1} \alpha^{n-1}(y) = 0 \]
+
+\[ A_{0} \alpha^{n-1}(y) = 0 \]
+
+But $ \alpha^{n-1}(y) \neq 0 $, so $ A_{0} = 0 $.
+
+Similarly, following backwards we see that $ A_{1} \neq 0 $, and so on until $ A_{i} = 0 \; \forall \; i \in \{ 0,1,2,\cdots,n-1 \} $. Thus linear independence is achieved, and $ \{  y,\alpha(y),\alpha^{2}(y),\cdots,\alpha^{n-1}(y) \} $ is indeed a basis. 
+
+
+
+
 \section{QUESTION 9}
+
+\begin{enumerate} [label = (\alph*)]
+	\item Consider $ A v = \lambda v  $, $ A $ invertible thus
+	
+	\[ A^{-1}(\lambda v) = v \]
+	
+	So $ A $ has eigenvalue $ \lambda  \Rightarrow A^{-1} $ has eigenvalue $ \frac{1}{\lambda} $
+	
+\end{enumerate}
+
 \section{QUESTION 10}
+
+Define $ f $ as $ f(\lambda) = \det(A - \lambda B) $. $ C = A + iB $ invertible $ \Rightarrow f(i) \neq 0 $.
+
+Therefore a polynomial of degree $ n $ does not have $ i $ as a root. Somehow, but I cannot see how, this must mean that there exists some $ \lambda \in \R $ that is also not a root, ie. $ f(\lambda) \neq 0 $, thus $ \det(A - \lambda B) \neq 0 $ and $ A - \lambda B $ is invertible.
+
+Next, suppose that $ P = C^{-1} Q C $ for some complex invertible matrix $ C = A + i B $, so
+
+\[ P = (A + i B)^{-1} Q (A + iB) \] 
+
+Know $ (A+ \lambda B) $ invertible for some $ \lambda $, but not sure how this helps. 
+
 \section{QUESTION 11}
+
+
 \section{QUESTION 12}
 
+\begin{enumerate}
+	\item If $ \lambda $ is an eigenvalue, then $ f' = \lambda f $. But we can always find a differentiable function (namely $ f(x) = e^{\lambda x} $) st. $ f'(x) $ is $ \lambda f(x) $. Hence every real number is an eigenvalue of $ f $.
+
+$ \ker(\alpha - \lambda \iota) $ is just the span of the $ \lambda $ eigenspace, ie. $ < e^{\lambda x} > $, thus has dimension 1.
+
+
+	\item To show surjectivity of $ (\alpha - \lambda \iota) $, must show that there exists an $ f $ st. $ f' - \lambda f $.  
+	
+	\[ (\; \forall \; g \in V) (\; \exists \; f \in V \; \text{s.t.} \; g = f' - \lambda f) \]
+	
+	Try $ f = e^{\lambda x} \int g e^{- \lambda x} $. Then
+	
+	\begin{align*}
+	f' - \lambda f & = \lambda e^{\lambda x} \int g e^{- \lambda x} + e^{\lambda x}( g e^{- \lambda x } ) - \lambda e^{\lambda x} \int g e^{- \lambda x}     \\
+	& = e^{\lambda x}( g e^{- \lambda x } \\
+	& = g
+	\end{align*}
+	
+\end{enumerate}
 	
 	
 	

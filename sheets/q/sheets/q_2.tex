@@ -38,7 +38,7 @@ setting $ E = k^{2} \hbar^{2} / 2m $, thus
 
 Using BCs, $ \psi(0) = 0 \Rightarrow A = 0 $
 
-$ \psi(a) = 0 \Rightarrow \sin k a = 0 \Rightarrow k a =  n \pi  $ for integer $ n $, thus energy eigenvalues are $ E_{n} = n^{2} \pi^{2} \hbar^{2} / 2m a^{2} $ with corresponding energy eigenstates $ B_{n} \sin k_{n} x = B_{n} \sin ( \sqrt{2 m a^{2 }E_{n} / \hbar^{2} } x ) $, and 
+$ \psi(a) = 0 \Rightarrow \sin k a = 0 \Rightarrow k a =  n \pi  $ for integer $ n $, thus energy eigenvalues are $ E_{n} = n^{2} \pi^{2} \hbar^{2} / 2m a^{2} $ with corresponding energy eigenstates $ B_{n} \sin k_{n} x = B_{n} \sin ( \frac{n \pi}{a} x ) $, and 
 
 \begin{align*}
 1 & = \int_{0}^{a} |  \psi(x) |^{2} \; \d x \\
@@ -49,7 +49,7 @@ $ \psi(a) = 0 \Rightarrow \sin k a = 0 \Rightarrow k a =  n \pi  $ for integer $
 
 \begin{align*}
 \Rightarrow \; & B_{n}  = \sqrt{\frac{2}{a}} \\
-\Rightarrow & \text{ norm. states are } \psi_{n}(x) = \sqrt{\frac{2}{a}} \sin \left(    \sqrt{\frac{2m a^{2} E_{n}}{\hbar^{2}} } x \right)
+\Rightarrow & \text{ norm. states are } \psi_{n}(x) = \sqrt{\frac{2}{a}} \sin \left(    \frac{n \pi}{a} x \right) 
 \end{align*} 
 
 Let $ \psi_{n} $ denote the expectation value of $ \hat{x} $ in state $ \psi_{n} $, then
@@ -99,6 +99,7 @@ Hence
 
 as required.
 
+Taking $ X \sim U(0,a) $, we calculate $ \E X = a/2 $ and $ \text{Var } X = a^{2} / 12 $, which is what these results tend to as $ n \to \infty $. 
 
 
 \section{QUESTION 2}
@@ -237,29 +238,49 @@ Know that $ \psi_{2}(x) = a_{2}(y) e^{-y^{2}/2}  $, $ h_{2}(-y) = h_{2}(y) $ eve
 \begin{align*}
 0 & = (\psi_{0},\psi_{2}) \\
 & = \int_{- \infty}^{\infty} \psi_{0}^{*} \psi_{2} \; \d y  \\
-& = \int_{- \infty}^{\infty} a_{0} \left( Ay^{2} + B \right)e^{- y^{2} / 2}    \; \d y \\
-& = a_{0} \left( A \sqrt{2 \pi} + B \sqrt{2 \pi}  \right) 
+& = \int_{- \infty}^{\infty} a_{0} \left( Ay^{2} + B \right)e^{- y^{2}}    \; \d y \\
+& = a_{0} \left( A \sqrt{\pi}/2 + B \sqrt{\pi}  \right) 
 \end{align*}
 
-Thus $ A = - B $, and $ \psi_{2}(x) = a_2(y^{2} - 1) $ for some constant $ a_{2} $. Similarly, can write $ h_{3} = C y^{3} + D y $ as $ h_{3} $ odd function. Letting $ h_{1}(y) = a_{1} y $ for some constant $ a_{1} $ we have:
+Thus $ A = - 2B $, and $ \psi_{2}(x) = a_2(1 - 2y^{2}) $ for some constant $ a_{2} $. Similarly, can write $ h_{3} = C y^{3} + D y $ as $ h_{3} $ odd function. Letting $ h_{1}(y) = a_{1} y $ for some constant $ a_{1} $ we have:
 
 \begin{align*}
 0 & = (\psi_{1},\psi_{3}) \\
 & = \int_{- \infty}^{\infty} \psi_{1}^{*} \psi_{3} \; \d y  \\
-& = \int_{- \infty}^{\infty} a_{1} y \left( Cy^{3} + D y \right)e^{- y^{2} / 2}    \; \d y \\
-& = a_{1} \left( 3 C   \sqrt{2 \pi} + B \sqrt{2 \pi}  \right) 
+& = \int_{- \infty}^{\infty} a_{1} y \left( Cy^{3} + D y \right)e^{- y^{2}}    \; \d y \\
+& = a_{1} \left( 3 C   \sqrt{\pi}/4 + D \sqrt{\pi}/2  \right) 
 \end{align*}
 
 
-Thus $ B = - 3 C $, and we can write $ \psi_{3}(x) = a_{3}(  y^{3} - 3 y ) $. 
+Thus $ -2C = 3 D $, and we can write $ \psi_{3}(x) = a_{3}( y - \frac{2}{3} y^{3} ) $. 
 
 Next, if the initial state can be written as $ \Psi(x,0) = \sum_{n=0}^{\infty} c_{n} \psi_{n}(x)  $, then
 
 \begin{align*}
 \Psi(x,t) & = \sum_{n=0}^{\infty} c_{n} \psi_{n}(x) e^{-iE_{n}t / \hbar} \\
 & = \sum_{n=0}^{\infty} c_{n} \psi_{n}(x) e^{-i(n + \frac{1}{2}) \omega t} \\
-& = 
+\end{align*}\
+Thus
+
+\begin{align*}
+\Psi(x,2p \pi / \omega)  & = \sum_{n=0}^{\infty} c_{n} \psi_{n}(x) e^{-i(n + \frac{1}{2}) \omega ( 2 p \pi / \omega  ) }   \\
+& = \sum_{n=0}^{\infty} c_{n} \psi_{n}(x) e^{-i(2n + 1)( p \pi )} \\
+& = e^{-i p \pi } \sum_{n=0}^{\infty} c_{n} \psi_{n}(x) \qquad  \text{ as } e^{-i 2n p  \pi = 1} \\
+& = (-1)^{p}  \sum_{n=0}^{\infty} c_{n} \psi_{n}(x)
 \end{align*}
+
+
+and we also have 
+
+\begin{align*}
+\Psi(-x,(2q + 1) \pi / \omega)  & = \sum_{n=0}^{\infty} c_{n} \psi_{n}(x) e^{-i(n + \frac{1}{2}) \omega ( (2q + 1) \pi / \omega  ) }   \\
+& =  e^{-i(q + 1/2) \pi } \sum_{n=0}^{\infty} c_{n} \psi_{n}(x) e^{-i n(2 q + 1) \pi } \\
+& = -i(-1)^{q} \sum_{n=0}^{\infty} c_{n} \psi_{n}(x) e^{-i n(2 q + 1) \pi }  \\
+& = -i(-1)^{q} \sum_{n=0}^{\infty} c_{n} \psi_{n}(x) (-1)^{nq}
+\end{align*}
+
+Not sure the best approach dealing with the double infinite sum. Can see the individual terms modulus should be equal...
+
 
 
 
@@ -301,6 +322,7 @@ J & = - \frac{i \hbar }{2m} \left[   (C^{*} e^{-ikx}  )(ik C e^{ikx}  )   - ( - 
 
 As independent of $ x $ these two expressions are equal, thus $ | B |^{2} + | C |^{2} = 1 $
 
+Note sure about the interpretation.
 
 
 
@@ -369,7 +391,7 @@ j = j_{\mathrm{tr}} = |T|^2 \frac{\hbar k}{m}
 \]
 for $x > a$. We can use these to find the transmission probability, and it turns out to be
 \[
-P_{\mathrm{tr}} = \frac{|j_{\mathrm{tr}j}|}{|j_{\mathrm{inc}}|} = \frac{|T|^2}{|I|^2} = \left[ \cosh^{2} ka \right]^{-1}.
+P_{\mathrm{tr}} = \frac{|j_{\mathrm{tr}}|}{|j_{\mathrm{inc}}|} = \frac{|T|^2}{|I|^2} = \left[ \cosh^{2} ka \right]^{-1}.
 \]
 This demonstrates \emph{quantum tunneling}. There is a non-zero probability that the particles can pass through the potential barrier even though it classically does not have enough energy.
 
@@ -379,6 +401,31 @@ This demonstrates \emph{quantum tunneling}. There is a non-zero probability that
 Time independent SE is 
 
 \[ - \frac{\hbar^{2}}{2m} \psi'' - U \delta(x) \psi = E \psi  \]
+
+Set the constant
+
+\[
+E = \frac{\hbar^2 k^2}{2m}
+\]
+
+Then the Schr\"odinger equations become
+\begin{align*}
+\psi'' + k^2 \psi &= 0 && x < 0\\
+\psi'' + k^2 \psi &= 0 && x > 0
+\end{align*}
+So we get
+\begin{align*}
+\psi &= I e^{ikx} + Re^{-ikx}&& x < 0\\
+\psi &= Te^{ikx} && x > 0
+\end{align*}
+
+Matching $\psi$ at $x = 0$, and using $ \psi'(0_{+}) - \psi'(0_{-})  = - (2mU / \hbar^{2} \psi(0))$  gives the equations
+\begin{align*}
+I + R &= T\\
+i k T - ikI + ikR & = - (2mU / \hbar^{2})T
+\end{align*}
+
+Should be fine to finish, but I'm out of time. Not sure how to do the second part. 
 
 
 
@@ -394,7 +441,42 @@ Time independent SE is
 	
 	So $ C = \sqrt{30 } a^{-5/2} $
 	
-	\item 
+	\item Normalised energy eigenstates are 
+	
+	\[ \chi_{n}(x) = \sqrt{\frac{2}{a}} \sin \left(    \frac{n \pi}{a} x \right)  \]
+	
+	with corresponding energy eigenvalues $ E_{n} = n^{2} \pi^{2} \hbar^{2} / 2m a^{2} $. These eigenstates provided a basis for the states, so can write, for $ \psi(x) = \Psi(x,0) $
+	
+	\[ \psi(x) =  \sum_{n=0}^{\infty} \alpha_{n} \chi_{n}(x)  \quad \text{ with } \alpha_{n} = (\psi,\chi_{n}) \]
+	
+	So $ \alpha_{n} $ can be calculated by integrating
+	
+	\begin{align*}
+	\alpha_{n} & = \int_{0}^{a} C x(a-x) \sqrt{\frac{2}{a}} \sin \left(    \frac{n \pi}{a} x \right) \; \d x \\
+	& = \frac{2 \sqrt{15} }{a^{3}} \left(   \frac{-2 + 2(-1)^{n}}{n^{3}\pi^{3}} \right)(-a^{3}) \\
+	& = \begin{cases} \frac{8 \sqrt{15}}{\pi^{3}n^{3}}  & \text{ if } n \text{ odd } \\ 0 & \text{ if } n \text{ even } \end{cases}
+	\end{align*}
+	
+	Hence
+	
+	\[ \psi(x) =  \sum_{p=0}^{\infty} \frac{8 \sqrt{15}}{(2p+1)^{3}\pi^{3}} \chi_{2p + 1}(x)  \]
+	
+	And know that
+	
+	\[ \psi(x) =  \sum_{n=0}^{\infty} \alpha_{n} \chi_{n}(x) \Rightarrow \Psi(x,t) = \sum_{n=0}^{\infty} \alpha_{n} \chi_{n}(x) e^{- i E_{n} t / \hbar }  \]
+	
+	So we have
+	
+	\[ \Psi(x,t) = \sum_{p=0}^{\infty} \frac{8 \sqrt{15}}{\pi^{3}(2p+1)^{3}} \chi_{2p + 1}(x) e^{- i E_{2p + 1} t / \hbar } \]
+	
+	\item The probability of obtaining energy eigenvalue $ E_{n} $ is $ | \alpha_{n} |^{2} $, and
+	
+	\begin{align*}
+	| \alpha_{n} |^{2} & = \left( \frac{8 \sqrt{15}}{\pi^{3}n^{3}} \right)^{2} \text{ if } n \text{ odd and } 0 \text{ if } n \text{ even} \\
+	& = \frac{960}{\pi^{6}n^{6}} 
+	\end{align*}
+	
+	as required
 	
 \end{enumerate}
 
@@ -439,10 +521,16 @@ By linearity, the solution of the t-dep SE is
 & = 
 \end{align*}
 
+Confused on how to finish this off.
+
 
 
 \section{QUESTION 10}
 
+This is a follow on from question 9; I'm not completely sure how the probabilities of measurements of a quantum system evolve with time. 
+
+
+\section{QUESTION 11}
 
 \begin{align*}
 \langle [H,A] \rangle_{\psi} & = \langle HA - AH \rangle_{\psi}  \\
@@ -451,9 +539,20 @@ By linearity, the solution of the t-dep SE is
 & = ( H \psi, A \psi) - ( \psi, AH \psi)
 \end{align*}
 
-\section{QUESTION 11}
+Not sure. 
 
+Cannonical commutation relation for position and momentum is $ [\hat{x},\hat{p}] = i \hbar $
 
+Assuming $ \langle [H,A] \rangle_{\psi} $ is indeed zero, setting $ A = 
+\hat{x} $ we have
+
+\begin{align*}
+0 & = \langle [H,\hat{x}] \rangle_{\psi} \\
+& = \langle [T + V,\hat{x}] \rangle_{\psi} \\
+& = \langle [\frac{1}{2m} \hat{p}^{2},\hat{x}] \rangle_{\psi} + \langle [V(\hat{x}),\hat{x}] \rangle_{\psi}
+\end{align*} 
+
+Not comfortable manipulating these yet.
 
 
 
