@@ -26,20 +26,319 @@
 
 \section{QUESTION 1}
 
-If $ s \in S $ is an absorbing state, then $ s \to s $ only. State $ i $ is recurrent if $ \P_{i}(T_{i} < \infty ) = 1 $ where $ T_{j} := \min \{  n \geq  1 : X_{n} = j \} $, and a state is transient if it is not recurrent.
+Suppose there exists some state $ i \in S, i \neq s $, st. $ i $ is recurrent. Then
 
-Suppose there exists some state $ i \in S, i \neq s $, st. $ i $ is recurrent. Then thm $ \Rightarrow $ state $ i $ is recurrent iff $ \sum_{n=0}^{\infty} p_{i,i}(n) = \infty $. But $ i \to s $, so by definition there exists some $ r > 0 $ st. $ p_{i,s}(r) > 0 $. The rest of the terms are finite, or something. zeros. blah. 
+ \[ \P_{i}(T_{i} < \infty ) = 1 \text{ where } T_{i} := \min \{  n \geq  1 : X_{n} = i \}  \]
+ 
+ But $ i \to s $, so by definition there exists some $ r > 0 $ st. $ p_{i,s}(r) > 0 $, and as $ s $ is absorbing, $ p_{s,i}(n) = 0 \; \forall \;  n \geq 0$. Hence there is a non-zero probability of being `trapped' in $ s $, ie. a non-zero probability that $ T_{i} = \infty $. 
+ Hence, for all $ i \in S $, $ \P_{i}(T_{i} < \infty) < 1$, ie. $ i $ is transient. 
+
+
+
 \section{QUESTION 2}
+
+Let $ P $ denote the transition matrix in question. The characteristic equation $ \det(P - \kappa \iota ) = 0 $ gives roots $ \kappa_{1} = 1 $, $ \kappa_{2} = 1 - 2p $, $ \kappa_{3} = 1 - 4p $. 
+
+Thus 
+
+\[ P^{n} = U^{-1} \begin{pmatrix}
+1 & 0 & 0 \\
+0 & (1-2p)^{n} & 0 \\
+0 & 0 & (1 - 4p)^{n}
+\end{pmatrix} U  \]
+
+for some invertible matrix $ U $, and so
+
+\[ p_{1,1}(n) = A + B(1-2p)^{n} + C(1-4p)^{n} \]
+
+Using $ p_{1,1}(0) = 1, p_{1,1}(1) = 1 - 2p, p_{1,1}(2) = (1-2p)^{2} + 2p^{2} $ gives
+
+\begin{align*}
+A + B + C & = 1 \\
+A + B(1-2p) + C(1-4p) & = 1 - 2p \\
+A + B(1-2p)^{2} + C(1-4p)^{2} & = 1 - 4p + 6p^{2} 
+\end{align*}
+
+Setting $ p = \frac{1}{2} $ in the second equation, $ p = \frac{1}{4} $ in the third yields
+
+\begin{align*}
+A + B + C & = 1 \\
+A  - C & = 0\\
+A + B/4 & = 3/8 	
+\end{align*}
+
+which gives $ A = C = 1/4 $, $ B = 1/2 $, thus
+
+\[ p_{1,1}(n) = \frac{1}{4}  + \frac{1}{2}(1-2p)^{n} + \frac{1}{4}(1-4p)^{n} \]
+
+We have $ 1 \leftrightarrow 2 \leftrightarrow 3 $ so the chain is irreducible (all states recurrent of all states transient).
+Thus as $ n \to \infty $, $ p_{1,1} \to 1/4 $, so state $ 1 $ is recurrent.  hence all states are recurrent.
+
+
+
+
 \section{QUESTION 3}
+
+Using the symmetry of the problem, the invariant probabilities are $ \pi_{i} = 1/2^{3} $ for all vertices $ x $. For a finite irreducible MC, the mean recurrent time $ \mu_{i} $ to state $ i $ is 
+
+\[ \mu_{i} = \frac{1}{\pi_{i}} \]
+
+Thus the expected number of steps until the particle first returns to $ v $ is $ 2^{3} = 8 $.
+
+Should be a way to do the next two using invariant distributions but I can't see it. Let $ e_{i} $ be the expected number of steps to reach $ w $ given we are $ i $ steps away from $ w $. Hence
+
+\begin{align*}
+e_{0} & = 0 \\
+e_{1} & = 1 + \frac{1}{4} e_{1} + \frac{1}{2} e_{2} \\
+e_{2} & = 1 + \frac{1}{2} e_{1} + \frac{1}{4} e_{2} + \frac{1}{4} e_{3} \\
+e_{3} & = 1 + \frac{3}{4} e_{2} + \frac{1}{4} e_{3}  
+\end{align*}
+
+Solving gives $ e_{3} = 40/3 $, the expected number of steps to reach $ v $ starting in $ v $.
+
+For the last part: as the chain is irreducible and positive recurrent, the mean number of visits to state $ w $ between two consecutive visits to state $ v $ equals $ \pi_{w} / \pi_{v} = 8/8 = 1$.
+
+
+
 \section{QUESTION 4}
+
+Suppose after one step the particle is in state $ j $, $ a_{j} > 0 $. Now the particle can only travel to state $ j $ or $ j-1 $; once it is in state $ j-1 $, it can only travel to state $ j-1 $ or $ j-2 $, and so on... eventually it returns to state $ 0 $, where it is then sent to some other state $ k $ st. $ a_{k} > 0 $. In other words, we can only travel to a higher state by doing so from the origin. Motivated by this, we define 
+
+\[ J = \sup\{ j \; | \; a_{j} > 0 \}  \]
+
+It is now easy to see that all states $ \geq J $ are transient; after we leave them (which we will do eventually), we can never return there.
+
+Not sure how to find the mean recurrent times. 
+
 \section{QUESTION 5}
+
+Possible transitions of the chain are illustrated below:
+\begin{center}
+	\begin{tikzpicture}
+	\node [mstate] (1) at (0, 0) {$1$};
+	\node [mstate] (5) at (2, 0) {$5$};
+	\node [mstate] (3) at (3, -1.4) {$3$};
+	\node [mstate] (4) at (4, 0) {$4$};
+	\node [mstate] (2) at (6, 0) {$2$};
+	\draw (1) edge [loop below, ->] (1);
+	\draw (2) edge [bend left, ->] (4);
+	\draw (4) edge [bend left, ->] (2);
+	\draw (4) edge [loop above, ->] (4);
+	\draw (5) edge [loop below, ->] (6);
+	\draw (1) edge [bend left, ->] (5);
+	\draw (5) edge [bend left, ->] (1);
+	\draw (4) edge [->] (5);
+	\draw (4) edge [->] (3);
+	\draw (3) edge [loop below, ->] (3);
+	\end{tikzpicture}
+\end{center}
+
+The communicating classes are $ C_{1} = \{ 1,5 \}, C_{2} = \{ 3 \} $ and $ C_{3} = \{ 2,4 \} $. The classes $ C_{1} $ and $ C_{3} $ are not closed, but $ C_{2} $ is closed.
+We know that inside communicating classes, every state is recurrent or every state is transient. It is easy to see from the diagram that
+
+\[ C_{1} \text{ recurrent }, C_{2} \text{ recurrent}, C_{3} \text{ transient} \]
+
+
 \section{QUESTION 6}
+
+
+\begin{itemize}
+	\item There is a non zero probability that a MC beginning in a transient state will never return to that state
+	\item There is a guarantee that a process beginning in a recurrent state will return to that state. 
+\end{itemize}
+
 \section{QUESTION 7}
+
+Collapsing the tree into a random walk on $ \Z^{+} $, where the root of the tree $ R $ is represented by $ 0 $, with two branches extending to $ 1 $, four extending to $ 2 $ etc. 
+
+The walker moves rightwards with probability $ 2/3 $ and leftwards with probability $ 1/3 $, at at $ R $ moves rightwards with probability $ 1 $.
+
+It is now intuitively obvious that this random walk is transient. For a concrete proof, we will argue that the state $ 0 $ is transient, and as the MC is irreducible, all states are transient.
+By the usual arguments, the probability of return in $ 2n $ steps is given by
+
+\[ p_{0}(2n) = \binom{2n}{n} \left( \frac{2}{3} \right)^{n} \left( \frac{1}{3} \right)^{n}     \]
+
+Using Stirling's formula: $ n! \sim (n/e)^{n} \sqrt{2 \pi n} $ as $ n \to \infty $, we have
+
+\begin{align*}
+p_{0}(2n) & = \frac{(2n)!}{(n!)^{2}} \left( \frac{2}{3} \right)^{n} \left( \frac{1}{3} \right)^{n} \\
+& \sim \frac{2^{3n}}{3^{2n} \sqrt{n \pi} } \\
+& = \left( \frac{8}{9} \right)^{n}  \frac{1}{\sqrt{n \pi}}
+\end{align*}
+
+We can conclude $ \sum_{n=0}^{\infty} p_{0}(2n) < \infty $ as this series can be shown to converge using the ratio test. 
+
+
+
+ 
 \section{QUESTION 8}
+
+The walk is at the origin $ \mathbf{0} = (0,0,0,0) $ at time $ 2n $ if and only if it has taken equal number of steps negative and positive in each dimension (ie. in 1D, equal number right and left). Therefore,
+
+\begin{align*}
+p_{\mathbf{0},\mathbf{0}}(2n) & = \left(  \frac{1}{8} \right)^{2n} \sum_{i_{1},\cdots,i_{4}} \frac{(2n)!}{(i_{1}!i_{2}!i_{3}!i_{4}!)^{2}}   \\
+\end{align*}
+
+where $ i_{1} + i_{2} + i_{3} + i_{4} = n $
+
+Thus
+
+\begin{align*}
+p_{\mathbf{0},\mathbf{0}}(2n)& = \left( \frac{1}{2} \right)^{2n} \binom{2n}{n} \sum_{i_{1},\cdots,i_{4}} \left( \frac{n!}{4^{n}i_{1}!i_{2}!i_{3}!i_{4}!}   \right)^{2}   \\
+& \leq \left( \frac{1}{2} \right)^{2n} \binom{2n}{n} M \sum_{i_{1},\cdots,i_{4}} \frac{n!}{4^{n}i_{1}!i_{2}!i_{3}!i_{4}!}  \qquad (*) \\
+\end{align*}
+
+where
+
+\[ M = \max \left\{  \frac{n!}{4^{n}i_{1}!i_{2}!i_{3}!i_{4}!} \; : \; i_{1}\cdots,i_{4}  \geq 0, \sum_{r=1}^{4} i_{r} = n   \right\}  \]
+
+It is not difficult to see that the maximum is attained when $ i,j $ and $ k $ are all closest to $ \frac{1}{3}n $, so that
+
+\[ M \leq \frac{n!}{4^{n}( \lfloor \frac{1}{4} n \rfloor ! )^{4}   } \]
+
+Furthermore, the final summation in (*) equals 1, since the summand is the probability that, in allocating $ n $ balls randomly to four urns, the urns contain $ i_{1},\cdots,i_{4} $ balls respectively. It follows that
+
+\[ p_{\mathbf{0},\mathbf{0}}(2n) \leq \frac{(2n)!}{16^{n}n! ( \lfloor \frac{1}{4}n \rfloor ! )^{4}   } \]
+
+which, by Stirling's formula, is strictly no bigger than $ C n^{-2} $, for some constant $ C $. Therefore:
+
+\[ \sum_{n=0}^{\infty} p_{\mathbf{0},\mathbf{0}}(2n) < \infty  \]
+
+implying that the origin $ \mathbf{0} $ is transient.
+
+Shorter way: project onto $ \Z^{3} $ by discarding all coordinates except the first 3. Now we have a new possibility of the random walk $ X_{n}^{\text{proj}} $ staying where it is with probability $ \frac{4-3}{4} = \frac{1}{4} $ (when the original walk jumps in one of the discarded directions), and when it jumps,
+
+\[ \P(X_{n}^{\text{proj}} = \mathbf{i} + \mathbf{e}_{\alpha}  \; | \; X_{n}^{\text{proj}} = \mathbf{i} ) = \frac{1 / 8}{1 - 1/4} = \frac{1}{6} \quad \alpha =1,2,3  \]
+
+where $ \mathbf{e}_{1} = (1,0,0) $, $ \mathbf{e}_{2} = (0,1,0) $, $ \mathbf{e}_{3} = (0,0,1) $.  
+
+Clearly, if the original walk is recurrent then the projected walk is too. But we see when the chain jumps, it behaves like the simple symmetric random walk on $ \Z^{3} $, which we know is transient. Hence the projected walk is transient, and so must the original chain be.
+
+
+
+
 \section{QUESTION 9}
+
+Setting $ \pi = \pi P $ reveals
+
+\begin{align*}
+\frac{1}{2} \pi_{1} + \frac{1}{2} \pi_{5} & = \pi_{1} \\
+\frac{1}{2} \pi_{2} + \frac{1}{4} \pi_{4}  & = \pi_{2} \\
+\pi_{3} + \frac{1}{4} \pi_{4} & = \pi_{3} \\
+\frac{1}{2} \pi_{2} + \frac{1}{4} \pi_{4} & =  \pi_{4} \\
+\frac{1}{2} \pi_{1} + \frac{1}{4} \pi_{4} + \frac{1}{2} \pi_{5} & = \pi_{5} 
+\end{align*}
+
+which gives immediately $ \pi_{4} = 0 = \pi_{2} $, $ \pi_{1} = \pi_{5} $. Thus any vector of the form $ \pi = (\pi_{1},0,\pi_{3},0,\pi_{1}) $ st. $ 2 \pi_{1} + \pi_{3} = 1 $ is an invariant distribution 
+
 \section{QUESTION 10}
+
+
+Let $ X_{n} $ be the number of molecules in $ A $ after $ n $ epoch of time. $ X = \{  X_{n} \; | \; n \geq 0 \}  $ as a Markov chain, owing to the independence of the choice for the passing molecule from previous events. We have $ p_{i,i+1} = (N - i)/N $, $ p_{i,i-1} = i/N $. 
+
+The detailed balance equations
+
+\[ \pi_{i}p_{i,i+1} = \pi_{i+1}p_{i+1,i} \]
+
+are solved by $ \pi_{i+1} = \pi_{i} (N - i)/(i+1) $, thus
+
+\[ \pi_{N} = \frac{1 \times 2 \times \cdots \times (N-1) \times N}{N \times (N-1) \times \cdots \times 2 \times 1} \pi_{0} = \frac{N!}{N!} \pi_{0} = \pi_{0} \]
+
+So for some $ 0 < M < N $,
+
+\begin{align*}
+\pi_{M} = \frac{N - (M - 1)}{M} \pi_{M-1} & = \frac{(N-(M-1)) \times (N - (M - 2)) \times \cdots \times  N  }{M \times (M-1) \times \cdots \times 1} \pi_{0} \\
+& = \frac{N!}{(N-M)!M!} \pi_{0} = \binom{N}{M} \pi_{0}
+\end{align*}
+
+As $ \pi_{i} $ is a distribution, must have $ \sum_{i} \pi_{i} = 1 $, ie.
+
+\[ \pi_{0} \sum_{i=0}^{N} \binom{N}{i} = 1   \]
+
+Thus $ \pi_{0} = 2^{-N} $, and 
+
+\[ \pi_{i} = 2^{-N} \binom{N}{i}, \qquad i = 0,1,\cdots,N \]
+
+ie $ \pi_{i} \sim \text{Bin }(N, 1/2) $
+
+
+
 \section{QUESTION 11}
 \section{QUESTION 12}
+
+Equations yield
+
+\begin{align*}
+\pi_{1} & = p \pi_{3} \\
+\pi_{2} & = \pi_{1} + \frac{2}{3} \pi_{2} + (1-p) \pi_{3} \\
+\pi_{3} & = \frac{1}{3} \pi_{2} \\ 
+\end{align*}
+
+Hence the invariant distribution is of the form $ C(p/3,1,1/3) $ for different normalisation constants $ C $ depending on the value of $ p $. For $ p = 1/16 $, we obtain
+
+\[ \pi = \left( \frac{1}{65}, \frac{48}{65}, \frac{16}{65} \right) \]
+
+For $ p = 1/6 $,
+
+\[ \pi = \left( \frac{1}{25}, \frac{18}{25}, \frac{6}{25} \right) \]
+
+and for $ p = 1/12 $,
+
+\[ \pi = \left( \frac{1}{49}, \frac{36}{49}, \frac{12}{49} \right) \]
+
+We can see that the first entry of the invariant distribution in each case is exactly what we would obtain letting $ n \to \infty $ in the calculation of of $ p_{1,1}(n) $ in the previous example sheet.
+
+
+
+
+
+
+\section{QUESTION 13}
+\section{QUESTION 14}
+
+\begin{enumerate}[label = (\alph*)]
+	\item Detailed balance equations are
+	
+	\begin{align*}
+	\pi_{1}(1-p)  & = \pi_{2} q \\
+	\end{align*}
+	
+	Hence reversible.
+	
+
+	
+	\item Detailed balance equations are
+	
+	\begin{align*}
+	\pi_{1} p & = \pi_{2}(1-p)  \\
+	\pi_{2} p & = \pi_{3}(1-p) \\
+	\pi_{3} p & = \pi_{1}(1-p) 
+	\end{align*}
+	
+	Hence reversible, except when $ p = \frac{1}{2} $
+	
+	\item Have
+	
+	\[ \pi_{i} = \pi_{i+1}(1-p) \Rightarrow \pi_{i} = \frac{p^{i+1}}{(1-p)^{i}}\pi_{0} \]
+	
+	Hence reversible.
+	
+	\item Detailed balance equations give $ \pi_{i} = \frac{1}{n} $ for each $ i $. Thus reversible. 
+	
+	
+	
+	
+\end{enumerate}
+
+
+\section{QUESTION 15}
+
+	Detailed balance equations give
+	
+	\[ \pi_{i}\lambda_{i} = \pi_{i+1}\mu_{i+1} \Rightarrow \pi_{i} = \frac{\lambda_{i-1}\cdots\lambda_{0}}{\mu_{i}\cdots\mu_{1}} \pi_{0} \]
+	
+	Hence reversible.
+
 
 \end{document}
 
