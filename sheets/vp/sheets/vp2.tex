@@ -166,28 +166,51 @@ Note: We're minimising the energy of a harmonic oscillator. What does $ \lambda 
 
 \section{QUESTION 4}
                                                  
-Using Lagrange multiplier $ \lambda $ with constraint $ | \mathbf{x} | = 1 $ wish to minimize
+Using Lagrange multiplier $ \lambda $ with constraint $ | \mathbf{x} | = 1 $. We will instead use the equivalent constraint $ | \mathbf{x} |^{2} = 1 $, so we wish to minimize the functional 
                                                  
 \begin{align*}
-\Phi_{\lambda}[\mathbf{x}] & = I[\mathbf{x}] - \lambda(  | \mathbf{x} | - 1 ) \\
-& = \int_{t_{1}}^{t_{2}} \underbrace{| \dot{\mathbf{x}} |^{2} - \lambda | \mathbf{x} |}_{f_{\lambda}(\mathbf{x},\dot{\mathbf{x}} ; t )  } \; \d t + \lambda
+\Phi_{\lambda}[\mathbf{x}] & = I[\mathbf{x}] - \lambda(t) (  | \mathbf{x} |^{2} - 1 ) \\
+& = \int_{t_{1}}^{t_{2}} \underbrace{| \dot{\mathbf{x}} |^{2} - \lambda(t) | \mathbf{x} |^{2}}_{f_{\lambda}(\mathbf{x},\dot{\mathbf{x}} ; t )  } \; \d t + \lambda
 \end{align*}   
 
-The E-L equation for $ x_{i} $ component is $ \frac{\partial f }{\partial x_{i}} - \frac{\d }{\d t} \left(  \frac{\partial f}{\partial \dot{x}_{i}} \right) = 0   $, giving
+The E-L equation for $ x_{i} $ component is $ \frac{\partial f }{\partial x_{i}} - \frac{\d }{\d t} \left(  \frac{\partial f}{\partial \dot{x}_{i}} \right) = 0   $. Have
 
-\[ - \frac{\lambda x_{i}}{| \mathbf{x} |}  - \frac{\d }{\d t} (  2 \dot{x}_{i} ) = 0 \]     
 
-\[ 2 \ddot{x_{i}} + \lambda x_{i} = 0  \qquad \text{as } | \mathbf{x} | = 1 \]        
+\begin{align*}
+\frac{\partial f }{\partial x_{i}} & = - \lambda(t) \frac{\partial }{\partial x_{i}} (x_{j}x_{j})  \\
+& = - 2 \lambda(t) x_{j} \underbrace{\frac{\partial x_{j}}{\partial x_{i}}}_{\delta_{ij}} \\
+& = - 2 \lambda(t) x_{i} \\
+\frac{\d }{\d t} \left(  \frac{\partial f}{\partial \dot{x}_{i}} \right) & = \frac{\d }{\d t} \left( 2 \dot{x}_{i}  \right) \\
+& = 2 \ddot{x}_{i}  
+\end{align*}
 
-\[ \Rightarrow \ddot{\mathbf{x}}  + \frac{\lambda}{2} \mathbf{x} = 0 \]    
+So E-L gives
 
-Also, there is no $ t $ dependence in $ f_{\lambda} $, so E-L equations imply that
+\begin{align*}
+\ddot{x_{i}} + \lambda(t) x_{i} & = 0 \\
+\Rightarrow  \ddot{\mathbf{x}} + \lambda(t) \mathbf{x} & = \mathbf{0}  \qquad (*)
+\end{align*}    
 
-\[ f - \dot{x}_{i} \frac{\partial f }{\partial \dot{x}_{i}} = \text{ constant} \]    
+Take the constraint $ | \mathbf{x} |^{2} = 1 $ and differentiate to get
 
-\[ f - 2  \dot{x}_{i}^{2} = \text{ constant} \]
+\[ 2 \dot{\mathbf{x}} \cdot \mathbf{x} = \mathbf{0} \]
 
-Not too sure what to do with these.                         
+Cancelling the two and differentiating again gives
+
+\[ \ddot{\mathbf{x}}  \cdot \mathbf{x} + | \mathbf{\dot{x}} |^{2} = \mathbf{0} \]
+
+Dotting (*) with $ \mathbf{x} $ gives
+
+\[  \ddot{\mathbf{x}}  \cdot \mathbf{x} + \lambda(t) \underbrace{ | \mathbf{x} |^{2}}_{=1} = \mathbf{0} \]
+
+Hence comparing gives $ \lambda(t) =  | \mathbf{\dot{x}} |^{2} $ and thus the desired equation
+
+\[ \ddot{\mathbf{x}} +  | \mathbf{\dot{x}} |^{2} \mathbf{x}  = \mathbf{0}\]
+   
+
+ 
+ 
+                
 
 
 

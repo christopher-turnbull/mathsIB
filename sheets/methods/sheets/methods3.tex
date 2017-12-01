@@ -4,7 +4,7 @@
 \def\nterm {Michaelmas}
 \def\nyear {2017}
 \def\nlecturer {Dr. Saxton}
-\def\ncourse {Methods Example Sheet 1}
+\def\ncourse {Methods Example Sheet 3}
 
 \input{header}
 \newtheorem*{soln}{Solution}
@@ -25,26 +25,347 @@
 
 \section{QUESTION 1}
 
-We are given
-
-\[ \underbrace{\ddot{\theta} + 2p \dot{\theta} + (p^{2} + q^{2})}_{\mathcal{L}}\theta = f(t) \]
-
-with $ \theta(0) = \dot{\theta}(0) = 0 $, and $ p > 0, q \neq 0 $.
-
-Want to find $ G $ such that $ \mathcal{L} G = \delta(t - \tau) $, so that for each value of $ \tau $, the Green's function will solve the homogeneous equation $ LG = 0 $ whenever $ t \neq \tau $.
-
- 
+\begin{itemize}
+	\item We are given
+	
+	\[ \underbrace{\ddot{\theta} + 2p \dot{\theta} + (p^{2} + q^{2})}_{\mathcal{L}}\theta = f(t) \]
+	
+	with $ \theta(0) = \dot{\theta}(0) = 0 $, and $ p > 0, q \neq 0 $.
+	
+	Want to find $ G $ such that $ \mathcal{L} G = \delta(t - \tau) $, so that for each value of $ \tau $, the Green's function will solve the homogeneous equation $ LG = 0 $ whenever $ t \neq \tau $.
+	
+	We construct $ G $ for $ 0 \leq t < \tau $ as a general solution of the homogeneous equation, so that $ G = Ay_{1}(t) + B y_{2}(t) $. 
+	Have
+	
+	\[ G(t,\tau) = \Theta(t - \tau) e^{-p(t-\tau)}[ C(\tau)\cos(q(t-\tau)) + D(\tau) \sin(q(t-\tau))   ] \]
+	
+	where $ \Theta $ is the Heaviside step function. Continuity demands $ G(\tau,\tau) = 0 $ so $ C(\tau) = 0 $. The jump condition (with $ \alpha(\tau) = 1 $) enforces $ D(\tau) = \frac{1}{q} $. Therefore the Green's function is
+	
+	\[ G(t,\tau) = \Theta(t - \tau) \frac{1}{q} e^{-p(t - \tau)}\sin(q(t - \tau)) \]
+	
+	and the general solution to $ \mathcal{L}\theta = f(t) $ obeying $ \theta(0) = \dot{\theta}(0) = 0 $ is 
+	
+	\[ \theta(t) = \frac{1}{q} \int_{0}^{t} e^{-p(t - \tau)}\sin(q(t - \tau)) f(\tau) \; \d \tau  \]
+	
+	\item Next we use Fourier Transforms. Taking the Fourier transform of the differential equation gives 
+	
+	\[ (i \omega)^{2} \tilde{\theta} + 2 i p \omega \tilde{\theta} + (p^{2} + q^{2}) \tilde{\theta} = \tilde{f} \]
+	
+	and so
+	
+	\[ \tilde{\theta} = \frac{\tilde{f}}{-\omega^{2} + 2 i p \omega + (p^{2} + q^{2}) } = : \tilde{R}(\omega) \tilde{f}(\omega) \]
+	
+	which solves the equation algebraically in Fourier space. Note that
+	
+	\begin{align*}
+	\tilde{R}(\omega) & = \frac{1}{-\omega^{2} + 2 i p \omega + (p^{2} + q^{2}) } \\
+	& = \frac{1}{(i \omega  + p)^{2} - (q i)^{2}  } \\
+	& = \frac{1}{2qi} \left[  \frac{1}{ i \omega + p - qi } - \frac{1}{ i \omega  + p + qi }    \right] 
+	\end{align*}
+	
+	To solve for $ \theta $ in real space we take the inverse Fourier transform to find 
+	
+	\begin{align*}
+	\theta(t) & = \int_{0}^{t} R(t - u)f(u) \; \d u \\
+	& = \int_{0}^{t} \left[  \frac{1}{2 \pi} \int_{- \infty}^{\infty} \tilde{R}(\omega) e^{i\omega(t-u)} \; \d \omega   \right] f(u) \; \d u \\
+	& = \frac{1}{q} \int_{0}^{t} \underbrace{\left[  \frac{1}{4 i \pi}  \int_{- \infty}^{\infty}   e^{i\omega(t-u)}  \left[  \frac{1}{ i \omega + p - qi } - \frac{1}{ i \omega  + p + qi }    \right]  \; \d \omega   \right]}_{(*)} f(u) \; \d u 
+	\end{align*}
+	
+	which agrees with the first result, if we can show that 
+	
+	\[ (*) = e^{-p(t-u)} \sin[ q(t - u) ] \]
+	
+	but not sure how to evaluate the integral.
+	
+	
+\end{itemize}
 
 \section{QUESTION 2}
+
+The general homogeneous solution is $ c_{1} \sinh \lambda x + c_{2} \cosh \lambda x $ so we can take $ y_{1}(x) = \sinh \lambda x $ and $ y_{2}(x) = \sinh[\lambda(1-x)] $ as our homogeneous solutions satisfying the boundary conditions at $ x = 0 $ and $ x = 1 $ respectively. Then 
+
+\[ G(x; \varepsilon) = \begin{cases} A(\varepsilon) \sinh( \lambda x)  & \text{ when } 0 \leq x  < \varepsilon \\  B(\varepsilon) \sinh[\lambda(1-x)]  & \text{ when } \varepsilon < x \leq 1 \end{cases} \]
+
+Applying the continuity condition we get
+
+\[ A \sinh \lambda \varepsilon = B \sinh[\lambda(1-\varepsilon)] \]
+ 
+while the jump condition gives 
+
+\[ B(- \lambda \cosh[\lambda(1-\varepsilon)] ) - A \lambda \cosh( \lambda \varepsilon) = -1 \]
+
+Solving the for $ A $ and $ B $ gives us the Green's function
+
+\[ G(x;\varepsilon) = - \frac{1}{ \lambda \sinh \lambda} \left[  \Theta( \varepsilon - x) \sinh[  \lambda(1 - \varepsilon) ] \sinh \lambda x  + \Theta(x - \varepsilon) \sinh(\varepsilon \lambda) \sinh[\lambda(1-x)]  \right]   \]
+
+Using this Green's function we are immediately able to write down the complete solution as
+
+\[ y = - \frac{1}{\lambda \sinh \lambda} \left\{  \sinh \lambda x \int_{x}^{1}f(\varepsilon) \sinh \lambda(1-\varepsilon) \; \d \varepsilon + \sinh \lambda(1-x)\int_{0}^{x} f(\varepsilon) \sinh \lambda \varepsilon \; \d \varepsilon \right\}  \]
+
+
 \section{QUESTION 3}
+
+Under the substitution $ y = \frac{z}{x} \Rightarrow \frac{\d y}{\d x} =  \frac{1}{x} \frac{\d z}{\d x} - \frac{z}{x^{2}} $, the equation $ L_{x}y = 0 $ becomes
+
+\begin{align*}
+- \frac{1}{x^{2}} \frac{\d }{\d x} \left(  x^{2} \left(  \frac{1}{x} \frac{\d z}{\d x} - \frac{z}{x^{2}}  \right)   \right) +  \frac{z}{x}    & =  0 \\
+\Rightarrow - \frac{1}{x^{2}} \frac{\d }{\d x} \left( x \frac{\d z}{\d x} - z  \right)  +  \frac{z}{x}    & =  0 \\
+\Rightarrow - \frac{1}{x^{2}} \left( \frac{\d z}{\d x} + x \frac{\d^{2} z}{\d x^{2}} - \frac{\d z}{\d x}  \right)  +  \frac{z}{x}    & =  0 \\
+\Rightarrow \frac{\d^{2} z}{\d x^{2}} + z & = 0
+\end{align*}
+
+which has solutions $ z = c_{1} \cosh x + c_{2} \sinh x $, or $ c_{1}'e^{x} + c_{2}'e^{-x} $, and $ y = \frac{1}{x} \left(  c_{1} \cosh x + c_{2} \sinh x \right)  $ or $ \frac{1}{x} \left( c_{1}'e^{x} + c_{2}'e^{-x} \right)  $.
+
+For solutions that are (a) bounded as $ x \to 0 $, we have $ y = A \frac{1}{x} \sinh x $. For solutions that are (b) bounded as $ x \to \infty $, have $ y = B \frac{1}{x} e^{-x} $. 
+
+Now, Green's function satisfying $ L_{x} G = \delta(x - a) $ and both conditions is given by 
+
+\[ G(x,a) =  \frac{1}{x} \left[ \Theta(a-x) A \sinh x  +  \Theta(x - a) B e^{-x} \right]  \]
+
+Applying the continuity condition we get
+
+\[ \frac{1}{a} A \sinh a = \frac{1}{a} Be^{-a}   \]
+
+while the jump condition gives 
+
+\[ B \left(  - \frac{1}{a} e^{-a} - \frac{1}{a^{2}} e^{-a}   \right) - A \left( \frac{1}{a} \cosh a -  \frac{1}{a^{2}} \sinh a \right) = -1   \]
+
+where we note that $ \alpha = -1 $. Solving for $ A $ and $ B $ gives us the Green's function
+
+\[ G(x ; a) = \frac{a}{x} \left[ \Theta(a-x) e^{-a} \sinh x  +  \Theta(x - a) e^{-x}  \sinh a  \right]  \]
+
+Next, to solve 
+
+\[ L_{x}y(x) = \begin{cases} 1  & \text{ if } 0 \leq x \leq R \\ 0 & \text{ if } x > R  \end{cases} \]
+
+Note that the solution for $ x > R $ is simply the solution of the homogeneous equation that is bounded when $ x \to \infty $, that is, $ y = B \frac{1}{x} e^{-x} $
+
+We can immediately write down the solution for $ 0 \leq x < R $ using Green's function as 
+
+
+\[ y(x) = \frac{1}{x} \left[ \sinh x  \int_{0}^{a} a e^{-a} \; \d a  + e^{-x} \int_{a}^{R}  a \sinh a \; \d a   \right]    \]
+
+
+
+Note sure about this last part; can't see where the 1 would appear from?
+
+
+
 \section{QUESTION 4}
 \section{QUESTION 5}
+
+Under the substitution $ y = \phi[x] $, hence $ \frac{\d x}{\d y} =  \frac{1}{| \phi'(x) |} $ (monotone increasing) the result becomes easy to show
+
+\begin{align*}
+\int_{a}^{b} f(x) \delta[\phi(x)]  \; \d x & = \int_{\phi(a)}^{\phi(b)} f(\phi^{-1}(y)) \frac{1}{| \phi'(\phi^{-1}(y)) |} \delta(y) \d y \\
+& = f(\phi^{-1}(0)) \frac{1}{| \phi'(\phi^{-1}(0)) |} \\
+& = \frac{f(c)}{| \phi'(c) |} \qquad \text{ as } \phi^{-1}(0) = c
+\end{align*}
+
+If monotone decreasing, $ \frac{\d x}{\d y} =  - \frac{1}{| \phi'(x) |} $, but $ \phi(b) < \phi(a) $, so $ \int_{\phi(a)}^{\phi(b)} = - \int_{\phi(b)}^{\phi(a)} $ and the result holds.
+
+Hence for a general $ \phi(x) $ with simple zeros at $ c_{1},c_{2},c_{3}\cdots,c_{N} $ we have
+
+\[ \int_{a}^{b} f(x) \delta[\phi(x)]  \; \d x = \sum_{i=1}^{N}  \frac{f(c_{i})}{| \phi'(c_{i}) |} \qquad (*) \]
+
+Next for any $ a \in \R \setminus \{0 \} $
+
+\[ \int_{\R} \delta(at) \phi(t) \; \d t = \frac{1}{| a |} \int_{\R}  \delta(y) \phi (y \ a) \; \d y = \frac{1}{| a |} \phi(0) \]
+
+so we may write $ \delta(at) = \delta(t) / | a | $.
+
+Lastly, we apply $ (*) $ for $ f(x) = | x | $ and $ \phi(x) = x^{2} - a^{2} $, which has simple zeros at $ x = a $ and $ x = -a $. Get
+
+
+\begin{align*}
+\int_{-\infty}^{\infty} | x | \delta( x^{2} - a^{2} ) \; \d x & = \frac{f(a)}{| \phi'(a) |} + \frac{f(-a)}{| \phi'(-a) |} \\
+& = \frac{| a |}{2|  a |} + \frac{| a |}{2| a |} \\
+& = 1
+\end{align*}
+
+as required
+
+
+
+
+
 \section{QUESTION 6}
 \section{QUESTION 7}
+
+\begin{enumerate}
+	\item $ f(x) = 1 $, $ | x | < c $.
+	
+	\begin{align*}
+	\tilde{f}(k)  & = \int_{-c}^{c} e^{-ikx} \; \d x   \\
+	& = \frac{i}{k} \left[    e^{-ikx}  \right]_{-c}^{c} \\
+	& =  \frac{i}{k}(- 2 i \sin k c) \\
+	& = \frac{2 \sin kc}{k}
+	\end{align*}
+	
+	\item
+	
+	Notation: $ \tilde{f} = \mathcal{F}[f] $ ``Taking the Fourier transform of $ f $. By the re-phasing property
+	
+	\[ \mathcal{F}[ e^{iax}f(x) ] = \tilde{f}(k-a) \]
+	
+	we have for $ f(x) = e^{iax} $ and using our previous answer,
+	
+	\[ \tilde{f}(k) = \frac{2\sin[(k-a)c]}{k-a} \]
+	
+	\item $ f(x) = \sin (ax) $
+	
+	Noting that this is the imaginary part of what we've just done (but not seeing how to make use of that... so stuck with calculating ) :
+	
+	\begin{align*}
+	\tilde{f}(k)  & = \int_{-c}^{c} \sin(ax) e^{-ikx} \; \d x   \\
+	& = \frac{i}{k} \left[ \sin(ax)e^{-ikx}  \right]_{-c}^{c} - \frac{ia}{k} \int_{-c}^{c} \cos(ax)e^{-ikx} \; \d x  \\
+	& = \frac{i}{k} 2\sin(ax)\cos(kc) - \frac{ia}{k} \left(   \frac{i}{k} \left[ \cos(ax)e^{-ikx}  \right]_{-c}^{c} + \frac{ia}{k} \int_{-c}^{c} \sin(ax)e^{-ikx} \; \d x \right) \\
+	& = \frac{i}{k} 2\sin(ax)\cos(kc) + \frac{a}{k^{2}} \left(  -2\cos(ax)\sin(kc) + a \tilde{f}(k) \right) 
+	\end{align*}
+	
+	Thus multiplying upon rearranging, we get
+	
+	\begin{align*}
+	\tilde{f}(k) & = \frac{2i \left(  - k \cos[kc]\sin[ac] + a \cos[ac]\sin[kc]   \right)}{a^{2} - k^{2}} \\
+	\end{align*}
+	
+	\item Next, by the differentiating property of Fourier Transforms, know that
+	
+	\[ \mathcal{F}[a\cos(ax)] = ik\tilde{f}(k) \]
+	
+	where $ \tilde{f}(k) $ is the FT of $ f(x) = \sin(ax) $. Then, by scaling,
+	
+	\[ \mathcal{F}[\cos(ax)] = | a | ik\tilde{f}(k) \]
+	
+	Thus the Fourier transform of $ \cos(ax) $ is given by
+	
+	\[ \tilde{f}(k) = \frac{-2ka \left(  - k \cos[kc]\sin[ac] + a \cos[ac]\sin[kc]   \right)}{a^{2} - k^{2}}  \]
+	
+	
+	
+\end{enumerate}
+
 \section{QUESTION 8}
+
+Have that
+
+\[ f(x) = \begin{cases} 0  & \text{ if } x < 0 \\ e^{-x} & \text{ if } x > 0 \end{cases} \]
+
+The Fourier transform is given by 
+
+\begin{align*}
+\tilde{f}(k) & = \int_{0}^{\infty} e^{-(ik + 1)x} \; \d x   \\
+& = \frac{1}{-ik - 1}\left[  e^{-(ik + 1)x} \right]_{0}^{\infty} \\
+& = \frac{1}{1 + ik } \\
+& = \frac{1 - ik}{1 + k^{2}}
+ \end{align*}
+ 
+The inverse Fourier transform is given by
+
+\[ f(x) = \frac{1}{2\pi} \int_{-\infty}^{\infty} e^{ikx} \tilde{f}(k) \; \d k  \]
+
+Thus
+
+\begin{align*}
+f(0) & = \frac{1}{2\pi} \int_{-\infty}^{\infty}\frac{1 - ik}{1 + k^{2}} \; \d k   \\
+& = \frac{1}{2\pi} \int_{-\infty}^{\infty} \frac{1}{1 + k^{2}} \; \d k  -  \frac{i}{2\pi} \int_{-\infty}^{\infty}  \frac{k}{1 + k^{2}} \; \d k   \\
+& = \frac{1}{2\pi} \left[  \arctan k \right]_{-\infty}^{\infty} - \frac{i}{4\pi} \underbrace{\left[  \log (1 + k^{2}) \right]_{-\infty}^{\infty}}_{=0}  \\
+& = \frac{1}{2\pi} \left(  \frac{\pi}{2} + \frac{\pi}{2} \right) \\
+& = \frac{1}{2}
+\end{align*}
+
 \section{QUESTION 9}
+
+We have
+
+\begin{align*}
+f(x) & = e^{-n^{2}(x - \mu)^{2}} \\
+f(x + \mu) & = e^{-n^{2}x^{2}} \\
+f'(x +  \mu) & = -2n^{2} xe^{-n^{2}x^{2}}  
+\end{align*}
+
+Calculating the Fourier Transform of the last function gives
+
+\begin{align*}
+\tilde{f}(k) & = -2n^{2} \int_{-\infty}^{\infty}  xe^{-n^{2}x^{2}}   e^{-ikx} \; \d x  \\
+& = 
+\end{align*}
+
 \section{QUESTION 10}
+
+
+Let us suppose we have $ N $ measurements of a function $ h(t) $, where $ N $ is even, with constant sampling interval $ \Delta $, ie. we have the set of measurements
+
+\[ h_{m} = h(t_{m}), \quad t_{m} = m \Delta, \; m = 0,1,\cdots,N-1 \]
+
+Parseval's theorem for DFT is
+
+\[ \sum_{m=0}^{N-1} | h(t_{m}) |^{2} = \frac{1}{N} \sum_{n=0}^{N-1} | \tilde{h}_{d}(f_{n}) |^{2} \qquad (*) \]
+
+where $ h_{d} $ is the \emph{Discrete Fourier transform} 
+
+\[ \tilde{h}_{d}(f_{n}) = \sum_{n=0}^{N-1} h_{m} \exp\left[ \frac{-2\pi i}{N} mn \right]   \]
+
+and 
+
+\[ f_{n} = \frac{n}{N \Delta}, n = -N / 2,\cdots,N/2,  \]
+
+To prove (*), consider a fixed $ h(t_{m}) $ on the LSH. Appyling the inversion formula, and making a Riemann approximation to the integral, we obtain
+
+\begin{align*}
+h(t_{m}) & = \frac{1}{2\pi} \int_{-\infty}^{\infty} e^{i \omega t_{m}} \tilde{h}(\omega) \; \d \omega  \\
+& = \int_{-\infty}^{\infty} e^{2 \pi i f t_{m}} \hbar(f) \; \d f  \qquad  ( 2\pi f = \omega)\\
+& \approx \frac{\Delta}{\Delta N} \sum_{n=0}^{N-1} \tilde{h}_{d} (f_{n}) e^{2 \pi i f_{n} t_{m}} \\
+& = \frac{1}{N} \sum_{n=0}^{N-1} \tilde{h}_{d}(f_{n}) \exp \left[  \frac{2 \pi i}{N} mn \right] \\
+& = \frac{1}{N} \sum_{n=0}^{N-1} \tilde{h}_{d}(f_{n}) \kappa^{mn}
+\end{align*}
+
+where $ \kappa = e^{2\pi i / N} $ is an $ N $th root of unity.
+
+Now
+
+\begin{align*}
+| h(t_{m}) |^{2} = (h(t_{m}))^{*} h(t_{m}) & = \frac{1}{N^{2}} \sum_{p,q = 0}^{N - 1}  \tilde{h}_{d}^{*}(f_{p}) \kappa^{-mp}  \tilde{h}_{d}(f_{q}) \kappa^{mq}   \\
+& = \frac{1}{N^{2}} \sum_{p,q = 0}^{N - 1}  \tilde{h}_{d}^{*}(f_{p})	 \tilde{h}_{d}(f_{q})  \delta_{pq} \\
+& = \frac{1}{N^{2}} \sum_{p = 0}^{N - 1}  \tilde{h}_{d}^{*}(f_{p})	 \tilde{h}_{d}(f_{p}) \\
+& = \frac{1}{N} \sum_{p=0}^{N-1} | h_{d}(f_{p}) |^{2} 
+\end{align*}
+
+noting the independence from $ m $. Hence, summing over $ N $ on both sides gives $ (*) $ as required, as the right hand side just gains a factor of $ N $.
+
 \section{QUESTION 11}
+
+
+	Thus the Fourier transform of $ \cos(x) $ (Q7 (iv)) is given by
+
+\begin{align*}
+\tilde{f}(k) & = \frac{-2k \left(  - k \cos[k \frac{\pi}{2}]\sin[ \frac{\pi}{2} ] + \cos[ \frac{\pi}{2}]\sin[k \frac{\pi}{2}]   \right)}{1 - k^{2}}  \\
+& =  \frac{2}{1-k^{2}} \cos \left(    \frac{k \pi}{2} \right) 
+\end{align*}
+
+And the Fourier transform of the derivative $ -\sin(x) $ is given by
+
+\[ \tilde{f}(k) = - i \frac{2k}{1-k^{2}} \cos \left(   \frac{k \pi}{2} \right) \]
+
+
+
+
+
 \section{QUESTION 12}
+
+Inverse Fourier transform of $ \tilde{f}(k) $ is
+
+\begin{align*}
+f(x) & =  \frac{1}{2\pi} \int_{-1}^{1} e^{ikx} e^{k} - e^{-k} \; \d k \\
+& = \frac{1}{\pi} \int_{-1}^{1} e^{ikx} \sinh k \; \d k \\
+& = \frac{1}{\pi} \left[ - \frac{i}{x} e^{ikx} \sinh k   \right]_{-1}^{1} + \frac{i}{x\pi} \int_{-1}^{1} e^{ikx} \cosh k \; \d k  \\
+& = \frac{-i}{\pi x} \left(  e^{ix}\sinh 1 + e^{-ix}\sinh 1   \right) + \frac{i}{x \pi} \left( \left[ - \frac{i}{x} e^{ikx} \cosh k   \right]_{-1}^{1} + \frac{i}{x} \int_{-1}^{1} e^{ikx} \sinh k \; \d k \right)  \\
+& =  \frac{-2i}{\pi x} \left( \cos x \sinh 1   \right) + \frac{i}{x \pi} \left( - \frac{2i}{x} i \sin x \cosh 1 + \frac{i}{x} f(x) \right)  \\
+\Rightarrow \pi x^{2} f(x) & = -2i x \cos x \sinh 1 + 2 i \sin x \cosh 1 - f(x)
+\end{align*}
+
+Hence rearranging gives
+
+\[ f(x) = \frac{2i}{\pi(1+x^{2})} (  \cosh 1 \sin x - x \cos x \sinh 1 ) \]
 
 \end{document}
