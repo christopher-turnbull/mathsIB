@@ -1,0 +1,245 @@
+\documentclass[a4paper]{article}
+\usepackage{amsmath}
+\def\npart {IB}
+\def\nterm {Michaelmas}
+\def\nyear {2017}
+\def\nlecturer {Dr. Saxton}
+\def\ncourse {Methods Example Sheet 4}
+
+\input{header}
+\newtheorem*{soln}{Solution}
+
+\renewcommand{\thesection}{}
+\renewcommand{\thesubsection}{\arabic{section}.\arabic{subsection}}
+\makeatletter
+\def\@seccntformat#1{\csname #1ignore\expandafter\endcsname\csname the#1\endcsname\quad}
+\let\sectionignore\@gobbletwo
+\let\latex@numberline\numberline
+\def\numberline#1{\if\relax#1\relax\else\latex@numberline{#1}\fi}
+\makeatother
+
+
+\begin{document}
+	
+\maketitle
+
+\section{QUESTION 1}
+\begin{enumerate}
+	\item Along characteristic curves,
+	
+	\[ \frac{\d x}{\d s} = 1 \quad \frac{\d y}{\d s} = y  \]
+	
+	which has general solution $ x = s + c $ and $ y = Ae^{s} $ for some constants $ c,A $. 
+	
+	Cauchy data is $ B(t) = \{ (x = 0, y = t) \} $, intersect $ B $ at $ s = 0 $, thus characteristic curves are
+	
+	\[ x = s \quad y = t e^{s} \]
+	
+	$ \frac{\partial u}{\partial s} \big|_{t} = 0 $ so that $ u = \text{cst} $ along these characteristics.
+	
+	 and the Cauchy data fixes $ u(s,t) = t^{3} $ on the $ t^{\text{th}} $ curve. Inverting gives
+	
+	\[ s = x \quad t = y e^{-x} \]
+	
+	and therefore the solution to our problem is 
+	
+	\[ u(x,y) = y^{3} e^{-3x} \]
+	
+	throughout $ \R^{2} $
+	
+	\item Along characteristic curves
+	
+	\[ \frac{\d x}{\d s} = y \quad \frac{\d y}{\d s} = x  \]
+	
+	\[ \Rightarrow \frac{\d^{2} x }{\d s^{2}} = x \]
+	
+	\[ x = A \sinh s + B \cosh s \]
+	
+	Cauchy data is $ B(t) = \{ (x = 0, y = t) \} $, intersect at $ s = 0 $ gives $ B = 0 $, thus
+	
+	\[ x = t \sinh s \qquad y = t \cosh s \]
+	
+	Then $ \frac{\partial u }{\partial s} \Big|_{t} = 0  \Rightarrow u = \text{ cst. }$ along these characteristics, and Cauchy data fixes $ u(s,t) = e^{-t^{2}} $, and have that
+	
+	\[ t^{2} = (t \cosh s)^{2} - (t \sinh s)^{2} = y^{2} - x^{2} \]
+	
+	therefore solution is
+	
+	\[ u(x,y) = e^{x^{2} - y^{2}} \]
+	
+	which is uniquely defined only in the upper quadrant of the plane $ \{ (x,y) \subset R^{2} : x \geq 0, y \geq 0 \} $
+	
+	\item PDE is $ u_{x} + u_{y} = e^{x + 2y} - u $.
+	
+	Along characteristic curves
+	
+	\[ \frac{\d x}{\d s} = 1 \quad \frac{\d y}{\d s} = 1  \]
+	
+	
+	\[ x = s + c \qquad y = s + d \]
+	
+	Cauchy data is $ B(t) = \{ (x = t, y = 0) \} $, intersect at $ s = 0 $, thus
+	
+	\[ x = s + t  \qquad y = s \]
+
+	Then $ \frac{\partial u }{\partial s} \Big|_{t} = e^{2x + y} - u = e^{3s + t} - u $ along these characteristics, this is an ODE in $ s $ so multiplying by the integrating factor $ e^{s} $ gives
+	
+	\[ e^{s} \frac{\d u}{\d s} + e^{s} u = e^{4s + t}  \]
+	
+	\[ \Rightarrow e^{s} u = \frac{1}{4} e^{4s + t } + \text{cst.} \]
+	
+	Cauchy data  $ u(t,0) = 0 $ fixes $ \text{cst} = -  \frac{1}{4} e^{t} $, and have that
+	
+	\[ u(s,t) = \frac{1}{4} e^{t  + 3s} -  \frac{1}{4} e^{t-s}  \]
+
+
+	inverting the relations
+	
+	\[ s = y \qquad t = x - y \]
+	
+	the solution is
+	
+	\begin{align*}
+	u(x,y) & = \frac{1}{4}e^{x + 2y} - \frac{1}{4} e^{x - 2y}  \\
+	& = \frac{1}{2}e^{x} \sinh 2y
+	\end{align*}
+	
+\end{enumerate}
+
+\section{QUESTION 2}
+
+Separation of variables $ \Rightarrow u(x,t) = X(x) T(t) $, thus
+
+\[ X''T + X \dot{T} = 0 \]
+\[ \Rightarrow \frac{X''}{X} = - \frac{\dot{T}}{T}  \]
+
+LHS independent of $ x $, RHS independent of $ t $, so both sides constant.
+Setting $ \lambda = \dot{T} / T $ we have
+
+\[ X'' + \lambda X = 0 \]
+\[ X(x) = A \cos \sqrt{\lambda} x + B \sin \sqrt{\lambda} x \]
+
+Boundary conditions $ X(0) = X(\pi) = 0 $ imply that $ A = 0 $, $ \lambda = n^{2} $. Then solving $ \dot{T} = \lambda T $ with condition $ T(0) = U(x) $ gives
+
+\[ T(t) = U(x) e^{n^{2}t} \]
+
+Thus the unnormalised eigenfunctions of our problem are
+
+\[ u(x,t) = U(x) e^{n^{2}t} \sin n x  \]
+
+For large n the solution then has oscillations with higher and higher wavenumber and larger and larger (indeed arbitrarily large) amplitude $ U(x) e^{n^{2}t} $, and so this problem is ill-posed.
+
+\section{QUESTION 3}
+
+\begin{enumerate}
+	\item The principal part of the symbol of the differential operator is $ \mathbf{k}^{T} \mathbf{A} \mathbf{k} $, where 
+
+	\[ A = \begin{pmatrix}
+	1 & 0 \\
+	0 & x
+	\end{pmatrix} \]
+	
+	$ \det A  $ is product of eigenvalues, therefore we have 
+	
+	\begin{center}
+		\begin{tabular}{rll}
+			elliptic  & $ x > 0  $ \\
+			parabolic  &  $ x = 0 $  \\
+			hyperbolic &  $ x < 0$ 
+		\end{tabular}
+	\end{center}
+
+	In the hyperbolic region the negative eigenvector points in the $ y $ direction. Thus, if $ f(x,y) = \text{cst.} $ is to be a characteristic surface, we need $ \partial_{y} f = \pm \sqrt{ \partial_{x} f  A_{xx} \partial_{x} f / x } = \pm \sqrt{x} \partial_{x} f  $. Letting $ p = 2 x^{1/2} $, this is $ (\partial_{y} \pm \partial_{p})f = 0 $, so the characteristic surfaces are the two curves of constant $ y \pm p $, that is
+	
+	\[ u = y + x^{1/2} \]
+	\[ v = y - x^{1/2} \]
+	
+	for $ u $ constant and $ v $ constant.
+
+	\item The PDE is hyperbolic in the $ y < 0 $ region. Here
+	
+	\[ \mathbf{A} = \text{diag}(1,y) \]
+	
+	and $ \mathbf{m} $ points in the $ y $-direction, with $ \mathbf{A} \mathbf{m} = y \mathbf{m} $. Thus, if $ f(x,y) = \text{cst.} $ is to be a characteristic surface, we need $ \partial_{y} f = \pm \sqrt{ \partial_{x} f  A_{xx} \partial_{x} f / y } = \pm \sqrt{y} \partial_{x} f  $. Letting $ \xi = x, \nu  = 2 y^{1/2} $, this is $ (\partial_{\xi} \pm \partial_{p})f = 0 $, so the characteristic surfaces are the two curves of constant $ y \pm p $, that is
+	
+	 
+	
+\end{enumerate}
+
+
+
+\section{QUESTION 4}
+
+Green's second identity is 
+
+\[ \int_{\Omega}  \phi \nabla^{2} \psi  - \psi \nabla^{2} \phi \;  \d V = \int_{\delta \Omega} \phi ( \mathbf{n} \cdot \nabla \psi ) - \psi( \mathbf{n} \cdot \nabla \phi ) \d S   \]
+
+where $ \Omega \subset \R^{n} $ is a compact set, and $ \phi, \psi : \Omega \to \R $ are a pair of functions on $ \Omega $ regular throughout $ \Omega $.
+
+\section{QUESTION 5}
+
+$ u(\mathbf{x}) $ is harmonic and therefore satisfies $ \nabla^{2} \mathbf{u} = 0 $. Consider a Dirichlet Green's function for the Laplace operator on $ D $; we have
+
+\[ \nabla^{2} G ( \mathbf{r} ; \mathbf{r}_{0}) \]
+
+It can be shown that
+
+\[ G (\mathbf{x} ; \mathbf{x}_{0} ) = \frac{1}{2\pi} \log | \mathbf{x} - \mathbf{x}_{0} | \]
+
+Using Green's second identity with $ \mathbf{u} $ and $ G $ we have
+
+\[ \int_{\Omega}  u \nabla^{2} G  - G \nabla^{2} u \; \d V = \int_{\delta \Omega} G ( \mathbf{n} \cdot \nabla u ) - u ( \mathbf{n} \cdot \nabla G ) \d S   \]
+
+For some reason, $ \mathbf{n} \cdot \nabla u = \frac{\partial u }{\partial n} $. Also, since $ G $ only depends on the outward normal, we have $ \mathbf{n} \cdot \nabla G =  \frac{\partial G }{\partial n} $.  
+
+Thus the equation becomes 
+
+\[ \int_{\Omega}  u \nabla^{2} G  - G \nabla^{2} u \; \d V = \int_{\delta \Omega} G ( \mathbf{n} \cdot \nabla u ) - u ( \mathbf{n} \cdot \nabla G ) \d S  \]
+
+
+
+\section{QUESTION 6}
+
+
+
+\section{QUESTION 7}
+
+
+
+\section{QUESTION 8}
+\section{QUESTION 9}
+\section{QUESTION 10}
+
+Let $ \Omega = \{  (x,y) \in \R^{2} \; : \; y \geq 0 \} $ and suppose $ \psi : \Omega \to \R $ solves Laplace's equation $ \nabla^{2} \psi = 0 $ inside $ \Omega $, subject to
+
+\[ \psi(x,0) = f(x) \quad \text{ and } \quad \lim\limits_{| \mathbf{x} | \to \infty} \psi = 0 \]
+
+\begin{enumerate}
+	\item We must construct a Green's function that vanishes on $ \delta \Omega $. As well as vanishing on the $ x $-axis, we also require $ G $ vanishes as $ | \mathbf{x} | \to \infty $. We'll set $ \mathbf{x} = (x,y) $ and $ \mathbf{y} : = \mathbf{x}_{0}^{+} = (x_{0},y_{0}) $ in terms of Cartesian coordinates, with $ y_{0} > 0 $. We know that the free-space Green's function
+	
+	\[ G_{2}(\mathbf{x},\mathbf{x}_{0}^{+}) = \frac{1}{2\pi} \log |  \mathbf{x} - \mathbf{x_{0}^{+}} | + c_{2}  \]
+	
+	satisfies all conditions except that
+	
+		\[ G_{2}(\mathbf{x},\mathbf{x}_{0}^{+}) |_{y = 0} = \frac{1}{2\pi} \log | [ (x - x_{0})^{2} + y_{0}^{2} ]^{1/2} | + c_{2} \neq 0  \]
+		
+	We need to cancel the nonzero boundary value of $ G_{2} $ by adding on some function.
+	
+	Let $ \mathbf{x_{0}}^{-} $ be the point $ (x_{0},-y_{0}) $. The location $ \mathbf{x_{0}}^{-} \notin \Omega $, so the Green's function $ G_{2}(\mathbf{x},\mathbf{x}_{0}^{-}) $ is regular everywhere within $ \Omega $, and so obeys Laplace's equation everywhere in the upper half-space. Also,
+	
+	\[ G_{2}(\mathbf{x},\mathbf{x}_{0}^{-} |_{y = 0} = \frac{1}{2\pi} \log | [ (x - x_{0})^{2} + y_{0}^{2} ]^{1/2} | + c_{2}'  \]
+	
+
+	
+\end{enumerate}
+
+
+
+
+\section{QUESTION 11}
+\section{QUESTION 12}
+
+
+
+
+\end{document}

@@ -32,34 +32,38 @@ Let $ \Omega $ be the region
 
 We have Laplace's equation $ \nabla^{2} \phi = 0 $ inside $ \Omega $, with the Dirichlet boundary conditions $ \phi = 1 $ on the $ z $ surface and $ \phi = 0 $ on all other surfaces:
 
-Assume $ \phi(x,y,z) = X(x) Y(y) \sinh [ l(c - z) ] $, so we have
+Assume $ \phi(x,y,z) = X(x) Y(y) Z(z) $, so we have
 
-\[ \frac{X''}{X} + \frac{Y''}{Y} + l^{2} = 0 \]
+\[ \frac{X''}{X} + \frac{Y''}{Y} + \frac{Z''}{Z} = 0 \]
 
-Moving along the $ x $ direction for fixed $ y,z $,$ \frac{Y''}{Y}, l^{2} $ both constant, hence $ \frac{X''}{X} = - \frac{Y''}{Y} - l^{2} $ is also equal to some constant, $ - \lambda $.
+Moving along the $ x $ direction for fixed $ y,z $, $ \frac{X''}{X} = - \lambda $ for some constant $ \lambda $. Solving this with boundary conditions $ X(0) = X(a) = 0 $ yields
 
-Solving $ X'' = - \lambda X $ with boundary conditions $ X(0) = X(a) = 0 $ restricts values of $ \lambda $ to
+\[ \lambda_{p} = \frac{p^{2} \pi^{2}}{a^{2}}, X_{p} = \sin \left( \frac{p \pi x}{a} \right), p = 1,2,3,\cdots  \]
 
-\[ \lambda_{p} = \frac{p^{2} \pi^{2}}{a^{2}}, X_{p} = A \sin \left( \frac{p \pi x}{a} \right), p = 1,2,3,\cdots  \]
+Similarly, solving $ Y'' = - \mu Y  $ with $ Y(0) = Y(b) = 0 $ implies that
 
-Similarly, solving $ Y'' = - \mu Y  $, such that $ Y(0) = Y(b) = 0 $ implies that
+\[ \mu_{q} = \frac{q^{2} \pi^{2}}{b^{2}}, Y_{q} =  \sin \left(  \frac{q \pi x}{b} \right), q = 1,2,3,\cdots  \]
 
-\[ \mu_{q} = \frac{q^{2} \pi^{2}}{b^{2}}, Y_{q} = B \sin \left(  \frac{q \pi x}{b} \right), q = 1,2,3,\cdots  \]
+Lastly, we now have $ Z'' = (\lambda + \mu) Z $, which has solutions of the from (using the hint)
 
-At this point we have a family of solutions
+\[ Z = A \cosh \left[  \sqrt{\lambda + \mu}(l - c)z \right]  + B \sinh \left[   \sqrt{\lambda + \mu}(l - c)z   \right]    \]
 
-\[ \psi_{p,q}(x,y,z) : = \sin \left(  \frac{p \pi}{a} x \right) \sin \left(  \frac{q \pi}{b} y \right)  \sinh \left[  l(c - z)\right]  \]
+The boundary condition $ Z(c) = 0 $ gives $ A = 0 $. (Note that we cannot use the boundary condition on the $ z = 0 $ surface until we have the general solution ).
 
-Laplaces equation linear with boundary conditions homogenous, the general solution is 
+Hence, we have a family of solutions given by
+
+
+\[ \psi_{p,q}(x,y,z) : = A_{p,q} \sin \left(  \sqrt{\lambda_{p}} x \right) \sin \left(  \sqrt{\mu_{q}} y \right)  \sinh \left[  \sqrt{\lambda + \mu}(c - z)    \right]  \]
+
+for some constants $ A_{p,q} $ to be determined. By linearity, the general solution is
 
 \[ \psi(x,y,z) 
-=  \sum_{p = 0}^{\infty} \sum_{q = 0}^{\infty} A_{p,q} \sin \left(  \frac{p \pi}{a} x \right) \sin \left(  \frac{q \pi}{b} y \right)  \sinh \left[  l(c - z)\right]    \]
+=  \sum_{p = 0}^{\infty} \sum_{q = 0}^{\infty}  A_{p,q} \sin \left(  \sqrt{\lambda_{p}} x \right) \sin \left(  \sqrt{\mu_{q}} y \right)  \sinh \left[  \sqrt{\lambda + \mu}(c - z)    \right]    \]
 
-
-for some constants $ A_{p,q} $. Setting $ z = 0 $ we require
+Now using $ \phi = 1 $ on the surface $ z = 0 $, we require
 
 \[ 1 
-=  \sum_{p = 0}^{\infty} \sum_{q = 0}^{\infty} A_{p,q} \sin \left(  \frac{p \pi}{a} x \right) \sin \left(  \frac{q \pi}{b} y \right)  \sinh cl \]
+=  \sum_{p = 0}^{\infty} \sum_{q = 0}^{\infty} A_{p,q} \sin \left(  \sqrt{\lambda_{p}} x \right) \sin \left(  \sqrt{\mu_{q}} y \right)  \sinh \left[  \sqrt{\lambda + \mu} c    \right] \]
 
 Now using orthogonality relations
 
@@ -68,12 +72,14 @@ Now using orthogonality relations
 we deduce
 
 \begin{align*}
-A_{p,q} & = \frac{4}{ab \sinh cl} \int_{0}^{a} \int_{0}^{b} \sin\left( \frac{q \pi x}{a} \right)\sin\left( \frac{p \pi y}{b} \right) \; \d x \d y \\
-& = \frac{4}{ab \sinh cl} \left[   - \frac{a}{q \pi}  \cos \left(  \frac{q \pi x}{a} \right)  \right]_{0}^{a} \left[   - \frac{b}{p \pi}  \cos \left(  \frac{p \pi x}{b} \right)  \right]_{0}^{b} \\
-&  =  \frac{4}{ab \sinh cl} \frac{ab}{\pi^{2} pq}\left(  (-1)^{q} - 1 \right)\left(  (-1)^{p} - 1 \right) \\
-& = \begin{cases} \frac{16}{\pi^{2}pq \sinh cl}  & \text{ if } q \text{ and } p \text{ are both odd} \\ 0 & \text{ otherwise } \end{cases}
+A_{p,q} & = \frac{4}{ab \sinh \left[  \sqrt{\lambda + \mu}c    \right]} \int_{0}^{a} \int_{0}^{b} \sin\left( \frac{q \pi x}{a} \right)\sin\left( \frac{p \pi y}{b} \right) \; \d x \d y \\
+& = \frac{4}{ab \sinh \left[ \sqrt{\lambda + \mu}c    \right]} \left[   - \frac{a}{q \pi}  \cos \left(  \frac{q \pi x}{a} \right)  \right]_{0}^{a} \left[   - \frac{b}{p \pi}  \cos \left(  \frac{p \pi x}{b} \right)  \right]_{0}^{b} \\
+&  =  \frac{4}{ab \sinh \left[  \sqrt{\lambda + \mu}c   \right]} \frac{ab}{\pi^{2} pq}\left(  (-1)^{q} - 1 \right)\left(  (-1)^{p} - 1 \right) \\
+& = \begin{cases} \frac{16}{\pi^{2}pq \sinh \left[  \sqrt{\lambda + \mu}c    \right]}  & \text{ if } q \text{ and } p \text{ are both odd} \\ 0 & \text{ otherwise } \end{cases}
 \end{align*}
 
+
+Noting that now $ \lambda_{p} + \mu_{q} = (2p + 1)^{2} \pi^{2} / a^{2}  + (2q + 1)^{2} \pi^{2} / b^{2}= l^{2} $
 
 Therefore, the solution satisfying these boundary conditions is
 
@@ -688,6 +694,15 @@ Thus by comparison
 	\end{enumerate}
 
 
+\[ \frac{\d^{2} y }{\d x^{2} } + p^{2}(1+x)^{-\alpha} = 0 
+
+y(0) = y(1) = 0 \]
+
+
+\[  \]
+
+
+
 
 
 \section{QUESTION 9}
@@ -704,5 +719,10 @@ with $ y(0,t) = y(l,t) = 0 $ (fixed at endpoints). We can find the solution $ y(
 
 
 \section{QUESTION 10}
+
+
+Thus, the solution is 
+
+
 
 \end{document}
