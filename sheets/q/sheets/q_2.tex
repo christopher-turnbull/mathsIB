@@ -505,30 +505,76 @@ Thus $ \chi_{+} = \frac{1}{\sqrt{2}} (\psi_{1} + \psi_{2})  $, and similarly $ \
 \begin{align*}
 \langle H \rangle_{\chi_{\pm}} & = ( \chi_{\pm}, H \chi_{\pm} )  \\
 & = \frac{1}{\sqrt{2}} (  (\psi_{1} \pm \psi_{2}),  H( \psi_{1} \pm \psi_{2} ) \\
-& = \frac{1}{\sqrt{2}} (  (\psi_{1}, H \psi_{1}) \pm  ( \psi_{2}, H \psi_{2} ) \\
-& = \frac{1}{\sqrt{2}} ( E_{1} \pm E_{2} )
+& = \frac{1}{\sqrt{2}} (  (\psi_{1},E \psi_{1}) \pm (\psi_{1},E \psi_{2}) \pm (\psi_{2},E \psi_{1}) + (\psi_{2},E \psi_{2}) ) \\
+& = \frac{1}{\sqrt{2}} ( E_{1} + E_{2} )
 \end{align*}
 
-Measurement axioms $ \Rightarrow  $ at time zero, $ Q $ is in state $ \chi_{+} $. 
-Have
 
-\[ \Psi(0) = \alpha_{+} \chi_{+} + \alpha_{-} \chi_{-} \qquad (\alpha_{\pm} = (\chi_{\pm},\Psi(0) )) \]
+At time zero, measurement axioms $ \Rightarrow $ must have
+
+\[ \Psi(0) = \frac{1}{\sqrt{2}} ( \psi_{1} + \psi_{2} ) \]
 
 By linearity, the solution of the t-dep SE is
 
 \begin{align*}
-\Psi(t) & = \alpha_{+} \chi_{+} e^{- i E_{+} t / \hbar } + \alpha_{-} \chi_{-} e^{- i E_{-} t / \hbar }  \\
-& = 
+\Psi(t) & =  \frac{1}{\sqrt{2}} ( \psi_{1} e^{- i E_{1} t / \hbar } + \psi_{2} e^{- i E_{2} t / \hbar }  )  \\
 \end{align*}
 
-Confused on how to finish this off.
+\[ \P( Q = +1 | \text{ at } t )  =  | ( \chi_{+}, \Psi(t) )  |^{2} \]
+
+\begin{align*}
+( \chi_{+}, \Psi(t) ) & = \frac{1}{2} (   \psi_{1} + \psi_{2}, \psi_{1} e^{- i E_{1} t / \hbar } + \psi_{2} e^{- i E_{2} t / \hbar }   )  \\
+& = \frac{1}{2} ( e^{- i E_{1} t / \hbar } +  e^{- i E_{2} t / \hbar }) \\
+& = \frac{1}{2}  e^{-i (E_{1} + E_{2})t/2 \hbar } ( e^{- i (E_{1}  - E_{2} ) t / 2 \hbar } +  e^{+ i (E_{1}  - E_{2} ) t / 2 \hbar }) \\
+& = e^{-i (E_{1} + E_{2})t/2 \hbar } \cos \left(  (E_{1}  - E_{2} ) t / 2 \hbar \right) 
+\end{align*}
+
+Hence
+
+\[ \P( Q = +1 | \text{ at } t )  = \cos^{2} \left(  (E_{1}  - E_{2} ) t / 2 \hbar \right)   \]
+
+When $ t = \pi \hbar / (E_{2} - E_{1}) $, have 
+
+\[ \P( Q = +1 | \text{ at } t )  = \cos^{2} \left( \pi / 2 \right) = 0   \]
+
+
+
 
 
 
 \section{QUESTION 10}
 
-This is a follow on from question 9; I'm not completely sure how the probabilities of measurements of a quantum system evolve with time. 
+So set $ t = 0 $ when the first measurement was made. Want $ \P( Q = +1 | \text{ at } t = T/n )  $.  Previously, had
+\[ \P( Q = +1 | \text{ at } t  )  =  | ( \chi_{+}, \Psi(t) )  |^{2} \]
 
+Form of given answer suggests power series expansion:
+
+\begin{align*}
+( \chi_{+}, \Psi(t) ) & = \frac{1}{2} ( e^{- i E_{1} t / \hbar } +  e^{- i E_{2} t / \hbar }) \\
+& = 1 - \frac{i(E_{1} + E_{2})T}{2 n \hbar} + O\left( \frac{1}{n^{2}}\right) 
+\end{align*}
+
+Setting this to $ A_{n} $, therefore have
+
+\[ \P( Q = +1 | \text{ at } t )  =  | A_{n} |^{2} \]
+
+as required.
+
+Want to show 
+
+\[ \lim\limits_{n \to \infty} \left(  \left| 1 - \frac{i(E_{1} + E_{2})T}{2 n \hbar} + O\left( \frac{1}{n^{2}}\right) \right|^{2}   \right)^{n} = 1   \]
+
+Using the trick $ \left( 1 + \frac{a}{n^{2}} \right)^{n^{2}} \to e^{a}  $, we have
+
+
+\begin{align*}
+\text{LHS} & = \lim\limits_{n \to \infty} \left(  1 + \frac{(E_{1} + E_{2})^{2}T^{2}}{4 n^{2} \hbar^{2}}   \right)^{n}  \\
+& = \lim\limits_{n \to \infty} \left[  \left(  1 + \frac{(E_{1} + E_{2})^{2}T^{2}}{4 n^{2} \hbar^{2}}   \right)^{n^{2}} \right]^{1/n} \\
+& = \lim\limits_{n \to \infty} \left[ \exp \left(  \frac{(E_{1} + E_{2})^{2}T^{2}}{4 \hbar^{2}} \right)  \right]^{1/n} \\
+& = 1
+\end{align*}
+
+Boom pow. Bit of a weird result...
 
 \section{QUESTION 11}
 
@@ -536,10 +582,11 @@ This is a follow on from question 9; I'm not completely sure how the probabiliti
 \langle [H,A] \rangle_{\psi} & = \langle HA - AH \rangle_{\psi}  \\
 & = (  \psi, (HA - AH)\psi ) \\
 & = ( \psi, HA \psi) - ( \psi, AH \psi) \\
-& = ( H \psi, A \psi) - ( \psi, AH \psi)
+& = ( H \psi, A \psi) - ( \psi, AH \psi) \\
+& = E ( \psi, A \psi) - E ( \psi, A \psi) \\
+& = 0
 \end{align*}
 
-Not sure. 
 
 Cannonical commutation relation for position and momentum is $ [\hat{x},\hat{p}] = i \hbar $
 
@@ -549,10 +596,27 @@ Assuming $ \langle [H,A] \rangle_{\psi} $ is indeed zero, setting $ A =
 \begin{align*}
 0 & = \langle [H,\hat{x}] \rangle_{\psi} \\
 & = \langle [T + V,\hat{x}] \rangle_{\psi} \\
-& = \langle [\frac{1}{2m} \hat{p}^{2},\hat{x}] \rangle_{\psi} + \langle [V(\hat{x}),\hat{x}] \rangle_{\psi}
+& = \langle [\frac{1}{2m} \hat{p}^{2},\hat{x}] \rangle_{\psi} + \langle \underbrace{[V(\hat{x}),\hat{x}]}_{= 0} \rangle_{\psi} \\
+& = \frac{1}{2m} \langle [ \hat{p}^{2},\hat{x}] \rangle_{\psi}
 \end{align*} 
 
-Not comfortable manipulating these yet.
+Now using the Leibnitz property, we have
+
+\begin{align*}
+[ \hat{p}^{2},\hat{x}] & =\hat{p} [ \hat{p},\hat{x}] + [ \hat{p},\hat{x}] \hat{p} \\
+& = - 2 i \hbar \hat{p}
+\end{align*} 
+
+So
+
+\begin{align*}
+0 & = \frac{1}{2m} \langle [ \hat{p}^{2},\hat{x}] \rangle_{\psi} \\
+& = - \frac{i \hbar}{m} \langle \hat{p} \rangle_{\psi}
+\end{align*} 
+
+$ \Rightarrow \langle \hat{p} \rangle_{\psi} = 0 $
+
+Next...
 
 
 

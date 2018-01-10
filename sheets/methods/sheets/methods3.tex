@@ -105,53 +105,80 @@ Using this Green's function we are immediately able to write down the complete s
 
 \section{QUESTION 3}
 
-Under the substitution $ y = \frac{z}{x} \Rightarrow \frac{\d y}{\d x} =  \frac{1}{x} \frac{\d z}{\d x} - \frac{z}{x^{2}} $, the equation $ L_{x}y = 0 $ becomes
+Use the substitution $ y = z / x $, (quotient rule speeds thing up)
 
 \begin{align*}
-- \frac{1}{x^{2}} \frac{\d }{\d x} \left(  x^{2} \left(  \frac{1}{x} \frac{\d z}{\d x} - \frac{z}{x^{2}}  \right)   \right) +  \frac{z}{x}    & =  0 \\
-\Rightarrow - \frac{1}{x^{2}} \frac{\d }{\d x} \left( x \frac{\d z}{\d x} - z  \right)  +  \frac{z}{x}    & =  0 \\
-\Rightarrow - \frac{1}{x^{2}} \left( \frac{\d z}{\d x} + x \frac{\d^{2} z}{\d x^{2}} - \frac{\d z}{\d x}  \right)  +  \frac{z}{x}    & =  0 \\
-\Rightarrow \frac{\d^{2} z}{\d x^{2}} + z & = 0
+L_{x}y = - \frac{1}{x} \frac{\d^{2} z}{\d x^{2}} + \frac{z}{x} 
 \end{align*}
 
-which has solutions $ z = c_{1} \cosh x + c_{2} \sinh x $, or $ c_{1}'e^{x} + c_{2}'e^{-x} $, and $ y = \frac{1}{x} \left(  c_{1} \cosh x + c_{2} \sinh x \right)  $ or $ \frac{1}{x} \left( c_{1}'e^{x} + c_{2}'e^{-x} \right)  $.
+So
+
+\begin{align*}
+y & = \frac{1}{x} \left(  c_{1} \cosh x + c_{2} \sinh x \right)  \\
+y & = \frac{1}{x} \left( c_{1}'e^{x} + c_{2}'e^{-x} \right) 
+\end{align*} 
 
 For solutions that are (a) bounded as $ x \to 0 $, we have $ y = A \frac{1}{x} \sinh x $. For solutions that are (b) bounded as $ x \to \infty $, have $ y = B \frac{1}{x} e^{-x} $. 
 
-Now, Green's function satisfying $ L_{x} G = \delta(x - a) $ and both conditions is given by 
+Green's function satisfying $ L_{x} G = \delta(x - \xi) $ and both conditions (a), (b) is given by 
 
-\[ G(x,a) =  \frac{1}{x} \left[ \Theta(a-x) A \sinh x  +  \Theta(x - a) B e^{-x} \right]  \]
+\[ G(x;xi) =  \begin{cases} A(\xi) \frac{\sinh x}{x}  & \text{ if } 0 < x < \xi \\ B(\xi) \frac{e^{-x} }{x}  & \text{ if } \xi < x \end{cases}   \]
 
-Applying the continuity condition we get
+Continuity $ \Rightarrow $
 
-\[ \frac{1}{a} A \sinh a = \frac{1}{a} Be^{-a}   \]
+\[ A \sinh \xi  = B e^{-\xi}   \]
 
-while the jump condition gives 
+Jump ($ \alpha =-1 $) $  \Rightarrow $ 
 
-\[ B \left(  - \frac{1}{a} e^{-a} - \frac{1}{a^{2}} e^{-a}   \right) - A \left( \frac{1}{a} \cosh a -  \frac{1}{a^{2}} \sinh a \right) = -1   \]
+\[ Be^{\xi}(\xi + 1) + A( \xi \cosh \xi - \sinh \xi) = \xi^{2}  \]
 
-where we note that $ \alpha = -1 $. Solving for $ A $ and $ B $ gives us the Green's function
+Solving,
 
-\[ G(x ; a) = \frac{a}{x} \left[ \Theta(a-x) e^{-a} \sinh x  +  \Theta(x - a) e^{-x}  \sinh a  \right]  \]
+\[ A = \xi e^{-\xi} \qquad B = \xi \sinh \xi  \]
+
 
 Next, to solve 
 
 \[ L_{x}y(x) = \begin{cases} 1  & \text{ if } 0 \leq x \leq R \\ 0 & \text{ if } x > R  \end{cases} \]
 
-Note that the solution for $ x > R $ is simply the solution of the homogeneous equation that is bounded when $ x \to \infty $, that is, $ y = B \frac{1}{x} e^{-x} $
+Using this $ G $,
 
-We can immediately write down the solution for $ 0 \leq x < R $ using Green's function as 
-
-
-\[ y(x) = \frac{1}{x} \left[ \sinh x  \int_{0}^{a} a e^{-a} \; \d a  + e^{-x} \int_{a}^{R}  a \sinh a \; \d a   \right]    \]
+\[ y = x^{-1}e^{-x} \int_{0}^{x} \xi \sinh \xi \; \d \xi + x^{-1} \sinh x \int_{x}^{R} \xi e^{-xi} \; \d \xi  \]
 
 
-
-Note sure about this last part; can't see where the 1 would appear from?
 
 
 
 \section{QUESTION 4}
+
+Can use a similar argument to the one in lectures to show that $ G(t,\tau) = 0 $ whenever $ t \in [0,\tau] $.
+Following the usual procedure we get
+
+\[ G(t,\tau)  =  \Theta ( t - \tau)[A(\tau) \cos[k(t - \tau)] + B(\tau)\sin[k(t - \tau)] + C(\tau) (t - \tau) + D(\tau)   ]  \]
+
+Continuity demands $ G(\tau,\tau) = G'(\tau,\tau) = G''(\tau,\tau) = 0 $, yielding
+
+\begin{align*}
+& A(\tau) + D(\tau) = 0 \\
+& kB(\tau) + C(\tau) = 0\\
+& A(\tau) = 0 
+\end{align*}
+
+respectively. The third equation also implies $ D(\tau) = 0 $, and the jump condition on $ G''' $ gives
+
+\[  - k^{3} B(\tau) = 1  \]
+
+$ \Rightarrow  B(\tau) = -k^{-3} \Rightarrow C(\tau) = k^{-2}  $, showing the Green's function is indeed what is required. 
+
+Solution to $ \mathcal{L}y = e^{-t} $ is given by
+
+\begin{align*}
+y(t) & = \int_{0}^{t} [k^{-2} (t - \tau) - k^{-3} \sin k(t-\tau) ]e^{-\tau} \; \d \tau    \\
+\end{align*}
+
+
+
+
 \section{QUESTION 5}
 
 Under the substitution $ y = \phi[x] $, hence $ \frac{\d x}{\d y} =  \frac{1}{| \phi'(x) |} $ (monotone increasing) the result becomes easy to show

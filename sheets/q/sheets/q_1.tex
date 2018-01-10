@@ -52,6 +52,8 @@ W & = h\nu_{1} - K_{1} \\
 
 \section{QUESTION 2}
 
+Lol don't do to so many significant figures m8. only as many as you have in the question. 
+
 Let the light have energy flux $ E = 10^{-10} \text{Jm}^{-2}\text{s}^{-1} $ , with the wavelength $ \lambda = 5 \times 10^{-7} $. The energy of one photon is given by
 
 \begin{align*}
@@ -180,10 +182,22 @@ Hence as before $ \alpha = \sqrt{\frac{\hbar^{2}}{Km}} $ and $ E_{1} = 3 E_{0} =
 
 \begin{center}
 	%label axis x,y as x, |psi(x)|^{2}
-	\begin{tikzpicture}[yscale=0.35]
+	\begin{tikzpicture}[yscale=0.3]
 	\draw [->] (-3, 0) -- (3, 0) node [right] {$x$};
-	\draw [->](0, -9)  -- (0, 9) node [above] {$ V(x) $};
+	\draw [->](0, -9)  -- (0, 9) node [above] {$ \psi_0(x) $};
 	\draw [domain=-3:3,samples=50, mblue] plot (\x, {\x *\x});
+	\end{tikzpicture}
+\end{center}
+
+
+\begin{center}
+	%label axis x,y as x, |psi(x)|^{2}
+	\begin{tikzpicture}[yscale=3.5]
+	\draw [->] (-3, 0) -- (3, 0) node [right] {$x$};
+	\draw [->](0, -1.1)  -- (0, 1.1) node [above] {$ \psi_1(x) $};
+	\draw [mred] (-0.5, 0)  -- (-0.5, -0.5) node [below] {$  - \sqrt{\alpha} $};
+	\draw (0.5, 0)  -- (0.5, 0.5) node [above] {$ \sqrt{\alpha} $};
+	\draw [domain=-3:3,samples=50, mblue] plot (\x, {2.5*\x*exp(-2*\x *\x)});
 	\end{tikzpicture}
 \end{center}
 
@@ -443,6 +457,23 @@ A^{\dagger} A \psi & = A^{\dagger} \left[ \psi'(x) + \tanh(x) \psi(x)  \right]  
 Hence, adding $ \psi(x) $ to both sides of $ (*) $ it is rewritten as
 
 \[ A^{\dagger} A \psi = (\varepsilon + 1)\psi \]
+
+\section{MEME}
+
+
+\[ \frac{1}{2!} \frac{\partial^{2} f (x_{0},y_{0}) }{\partial y^{2} } (y-y_{0})^{2}  \]
+
+
+\[  \qquad \]
+
+\[ \frac{1}{2}  \partial_{yy} f (\mathbf{x_{0}}) (y-y_{0})^{2}  \]
+
+
+\[ \qquad  \]
+
+\[ \frac{1}{2} f_{yy}\Big|_{\mathbf{x}_{0}}  (\delta y)^{2} \]
+
+
 
 
 

@@ -1,7 +1,7 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6100 64-bit) (preloaded format=pdflatex 2017.1.3)  4 JAN 2018 22:34
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6100 64-bit) (preloaded format=pdflatex 2017.1.3)  6 JAN 2018 23:26
 entering extended mode
-**./q_1.tex
-(q_1.tex
+**./q_3.tex
+(q_3.tex
 LaTeX2e <2016/03/31> patch level 3
 Babel <3.9r> and hyphenation patterns for 75 language(s) loaded.
 ("C:\Program Files\MiKTeX 2.9\tex\latex\base\article.cls"
@@ -1331,11 +1331,11 @@ Package: multicol 2016/04/07 v1.8p multicolumn formatting (FMi)
 \colbreak@box=\box96
 \mc@col@check@num=\count294
 ))
-\q_1@idxfile=\write5
-\openout5 = `q_1.idx'.
+\q_3@idxfile=\write5
+\openout5 = `q_3.idx'.
 
 
-Writing index file q_1.idx
+Writing index file q_3.idx
 ("C:\Program Files\MiKTeX 2.9\tex\latex\hyperref\hyperref.sty"
 Package: hyperref 2016/06/24 v6.83q Hypertext links for LaTeX
 
@@ -1478,8 +1478,8 @@ libraryquotes.code.tex"
 File: tikzlibraryquotes.code.tex 2014/03/21 v3.0.1a (rcs-revision 1.4)
 ))
 \c@nthm=\count306
-) (q_1.aux)
-\openout1 = `q_1.aux'.
+) (q_3.aux)
+\openout1 = `q_3.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 22.
 LaTeX Font Info:    ... okay on input line 22.
@@ -1584,9 +1584,9 @@ LaTeX Info: Redefining \ref on input line 22.
 LaTeX Info: Redefining \pageref on input line 22.
 LaTeX Info: Redefining \nameref on input line 22.
 
-(q_1.out) (q_1.out)
+(q_3.out) (q_3.out)
 \@outlinefile=\write6
-\openout6 = `q_1.out'.
+\openout6 = `q_3.out'.
 
 \c__siunitx_mathsf_int=\count314
 Package microtype Info: Loading generic settings for font family
@@ -1601,34 +1601,29 @@ Package microtype Info: Loading generic settings for font family
  [1
 
 {C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map}]
-[2] [3] [4] [5] [6] [7] [8] [9] [10] [11] [12] [13] [14] [15]
-Overfull \hbox (4.64589pt too wide) in paragraph at lines 455--455
-[] 
- []
-
-[16] [17]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 480.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 480.
- (q_1.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 480.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 480.
-Package rerunfilecheck Info: File `q_1.out' has not changed.
-(rerunfilecheck)             Checksum: E5A54D3E2F683301EF0DE4A5A2556DCB;554.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 480.
+[2] [3] [4] [5] [6] [7] [8] [9] [10] [11] [12]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 263.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 263.
+ (q_3.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 263.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 263.
+Package rerunfilecheck Info: File `q_3.out' has not changed.
+(rerunfilecheck)             Checksum: 18F446DCFC475921B51DC3E4A8B19867;414.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 263.
  ) 
 Here is how much of TeX's memory you used:
- 46990 strings out of 493333
- 1055410 string characters out of 3139195
+ 46640 strings out of 493333
+ 1047866 string characters out of 3139195
  1274503 words of memory out of 3000000
- 49651 multiletter control sequences out of 15000+200000
- 18297 words of font info for 95 fonts, out of 3000000 for 9000
+ 49335 multiletter control sequences out of 15000+200000
+ 17838 words of font info for 86 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 64i,12n,96p,10391b,938s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 64i,13n,96p,10391b,741s stack positions out of 5000i,500n,10000p,200000b,50000s
 <C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Pr
 ogram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Program Fi
-les/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx7.pfb><C:/Program Files/MiKTe
-X 2.9/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Program Files/MiKTeX 2.9/fo
-nts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type
+les/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Program Files/MiKT
+eX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Program Files/MiKTeX 2.9/f
+onts/type1/public/amsfonts/cm/cmmi5.pfb><C:/Program Files/MiKTeX 2.9/fonts/type
 1/public/amsfonts/cm/cmmi7.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/
 amsfonts/cm/cmr10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/
 cm/cmr12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr17.
@@ -1641,9 +1636,9 @@ blic/amsfonts/cm/cmsy7.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsf
 onts/cm/cmti10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/sym
 bols/msbm10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/symbol
 s/msbm7.pfb>
-Output written on q_1.pdf (17 pages, 249061 bytes).
+Output written on q_3.pdf (12 pages, 212142 bytes).
 PDF statistics:
- 243 PDF objects out of 1000 (max. 8388607)
- 38 named destinations out of 1000 (max. 500000)
- 25805 words of extra memory for PDF output out of 29859 (max. 10000000)
+ 197 PDF objects out of 1000 (max. 8388607)
+ 22 named destinations out of 1000 (max. 500000)
+ 25781 words of extra memory for PDF output out of 29859 (max. 10000000)
 
