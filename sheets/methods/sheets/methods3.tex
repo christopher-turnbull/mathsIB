@@ -145,7 +145,7 @@ Using this $ G $,
 
 \[ y = x^{-1}e^{-x} \int_{0}^{x} \xi \sinh \xi \; \d \xi + x^{-1} \sinh x \int_{x}^{R} \xi e^{-xi} \; \d \xi  \]
 
-
+For $ 0 \leq x \leq R $, solve. (things combine into a sinh) For $ x > R $ note the RHS integral vanishes, so solve. 
 
 
 
@@ -229,11 +229,7 @@ as required
 	& = \frac{2 \sin kc}{k}
 	\end{align*}
 	
-	\item
-	
-	Notation: $ \tilde{f} = \mathcal{F}[f] $ ``Taking the Fourier transform of $ f $. By the re-phasing property
-	
-	\[ \mathcal{F}[ e^{iax}f(x) ] = \tilde{f}(k-a) \]
+	\item \[ \mathcal{F}[ e^{iax}f(x) ] = \tilde{f}(k-a) \]
 	
 	we have for $ f(x) = e^{iax} $ and using our previous answer,
 	
@@ -242,6 +238,8 @@ as required
 	\item $ f(x) = \sin (ax) $
 	
 	Noting that this is the imaginary part of what we've just done (but not seeing how to make use of that... so stuck with calculating ) :
+	
+	No idiot, use $ \sin(ax) = \frac{1}{2i (e^{iax} - e^{-iax})} $ and linearity of Fourier Transform...
 	
 	\begin{align*}
 	\tilde{f}(k)  & = \int_{-c}^{c} \sin(ax) e^{-ikx} \; \d x   \\
@@ -300,10 +298,14 @@ f(0) & = \frac{1}{2\pi} \int_{-\infty}^{\infty}\frac{1 - ik}{1 + k^{2}} \; \d k 
 & = \frac{1}{2\pi} \left(  \frac{\pi}{2} + \frac{\pi}{2} \right) \\
 & = \frac{1}{2}
 \end{align*}
+Wait. Note that 
 
 \section{QUESTION 9}
 
-We have
+This is easy. Define $ g(x) = e^{-x^{2}} $, calculate $ \tilde{g}(k) $, then do rephasing and scaling in any order. Is good practice. Should get
+
+\[ \tilde{f}(k) = e^{-ik\mu} \frac{1}{n} \sqrt{\pi} e^{-k^{2}/4 n^{2}} \]
+
 
 \begin{align*}
 f(x) & = e^{-n^{2}(x - \mu)^{2}} \\
@@ -394,5 +396,38 @@ f(x) & =  \frac{1}{2\pi} \int_{-1}^{1} e^{ikx} e^{k} - e^{-k} \; \d k \\
 Hence rearranging gives
 
 \[ f(x) = \frac{2i}{\pi(1+x^{2})} (  \cosh 1 \sin x - x \cos x \sinh 1 ) \]
+
+(a long algebraic exercise. good for me?)
+
+Next, take the Fourier transform of $ \nabla^{2}(x,y) = 0 $ with respect to $ x $;
+
+\[ \int_{-\infty}^{\infty} \left(  \frac{\partial^{2} \phi }{\partial x^{2}} + \frac{\partial^{2} \phi }{\partial y^{2}} \right) e^{-ikx} \; \d x = 0  \]
+
+\begin{align*}
+\Rightarrow 0 & = \int_{-\infty}^{\infty}  \frac{\partial^{2} \phi }{\partial x^{2}}  e^{-ikx} \; \d x  + \int_{-\infty}^{\infty} \frac{\partial^{2} \phi }{\partial y^{2}} e^{-ikx} \; \d x\\
+& = - k^{2} \tilde{\phi}(k) + \frac{\partial^{2} }{\partial y^{2}} \int_{-\infty}^{\infty}  \phi e^{- i k x} \; \d x\\
+& = - k^{2} \tilde{\phi}(k) +  \frac{\partial^{2} \tilde{\phi}(k) }{\partial y^{2}}
+\end{align*}
+
+Solving this second order ODE in $ k $ gives
+
+\[ \tilde{\phi}(k,y) = A(k) e^{ky} + B(k) e^{-ky}  \]
+
+We have the boundary conditions $ \tilde{\phi}(k,0) = \tilde{f}(k) $, and $ \tilde{\phi}(k,1) = 0 $. This gives
+
+\begin{align*}
+A + B  & = e^{k} - e^{-k} \\
+Ae^{k} + Be^{-k}  & = 0 
+\end{align*}
+
+respectively. Solving gives $  A = - e^{-k}, B = e^{k} $. Thus, we take the inverse FT to finish.
+
+\begin{align*}
+\phi(x,y) &  = - \frac{1}{2\pi}  \int_{-1}^{1} e^{k(y-1)} - e^{-k(y-1)} \; \d k \\
+\end{align*}
+
+Do int by substitution, should work out satisfying the bcs like you want!
+
+
 
 \end{document}

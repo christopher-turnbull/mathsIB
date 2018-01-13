@@ -25,15 +25,29 @@
 
 \section{QUESTION 1}
 
-Time independent Schr\"odinger Equation is 
+When the particle is inside the box, the time independent Schr\"odinger Equation is 
 
-\[ - \frac{\hbar^{2}}{2m} \nabla^{2} \psi = E \psi \]
+\[ H \psi = - \frac{\hbar^{2}}{2m} \nabla^{2} \psi = E \psi \]
 
-\[  - \frac{\hbar^{2}}{2m} \left(  \frac{X''}{X} +  \frac{Y''}{Y} +  \frac{Z''}{Z} \right)  = E  \]
+The Hamiltonian then splits into
 
-Can split this into 3 equations, eg.
+\[ H = H_{1} + H_{2} + H_{3} \]
 
+where
 
+\[ H_{i} = - \frac{\hbar^{2}}{2m} \frac{\partial^{2} }{\partial x_{i}^{2}} \]
+
+The SE then gives (upon division by $ \psi = \chi_{1}\chi_{2}\chi_{3} $)
+
+\[  \sum_{i=1}^{3} - \frac{\hbar^{2}}{2m}  \frac{\chi_{i}''}{\chi_{i}} = E  \]
+
+Since each term is independent of the other two, we have
+
+\[ H_{i}\chi_{i} = E_{i}\chi_{i} \]
+
+with 
+
+\[ E_{1} + E_{2} + E_{3} = E \]
 
 \[ - \frac{\hbar^{2}}{2m}\frac{X''}{X} = E_{1} \]
 \[ X'' + k^{2}X = 0  \qquad \text{ where } E_{1} = \frac{\hbar^{2}k^{2}}{2m}  \]
@@ -128,7 +142,81 @@ Now adding similar solutions gives
 
 \section{QUESTION 3}
 
+
+\begin{align*}
+i \hbar \frac{\d }{\d t} \langle Q \rangle_{\Psi} & = i \hbar \frac{\d }{\d t} ( \Psi,  Q \Psi)  \\
+& = i \hbar (\dot{\Psi}, Q \psi )+ (\Psi,  Q \dot{\psi}) \\
+& = (- i \hbar \dot{\Psi}, Q \psi ) + (\Psi, Q i \hbar \dot{\Psi} ) \\
+& = (- H \Psi, Q \Psi) + (\Psi, QH \Psi) \\
+& = (\Psi, - H Q \Psi) + (\Psi, QH \Psi) \\
+& = (\Psi, (QH - HQ) \Psi ) \\
+& = \langle [Q,H] \rangle_{\Psi}
+\end{align*}
+
+
+In one dimension, Ehrenfest's Theorem showed that
+
+\begin{align*}
+\frac{\d }{\d t} \langle \hat{x} \rangle_{\Psi} & = \frac{1}{m} \langle \hat{p} \rangle_{\Psi} \\
+\frac{\d }{\d t} \langle  \hat{p} \rangle_{\Psi}& = - \langle V'(\hat{x}) \rangle_{\Psi} 
+\end{align*}
+
+Similarly, using the above result,
+
+\[ i \hbar \frac{\d }{\d t} \langle \hat{\mathbf{x}} \rangle_{\Psi} = \langle [\hat{\mathbf{x}},H] \rangle_{\Psi} \]
+
+\begin{align*}
+[\hat{x}_{i},H_{i}] & = - \frac{1}{2m} [\hat{x}_{i},\hat{p}_{i}^{2}] + \underbrace{[\hat{x}_{i},V(\hat{x}_{i})]}_{=0} \\
+& = - \frac{1}{2m}  \left(    [\hat{x}_{i},\hat{p}_{i}] \hat{p}_{i} +  \hat{p}_{i} [\hat{x}_{i},\hat{p}_{i}^{2}]    \right) \\
+& = - \frac{1}{2m} (- 2 i \hbar \hat{p}_{i}) \\
+& = \frac{i \hbar}{m} \hat{p}_{i}
+\end{align*}
+
+Thus 
+
+\[ \frac{\d }{\d t} \langle \hat{\mathbf{x}} \rangle_{\Psi} = \frac{1}{m} \langle \hat{\mathbf{p}} \rangle_{\Psi}  \]
+
+Next,
+
+\begin{align*}
+[\hat{p}_{i},H_{i}] \Psi  & =  - \frac{1}{2m} \underbrace{[\hat{p}_{i},\hat{p}_{i}^{2}]}_{=0} \Psi + [\hat{p}_{i},V(\hat{x}_{i})]\Psi \\
+& = - i \hbar \frac{\partial }{\partial x_{i}} ( V(\hat{x}_{i}) \Psi ) - V(\hat{x}_{i})(- i \hbar \frac{\partial \Psi }{\partial x}) \\
+& = - i \hbar V'(\hat{x}_{i}) \Psi
+\end{align*}
+
+Thus
+
+\[ \frac{\d }{\d t} \langle \hat{\mathbf{p}} \rangle_{\Psi} = - \langle V'(\hat{\mathbf{x}}) \rangle_{\Psi}  \]
+
 \section{QUESTION 4}
+
+Suppose $ A,B $ Hermitian. Then
+\begin{align*}
+(\psi, i[A,B] \psi ) & = (\psi, i(AB - BA) \psi )  \\
+& =  (\psi, iAB\psi ) -  (\psi, iBA \psi ) \\
+& = (-i B A \psi, \psi ) + ( i A B \psi, \psi) \\
+& = (i(AB - BA)\psi,\psi) \\
+& = (i[A,B]\psi,\psi)
+\end{align*}
+
+Hence $ i[A,B] $ Hermitian.
+
+Consider $ | |  (A + i \lambda B) \psi | |^{2} \geq 0 $.
+
+\begin{align*}
+| |  (A + i \lambda B) \psi | |^{2} & = ( (A + i \lambda B) \psi, (A + i \lambda B) \psi ) \\
+& = (A \psi, A \psi) + (A \psi, i \lambda B \psi) + (i \lambda B, A \psi) + (i \lambda B, i \lambda B) \\
+& = (\psi, A^{2} \psi) +  \lambda (\psi, i A B \psi) -  \lambda (\psi, i B A \psi) + \lambda^{2} (\psi, B^{2} \psi) \\
+& = \langle A^{2} \rangle_{\psi} + \lambda \langle i [A,B] \rangle_{\psi} + \lambda^{2} \langle B^{2} \rangle_{\psi}
+\end{align*}
+
+Quadratic in $ \lambda,$ and is  $ \geq 0 $, so discriminant must be negative, ie
+
+\[ \left|  \langle i [A,B] \rangle_{\psi} \right|^{2} \leq 4 \left| \langle A^{2} \rangle_{\psi}  \right| \left| \langle B^{2} \rangle_{\psi}  \right| \]
+
+showing the required result.
+
+Have that $ (\Delta A)_{\psi}^{2}  = \langle A^{2} \rangle_{\psi} - \langle A \rangle_{\psi}^{2} $, 
 
 \section{QUESTION 5}
 
@@ -139,15 +227,15 @@ Laplacian for a spherically symmetric potential is
 & = \psi'' + \frac{2}{r} \psi'
 \end{align*}
 
-For $ \psi(r) = C e^{-r/a}$,
+For $ \psi(r) = C e^{-r/a}$, time indep SE becomes something easy, and you should get (use the fine structure const.)
 
-\begin{align*}
-\nabla^{2} \psi & = \frac{1}{r^{2}} \left(  \frac{r^{2}}{a^{2}} - \frac{1}{a} \right) \psi + \frac{2}{r} \left( \frac{-r}{a} \psi \right)  \\
-& = \left(  \frac{1}{a^{2}}  - \frac{2}{a} \right) \psi - \frac{1}{r^{2}a}\psi  \\
-& = 
-\end{align*} 
+Should get $ a $ is the Bohr radius, $ E $ is the ground energy state.
 
+And $ C = \left( \frac{1}{\pi a} \right)^{1/2}  $, expected value 
 
+\[ \frac{1}{4} \left(  \frac{a}{\pi} \right)^{1/2}  \]
+
+can check this is more than the Bohr radius as $ \alpha \approx 1/137 $
 
 
 
@@ -163,6 +251,8 @@ L_{3} \phi(r) & = - i \hbar \left(  x_{1} \frac{\partial \phi(r)}{\partial x_{2}
 \end{align*}   
 
 Note that $ \frac{\partial \phi }{\partial x_{i}} = \frac{\phi'(r)}{r} x_{i} $.
+
+Also $ L_{2}\phi = L_{1} \phi = 0  $
 
 Now,
 
@@ -210,7 +300,7 @@ L_{3} [ x_{1} \phi(r) \pm  x_{2} \phi(r) ] & = i \hbar [x_{2} \phi(r) ] \mp i \h
 & = \pm i \hbar \psi_{\pm}(\mathbf{x})
 \end{align*}
 
-ie. $ \psi_{\pm}(\mathbf{x}) $ are eigenvalues of $ L_{3} $ with eigenvalues $ \pm 1 $.
+ie. $ \psi_{\pm}(\mathbf{x}) $ are eigenvalues of $ L_{3} $ with eigenvalues $ \pm i \hbar $.
 
 
 
@@ -220,6 +310,10 @@ ie. $ \psi_{\pm}(\mathbf{x}) $ are eigenvalues of $ L_{3} $ with eigenvalues $ \
                                                      
                                                                     
 \section{QUESTION 7}
+
+SE 
+
+\[ H = - \frac{\hbar}{2 \mu } \nabla^{2} + V(r) \]
 
 \section{QUESTION 8}
 
@@ -250,7 +344,7 @@ Also find that
 
 \begin{align*}
 S^{2} & = S_{1}^{2}  + S_{2}^{2} + S_{3}^{2} \\
-& = \frac{3 \hbar}{2} \begin{pmatrix}
+& = 3 \left( \frac{ \hbar}{2}  \right)^{2} \begin{pmatrix}
 1 & 0 \\
 0 & 1
 \end{pmatrix}

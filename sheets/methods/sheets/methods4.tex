@@ -119,15 +119,13 @@ Setting $ \lambda = \dot{T} / T $ we have
 \[ X'' + \lambda X = 0 \]
 \[ X(x) = A \cos \sqrt{\lambda} x + B \sin \sqrt{\lambda} x \]
 
-Boundary conditions $ X(0) = X(\pi) = 0 $ imply that $ A = 0 $, $ \lambda = n^{2} $. Then solving $ \dot{T} = \lambda T $ with condition $ T(0) = U(x) $ gives
+Boundary conditions $ X(0) = X(\pi) = 0 $ imply that $ A = 0 $, $ \lambda = n^{2} $. Then solving $ \dot{T} = \lambda T $ gives $ T(t) = C e^{n^{2} t} $ for some constant $ C $, so the solution is 
 
-\[ T(t) = U(x) e^{n^{2}t} \]
+\[ U(x,t) = \sum_{n=1}^{\infty} D_{n} e^{n^{2}t} \sin n x  \]
 
-Thus the unnormalised eigenfunctions of our problem are
+for some constants $ D_{n} $, which we can determine by using orthogonality conditions. 
 
-\[ u(x,t) = U(x) e^{n^{2}t} \sin n x  \]
-
-For large n the solution then has oscillations with higher and higher wavenumber and larger and larger (indeed arbitrarily large) amplitude $ U(x) e^{n^{2}t} $, and so this problem is ill-posed.
+But now, looking at what happens for large n, the solution then has oscillations with higher and higher wavenumber and larger and larger (indeed arbitrarily large) amplitude $ U(x) e^{n^{2}t} $, and so this problem is ill-posed.
 
 \section{QUESTION 3}
 
@@ -151,16 +149,25 @@ For large n the solution then has oscillations with higher and higher wavenumber
 
 	In the hyperbolic region the negative eigenvector points in the $ y $ direction. Thus, if $ f(x,y) = \text{cst.} $ is to be a characteristic surface, we need $ \partial_{y} f = \pm \sqrt{ \partial_{x} f  A_{xx} \partial_{x} f / x } = \pm \sqrt{x} \partial_{x} f  $. Letting $ p = 2 x^{1/2} $, this is $ (\partial_{y} \pm \partial_{p})f = 0 $, so the characteristic surfaces are the two curves of constant $ y \pm p $, that is
 	
-	\[ u = y + x^{1/2} \]
-	\[ v = y - x^{1/2} \]
+	\[ u = y + 2x^{1/2} \]
+	\[ v = y - 2x^{1/2} \]
 	
 	for $ u $ constant and $ v $ constant.
 
-	\item The PDE is hyperbolic in the $ y < 0 $ region. Here
+	\item Here
 	
 	\[ \mathbf{A} = \text{diag}(1,y) \]
 	
-	and $ \mathbf{m} $ points in the $ y $-direction, with $ \mathbf{A} \mathbf{m} = y \mathbf{m} $. Thus, if $ f(x,y) = \text{cst.} $ is to be a characteristic surface, we need $ \partial_{y} f = \pm \sqrt{ \partial_{x} f  A_{xx} \partial_{x} f / y } = \pm \sqrt{y} \partial_{x} f  $. Letting $ \xi = x, \nu  = 2 y^{1/2} $, this is $ (\partial_{\xi} \pm \partial_{p})f = 0 $, so the characteristic surfaces are the two curves of constant $ y \pm p $, that is
+	so the PDE is hyperbolic in the $ y < 0 $ region with the negative eigenvector $ \mathbf{m} $ points in the $ y $-direction, with $ \mathbf{A} \mathbf{m} = y \mathbf{m} $. Thus, if $ f(x,y) = \text{cst.} $ is to be a characteristic surface, we need $ \partial_{y} f = \pm \sqrt{ \partial_{x} f  A_{xx} \partial_{x} f / y } = \pm \sqrt{y} \partial_{x} f  $. Letting $ \xi = x, \eta  = 2 y^{1/2} $, this is $ (\partial_{\xi} \pm \partial_{\eta})f = 0 $, (thus $ \partial_{\eta \nu})f = 0 $)  so the characteristic surfaces are the two curves of constant $ \xi \pm \eta $, that is
+	
+		
+	\[ \nu_{1} = x + 2y^{1/2} \]
+	\[ \nu_{2} = x - 2y^{1/2} \]
+	
+	for $ \nu_{1} $ constant and $ \nu_{2} $ constant.
+	
+	(Do we? Not sure about the steps here) have $ u_{\xi\eta} = 0 \Rightarrow u(\xi,\eta) = f(\xi + \eta) + g(\xi - \eta) $, so the result follows.
+ 	
 	
 	 
 	
@@ -176,6 +183,22 @@ Green's second identity is
 
 where $ \Omega \subset \R^{n} $ is a compact set, and $ \phi, \psi : \Omega \to \R $ are a pair of functions on $ \Omega $ regular throughout $ \Omega $.
 
+Green's function for the Laplacian on domain $ \Omega $ satisfies $ \nabla^{2} G(\mathbf{r};\mathbf{r}_{0}) = \delta(\mathbf{r} - \mathbf{r}_{0}) $, and $ G |_{\partial \Omega} = 0 $
+
+Consider using this identity with $ \phi, \psi $ being $ G(\mathbf{r}'; \mathbf{r}), G(\mathbf{r}'; \mathbf{r_{0}})  $.
+
+Assume Green's second identity is valid for Green's functions (it isn't).
+
+Then the RHS is zero, as $ G |_{\partial \Omega} = 0 $. Then we have
+
+\begin{align*}
+0 & = \int_{\Omega}  G(\mathbf{r}'; \mathbf{r}) \nabla^{2} G(\mathbf{r}'; \mathbf{r_{0}}) - G(\mathbf{r}'; \mathbf{r_{0}}) \nabla^{2} G(\mathbf{r}'; \mathbf{r}) \;  \d V \\
+& = \int_{\Omega}  G(\mathbf{r}'; \mathbf{r}) \delta(\mathbf{r}' - \mathbf{r}_{0}) - G(\mathbf{r}'; \mathbf{r_{0}}) \delta(\mathbf{r}' - \mathbf{r}) \;  \d V \\
+& = \int_{\Omega}  G(\mathbf{r}_{0}; \mathbf{r})  - G(\mathbf{r}; \mathbf{r_{0}}) \;  \d V
+\end{align*}
+
+Conclude that $ G(\mathbf{r}_{0}; \mathbf{r})  - G(\mathbf{r}; \mathbf{r_{0}}) $ anywhere in $ \Omega $.
+
 \section{QUESTION 5}
 
 $ u(\mathbf{x}) $ is harmonic and therefore satisfies $ \nabla^{2} \mathbf{u} = 0 $. Consider a Dirichlet Green's function for the Laplace operator on $ D $; we have
@@ -186,27 +209,158 @@ It can be shown that
 
 \[ G (\mathbf{x} ; \mathbf{x}_{0} ) = \frac{1}{2\pi} \log | \mathbf{x} - \mathbf{x}_{0} | \]
 
-Using Green's second identity with $ \mathbf{u} $ and $ G $ we have
+Now, the result is a direct application of Green's third identity (which I'm guessing the question wants us to derive). Let $ B_{r} $ and $ B_{\varepsilon} $ be circles about the point $ \mathbf{x}_{0} $, so
 
-\[ \int_{\Omega}  u \nabla^{2} G  - G \nabla^{2} u \; \d V = \int_{\delta \Omega} G ( \mathbf{n} \cdot \nabla u ) - u ( \mathbf{n} \cdot \nabla G ) \d S   \]
+\[ B_{r} = \{ \mathbf{x} \in \R^{2} \; | \; | \mathbf{x} - \mathbf{x}_{0} | \leq r \} \]
+\[ B_{\varepsilon} = \{ \mathbf{x} \in \R^{2} \; | \; | \mathbf{x} - \mathbf{x}_{0} | \leq \varepsilon \} \]
 
-For some reason, $ \mathbf{n} \cdot \nabla u = \frac{\partial u }{\partial n} $. Also, since $ G $ only depends on the outward normal, we have $ \mathbf{n} \cdot \nabla G =  \frac{\partial G }{\partial n} $.  
+Now consider applying Green's identity on the region $ \Omega = B_{r} - B_{\varepsilon} $, so $ G(\mathbf{x};\mathbf{x}_{0}) $ is perfectly regular everywhere within $ \Omega $
 
-Thus the equation becomes 
 
-\[ \int_{\Omega}  u \nabla^{2} G  - G \nabla^{2} u \; \d V = \int_{\delta \Omega} G ( \mathbf{n} \cdot \nabla u ) - u ( \mathbf{n} \cdot \nabla G ) \d S  \]
+ Using Green's second identity with $ \mathbf{u} $ and $ G $ we have
+
+\begin{align*}
+& \int_{\Omega}  u \nabla^{2} G  - G \nabla^{2} u \; \d V = 0 \\
+& = \int_{\delta \Omega} u ( \mathbf{n} \cdot \nabla G ) - G ( \mathbf{n} \cdot \nabla u ) \d S  \\
+& = \int_{S_{r}} u ( \mathbf{n} \cdot \nabla G ) - G ( \mathbf{n} \cdot \nabla u ) \d S + \int_{S_{\varepsilon}} u ( \mathbf{n} \cdot \nabla G ) - G ( \mathbf{n} \cdot \nabla u ) \d S \quad(*)
+\end{align*}
+
+where the first equality follows since $ \nabla^{2} G = 0 $ in $ \Omega $ and $ u $ is a harmonic function. We've included contributions from both boundary circles in the final line. On the inner boundary we have
+
+\[ G|_{\text{inner bdry}} = \frac{1}{2\pi} \log | \varepsilon | \]
+
+\[ \mathbf{n} \cdot G|_{\text{inner bdry}} = - \frac{1}{2\pi} \frac{1}{\varepsilon}  \]
+
+
+The final term on the last line of $ (*) $ becomes
+
+\[ - \int_{S_{\varepsilon}} G ( \mathbf{n} \cdot \nabla u ) \d S =  \oint \frac{1}{2\pi} \log | \varepsilon | \frac{\partial u }{\partial n} \varepsilon \d \theta  \]
+
+Since $ u $ is regular by assumption, the value of this remaining integral is bounded, so this term vanishes as $ \varepsilon \to 0 $. On the other hand, the penultimate term in the final line of $ (*) $ becomes
+
+\[ \int_{S_{\varepsilon}} u ( \mathbf{n} \cdot \nabla G ) = - \frac{1}{2\pi }\oint u \d \theta = - \tilde{u}  \]
+
+where $ \tilde{u} $ is the average value of $ u $ on the small circle surrounding  $ \mathbf{x_{0}} $. As the radius of this sphere shrinks to zero we have $ \tilde{u} \to u(\mathbf{x}_{0}) $, the value of $ u $ at the centre of the sphere. 
+
+Putting all this together we find
+
+\[ u(\mathbf{x}_{0}) = \oint u \frac{\partial }{\partial n} \left(  \log| \mathbf{x} - \mathbf{x}_{0} |   \right) -  \log| \mathbf{x} - \mathbf{x}_{0} |  \frac{\partial u }{\partial n} \d l  \]
+
+which is Green's third identity, where we have now taken the boundary of $ \Omega $ to be just the large circle (the radius of the inner circle having been shrunk to zero).
+
+
+
+
 
 
 
 \section{QUESTION 6}
 
+Following the hint, we set
+
+\[ x - x_{0} = z_{0} s \cos \theta \qquad y - y_{0} = z_{0} s \sin \theta \]
+
+so that $ z_{0}^{2}s^{2} = (x-x_{0})^{2} + (y - y_{0})^{2} $. The derivatives change as 
+
+\[ \d x \d y = \left| \frac{\partial (x,y)}{\partial(s,\theta)} \right|\; \d s \d \theta \]
+
+We calculate the Jacobian as 
+
+\[ \left| \frac{\partial (x,y)}{\partial(s,\theta)} \right| = z_{0}^{2} s \]
+
+Hence
+
+\begin{align*}
+u(x_{0},y_{0},z_{0})& = \frac{z_{0}}{2\pi} \int_{0}^{2\pi} \int_{0}^{\infty} [z_{0}^{2}(s^{2} + 1)]^{-3/2} h(x,y) z_{0}^{2} s \d s \; \d \theta  \\
+& = \frac{1}{2\pi} \int_{0}^{2\pi} \int_{0}^{\infty} s[s^{2} + 1]^{-3/2} h(x_{0} + z_{0} s \cos \theta, y_{0} + z_{0} s \sin \theta) \; \d s \; \d \theta \\
+\end{align*}
+
+First boundary condition,
+
+
+\begin{align*}
+u(x_{0},y_{0},0) & = \frac{1}{2\pi} \int_{0}^{2\pi} \int_{0}^{\infty} s[s^{2} + 1]^{-3/2} h(x_{0}, y_{0}) \; \d s \; \d \theta \\
+& = h(x_{0},y_{0}) \int_{0}^{\infty} s[s^{2} + 1]^{-3/2} \; \d s \\
+& = h(x_{0},y_{0}) \left[ - [s^{2} + 1]^{-3/2} \right]_{0}^{\infty} \\
+& = h(x_{0},y_{0})
+\end{align*}
+
+as required.
+
+Second boundary condition, as $ x^{2} + y^{2} \to \infty $, must also have $ s^{2} \to \infty $.
+
+So (very loosely), the integral tends to zero. 
+
+
+
+
+
+
+
 
 
 \section{QUESTION 7}
 
+Consider the forced one-dimensional heat equation
 
+\[ \partial_{t} \theta - D \partial_{xx} \theta = f(x,t) \quad 0 < x,t < \infty, \quad \theta(0,t) = h(t), \theta(x,0) = \Theta(x)  \]
+
+Note the initial condition is inhomogenous. We consider instead that $ V(x,t) = \theta(x,t) - h(t) $ solves the equation, since the conditions are now homogeneous.
+
+We seek a Green's function such that
+
+\[ \frac{\partial }{\partial t}G(x,t ; y,\tau) - D \frac{\partial^{2} }{\partial x^{2}} G(x,t ; y,\tau) = \delta(t - \tau) \delta(x-y) \]
+
+Taking the Fourier transform wrt $ x $ 
+
+\[ \frac{\partial }{\partial t}\tilde{G}(k,t ; y,\tau) + k^{2} D \tilde{G}(k,t ; y,\tau) = \delta(t - \tau) e^{-iky}\]
+
+Multiplying by $ e^{Dk^{2}t} $ we obtain
+
+\[ \frac{\partial }{\partial t} \left[  e^{Dk^{2}t} \tilde{G}(k,t ; y,\tau)  \right] = e^{-iky + Dk^{2}t} \delta(t - \tau)  \]
+
+subject to the initial condition $ \tilde{G}(k,0 ; y,\tau) = 0 $.
+
+\begin{align*}
+\tilde{G}(k,t ; y,\tau)  & =  e^{-iky - Dk^{2}t} \int_{0}^{t} e^{Dk^{2}u} \delta(u - \tau) \; \d u   \\
+& = \begin{cases}  0  & \text{ if } t < \tau \\ e^{-iky - Dk^{2}(t-\tau)} & \text{ if } t > \tau \end{cases} \\
+& = \Theta(t - \tau) e^{-iky - Dk^{2}(t-\tau)}
+\end{align*}
+
+where $  \Theta(t - \tau) $ is the step function. 
 
 \section{QUESTION 8}
+
+We seek a Green's function such that
+
+\[ \left(  \frac{\partial^{2} }{\partial t^{2}} - c^{2} \frac{\partial^{2} }{\partial t^{2}} \right)  G(x,t ; y,\tau) = V \delta(t - \tau) \delta(x-y) \]
+
+Take the Fourier transform wrt $ x $, obtaining 
+
+\[ \frac{\partial^{2} }{\partial t^{2}} \tilde{G}(k,t ; y,\tau) + k^{2} c^{2} \tilde{G}(k,t ; y,\tau) = e^{-iky} V  \delta(t - \tau) \]
+
+The solution is
+
+\[ \tilde{G}(k,t ; y,\tau) = \Theta(t-\tau) V e^{-iky}  \frac{\sin(  kc(t-\tau) )  }{ck} \]
+
+To recover the Green's function itself, we must compute the inverse Fourier transform 
+
+\[ G(x,t ; y,\tau) = \frac{\Theta(t-\tau)}{2\pi} \int_{-\infty}^{\infty} V e^{-iky}  \frac{\sin(  kc(t-\tau) )  }{ck} \; \d k \]
+
+Have that 
+
+\[ \mathcal{F}^{-1} [ \sin ka] = \frac{i}{2} ( \delta(x+a) - \delta(x-a))    \]
+
+Alright, I don't know what I'm doing anymore.
+
+
+
+
+
+
+
+
+
 \section{QUESTION 9}
 \section{QUESTION 10}
 
@@ -217,17 +371,67 @@ Let $ \Omega = \{  (x,y) \in \R^{2} \; : \; y \geq 0 \} $ and suppose $ \psi : \
 \begin{enumerate}
 	\item We must construct a Green's function that vanishes on $ \delta \Omega $. As well as vanishing on the $ x $-axis, we also require $ G $ vanishes as $ | \mathbf{x} | \to \infty $. We'll set $ \mathbf{x} = (x,y) $ and $ \mathbf{y} : = \mathbf{x}_{0}^{+} = (x_{0},y_{0}) $ in terms of Cartesian coordinates, with $ y_{0} > 0 $. We know that the free-space Green's function
 	
-	\[ G_{2}(\mathbf{x},\mathbf{x}_{0}^{+}) = \frac{1}{2\pi} \log |  \mathbf{x} - \mathbf{x_{0}^{+}} | + c_{2}  \]
+	\[ G_{2}(\mathbf{x},\mathbf{x}_{0}^{+}) = \frac{1}{2\pi} \log |  \mathbf{x} - \mathbf{x_{0}^{+}} | \]
 	
 	satisfies all conditions except that
 	
-		\[ G_{2}(\mathbf{x},\mathbf{x}_{0}^{+}) |_{y = 0} = \frac{1}{2\pi} \log | [ (x - x_{0})^{2} + y_{0}^{2} ]^{1/2} | + c_{2} \neq 0  \]
+		\[ G_{2}(\mathbf{x},\mathbf{x}_{0}^{+}) |_{y = 0} = \frac{1}{2\pi} \log | [ (x - x_{0})^{2} + y_{0}^{2} ]^{1/2} | \neq 0 \quad (*)  \]
 		
 	We need to cancel the nonzero boundary value of $ G_{2} $ by adding on some function.
 	
 	Let $ \mathbf{x_{0}}^{-} $ be the point $ (x_{0},-y_{0}) $. The location $ \mathbf{x_{0}}^{-} \notin \Omega $, so the Green's function $ G_{2}(\mathbf{x},\mathbf{x}_{0}^{-}) $ is regular everywhere within $ \Omega $, and so obeys Laplace's equation everywhere in the upper half-space. Also,
 	
-	\[ G_{2}(\mathbf{x},\mathbf{x}_{0}^{-} |_{y = 0} = \frac{1}{2\pi} \log | [ (x - x_{0})^{2} + y_{0}^{2} ]^{1/2} | + c_{2}'  \]
+	\[ G_{2}(\mathbf{x},\mathbf{x}_{0}^{-}) |_{y = 0} = G_{2}(\mathbf{x},\mathbf{x}_{0}^{+}) |_{y = 0} \]
+	
+	Thus the Dirichlet Green's function we seek is 
+	
+	\begin{align*}
+	G(\mathbf{x} ; \mathbf{x}_{0} )& = G_{3} (\mathbf{x} ; \mathbf{x}_{0}^{+}) - G_{3} (\mathbf{x} ; \mathbf{x}_{0}^{-})   \\
+	& =  \frac{1}{2\pi} \log |  \mathbf{x} - \mathbf{x_{0}^{+}} | -  \frac{1}{2\pi} \log |  \mathbf{x} - \mathbf{x_{0}^{-}} |
+	\end{align*}
+	
+	Note this satisfies both conditions,
+	
+	\item Know that given a Green's function, the solution to our Laplace's equation problem is
+	
+	\[ \psi(\mathbf{y}) = \int_{\partial \Omega} f(\mathbf{x}) \mathbf{n} \cdot \nabla G(\mathbf{x} ; \mathbf{y}) \; \d S  \]
+	
+	
+	Note that there is no contribution from the far field since $ \psi \to 0 $ asymptotically by our boundary condition. The \emph{outward} normal at $ y = 0 $ points in the negative $ y $-direction, so the only contribution to the formula above comes from the lower boundary:
+	
+	\begin{align*}
+	(\mathbf{n} \cdot \nabla G )|_{y = 0} & = - \frac{\partial G }{\partial y} \Big|_{y = 0} \\
+	& = \frac{1}{2\pi} \left(  \frac{y + y_{0}}{| \mathbf{x} - \mathbf{x}_{0}^{-} |^{2}} - \frac{y - y_{0}}{| \mathbf{x} - \mathbf{x}_{0}^{-} |^{2}} \right) \Big|_{y = 0} \\
+	& = \frac{y_{0}}{\pi} [  (x - x_{0})^{2} + y_{0}^{2}   ]^{-1}
+	\end{align*}
+	
+	\st{At last} the solution is given by
+	
+	\[ \psi(x_{0},y_{0}) = \frac{y_{0}}{\pi} \int_{-\infty}^{\infty} \frac{f(x)}{(x - x_{0})^{2} + y^{2} } \; \d x \]
+	
+	\item Next, take the Fourier transform of $ \nabla^{2}(x,y) = 0 $ with respect to $ x $;
+	
+	\[ \int_{-\infty}^{\infty} \left(  \frac{\partial^{2} \phi }{\partial x^{2}} + \frac{\partial^{2} \phi }{\partial y^{2}} \right) e^{-ikx} \; \d x = 0  \]
+	
+	\begin{align*}
+	\Rightarrow 0 & = \int_{-\infty}^{\infty}  \frac{\partial^{2} \phi }{\partial x^{2}}  e^{-ikx} \; \d x  + \int_{-\infty}^{\infty} \frac{\partial^{2} \phi }{\partial y^{2}} e^{-ikx} \; \d x\\
+	& = - k^{2} \tilde{\phi}(k) + \frac{\partial^{2} }{\partial y^{2}} \int_{-\infty}^{\infty}  \phi e^{- i k x} \; \d x\\
+	& = - k^{2} \tilde{\phi}(k) +  \frac{\partial^{2} \tilde{\phi}(k) }{\partial y^{2}}
+	\end{align*}
+	
+	Solving this second order ODE in $ k $ gives
+	
+	\[ \tilde{\phi}(k,y) = A(k) e^{ky} + B(k) e^{-ky}  \]
+	
+	We have the boundary conditions $ \tilde{\phi}(k,0) = \tilde{f}(k) $, and $ \tilde{\phi} \to 0 $ as $ y \to \infty $. Thus
+
+	\[ \tilde{\phi}(k,y) = \tilde{f}(k) e^{-ky}  \]
+	
+	respectively. Solving gives $  A = - e^{-k}, B = e^{k} $. Thus, we take the inverse FT to finish.
+	
+	\begin{align*}
+	\phi(x,y) &  = - \frac{1}{2\pi}  \int_{-1}^{1} e^{k(y-1)} - e^{-k(y-1)} \; \d k \\
+	\end{align*}
 	
 
 	
@@ -237,9 +441,68 @@ Let $ \Omega = \{  (x,y) \in \R^{2} \; : \; y \geq 0 \} $ and suppose $ \psi : \
 
 
 \section{QUESTION 11}
+
 \section{QUESTION 12}
 
+Consider $ u_{1} = 1/(R^{2} + z^{2})^{1/2} = (x^{2} + y^{2} + z^{2})^{-1/2} $.
+This satisfies the boundary conditions. Also
 
+
+\begin{align*}
+\frac{\partial^{2} }{\partial x^{2}} (u_{1}) & = \frac{\partial }{\partial x} \left[ - x (x^{2} + y^{2} + z^{2})^{-3/2}   \right]  \\
+& = 3x^{2} (x^{2} + y^{2} + z^{2})^{-5/2} - (x^{2} + y^{2} + z^{2})^{-3/2} 
+\end{align*}
+
+Hence 
+
+\begin{align*}
+\nabla^{2} u_{1} & = (3x^{2} + 3y^{2} + 3z^{2})(x^{2} + y^{2} + z^{2})^{-5/2} - 3 (x^{2} + y^{2} + z^{2})^{-3/2} \\
+& = 0
+\end{align*}
+
+So $ u_{1} $ is a solution for $ r = 0 $.
+
+Now suppose 
+
+\[ \frac{1}{R} \frac{\partial }{\partial R} \left(  R \frac{\partial u_{2} }{\partial R} \right) + \frac{\partial^{2} Z }{\partial z^{2}}  = 0\]
+
+Let $ u_{2} = \rho(R)Z(z) $.  Separating variables shows that
+
+\[ \left(  \frac{\rho''}{\rho} + \frac{1}{R} \frac{\rho'}{\rho} \right) + \frac{Z''}{Z} = 0  \]
+
+$ \frac{Z''}{Z} $ cannot vary as $ R $ held fixed, so it must be equal to some constant, $ \lambda^{2} $. Solving gives $ Z(z) = C e^{-\lambda| z |} $ (want solution to decay as $ z \to \infty $).
+
+The radial equation, upon multiplying by $ R^{2} $ becomes
+
+\[ R^{2} \rho'' + R \rho' + \lambda^{2} R^{2}  \rho = 0 \]
+
+We cancel the factor of $ \lambda^{2} $ with the substitution $ x = \lambda R  $, and obtain 
+
+\[ x^{2} \rho'' + x \rho' + x^{2} \rho = 0 \]
+
+which we recognise as Bessel's equation of order zero, having solutions $ J_{0}(x), Y_{0}(x) $ which are regular and singular at the origin respectively. We want our solutions to be regular at the origin, hence we take $ \rho(R) = \text{const. }J_{0}(\text{ R}) $
+
+Hence the solution is $ u_{\lambda} = f(\lambda) e^{-\lambda | z |} J_{0} (\lambda R) $. There where no restrictions on $ \lambda \in Z^{+} $, so this must hold for all possible values of $ \lambda $, so (can we say?) our solution is given by
+
+\[ u = \int_{0}^{\infty} f(\lambda) e^{-\lambda | z |} J_{0} (\lambda R) \d \lambda  \]
+
+Now, setting $ u_{1} = u_{2} $ on $ R = 0 $, and noting $ J_{0}(0) = 1 $ gives
+
+\[ \frac{1}{| z |} = \int_{0}^{\infty} f(\lambda) e^{-\lambda | z |} \d \lambda \]
+
+Multiplying by $ | z | $ and integrating by parts,
+
+\begin{align*}
+1 & = \int_{0}^{\infty} f(\lambda) | z |e^{-\lambda | z |} \d \lambda \\
+& = \left[ - f(\lambda) e^{-\lambda | z |}  \right]_{0}^{\infty} - \int_{0}^{\infty} f'(\lambda) e^{-\lambda | z |} \d \lambda \\
+& = f(0)  - \int_{0}^{\infty} f'(\lambda) e^{-\lambda | z |} \d \lambda
+\end{align*}
+
+ie.
+
+\[  \int_{0}^{\infty} f'(\lambda) e^{-\lambda | z |} \d \lambda = f(0) - 1\]
+
+Not sure about last bit.
 
 
 \end{document}
