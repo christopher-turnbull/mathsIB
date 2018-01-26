@@ -1,0 +1,318 @@
+\documentclass[a4paper]{article}
+\usepackage{amsmath}
+\def\npart {IB}
+\def\nterm {Lent}
+\def\nyear {2018}
+\def\nlecturer {Dr. Warnick (cmw50@cam.ac.uk)}
+\def\ncourse {Electromagnetism Example Sheet 1}
+
+\input{header}
+
+\newtheorem*{soln}{Solution}
+
+\renewcommand{\thesection}{}
+\renewcommand{\thesubsection}{\arabic{section}.\arabic{subsection}}
+\makeatletter
+\def\@seccntformat#1{\csname #1ignore\expandafter\endcsname\csname the#1\endcsname\quad}
+\let\sectionignore\@gobbletwo
+\let\latex@numberline\numberline
+\def\numberline#1{\if\relax#1\relax\else\latex@numberline{#1}\fi}
+\makeatother
+
+
+\begin{document}
+	
+\maketitle
+
+\section{QUESTION 1}
+
+Equation for conservation of charge is
+
+\[ \frac{\partial \rho }{\partial t}  + \nabla \cdot \mathbf{J} = 0 \]
+
+Have $  \mathbf{J} = C \mathbf{r} e^{-atr^{2}} $, so 
+
+\begin{align*}
+\nabla \cdot \mathbf{J} & = C \nabla \cdot (e^{-atr^{2}} \mathbf{r} )   \\
+& = C e^{-atr^{2}} \nabla \cdot \mathbf{r} + C \mathbf{r} \cdot \nabla (e^{-atr^{2}})
+\end{align*}
+
+Now $ \mathbf{r}_{i} = x_{i} $ so $ \nabla \cdot \mathbf{r} = \frac{\partial x_{j}}{\partial x_{j}} = 3 $, and 
+
+
+\begin{align*}                                         
+ \nabla e^{-atr^{2}} & = \frac{\partial e^{-atr^{2}} }{\partial r} \hat{\mathbf{r}} \\
+& = - 2ate^{-atr^{2}} \mathbf{r}
+\end{align*}
+                                                       
+%\begin{align*}                                         
+%[\nabla (e^{-atr^{2}})]_{i} & = \frac{\partial }{\partial x_{i}} (e^{-atx_{j}x_{j}}) \\
+%& = -at (e^{-atx_{j}x_{j}})\frac{\partial }{\partial x_{i}}(x_{j}x_{j}) \\
+%& = - ate^{-atr^{2}} 2 x_{j} \delta_{ij} \\
+%& = - 2ate^{-atr^{2}} x_{i}
+%\end{align*}
+
+Hence
+
+\begin{align*}
+\nabla \cdot \mathbf{J} & = 3 C e^{-atr^{2}} - 2C  r^{2} ate^{-atr^{2}}
+\end{align*}
+
+Suppose that $ \rho = (f + tg)e^{-atr^{2}} $. Then we have
+
+\begin{align*}
+\frac{\partial \rho }{\partial t} & = (-ar^{2} f + g - ar^{2}tg)e^{-atr^{2}} \\
+& = (g - ar^{2} f) e^{-atr^{2}} - gt ar^{2} e^{-atr^{2}} \\
+\end{align*}
+
+Hence we conclude that
+
+\[ g - a r^{2} f = - 3 C , \qquad g = -2C \]
+
+\[ \Rightarrow f = \frac{C}{ar^{2}} \]
+
+\section{QUESTION 2}
+
+Using the continuity equation, 
+
+\begin{align*}
+\frac{\partial \rho }{\partial t} & = - \nabla \cdot \mathbf{J}  \\
+& = - \nabla \cdot (-D \nabla  \rho) \\
+& = D \nabla^{2} \rho 
+\end{align*}
+
+showing $ \rho(\mathbf{x},t) $ obeys the heat equation with diffusion constant $ D $.
+
+Let $ \rho(\mathbf{r},t) $ be defined as 
+
+\[ \rho(\mathbf{r},t) = \frac{\rho_{0}a^{3}}{	(4D(t - t_{0}) + a^{2})^{3/2}} \exp \left(  - \frac{r^{2}}{4D(t - t_{0}) + a^{2}} \right)  \]
+
+Taking time derivatives,
+
+\begin{align*}
+\frac{\partial \rho }{\partial t} & = \left(  \frac{-6D \rho_{0}a^{3}}{	(4D(t - t_{0}) + a^{2})^{5/2}} + \frac{4D r^{2} \rho_{0}a^{3} }{(4D(t-t_{0}) + a^{2})^{7/2}} \right) \exp \left( - \frac{r^{2}}{4D(t - t_{0}) + a^{2}} \right) \\
+\end{align*}
+
+Now
+
+%\begin{align*}
+%\nabla^{2} e^{\lambda r^{2}} & = \frac{\partial^{2} }{\partial x_{j} \partial x_{j}} \left[ e^{\lambda x_{p}x_{p}} \right]  \\
+%& = \frac{\partial }{\partial x_{j}} \left[ 2\lambda x_{j} e^{\lambda x_{p}x_{p}} \right] \\
+%& =  6 \lambda e^{\lambda x_{j}x_{j}}  + 4 \lambda^{2} x_{j} x_{j} e^{\lambda x_{p}x_{p}} \qquad \left(  \text{ as } \frac{\partial x_{j} }{\partial x_{j}} = 3 \right)    \\
+%& =  \lambda ( 6  + 4 \lambda r^{2} )e^{\lambda r^{2}}
+%\end{align*}
+
+\begin{align*}
+\nabla^{2} e^{\lambda r^{2}} & = \frac{1}{r^{2} }\frac{\d }{\d r} \left(  r^{2} \frac{\d }{\d r}( e^{\lambda r^{2}} ) \right) \\
+& = \frac{2 \lambda}{r^{2}} \frac{\d }{\d r} \left(  r^{3} e^{\lambda r^{2}} \right) \\
+& =  \frac{2 \lambda}{r^{2}} \left[   3r^{2} + 2 \lambda r^{4} \right] e^{\lambda r^{2}} \\
+& = \lambda(6 + 4r^{2}) e^{\lambda r^{2}}
+\end{align*}
+
+Thus with $ \lambda = - \frac{1}{4D(t - t_{0}) + a^{2}}  $, we have 
+
+\begin{align*}
+\nabla^{2} \rho  & = \frac{- \rho_{0}a^{3}}{	(4D(t - t_{0}) + a^{2})^{5/2}} \left(  6 - \frac{4 r^{2}}{4D(t - t_{0}) + a^{2}}  \right) \exp \left( - \frac{r^{2}}{4D(t - t_{0}) + a^{2}} \right)  \\
+& = \left( -  \frac{6 \rho_{0}a^{3}}{	(4D(t - t_{0}) + a^{2})^{5/2}} + \frac{4 r^{2} \rho_{0}a^{3} }{(4D(t - t_{0}) + a^{2})^{-7/2}} \right) \exp \left( - \frac{r^{2}}{4D(t - t_{0}) + a^{2}} \right)
+\end{align*}
+
+Hence we can see that $ \frac{\partial \rho }{\partial t} = D \nabla^{2} \rho  $, as required.
+
+
+
+\section{QUESTION 3}
+
+Considering the infinite plane $ z = 0 $, we see this has uniform charge density $ \rho_{0} $. 
+
+By symmetry, the field points vertically, and the field on the bottom is opposite of that on top, we must have
+
+\[ \mathbf{E} = E(z) \hat{\mathbf{z}} \]
+
+with
+
+\[ E(z) = -E(-z) \]
+
+Consider a vertical cylinder of height $ 2h $ and cross-sectional area $ A $. Now only the end caps contribute.
+
+First, 
+
+\begin{align*}
+Q & = \int_{V} \rho_{0} e^{-k| z |}  \; \d V \\
+& = \int_{-h}^{h} \int_{0}^{2\pi}  \int_{0}^{R} \rho_{0} e^{-k| z |}  \rho \; \d \rho \d \phi \d z \\
+& = 2 \pi \frac{R^{2}}{2} \rho_{0} \int_{-h}^{h}  e^{-k| z |}  \;  \d z \\
+& =  A \rho_{0} \int_{0}^{h} 2 e^{-kz}   \;  \d z \\
+& =  2 A \rho_{0} \left[ - \frac{1}{k} e^{-kz} \right]_{0}^{h} \\
+& =  2 A \frac{\rho_{0}}{k} (1 - e^{-kh}) 
+\end{align*}
+
+And
+
+\begin{align*}
+\int_{S} \mathbf{E} \cdot \d \mathbf{S} & = E(h) A - E(-h) A = 2AE(h)  =  2 A \frac{\rho_{0}}{k \varepsilon_{0}} (1 - e^{-kh}) \\
+\end{align*}
+
+Hence 
+
+\[ E(z)  =  \frac{\rho_{0}}{k \varepsilon_{0}} (1 - e^{-kz}) \]
+
+as required.
+
+
+
+
+\section{QUESTION 4}
+
+We have that
+
+\[ \rho(r) = \begin{cases} 0  & \text{ if } r < a  \\ \rho & \text{ if } a < r < b \\ 0 & \text{ if } r > b \end{cases} \]
+
+
+First consider $ r > b $. By symmetry, the force is the same in all directions and points outwards radially. So
+
+\[  \mathbf{E} = E(r) \hat{\mathbf{r}} \]
+
+Put $ S $ to be a sphere of radius $ r > b $. Then the total flux is 
+
+\begin{align*}
+\int_{S} \mathbf{E} \cdot \; \d S  & = \int_{S} E(r) \hat{\mathbf{r}} \cdot \d \mathbf{S} \\
+& = E(r) \int_{S}  \hat{\mathbf{r}} \cdot \d \mathbf{S} \\
+& = E(r) \cdot 4 \pi r^{2}
+\end{align*}
+
+By Gauss's law, we know this is equal to $ Q/\varepsilon_{0} $, and $ Q = \frac{4}{3} \pi (b^{3} - a^{3}) \rho $. Therefore,
+
+\[ E(r) = \frac{ (b^{3} - a^{3}) \rho}{3\varepsilon_{0}r^{2}} \]
+
+and
+
+\[  \mathbf{E}(r) = \frac{ (b^{3} - a^{3})\rho}{3\varepsilon_{0}r^{2}} \hat{\mathbf{r}}  \]
+
+
+Now suppose we are inside the region, $ a < r < b $. Then
+
+
+\[ \int_{S} \mathbf{E} \cdot \; \d S = E(r) 4 \pi r^{2} = \frac{Q}{\varepsilon_{0}} \left(  \frac{r^{3}-a^{3}}{b^{3}-a^{3}} \right)  \]
+
+So 
+
+\begin{align*}
+\mathbf{E}(r) & = \frac{Q(r^{3}-a^{3})}{4 \pi \varepsilon_{0}(b^{3}-a^{3}) r^{2}} \\
+& = \frac{Q(r^{3}-a^{3})\rho}{3 \varepsilon_{0} r^{2}}
+\end{align*}
+
+
+Finally if $ r < a $, Gauss' law tells us that the flux depends only on the total charge contained inside the surface, which in this case is none. So $ \mathbf{E}(r) = 0 $.
+
+Note that the electric field is discontinuous across the surface. We have
+
+\begin{align*}
+E(r \to b +  ) - E(r \to b-) & =  \frac{ (b-a)(b^{2} + 2ab + a^{2}) \rho  }{3\varepsilon_{0}b^{2}} \\
+& = \frac{\sigma}{\varepsilon_{0}}
+\end{align*}
+
+as expected.
+
+\section{QUESTION 5}
+
+
+The field lines for a positive charge are:
+\begin{center}
+	\begin{tikzpicture}
+	\node [draw, circle, inner sep = 0, minimum size=13] {+};
+	\draw [dashed] circle [radius=1.4];
+	\draw [dashed] circle [radius=.7];
+	\draw [->] (0, 0.3) -- (0, 1.5);
+	\draw [->] (0.3, 0) -- (1.5, 0);
+	\draw [->] (0, -0.3) -- (0, -1.5);
+	\draw [->] (-0.3, 0) -- (-1.5, 0);
+	\end{tikzpicture}
+\end{center}
+
+For two positive charges,
+
+
+
+\begin{center}
+	\begin{tikzpicture}
+	\node [draw, circle, inner sep = 0, minimum size=13] (+) {+};
+	\node [draw, circle, inner sep = 0, minimum size=13] (-) at (2, 0) {+};
+	\draw [->-=0.6] (+) to [bend right=30] (0.5,1);
+	\draw [->-=0.6] (+) to [bend left=30] (0.5,-1);
+	\draw [->-=0.6] (-) to [bend left=30] (1.5,1);
+	\draw [->-=0.6] (-) to [bend right=30] (1.5,-1);
+	\draw [->-=0.7] (+) to [bend right=30] +(-1, 0.5);
+	\draw [->-=0.7] (+) to [bend left=30] +(-1, -0.5);
+	\draw [->-=0.7] (+) to +(-1, 0);
+	\draw [-<-=0.4] (-) to [bend left=30] +(1, 0.5);
+	\draw [-<-=0.4] (-) to [bend right=30] +(1, -0.5);
+	\draw [-<-=0.4] (-) to +(1, 0);
+	\end{tikzpicture}
+\end{center}
+
+
+We can also draw field lines for dipoles:
+\begin{center}
+	\begin{tikzpicture}
+	\node [draw, circle, inner sep = 0, minimum size=13] (+) {+};
+	\node [draw, circle, inner sep = 0, minimum size=13] (-) at (2, 0) {-};
+	\draw [->-=0.6] (+) -- (-);
+	\draw [->-=0.6] (+) to [bend left=30] (-);
+	\draw [->-=0.6] (+) to [bend right=30] (-);
+	\draw [->-=0.6] (+) to [bend left=60] (-);
+	\draw [->-=0.6] (+) to [bend right=60] (-);
+	\draw [->-=0.7] (+) to [bend right=30] +(-1, 0.5);
+	\draw [->-=0.7] (+) to [bend left=30] +(-1, -0.5);
+	\draw [->-=0.7] (+) to +(-1, 0);
+	\draw [-<-=0.4] (-) to [bend left=30] +(1, 0.5);
+	\draw [-<-=0.4] (-) to [bend right=30] +(1, -0.5);
+	\draw [-<-=0.4] (-) to +(1, 0);
+	\end{tikzpicture}
+\end{center}
+
+
+\section{QUESTION 6}
+
+The inverse square law, or Coulomb's Law, states that the electric field generated by a particle with total charge $ Q $ (at the origin) is given by
+
+\[ \mathbf{E}(r) = \frac{Q}{4 \pi \varepsilon_{0} r^{2}} \hat{\mathbf{r}} \]
+
+Now consider an infinite line with uniform charge density per unit length $ \eta $.
+We use cylindrical polar coordinates. By symmetry, the field is radial, ie.
+
+\[ \mathbf{E}(r) = E(r) \hat{\mathbf{r}} \]
+
+Consider an arbitrary point at $ (r,z_{0}) $. We will integrate along the $ z $-axis to find the field at this point. 
+
+
+%\begin{center}
+%	\begin{tikzpicture}
+%	
+%	\draw (0,0) to (0,1);
+%	\draw (0,0) -- (2,0);
+%	\draw (2,0) -- (0,1);
+%	\node[draw] at (0.5, 0) ($r_{0}$)  ;
+%	\end{tikzpicture}
+%\end{center}
+
+Here,
+
+\begin{align*}
+E(r) & = \int_{-\infty}^{\infty} \frac{Q}{4 \pi \varepsilon_{0}} \frac{1}{r^{2} + (z-z_{0})^{2}} \; \d z \\
+& = \frac{Q}{4 \pi \varepsilon_{0}} \int_{-\infty}^{\infty}  \frac{1}{r^{2} + z^{2}} \; \d z \\
+& = \frac{Q}{4 \pi \varepsilon_{0}} \left[   \frac{1}{r} \arctan \left(  \frac{z}{r} \right)   \right]_{-\infty}^{\infty}  \\
+& = \frac{Q}{4 r \varepsilon_{0}} 
+\end{align*}
+
+
+
+
+\section{QUESTION 7}
+\section{QUESTION 8}
+\section{QUESTION 9}
+\section{QUESTION 10}
+\section{QUESTION 11}
+\section{QUESTION 12}
+
+
+
+\end{document}

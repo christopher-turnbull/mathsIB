@@ -1,0 +1,336 @@
+\documentclass[a4paper]{article}
+\usepackage{amsmath}
+\def\npart {IB}
+\def\nterm {Lent}
+\def\nyear {2018}
+\def\nlecturer {Prof. Haynes (P.H.Haynes@damtp.cam.ac.uk)}
+\def\ncourse {Complex Methods Example Sheet 1}
+
+\input{header}
+
+\newtheorem*{soln}{Solution}
+
+\renewcommand{\thesection}{}
+\renewcommand{\thesubsection}{\arabic{section}.\arabic{subsection}}
+\makeatletter
+\def\@seccntformat#1{\csname #1ignore\expandafter\endcsname\csname the#1\endcsname\quad}
+\let\sectionignore\@gobbletwo
+\let\latex@numberline\numberline
+\def\numberline#1{\if\relax#1\relax\else\latex@numberline{#1}\fi}
+\makeatother
+
+
+\begin{document}
+	
+\maketitle
+
+\section{QUESTION 1}
+
+\begin{enumerate}
+	\item \emph{[For each of the following we let $ f(z) = u(x,y) + iv(x,y) $ and check the Cauchy-Riemann equations.] }
+	
+	\begin{itemize}
+		\item $ f(z) = \Im z$. This has $ u = y $, $ v = 0 $. But
+		
+		\[ \frac{\partial u }{\partial y} = 1 \neq 0 = - \frac{\partial u }{\partial x} \]
+		
+		So $ \Im z $ is nowhere differentiable, and hence nowhere analytic.
+		
+		\item $ f(z) = | z |^{2} = x^{2} + y^{2} $. This has $ u = x^{2} + y^{2} $, $ y = 0 $. Have
+		
+		\[ \frac{\partial u }{\partial x} = 2x, \frac{\partial u }{\partial y} = 2y \quad \frac{\partial v }{\partial y} = \frac{\partial v }{\partial x} = 0  \]
+		
+		Hence the Cauchy-Riemann equations are only satisfied at the origin. So $ f $ in only differentiable at $ z = 0 $, however it is not analytic since there is no neighbourhood of 0 throughout which $ f $ is differentiable.
+		
+		\item $ f(z) = \sech z $. First note that if $ f(z) = u + iv \neq 0 $, then \[ \frac{1}{f(z)} = \frac{u}{u^{2} + v^{2}} - \frac{iv}{u^{2} + v^{2}} \] 
+		
+		So if $ f(z) $ is analytic, then $ \frac{1}{f(z)} $ is analytic provided $ f(z) \neq 0 $. 
+		
+		
+		$ g(z) : = \cosh(z) = \frac{1}{2} (e^{z} + e^{-z}) $ is entire since $ e^{z} $ is entire (from lectures). Checking when $ g $ is zero gives us $ z = \frac{1}{2} \log(-1) = \frac{1}{2} \left[ \log(1) + (2 n + 1) i \pi \right] $ for integer $ n $.
+		
+		Hence $ \sech (z) $ is differentiable at all points expect those at $ (0,(n + \frac{1}{2}) \pi) $ for integer $ n $, and hence also analytic everywhere but these points. 
+	\end{itemize}
+	
+	
+	\item Writing $ z= r(\cos \theta + i \sin \theta) $, we obtain 
+	
+	\[ u = r\cos 5 \theta \quad v = r\sin 5\theta \]
+	
+	Using the chain rule with $ r = \sqrt{x^{2} + y^{2}}, \tan \theta = \frac{y}{x} $,
+	
+	\st{This is going to be messy} First note that
+	
+	\[ \frac{\partial \theta }{\partial x} = \frac{-y}{x^{2} + y^{2}}, \qquad \frac{\partial \theta }{\partial y} = \frac{x}{x^{2} + y^{2}} \]
+	
+	and
+	
+	\[ \frac{\partial r }{\partial x} = x (x^{2} + y^{2})^{-1/2}, \qquad \frac{\partial r }{\partial y} y (x^{2} + y^{2})^{-1/2} \]
+	
+	The first Cauchy Riemann equation is
+	
+	\begin{align*}
+	\frac{\partial u }{\partial x} & = \frac{\partial u }{\partial r} \frac{\partial r}{\partial x} + \frac{\partial u }{\partial \theta} \frac{\partial \theta}{\partial x} \\
+	& = \cos (5 \theta) x (x^{2} + y^{2})^{-1/2} - r \sin 5 \theta \frac{-y}{x^{2} + y^{2}} \\
+	& = \cos (5 \theta) r \cos \theta r^{-1}  - r \sin 5 \theta \frac{-r \sin \theta }{r^{2}} \\
+	& = \cos 4 \theta
+	\end{align*}
+	
+	Similarly, 
+	
+	\begin{align*}
+	\frac{\partial v }{\partial y} & = \frac{\partial v }{\partial r} \frac{\partial r}{\partial y} + \frac{\partial v }{\partial \theta} \frac{\partial \theta}{\partial y} \\
+	& = \sin (5 \theta) y (x^{2} + y^{2})^{-1/2} + r \cos 5 \theta \frac{x}{x^{2} + y^{2}} \\
+	& = \sin (5 \theta) r \sin \theta r^{-1} + r \cos 5 \theta \frac{r \cos \theta}{r^{2}} \\
+	& = \cos 4 \theta
+	\end{align*}
+	
+	For second CR equation,
+	
+	\begin{align*}
+	\frac{\partial v }{\partial x} & = \frac{\partial v }{\partial r} \frac{\partial r}{\partial x} + \frac{\partial v }{\partial \theta} \frac{\partial \theta}{\partial x} \\
+	& = \sin (5 \theta) x (x^{2} + y^{2})^{-1/2} + r \cos 5 \theta \frac{-y}{x^{2} + y^{2}} \\
+	& = \sin (5 \theta) r \cos \theta r^{-1}  + r \cos 5 \theta \frac{-r \sin \theta }{r^{2}} \\
+	& = \sin 4 \theta
+	\end{align*}
+	
+	and 
+	
+	\begin{align*}
+	\frac{\partial u }{\partial y} & = \frac{\partial u }{\partial r} \frac{\partial r}{\partial y} + \frac{\partial u }{\partial \theta} \frac{\partial \theta}{\partial y} \\
+	& = \cos (5 \theta) y (x^{2} + y^{2})^{-1/2} + - \sin 5 \theta \frac{x}{x^{2} + y^{2}} \\
+	& = \cos (5 \theta) r \sin \theta r^{-1} - r \sin 5 \theta \frac{r \cos \theta}{r^{2}} \\
+	& = -  \sin 4 \theta
+	\end{align*}
+	
+	We conclude in fact that the Cauchy-Riemann equations are satisfied everywhere. 
+	
+	Now, looking closer at $ \frac{\partial u }{\partial x} $, we have 
+	
+	\begin{align*}
+	\frac{\partial u }{\partial x} & = \cos 4 \theta \\
+	& = \cos^{2} 2\theta - \sin^{2} 2 \theta \\
+	& = ( \cos^{2} \theta - \sin^{2} \theta )^{2} - 4 \sin^{2} \theta \cos^{2} \theta \\
+	& = ( \cos^{2} \theta + \sin^{2} \theta )^{2} - 8 \sin^{2} \theta \cos^{2} \theta \\
+	& = 1 - \frac{8x^{2}y^{2}}{r^{4}} \\
+	& = 1 - \frac{8x^{2}y^{2}}{(x^{2} + y^{2})^{2}}
+ 	\end{align*}
+ 	
+ 	Now we see that when $ x = y = 0 $, $ \frac{\partial u }{\partial x} $ is not defined, which is enough to show that $ f $ is not differentiable at the origin.
+	
+	
+	
+	
+	
+
+\end{enumerate}
+
+\section{QUESTION 2}
+\emph{[Each of the following analytical functions will be of the form $ f(z) = u(x,y) + iv(x,y) $. Given $ u $, we find $ v $ using the Cauchy-Riemann equations, and thus $ f $.] }
+\begin{enumerate}
+	
+	\item The first Cauchy Riemann equation determines
+	
+	\[ \frac{\partial u }{\partial x} = \frac{\partial v }{\partial y} = 1 \implies v = y + g(x) \]
+	
+	The other Cauchy Riemann equation gives
+	
+	\[ 0 = - \frac{\partial u }{\partial y} = \frac{\partial v }{\partial x} = g'(x) \]
+	
+	So $ g $ must be a constant, say $ \alpha $. Wlog set it to zero. The corresponding analytic function is therefore
+	
+	\[ f(z) = x + iy   = z  \]
+	
+	\item $ u = xy, $ so the first Cauchy Riemann equation determines
+	
+	\[ \frac{\partial u }{\partial x} = \frac{\partial v }{\partial y} = y \implies  v = \frac{1}{2} y^{2} + g(x) \]
+	
+	The other Cauchy Riemann equation gives
+	
+	\[ -x = - \frac{\partial u }{\partial y} = \frac{\partial v }{\partial x} = g'(x) \]
+	
+	So $ g'(x) = - x $, giving us $ g(x) = - \frac{1}{2} x^{2} + \alpha $ for some constant $ \alpha $, wlog 0. The corresponding analytic function is therefore
+	
+	\begin{align*}
+	f(z) & = xy +  \frac{1}{2} i (y^{2} - x^{2}) \\
+	& = \frac{1}{2} i \left( y^{2} - 2ixy - x^{2}    \right) \\
+	& =  - \frac{1}{2} i \left( x^{2} + 2 i x y - y^{2}    \right) \\
+	& = - \frac{1}{2} i \left( x + i y   \right)^{2} \\
+	& = - \frac{1}{2} i z^{2}
+	\end{align*}
+	
+	
+		
+	\item $ u = \sin x \cosh y, $ so the first Cauchy Riemann equation determines
+	
+	\[ \frac{\partial u }{\partial x} = \frac{\partial v }{\partial y} =   \cos x \cosh y\implies v = \cos x \sinh y + g(x) \]
+	
+	The other Cauchy Riemann equation gives
+	
+	\[ \sin x \sinh y = \frac{\partial u }{\partial y} = - \frac{\partial v }{\partial x} = \sin x \sinh y + g'(x) \]
+	
+	So $ g'(x) = 0 $, giving us $ v(x) = \cos x \sinh y + \alpha $ for some constant $ \alpha $ (wlog set it to zero). The corresponding analytic function is therefore
+	
+	
+	\begin{align*}
+	f(z) & = \sin x \cosh y  +  i \cos x \sinh y \\
+	& = \frac{1}{2} e^{y} (\sin x + i \cos x) + \frac{1}{2} e^{-y} ( \sin x - i \cos x) \\
+	& = \frac{1}{2} i [   e^{y - i x} - e^{ix - y} ] \\
+	& = i \sinh (z^{*})
+	\end{align*}
+	
+	
+		
+	\item $ u = \log(x^{2}+y^{2}), $ so Cauchy Riemann determine that
+	
+	Recall $ \int \frac{1}{a^{2} + x^{2}} \; \d x = \frac{1}{a} \arctan(x/a) $
+	
+	\[ \frac{\partial v }{\partial y} = \frac{\partial u }{\partial x } = \frac{2x}{x^{2}+y^{2}} \implies y = 2 \arctan (y/x) + g(x)   \]
+	Next,
+	
+	\[ \frac{2y}{x^{2}+y^{2}}  = \frac{\partial u }{\partial y} = - \frac{\partial v}{\partial x} =  \frac{2y}{x^{2}+y^{2}} + g'(x) \]
+		
+	Hence $ g'(x) = 0 $, set $ g(x) = 0 $ wlog, have that 
+	
+	
+	\begin{align*}
+	f(z) & = \log(x^{2}+y^{2})  +  i 2 \arctan (y/x) \\
+	& = \log(| z |^{2}) + 2 i \text{sgn}(x) arg(z) \\
+	\end{align*}
+	
+	
+	
+	
+		
+	\item $ u = \frac{y}{(x+1)^{2} + y^{2}} $, so Cauchy Riemann determine that
+	
+	
+		
+	\[ \frac{\partial u }{\partial x} = \frac{\partial v }{\partial y} =   \frac{-2y(x+1)}{[(x+1)^{2} + y^{2}]^{2}}  \]
+	
+	\begin{align*}
+	\implies v & = -(x+1)\int 2y [(x+1)^{2} + y^{2}]^{-2} \; \d y   \\
+	& = \frac{-(x+1)}{(x+1)^{2} + y^{2}} + g(x)
+	\end{align*}
+	
+	CBA checking the next one (is this necessary?)
+	
+	The corresponding analytic function is therefore
+	
+	\begin{align*}
+	f(z) & = \frac{y}{(x+1)^{2} + y^{2}}  + - i \frac{(x+1)}{(x+1)^{2} + y^{2}} \\
+	& = y + i(x+1) \\
+	& = i(x - iy) + i \\
+	& = i z^{*} + i
+	\end{align*}
+	
+	\item $ u = \arctan\left(   \frac{2xy}{x^{2} - y^{2}} \right)   $, so Cauchy Riemann determine that
+	
+	
+	
+	\begin{align*}
+	\frac{\partial u }{\partial x} = \frac{\partial v }{\partial y} & = \frac{(x^{2} - y^{2})2y - 2xy(2x)}{(x^{2} - y^{2})^{2} + (2xy)^{2}  }   \\
+	& = \frac{2y[(x^{2} - y^{2}) - 2x^{2}]}{(x^{2} + y^{2})^{2} } \\
+	& = \frac{-2y(x^{2} + y^{2})}{(x^{2} + y^{2})^{2} } \\
+	& = \frac{-2y}{x^{2} + y^{2} }
+	\end{align*}
+	
+	\begin{align*}
+	\implies v & = \int \frac{-2y}{x^{2} + y^{2} }\; \d y \\
+	& = - \log ( x^{2} + y^{2} ) + g(x) \\	
+	\end{align*}
+	
+	Hmm, deduce that $ g'(x) = 0 $, set the constant to zero, so we have 
+	
+	\begin{align*}
+	f(z) & = \arctan\left(   \frac{2xy}{x^{2} - y^{2}} \right)  - i \log ( x^{2} + y^{2} ) \\
+	& = 
+	\end{align*}
+		
+	
+\end{enumerate}
+
+
+Now, if these $ f = u + iv $ are analytic, (and therefore satisfy the Cauchy-Riemann equations) we can compute
+
+\begin{align*}
+\frac{\partial^{2} u}{\partial x^{2}} & = \frac{\partial }{\partial x} \left(  \frac{\partial u }{\partial x} \right)  \\
+& = \frac{\partial }{\partial x} \left(  \frac{\partial v }{\partial y} \right)\\
+& = \frac{\partial }{\partial y} \left(  \frac{\partial v }{\partial x} \right)\\
+& = \frac{\partial }{\partial y} \left(  - \frac{\partial u }{\partial y} \right)\\
+& =  - \frac{\partial^{2} u }{\partial y^{2}}  \\
+\end{align*}
+
+Therefore, when the CR equations are satisfied, the function $ u $ is harmonic.
+
+Hence, for the above questions, we have $ u $ harmonic on
+
+\begin{enumerate}
+	\item $ \R^{2} $
+	\item $ \R^{2} $
+	\item $ \R^{2} $
+	\item $ \R^{2} $
+	\item $ \R^{2} $
+	\item $ \R^{2} $
+	
+\end{enumerate}
+
+\section{QUESTION 3}
+\section{QUESTION 4}
+
+\[ \phi(x,y) = e^{x}(x \cos y - y \sin y) \]
+
+Calculating the partial derivatives,
+
+\begin{align*}
+\partial_{x} \phi & = \phi + e^{x}\cos y \\
+\partial_{xx} \phi & = \partial_{x} \phi +  e^{x}\cos y  \\
+& = \phi + 2 e^{x}\cos y
+\end{align*}
+
+
+
+\begin{align*}
+\partial_{y} \phi & = e^{x}(-x \sin y - \sin y - y \cos y) \\
+\partial_{yy} \phi & = e^{x}(-x \cos y - 2\cos y + y \sin y ) \\
+& = - \phi - 2 e^{x}\cos y
+\end{align*}
+
+Hence $ \partial_{xx} \phi + \partial_{yy} \phi = 0  $ and the function is indeed harmonic.
+
+The harmonic conjugate $ \psi(x,y) $ satisfies the Cauchy Riemann equations
+
+\[ \frac{\partial \phi }{\partial x} = \frac{\partial \psi }{\partial y}, \qquad  \frac{\partial \phi }{\partial y} = - \frac{\partial \psi }{\partial x} \]
+
+The first of these gives 
+
+\[ \frac{\partial \phi }{\partial x} = \frac{\partial \psi }{\partial y} = e^{x}(x \cos y - y \sin y) + e^{x}\cos y \]
+
+Noting $ \int y \sin y \d y = - y \cos y + \sin y $, we must have $ \psi = e^{x}(x \sin y + y \cos y) + g(x) $. The other Cauchy Riemann equation gives
+
+\[ e^{x}(x \sin y + \sin y + y \cos y) = - \frac{\partial \phi }{\partial y} = \frac{\partial v }{\partial x} = e^{x}(x \sin y + \sin y + y \cos y) + g'(x) \]
+
+So $ g $ must be a constant, say $ 0 $, so the harmonic conjugate of $ \phi $ is
+
+\[ \psi(x,y) = e^{x}(x \sin y + y \cos y) \]
+
+Can now show that $ \nabla \phi \cdot \nabla  \psi = 0 $ (by the CR equations), ie. contours of harmonic conjugate function are perpendicular (in 2D). 
+
+Recall that a gradient of a function is perpendicular to its contours. 
+
+
+
+
+
+\section{QUESTION 5}
+\section{QUESTION 6}
+\section{QUESTION 7}
+\section{QUESTION 8}
+\section{QUESTION 9}
+\section{QUESTION 10}
+\section{QUESTION 11}
+\section{QUESTION 12}
+
+
+
+\end{document}

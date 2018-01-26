@@ -24,21 +24,34 @@
 \maketitle
 
 \section{QUESTION 1}
+
+\emph{I still have a lot of questions about the general theory of what characteristics are, and finding them using this technique is a little rusty...}
+
 \begin{enumerate}
-	\item Along characteristic curves,
+	\item 
+	
+	\[ u_{x} + y u_{y} = 0, \qquad u(0,y) = y^{3} \]
+	
+	
+	Along characteristic curves,
 	
 	\[ \frac{\d x}{\d s} = 1 \quad \frac{\d y}{\d s} = y  \]
 	
-	which has general solution $ x = s + c $ and $ y = Ae^{s} $ for some constants $ c,A $. 
+	\[ \implies  x = s + c, \qquad y = Ae^{s} \]
 	
-	Cauchy data is $ B(t) = \{ (x = 0, y = t) \} $, intersect $ B $ at $ s = 0 $, thus characteristic curves are
+
 	
-	\[ x = s \quad y = t e^{s} \]
+	Cauchy data is $ B(t) = \{ (x = 0, y = t) \} $, so at $ s = 0 $, $ x = 0, y = t $.
 	
-	$ \frac{\partial u}{\partial s} \big|_{t} = 0 $ so that $ u = \text{cst} $ along these characteristics.
+	\[ \implies x = s, \qquad y = t e^{s} \]
 	
-	 and the Cauchy data fixes $ u(s,t) = t^{3} $ on the $ t^{\text{th}} $ curve. Inverting gives
+	$ \frac{\partial u}{\partial s} \big|_{t} = 0 \implies u(s,t) = \text{funct}(t) $, and Cauchy data implies that at $ s = 0 $, 
 	
+	\[ u(0,t) = t^{3} \]
+	
+	\[ \implies u(s,t) = t^{3} \]
+	
+	Inverting,
 	\[ s = x \quad t = y e^{-x} \]
 	
 	and therefore the solution to our problem is 
@@ -47,27 +60,37 @@
 	
 	throughout $ \R^{2} $
 	
-	\item Along characteristic curves
+	\item 
+	
+	\[ yu_{x} + x u_{y} = 0, \qquad u(0,y) = e^{-y^{2}} \]
+	
+	Along characteristic curves
 	
 	\[ \frac{\d x}{\d s} = y \quad \frac{\d y}{\d s} = x  \]
 	
 	\[ \Rightarrow \frac{\d^{2} x }{\d s^{2}} = x \]
 	
-	\[ x = A \sinh s + B \cosh s \]
+	\[ x = A \sinh s + B \cosh s, \qquad y = A \cosh s + B \sinh s \]
 	
 	Cauchy data is $ B(t) = \{ (x = 0, y = t) \} $, intersect at $ s = 0 $ gives $ B = 0 $, thus
 	
-	\[ x = t \sinh s \qquad y = t \cosh s \]
+	\[ x = t \sinh s, \qquad y = t \cosh s \]
 	
-	Then $ \frac{\partial u }{\partial s} \Big|_{t} = 0  \Rightarrow u = \text{ cst. }$ along these characteristics, and Cauchy data fixes $ u(s,t) = e^{-t^{2}} $, and have that
+	$ \frac{\partial u}{\partial s} \big|_{t} = 0 \implies u(s,t) = \text{funct}(t) $, and Cauchy data implies that at $ s = 0 $, 
+	
+	\[ u(0,t) = e^{-t^{2}} \]
+	
+	\[ \implies u(s,t) = e^{-t^{2}} \]
+	
+	Inverting,
 	
 	\[ t^{2} = (t \cosh s)^{2} - (t \sinh s)^{2} = y^{2} - x^{2} \]
 	
 	therefore solution is
 	
-	\[ u(x,y) = e^{x^{2} - y^{2}} \]
+	\[ u(x,y) = e^{x^{2} - y^{2}} \qquad (*) \]
 	
-	which is uniquely defined only in the upper quadrant of the plane $ \{ (x,y) \subset R^{2} : x \geq 0, y \geq 0 \} $
+	Now $ (*) $ implies that $ x^{2} - y^{2} \geq 0 $; this corresponds to characteristics spanning the region $ | y | \geq | x | $.
 	
 	\item PDE is $ u_{x} + u_{y} = e^{x + 2y} - u $.
 	
@@ -121,11 +144,18 @@ Setting $ \lambda = \dot{T} / T $ we have
 
 Boundary conditions $ X(0) = X(\pi) = 0 $ imply that $ A = 0 $, $ \lambda = n^{2} $. Then solving $ \dot{T} = \lambda T $ gives $ T(t) = C e^{n^{2} t} $ for some constant $ C $, so the solution is 
 
-\[ U(x,t) = \sum_{n=1}^{\infty} D_{n} e^{n^{2}t} \sin n x  \]
+\[ u(x,t) = \sum_{n=1}^{\infty} D_{n} e^{n^{2}t} \sin n x \qquad (*)  \]
 
 for some constants $ D_{n} $, which we can determine by using orthogonality conditions. 
 
 But now, looking at what happens for large n, the solution then has oscillations with higher and higher wavenumber and larger and larger (indeed arbitrarily large) amplitude $ U(x) e^{n^{2}t} $, and so this problem is ill-posed.
+
+More rigorously, set $ t = 0 $ in $ (*) $ and using orthogonality,
+
+\[ D_{n} = \frac{2}{\pi} \int_{0}^{\pi} U(x) \sin n x  \; \d x \]
+
+
+?
 
 \section{QUESTION 3}
 
@@ -147,27 +177,71 @@ But now, looking at what happens for large n, the solution then has oscillations
 		\end{tabular}
 	\end{center}
 
-	In the hyperbolic region the negative eigenvector points in the $ y $ direction. Thus, if $ f(x,y) = \text{cst.} $ is to be a characteristic surface, we need $ \partial_{y} f = \pm \sqrt{ \partial_{x} f  A_{xx} \partial_{x} f / x } = \pm \sqrt{x} \partial_{x} f  $. Letting $ p = 2 x^{1/2} $, this is $ (\partial_{y} \pm \partial_{p})f = 0 $, so the characteristic surfaces are the two curves of constant $ y \pm p $, that is
+	In the hyperbolic region the negative eigenvector points in the $ y $ direction, with eigenvalue $ -x $. Thus, if $ f(x,y) = \text{cst.} $ is to be a characteristic surface, we need $ \partial_{y} f = \pm \sqrt{ \partial_{x} f  A_{xx} \partial_{x} f / -x } = \pm  \partial_{x} f / \sqrt{-x} $, ie
 	
-	\[ u = y + 2x^{1/2} \]
-	\[ v = y - 2x^{1/2} \]
 	
-	for $ u $ constant and $ v $ constant.
+	\[ (\partial_{y} \pm \frac{1}{\sqrt{-x}} \partial_{x}  ) f = 0 \]
+	
+	
+	Letting $ p = \frac{2}{3}(-x)^{3/2} $, this is $ (\partial_{y} \mp \partial_{p})f = 0 $, so the characteristic surfaces are the two curves of constant $ y \pm p $, that is
+	
+	\[ \xi = y + \frac{2}{3} (-x)^{3/2} \]
+	\[ \eta = y - \frac{2}{3} (-x)^{3/2} \]
+	
+	for $ \xi $ constant and $ \eta $ constant.
 
-	\item Here
+	\item \[ u_{xx} + y u_{yy} + \frac{1}{2} u_{y} = 0 \]
+	
+	Here,
 	
 	\[ \mathbf{A} = \text{diag}(1,y) \]
 	
-	so the PDE is hyperbolic in the $ y < 0 $ region with the negative eigenvector $ \mathbf{m} $ points in the $ y $-direction, with $ \mathbf{A} \mathbf{m} = y \mathbf{m} $. Thus, if $ f(x,y) = \text{cst.} $ is to be a characteristic surface, we need $ \partial_{y} f = \pm \sqrt{ \partial_{x} f  A_{xx} \partial_{x} f / y } = \pm \sqrt{y} \partial_{x} f  $. Letting $ \xi = x, \eta  = 2 y^{1/2} $, this is $ (\partial_{\xi} \pm \partial_{\eta})f = 0 $, (thus $ \partial_{\eta \nu})f = 0 $)  so the characteristic surfaces are the two curves of constant $ \xi \pm \eta $, that is
+	so the PDE is hyperbolic in the $ y < 0 $ region with the negative eigenvector $ \mathbf{m} $ points in the $ y $-direction, with eigenvalue $ -y $. Thus, if $ f(x,y) = \text{cst.} $ is to be a characteristic surface, we need $ \partial_{y} f = \pm \sqrt{ \partial_{x} f  A_{xx} \partial_{x} f / -y } = \pm \partial_{x} f / \sqrt{-y}  $, ie:
+	
+	
+	\[ ( \partial_{y} \pm \frac{1}{\sqrt{-y}} \partial_{x}  ) f = 0  \]
+	
+	\[ \Rightarrow ( \sqrt{-y} \partial_{y} \pm \partial_{x}  ) f = 0  \]
+	
+	 Letting $ p = 2 (-y)^{1/2} $, this is $ (- \partial_{p} \pm \partial_{x})f = 0 $, so the characteristic surfaces are the two curves of constant $ p \pm x $, that is
 	
 		
-	\[ \nu_{1} = x + 2y^{1/2} \]
-	\[ \nu_{2} = x - 2y^{1/2} \]
+	\[ \xi = 2(-y)^{1/2} + x \]
+	\[ \eta = 2(-y)^{1/2} - x \]
 	
-	for $ \nu_{1} $ constant and $ \nu_{2} $ constant.
+	for $ \xi $ constant and $ \eta $ constant.
 	
-	(Do we? Not sure about the steps here) have $ u_{\xi\eta} = 0 \Rightarrow u(\xi,\eta) = f(\xi + \eta) + g(\xi - \eta) $, so the result follows.
- 	
+	Now,
+	
+	\begin{align*}
+	\frac{\partial }{\partial y} & = \frac{\partial \xi}{\partial y} \frac{\partial }{\partial \xi} + \frac{\partial \eta }{\partial y} \frac{\partial }{\partial \eta}    \\
+	& = (-y)^{-1/2} \left( \frac{\partial }{\partial \xi} + \frac{\partial }{\partial \eta}  \right) 
+	\end{align*}
+	
+	\begin{align*}
+	\frac{\partial^{2} }{\partial y^{2}} & = \frac{\partial }{\partial y}\left[ (-y)^{-1/2} \left( \frac{\partial }{\partial \xi} + \frac{\partial }{\partial \eta}  \right) \right]   \\
+	& = - \frac{1}{2} (-y)^{-3/2} \left( \frac{\partial }{\partial \xi} + \frac{\partial }{\partial \eta}  \right) \\
+	& \quad  + (-y)^{-1} \left(   \frac{\partial^{2} }{\partial \xi^{2}} + \frac{\partial^{2} }{\partial \xi \partial \eta}  + \frac{\partial^{2} }{\partial \eta^{2}} \right) 
+	\end{align*}
+	
+	\begin{align*}
+	\frac{\partial }{\partial x} & = \frac{\partial \xi}{\partial x} \frac{\partial }{\partial \xi} + \frac{\partial \eta }{\partial x} \frac{\partial }{\partial \eta}    \\
+	& = \frac{\partial }{\partial \xi} - \frac{\partial }{\partial \eta} 
+	\end{align*}
+	
+	\begin{align*}
+	\frac{\partial^{2} }{\partial x^{2}} & = \frac{\partial^{2} }{\partial \xi^{2}} + \frac{\partial^{2} }{\partial \eta^{2}} 
+	\end{align*}
+	
+	Hence $ u_{xx} + xu_{yy} + \frac{1}{2} u_{y} $ is reduced to
+	
+	\[ \frac{\partial^{2} u}{\partial \xi \partial \eta} = 0 \]
+	
+	\[  \implies \frac{\partial u }{\partial \xi} = F(\eta) \]
+	
+	\[  \implies u = f(\xi)  +   \underbrace{\int^{\eta}  F(y) \; \d y}_{=g(\eta)} \]
+	
+	for arbitrary functions $ f $ and $ g $, as required. 
 	
 	 
 	
@@ -183,33 +257,36 @@ Green's second identity is
 
 where $ \Omega \subset \R^{n} $ is a compact set, and $ \phi, \psi : \Omega \to \R $ are a pair of functions on $ \Omega $ regular throughout $ \Omega $.
 
-Green's function for the Laplacian on domain $ \Omega $ satisfies $ \nabla^{2} G(\mathbf{r};\mathbf{r}_{0}) = \delta(\mathbf{r} - \mathbf{r}_{0}) $, and $ G |_{\partial \Omega} = 0 $
+Dirichlet Green's functions for the Laplacian on domain $ \Omega $ satisfy 
+
+\[ \nabla^{2} G(\mathbf{r};\mathbf{r}_{0}) = \delta(\mathbf{r} - \mathbf{r}_{0}), \qquad G |_{\partial \Omega} = 0 \]
 
 Consider using this identity with $ \phi, \psi $ being $ G(\mathbf{r}'; \mathbf{r}), G(\mathbf{r}'; \mathbf{r_{0}})  $.
-
-Assume Green's second identity is valid for Green's functions (it isn't).
-
-Then the RHS is zero, as $ G |_{\partial \Omega} = 0 $. Then we have
 
 \begin{align*}
 0 & = \int_{\Omega}  G(\mathbf{r}'; \mathbf{r}) \nabla^{2} G(\mathbf{r}'; \mathbf{r_{0}}) - G(\mathbf{r}'; \mathbf{r_{0}}) \nabla^{2} G(\mathbf{r}'; \mathbf{r}) \;  \d V \\
 & = \int_{\Omega}  G(\mathbf{r}'; \mathbf{r}) \delta(\mathbf{r}' - \mathbf{r}_{0}) - G(\mathbf{r}'; \mathbf{r_{0}}) \delta(\mathbf{r}' - \mathbf{r}) \;  \d V \\
-& = \int_{\Omega}  G(\mathbf{r}_{0}; \mathbf{r})  - G(\mathbf{r}; \mathbf{r_{0}}) \;  \d V
+& = G(\mathbf{r}_{0}; \mathbf{r})  - G(\mathbf{r}; \mathbf{r_{0}})
 \end{align*}
 
-Conclude that $ G(\mathbf{r}_{0}; \mathbf{r})  - G(\mathbf{r}; \mathbf{r_{0}}) $ anywhere in $ \Omega $.
+where in the last step we have used the sampling property of the delta function. Hence $ G(\mathbf{r}_{0}; \mathbf{r})  - G(\mathbf{r}; \mathbf{r_{0}}) $ anywhere in $ \Omega $.
 
 \section{QUESTION 5}
 
-$ u(\mathbf{x}) $ is harmonic and therefore satisfies $ \nabla^{2} \mathbf{u} = 0 $. Consider a Dirichlet Green's function for the Laplace operator on $ D $; we have
+\[ \nabla^{2} u = 0, \qquad \text{domain } \mathcal{D}, \; \text{boundary data } \delta \mathcal{D} \]
 
-\[ \nabla^{2} G ( \mathbf{r} ; \mathbf{r}_{0}) \]
-
-It can be shown that
+We know that the free space Green's function is
 
 \[ G (\mathbf{x} ; \mathbf{x}_{0} ) = \frac{1}{2\pi} \log | \mathbf{x} - \mathbf{x}_{0} | \]
 
-Now, the result is a direct application of Green's third identity (which I'm guessing the question wants us to derive). Let $ B_{r} $ and $ B_{\varepsilon} $ be circles about the point $ \mathbf{x}_{0} $, so
+
+Green's third identity gives
+
+\[ u(\mathbf{x_{0}}) = \int_{\mathcal{D}} G \nabla^{2} u \; \d V  + \int_{\delta \mathcal{D}} u ( \mathbf{n} \cdot \nabla G ) - G ( \mathbf{n} \cdot \nabla u ) \d S  \]
+
+
+
+Let $ B_{r} $ and $ B_{\varepsilon} $ be circles about the point $ \mathbf{x}_{0} $, so
 
 \[ B_{r} = \{ \mathbf{x} \in \R^{2} \; | \; | \mathbf{x} - \mathbf{x}_{0} | \leq r \} \]
 \[ B_{\varepsilon} = \{ \mathbf{x} \in \R^{2} \; | \; | \mathbf{x} - \mathbf{x}_{0} | \leq \varepsilon \} \]
@@ -307,52 +384,55 @@ Consider the forced one-dimensional heat equation
 
 Note the initial condition is inhomogenous. We consider instead that $ V(x,t) = \theta(x,t) - h(t) $ solves the equation, since the conditions are now homogeneous.
 
-We seek a Green's function such that
 
-\[ \frac{\partial }{\partial t}G(x,t ; y,\tau) - D \frac{\partial^{2} }{\partial x^{2}} G(x,t ; y,\tau) = \delta(t - \tau) \delta(x-y) \]
+\[ \partial_{t} V - D \partial_{xx} V= g(x,t) \quad 0 < x,t < \infty, \quad V(0,t) = 0, V(x,0) = w(x)  \]
 
-Taking the Fourier transform wrt $ x $ 
+where
 
-\[ \frac{\partial }{\partial t}\tilde{G}(k,t ; y,\tau) + k^{2} D \tilde{G}(k,t ; y,\tau) = \delta(t - \tau) e^{-iky}\]
+\[ g(x,t) = f(x,t) + h'(t), \qquad w(x) = \Theta(x) - h(0) \]
 
-Multiplying by $ e^{Dk^{2}t} $ we obtain
-
-\[ \frac{\partial }{\partial t} \left[  e^{Dk^{2}t} \tilde{G}(k,t ; y,\tau)  \right] = e^{-iky + Dk^{2}t} \delta(t - \tau)  \]
-
-subject to the initial condition $ \tilde{G}(k,0 ; y,\tau) = 0 $.
+The Green's function for the 1D diffusion equation is
 
 \begin{align*}
-\tilde{G}(k,t ; y,\tau)  & =  e^{-iky - Dk^{2}t} \int_{0}^{t} e^{Dk^{2}u} \delta(u - \tau) \; \d u   \\
-& = \begin{cases}  0  & \text{ if } t < \tau \\ e^{-iky - Dk^{2}(t-\tau)} & \text{ if } t > \tau \end{cases} \\
-& = \Theta(t - \tau) e^{-iky - Dk^{2}(t-\tau)}
+G(x,t; y,\tau) & = \Theta(t-\tau) S_{1}(x-y,t-\tau) \\
+& = \Theta(t-\tau) \frac{1}{\sqrt{4 \pi D t}} \exp \left(   - \frac{(x-y)^{2}}{4 D (t - \tau)} \right) 
 \end{align*}
 
-where $  \Theta(t - \tau) $ is the step function. 
+If this was a problem on $ \R $, the solution at a point $ x $ at time $ t $ would be
+
+\[ V(x,t) = \int_{0}^{t} \int_{\R} g(x,t) \Theta(t-\tau) S_{1}(x-y,t-\tau) \; \d y \d \tau \]
+
+However, this is clearly incorrect in the present situation because the heat does not diffuse out of the wire $ (x < 0) $.
+Using the method of images, we can modify the Green's function to become:
+
+\[ G(x,t; y,\tau) = \Theta(t-\tau) [ S_{1}(x-x_{0}^{+},t-\tau) + S_{1}(x-x_{0}^{-},t-\tau) ] \]
+
+The second term obeys the diffusion equation for all points $ x > 0 $, and the sum of the RHS obeys the condition $ \partial_{x} G |_{x = 0} = 0 $. 
+
+Hence the distribution of heat at time $ t > 0 $ will be given by
+
+\[ V(x,t) = \int_{0}^{t} \int_{\R} g(x,t)\Theta(t-\tau) \frac{1}{\sqrt{4 \pi D t}} \left[ \exp \left(   - \frac{(x-x_{0}^{+})^{2}}{4 D (t - \tau)} \right) + \exp \left(   - \frac{(x-x_{0}^{-})^{2}}{4 D (t - \tau)} \right)  \right]   \d x_{0} \d \tau \]
+
+
+
+
+
 
 \section{QUESTION 8}
 
-We seek a Green's function such that
-
-\[ \left(  \frac{\partial^{2} }{\partial t^{2}} - c^{2} \frac{\partial^{2} }{\partial t^{2}} \right)  G(x,t ; y,\tau) = V \delta(t - \tau) \delta(x-y) \]
-
-Take the Fourier transform wrt $ x $, obtaining 
-
-\[ \frac{\partial^{2} }{\partial t^{2}} \tilde{G}(k,t ; y,\tau) + k^{2} c^{2} \tilde{G}(k,t ; y,\tau) = e^{-iky} V  \delta(t - \tau) \]
-
-The solution is
-
-\[ \tilde{G}(k,t ; y,\tau) = \Theta(t-\tau) V e^{-iky}  \frac{\sin(  kc(t-\tau) )  }{ck} \]
-
-To recover the Green's function itself, we must compute the inverse Fourier transform 
-
-\[ G(x,t ; y,\tau) = \frac{\Theta(t-\tau)}{2\pi} \int_{-\infty}^{\infty} V e^{-iky}  \frac{\sin(  kc(t-\tau) )  }{ck} \; \d k \]
-
 Have that 
 
-\[ \mathcal{F}^{-1} [ \sin ka] = \frac{i}{2} ( \delta(x+a) - \delta(x-a))    \]
+\[ \partial_{t}^{2} \phi = c^{2} \partial_{x}^{2} \phi, \quad -\infty < x < \infty, 0 < t < \infty \]
 
-Alright, I don't know what I'm doing anymore.
+\[ \text{Inital condition } \phi(x,0) = 0 \]
+\[ \text{Neumann boundary condition } \partial_{t} \phi(x,0) = V \delta(x - x_{0}) \]
 
+In this case, d'Alemberts solution is simply
+
+\begin{align*}
+\phi(x,t) & = \frac{1}{2c} \int_{x - ct}^{x + ct} V \delta(y - x_{0}) \; \d y \\
+& = \begin{cases} \frac{V}{2c}  & \text{ if } x - ct \leq x_{0} \leq x + ct  \\ 0 & \text{ otherwise } \end{cases}
+\end{align*}
 
 
 
@@ -362,6 +442,23 @@ Alright, I don't know what I'm doing anymore.
 
 
 \section{QUESTION 9}
+
+Similar to Q8, this time with a different range for $ x $ 
+
+\[ \partial_{t}^{2} \phi = c^{2} \partial_{x}^{2} \phi, \quad 0 < x < \infty, 0 < t < \infty\]
+
+\[ \text{Inital condition } \phi(x,0) = 0 \]
+\[ \text{Neumann boundary condition } \partial_{t} \phi(x,0) = V \delta(x - x_{0}) \]
+
+In this case, d'Alemberts solution is simply
+
+\begin{align*}
+\phi(x,t) & = \frac{1}{2c} \int_{x - ct}^{x + ct} V \delta(y - x_{0}) \; \d y \\
+& = \begin{cases} \frac{V}{2c}  & \text{ if } x - ct \leq x_{0} \leq x + ct  \\ 0 & \text{ otherwise } \end{cases}
+\end{align*}
+
+
+
 \section{QUESTION 10}
 
 Let $ \Omega = \{  (x,y) \in \R^{2} \; : \; y \geq 0 \} $ and suppose $ \psi : \Omega \to \R $ solves Laplace's equation $ \nabla^{2} \psi = 0 $ inside $ \Omega $, subject to

@@ -1,0 +1,67 @@
+\documentclass[a4paper]{article}
+\usepackage{amsmath}
+\def\npart {IB}
+\def\nterm {Lent}
+\def\nyear {2018}
+\def\nlecturer {???}
+\def\ncourse {Statistics Example Sheet 1}
+
+\input{header}
+
+\newtheorem*{soln}{Solution}
+
+\renewcommand{\thesection}{}
+\renewcommand{\thesubsection}{\arabic{section}.\arabic{subsection}}
+\makeatletter
+\def\@seccntformat#1{\csname #1ignore\expandafter\endcsname\csname the#1\endcsname\quad}
+\let\sectionignore\@gobbletwo
+\let\latex@numberline\numberline
+\def\numberline#1{\if\relax#1\relax\else\latex@numberline{#1}\fi}
+\makeatother
+
+
+\begin{document}
+	
+\maketitle
+
+\section{QUESTION 1}
+
+\[ | \left|  \right| |  \]
+
+\section{QUESTION 2}
+\section{QUESTION 3}
+\section{QUESTION 4}
+
+\begin{enumerate}[label = (\alph*)]
+	\item Let $ X_{1},\cdots,X_{n} $ be independent Po($ i\theta $). So
+	
+	\begin{align*}
+	f_{\mathbf{X}}(\mathbf{x} \; | \; i\theta) & =  \prod_{i=1}^{n} \frac{e^{-i\theta}(i \theta)^{x_{i}}}{x_{i}!} \\
+	& = 
+	\end{align*}
+\end{enumerate}
+
+\section{QUESTION 5}
+
+\begin{enumerate}[label = (\alph*)]
+	\item Let $ X_{1},\cdots,X_{n} $ be $ \sim $ iid Bin($ 1,p $). ( this is Ber($ p $))
+	
+	\begin{align*}
+	f_{\mathbf{X}}(\mathbf{x} \; | \; p) & =  \prod_{i=1}^{n} p^{x_{i}}(1-p)^{1-x_{i}} \\
+	& = p^{\sum x_{i}} (1-p)^{n- \sum x_{i}}
+	\end{align*}
+\end{enumerate}
+
+
+
+\section{QUESTION 6}
+\section{QUESTION 7}
+\section{QUESTION 8}
+\section{QUESTION 9}
+\section{QUESTION 10}
+\section{QUESTION 11}
+\section{QUESTION 12}
+
+
+
+\end{document}
