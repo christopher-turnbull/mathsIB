@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6100 64-bit) (preloaded format=pdflatex 2017.1.3)  26 JAN 2018 16:02
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6100 64-bit) (preloaded format=pdflatex 2017.1.3)  27 JAN 2018 09:36
 entering extended mode
 **./methods4.tex
 (methods4.tex
@@ -1601,28 +1601,33 @@ Package microtype Info: Loading generic settings for font family
  [1
 
 {C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map}] [2] [3] [4] [5] [6] [7] [
-8] [9] [10] [11]
-Overfull \hbox (40.94716pt too wide) detected at line 414
+8] [9]
+Overfull \hbox (22.30305pt too wide) in paragraph at lines 364--364
+[] 
+ []
+
+[10]
+Overfull \hbox (40.94716pt too wide) detected at line 421
 \OML/cmm/m/it/10 V\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 x; t\OT1/cmr/m/n/10 ) = [][
 ] [][] \OML/cmm/m/it/10 g\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 x; t\OT1/cmr/m/n/10 
 )(\OML/cmm/m/it/10 t \OMS/cmsy/m/n/10   \OML/cmm/m/it/10 \OT1/cmr/m/n/10 )[] 
 [] d\OML/cmm/m/it/10 x[]\OT1/cmr/m/n/10 d\OML/cmm/m/it/10 
  []
 
-[12] [13] [14] [15] [16] [17] [18] [19]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 605.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 605.
+[11] [12] [13] [14] [15] [16] [17] [18] [19]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 619.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 619.
  (methods4.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 605.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 605.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 619.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 619.
 Package rerunfilecheck Info: File `methods4.out' has not changed.
 (rerunfilecheck)             Checksum: A71CAD568896AE3AD830B05EB3E6460C;561.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 605.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 619.
  ) 
 Here is how much of TeX's memory you used:
  46699 strings out of 493333
  1048452 string characters out of 3139195
- 1273453 words of memory out of 3000000
+ 1275453 words of memory out of 3000000
  49344 multiletter control sequences out of 15000+200000
  18711 words of font info for 102 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -1645,7 +1650,7 @@ onts/cm/cmsy7.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/c
 mti10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/msbm
 10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/msbm7.p
 fb>
-Output written on methods4.pdf (19 pages, 271053 bytes).
+Output written on methods4.pdf (19 pages, 274621 bytes).
 PDF statistics:
  256 PDF objects out of 1000 (max. 8388607)
  40 named destinations out of 1000 (max. 500000)
