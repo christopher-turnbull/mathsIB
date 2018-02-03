@@ -3,7 +3,7 @@
 \def\npart {IB}
 \def\nterm {Lent}
 \def\nyear {2018}
-\def\nlecturer {???}
+\def\nlecturer {Mr. Higson}
 \def\ncourse {Statistics Example Sheet 1}
 
 \input{header}
@@ -24,21 +24,124 @@
 	
 \maketitle
 
-\section{QUESTION 1}
+%Lectured by Richard Samworth
 
-\[ | \left|  \right| |  \]
 
 \section{QUESTION 2}
+
+If $ X \sim \text{Exp}(\lambda), Y \sim \text{Exp}(\mu)  $, $ X,Y $ independent, we have 
+	\begin{align*}
+	\P (\min[X,Y] < t) & =  1 - \P (\min[X,Y] \geq n) \\
+	& = 1 - \int_{0}^{\infty} \int_{0}^{\infty} I(\lambda e^{-\lambda x_{1}} \geq t, \mu e^{-\mu x_{2}} \geq t ) \; \d x_{2} \d x_{1} \\
+	& = 1 - \int_{t}^{\infty} \lambda e^{-\lambda x_{1}} \; \d x_{1} \int_{t}^{\infty} \mu e^{-\mu x_{2}} \; \d x_{2} \\
+	& = 1 - e^{-(\lambda + \mu) t}, \; \text{i.e.} \min[X,Y] \sim \text{Exp}(\lambda + \mu)
+	\end{align*}
+	
+	
+ 
+
+
+	Next, suppose $ X \sim \Gamma(\alpha,\lambda) $, $ Y \sim \Gamma(\beta,\lambda)  $. We want to find the joint PDF of
+	
+	\[ U = X + Y \text{, \quad and \quad } V = X / (X + Y) \]
+	
+	Consider the map 
+	
+	\[ T: (x,y) \mapsto (u,v), \text{ \; where \;} u = x + y, \; v = \frac{x}{x + y} \]
+	
+	where $ x,y,u \geq 0 $, $ 0 \leq v \leq 1 $ The inverse map $ T^{-1} $ acts by
+	
+	\[ T^{-1}: (u,v) \mapsto (x,y), \text{ where } x = uv, \; y = u(1-v) \]
+	
+	and has the Jacobian
+	
+	\begin{align*}
+	J(u,v) & = \det \begin{pmatrix}
+	v & u \\
+	1 - v & -u 
+	\end{pmatrix}  \\
+	& = -u
+	\end{align*}
+	
+	Then the joint PDF
+	
+	\[ f_{U,V}(u,v) = f_{X,Y}(uv,u(1-v))\left| -u \right|  \]
+	
+	Substituting in $ f_{X,Y}(x,y) = \frac{\lambda^{\alpha} x^{\alpha - 1} e^{-\lambda x}}{\Gamma(\alpha)} \frac{\lambda^{\beta} y^{\beta - 1} e^{-\lambda y}}{\Gamma(\beta)}, x,y \geq 0  $, yields
+	
+	\begin{align*}
+	f_{U,V}(u,v) & = \frac{\lambda^{\alpha + \beta}}{\Gamma(\alpha) \Gamma(\beta)} (uv)^{\alpha - 1}(u(1-v))^{\beta - 1}  u e^{-\lambda u}, \; u \geq 0, \;  0 \leq v \leq 1 \\
+	& = \frac{\lambda^{\alpha + \beta}}{\Gamma(\alpha) \Gamma(\beta)} u^{\alpha + \beta - 1} v^{\alpha - 1} (1-v)^{\beta - 1} e^{-\lambda u} \\
+	& = \text{Beta}(v ; \alpha,\beta) \frac{\lambda^{\alpha + \beta}}{\Gamma(a+b)} u^{\alpha + \beta - 1} e^{-\lambda u} \\
+	& = \text{Beta}(v ; \alpha,\beta) \text{Gamma}(u ; \alpha + \beta)
+	\end{align*}
+	
+	This factorises, so the respective marginal PDFs are
+	
+	\[ f_{U}(u) = \text{Gamma}(u ; \alpha + \beta), \quad f_{V}(v) = \text{Beta}(v ; \alpha,\beta)  \]
+
+	
+	
+
+
+
 \section{QUESTION 3}
+
+The factorization criterion states that a statistic $ T = t(\mathbf{x}) $ is sufficient for $ \theta $ iff 
+
+\[ f_{\mathbf{X}}(\mathbf{x} \; ; \theta) = g(t(\mathbf{x}), \theta) h(\mathbf{x}) \]
+
+We have proved the discrete case in lectures. The continuous case is similar:
+
+\begin{proof}
+	Suppose we are given the factorization $ f_{\mathbf{X}}(\mathbf{x} \; ; \theta) = g(t(\mathbf{x}), \theta) h(\mathbf{x}) $. If $ T = u $, then
+	
+	\begin{align*}
+	f_{\mathbf{X}| T = u}(\mathbf{x} \; ; u) & = \frac{ g(t(\mathbf{x}), \theta) h(\mathbf{x})}{\int_{\mathbf{y} \; ; T(\mathbf{y}) = u} g(t(\mathbf{y}),\theta) h(\mathbf{y}) \; \d \mathbf{y}} \\
+	& = \frac{ g(u, \theta) h(\mathbf{x})}{ g(u,\theta)   \int_{\mathbf{y} \; ; T(\mathbf{y}) = u}  h(\mathbf{y}) \; \d \mathbf{y}} \\
+	& = \frac{h(\mathbf{x})}{ \int_{\mathbf{y}}  h(\mathbf{y}) \; \d \mathbf{y}}
+	\end{align*}
+	
+	
+	which does not depend on $ \theta $; thus $ T $ is sufficient for $ \theta $.
+	
+	The other direction is the same as the discrete case: Suppose $ T $ is sufficient for $ \theta $, ie. the conditional distribution of $ \mathbf{X} \; | T = u $ does not depend on $ \theta $. Then
+	
+	\[ \P_{\theta}( \mathbf{X} = \mathbf{x}) = \P_{\theta}( \mathbf{X} = \mathbf{x}, T = T(\mathbf{x})) = \P_{\theta} (\mathbf{X} = \mathbf{x} \; | T = T(\mathbf{x})) \P_{\theta}(T = T(\mathbf{x}) )  \]
+	
+	The first factor does not depend on $ \theta $ by assumption; call it $ h(\mathbf{x}) $. Let the second factor be $ g(t,\theta) $, and so we have the required factorisation. 
+	
+\end{proof}
+
+ 
+
+
+
+
+
 \section{QUESTION 4}
 
 \begin{enumerate}[label = (\alph*)]
 	\item Let $ X_{1},\cdots,X_{n} $ be independent Po($ i\theta $). So
 	
 	\begin{align*}
-	f_{\mathbf{X}}(\mathbf{x} \; | \; i\theta) & =  \prod_{i=1}^{n} \frac{e^{-i\theta}(i \theta)^{x_{i}}}{x_{i}!} \\
-	& = 
+	f_{\mathbf{X}}(\mathbf{x} \; | \; \theta) & =  \prod_{i=1}^{n} \frac{e^{-i\theta}(i \theta)^{x_{i}}}{x_{i}!} \\
+	& = \underbrace{\exp  \left(- \frac{n(n+1)}{2} \theta   \right)  \theta^{\sum x_{i}}}_{g(t(\mathbf{x}),\theta)} \cdot \underbrace{\frac{1^{x_{1}} \cdot 2^{x_{2}} \cdot \cdots \cdot n^{x_{n}} }{x_{1}!x_{2}! \cdots x_{n}!}}_{h(\mathbf{x})}
 	\end{align*}
+	
+	Using the factorization criterion, $ t(\mathbf{x}) = \sum_{i=1}^{n} x_{i} $ is a sufficient statistic, with distribution:
+	
+	The maximum likelihood estimator $ \hat{\theta} $ is given by
+	
+	\item Let $ X_{1},\cdots,X_{n} $ be independent Exp($ \theta $). So
+	
+		\begin{align*}
+	f_{\mathbf{X}}(\mathbf{x} \; | \; \theta) & =  \prod_{i=1}^{n} \lambda e^{-\lambda x_{i}} \\
+	& = \lambda^{n} e^{-\lambda \sum x_{i} }
+	\end{align*}
+	
+	Choosing $ t(\mathbf{x}) = \sum_{i=1}^{n} x_{i} $, we can use the factorization criterion with $ g(t(\mathbf{x}),\lambda) = \lambda^{n} e^{-\lambda \sum x_{i} }$, $ h(\mathbf{x}) = 1 $, to show that $ t(\mathbf{x}) $ is a sufficient statistic for $ \lambda $.
+	
 \end{enumerate}
 
 \section{QUESTION 5}

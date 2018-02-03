@@ -62,7 +62,7 @@ that is,
 
 	\[ p(x) = f(0) \frac{x^{3} - 6x^{2} + 11 x - 6}{-6} + f(1) \frac{x^{3}  - 5 x^{2} + 6x}{2} + f(2) \frac{x^{3} - 4 x^{2} + 3x}{-2} + f(3) \frac{x^{3} - 3x^{2} + 2x}{6}  \]
 	
-	(\emph{I've cheated a bit with Mathematica here})
+	and thus
 	
 	\begin{align*}
 	\int_{0}^{3} p(x) \; \d x & = \frac{3}{8} f(0) + \frac{9}{8} f(1) +  \frac{9}{8} f(2) + \frac{3}{8} f(3)  
@@ -156,31 +156,47 @@ Immediately we have $ p(a) = p(b) = 0 $. Now,
 \section{QUESTION 4}
 
 
-By definition, $ f[x_{0},x_{1},\cdots,x_{n},x] $ is the coefficient of $ x^{n+1} $ in $ q  \in \P_{n+1}[x] $ that interpolates the $ n+2 $ points $ [x_{0},x_{1},\cdots,x_{n},x] $ with $ f $.
+%By definition, $ f[x_{0},x_{1},\cdots,x_{n},x] $ is the coefficient of $ x^{n+1} $ in $ q  \in \P_{n+1}[x] $ that interpolates the $ n+2 $ points $ [x_{0},x_{1},\cdots,x_{n},x] $ with $ f $.
+%
+%From the definition of the divided difference we have that
+%
+%\[ f[x_{0},x_{1},\cdots,x_{n},x] = \frac{f[x_{1},x_{2},\cdots,x_{n+1},x] - f[x_{0},x_{1},\cdots,x_{n}]  }{x - x_{0}} \]
+%
+%But also,
+%
+%\[ f[x_{1},\cdots,x_{n},x] = \frac{f[x_{2},\cdots,x_{n+1},x] - f[x_{1},\cdots,x_{n}]  }{x - x_{1}} \]
+%
+%When $ n = 0 $ the identity reads
+%
+%\begin{align*}
+%f(x) - p(x) & = f[x_{0},x](x-x_{0}) \\
+%& = f(x) - f(x_{0})
+%\end{align*}
+%
+%When $ n = 1$ the identity reads
+%
+%\begin{align*}
+%f(x) - p(x) & = f[x_{0},x_{1},x](x-x_{0})(x-x_{1}) \\
+%& = \frac{f[x_{0},x_{1}] - f[x_{1},x]}{x - x_{0}}
+%\end{align*}
+%
+%Nah fuck that, third attempt
 
-From the definition of the divided difference we have that
+The Newton interpolation formula states that a polynomial intepolating $ f $ at pairwise distinct points $ x_{0},\cdots,x_{n} $ is given by 
 
-\[ f[x_{0},x_{1},\cdots,x_{n},x] = \frac{f[x_{1},x_{2},\cdots,x_{n+1},x] - f[x_{0},x_{1},\cdots,x_{n}]  }{x - x_{0}} \]
+\[ p_{n}(x) : = f[x_{0}] + f[x_{0},x_{1}](x_{1} - x_{0}) + \cdots + f[x_{0},\cdots,x_{n}]\prod_{i=0}^{n-1} (x - x_{i})  \] 
 
-But also,
+In particular,
 
-\[ f[x_{1},\cdots,x_{n},x] = \frac{f[x_{2},\cdots,x_{n+1},x] - f[x_{1},\cdots,x_{n}]  }{x - x_{1}} \]
+\[ p_{n+1}(x) - p_{n}(x) = f[x_{0},\cdots,x_{n+1}] \prod_{i=0}^{n} (x - x_{i}) \qquad (*)  \]
 
-When $ n = 0 $ the identity reads
 
-\begin{align*}
-f(x) - p(x) & = f[x_{0},x](x-x_{0}) \\
-& = f(x) - f(x_{0})
-\end{align*}
 
-When $ n = 1$ the identity reads
+To deduce the identity in question 4, we think of $ x $ as a new interpolation point (the $ n+1^{\text{th}} $). As $ x \neq x_{i} $ for any $ i $, we can now apply (*), which gives
 
-\begin{align*}
-f(x) - p(x) & = f[x_{0},x_{1},x](x-x_{0})(x-x_{1}) \\
-& = \frac{f[x_{0},x_{1}] - f[x_{1},x]}{x - x_{0}}
-\end{align*}
+\[ p_{n+1}(t) - p_{n}(t) = f[x_{0},\cdots,x_{n},x] \prod_{i=0}^{n} (t - x_{i})  \]
 
-Nah fuck that, third attempt
+for all $ t \in \R $. In particular, setting $ t = x $, we have $ p_{n+1}(x) = f(x) $, which is the identity as required. 
 
 
  
@@ -191,7 +207,7 @@ Nah fuck that, third attempt
 
 \section{QUESTION 5}
 
-The Newton divided difference table for Question 5 is shown below.
+The Newton divided difference table for Question 5 is shown below, where arithmetic has been rounded to 4 decimal places at each step.
 
 \begin{center}
 	\begin{tabular}{ccccc}
@@ -199,11 +215,11 @@ The Newton divided difference table for Question 5 is shown below.
 		$x_i$ & $f_i$ & $f[*, *]$ & $f[*, *, *]$ & $f[*,*,*,*]$\\
 		\midrule
 		$0$ & $f[0] = 0$\\
-		& & $f[0, 0.1] = 0.998$\\
-		$0.1$ & $f[0.1] = 0.0998$ & & $f[0, 0.1, 0.4] $ \\
-		& & $f[0.1, 0.4] = 0.9687 $ & $ = 0.0733 $ & $f[0,0.1,0.4,0.7] $ \\
-		$0.4$ & $f[0.4] = 0.3894$ & & $f[0.1, 0.4, 0.7] $ & $ = - 0.389 $  \\
-		& & $f[0.4, 0.7] = 0.8493$ & $ = -0.1990 $ \\
+		& & $f[0, 0.1] = 0.9980$\\
+		$0.1$ & $f[0.1] = 0.9980$ & & $f[0, 0.1, 0.4] $ \\
+		& & $f[0.1, 0.4] = 0.9653 $ & $ = -0.0817 $ & $f[0,0.1,0.4,0.7] $ \\
+		$0.4$ & $f[0.4] = 0.3894$ & & $f[0.1, 0.4, 0.7] $ & $ = - 0.1680 $  \\
+		& & $f[0.4, 0.7] = 0.8493$ & $ = -0.1993 $ \\
 		$0.7$ & $f[0.7] = 0.6442$ & \\
 		\bottomrule
 	\end{tabular}
@@ -213,23 +229,268 @@ Using Newton's formula, the polynomial interpolating these points is given as
 
 \begin{align*}
 p(x) & = f[0] + f[0,0.1]x + f[0,0.1,0.4]x(x-0.1) + f[0,0.1,0.4,0.7]x(x-0.1)(x-0.4)  \\
-& = 0.998 x + 0.0733(x^2 -0.1x) - 0.389(x^{3} -0.5x^{2}  + 0.04x)\\
-& = 0.9751 x + 
+& = 0.9980 x -0.0817(x^2 -0.1x) - 0.1680(x^{3} -0.5x^{2}  + 0.04x)\\
+& = 0.9995 x + 0.0023 x^2 - 0.1680 x^{3}
 \end{align*}
+
+As we have rounded erroneously this is indeed different from $ \sin x $. 
 
 
 
 \section{QUESTION 6}
 
+The condition 
+
+\[ \int_{0}^{1} [ f(x) - p(x)]^{2} \; \d x  < 10^{-4} \]
+
+is equivalent to
+
+\[ \frac{1}{3} - 2 \int_{0}^{1} f(x)p(x) \; \d x + \int_{0}^{1} p(x)^{2} \; \d x < 10^{-4} \]
+
+Fourier series?
+
+
+
 
 
 
 \section{QUESTION 7}
+
+We will first prove that, under the substitution $ x = \cos \theta $, $ p_{n}(x) = \sin(n+1) \theta / \sin \theta $. We will use induction with two base cases;
+
+For $ n = 0 $, we have $ p_{0}(x) = \sin \theta / \sin \theta = 1 $ as required, and for $ n = 1 $ we have  $ p_{0}(x) = \sin 2 \theta / \sin \theta = 2 \cos \theta = 2 x $, as required (as $ x = \cos \theta $). 
+
+Now assuming true for $ p_{n-1}(x) $ and $ p_{n}(x) $ yields:
+
+\begin{align*}
+p_{n+1}(x) & = 2x p_{n}(x) -p_{n-1}(x) \\
+& = (2 \cos \theta \sin(n+1)\theta  - \sin n \theta) / \sin \theta \qquad (x =  \cos \theta ) \\
+\end{align*}
+
+Fiddling around with the numerator;
+
+\begin{align*}
+2 \cos \theta \sin(n+1)\theta  - \sin n \theta & = ( \sin (n+1) \theta \cos \theta + \cos(n+1 )\theta \sin \theta ) \\
+& \; \; + (\sin(n+1)\theta \cos \theta - \cos(n+1) \theta \sin \theta) - \sin n\theta  \\
+& = \sin(n+2) \theta + \sin n \theta - \sin n\theta =  \sin(n+2) \theta
+\end{align*}
+
+Hence $ p_{n-1}(x) = \sin(n) \theta / \sin \theta $, $ p_{n}(x) = \sin(n+1) \theta / \sin \theta $ together imply that $ p_{n+1}(x) = \sin(n+2) \theta / \sin \theta $, which completes our inductive proof. 
+
+Now we can show orthogonality: 
+
+\begin{align*}
+\langle p_{n},p_{m} \rangle & = \int_{-1}^{1} p_{n}(x) p_{m}(x) \sqrt{1-x^{2}}  \; d x \\
+& = \int_{\pi}^{0} \frac{\sin(n+1)\theta}{\sin \theta} \frac{\sin(m+1)\theta}{\sin \theta} \sqrt{ 1 - \cos^{2} \theta} ( - \sin \theta) \; \d \theta \qquad (x = \cos \theta) \\
+& = \int_{0}^{\pi} \sin(n+1) \theta \sin(m+1) \theta \; \d \theta \\
+& = \frac{\pi}{2} \delta_{mn}
+\end{align*}
+
+Thus these polynomials are orthogonal with respect to the defined inner product, and $ \langle p_{n},p_{n} \rangle = \pi / 2 $
+
+
 \section{QUESTION 8}
+
+We apply Gaussian quadrature with Legendre polynomials, and pick $ c_{1} $ and $ c_{2} $ as the zeros of $ P_{2}(x) = \frac{3}{2} x^{2} - \frac{1}{2} $, so
+
+\[ c_{1} = - \frac{\sqrt{3}}{3}, \qquad c_{2} =  \frac{\sqrt{3}}{3}  \]
+
+Using the formula for the choice of weights given in lectures, we have
+
+\[ b_{1} = \int_{0}^{1} \frac{x - c_{2}}{c_{1} - c_{2}} \; \d x, \quad b_{2} = \int_{0}^{1} \frac{x - c_{1}}{c_{2} - c_{1}} \; \d x \]
+
+Thus $ b_{1} = \frac{1}{2} - \frac{\sqrt{3}}{4} $, $ b_{2} = \frac{1}{2} + \frac{\sqrt{3}}{4} $, and the exact approximate when $ f $ is cubic is: 
+
+\[ \int_{0}^{1} f(x) \; \d x \approx  \left( \frac{1}{2} - \frac{\sqrt{3}}{4} \right) f \left(    -  \frac{\sqrt{3}}{3} \right) + \left( \frac{1}{2} + \frac{\sqrt{3}}{4} \right) f \left(   \frac{\sqrt{3}}{3} \right) \]
+
+Note $ \int_{0}^{1} 1 \; \d x = 1  $, $ \int_{0}^{1} x \; \d x = \frac{1}{2}  $, $ \int_{0}^{1} x^{2} \; \d x = 1 / 3  $, $ \int_{0}^{1} x^{3} \; \d x = 1/4  $. 
+
+ 
 \section{QUESTION 9}
+
+We have that $ \frac{\d^{k} }{\d x^{k}} (e^{-x}) = (-1)^{k}e^{-x} $, thus using the Leibniz rule:
+
+\begin{align*}
+p_{n}(x) & = e^{x} \frac{\d^{n} }{\d x^{n}} (x^{n} e^{-x}) \\
+& = e^{x} \sum_{r=0}^{n} \binom{n}{r} \frac{\d^{r} }{\d x^{r}} x^{n}  \frac{\d^{n-r} }{\d x^{n-r}} e^{-x} \\
+& =  \sum_{r=0}^{n} \binom{n}{r} \frac{\d^{r} }{\d x^{r}} (x^{n}) (-1)^{n-r} \\
+& =  \sum_{r=0}^{n} r! \binom{n}{r}^{2} (-x)^{n-r} (*)
+\end{align*}
+
+so $ p_{n}(x) $ indeed a polynomial. Next, with respect to the defined scalar product, we have 
+
+\begin{align*}
+\langle p_{n},p \rangle & = \int_{0}^{\infty} e^{-x} p_{n}(x) p(x) \; \d x  \\
+& = \int_{0}^{\infty}  \frac{\d^{n} }{\d x^{n}} (x^{n} e^{-x}) p(x) \; \d x  \\
+& = \left[  p(x) \frac{\d^{n-1} }{\d x^{n-1}}(x^{n}e^{-x})   \right]_{0}^{\infty} - \int_{0}^{\infty} \frac{\d }{\d x} p(x) \frac{\d^{n-1} }{\d x^{n-1}} (x^{n} e^{-x}) \; \d x \\
+& = - \int_{0}^{\infty} \frac{\d^{n} }{\d x^{n}} p(x) (x^{n} e^{-x}) \; \d x \\
+& = 0
+\end{align*}
+
+and in going to the final line we have used the fact that $ p(x) $ is a polynomial of degree $ n-1 $. 
+
+The boundary terms vanish by inspection; each term in the expression $ \frac{\d^{r} }{\d x^{r}}(x^{l}e^{-x}) $ contains an $ e^{-x} $, and if $ r < l $, each term is a multiple of $ x $, thus the expression is zero at $ \infty $ and $ 0 $ respectively. 
+
+To evaluate $ p_{3},p_{4} $ and $ p_{5} $ using the Rodrigues formula we use $ (*) $:
+
+\[ p_{3}(x) = - x^{3} + 9x^{2} - 18 x + 6 \]
+\[ p_{4}(x) = x^{4} -  16 x^{3} + 72 x^{2} - 96 x + 24 \]
+\[ p_{5}(x) =  - x^{5} + 25 x^{4} - 200 x^{3} + 600 x^{2} - 600 x + 120 \]
+
+If these are to obey the relation
+
+\[ p_{5}(x) = (\gamma x - \alpha)p_{4}(x) - \beta p_{3}(x), \quad x \in \R \]
+
+Then comparing coefficients of $ x^{5},x^{4}$ and $ x^{3} $ respectively give,  $ \gamma = -1 $, $ \alpha = -9, \beta = -200 $.
+
+
 \section{QUESTION 10}
+
+For the $ k = 0 $ case: want to choose the least $ c_{0}$ such that
+
+\[ \left| f(\frac{1}{2}) - \frac{1}{2} \left(  f(0) + f(1)  \right)  \right|  \leq c_{0} | | f | |_{\infty}  \]
+
+
+In the extreme case where $ f(\frac{1}{2}) \approx  | | f | |_{\infty}   $ and $ f(0) \approx f(1) \approx -  | | f | |_{\infty}  $, we see that $ c_{0} = 2 $.
+
+I'm not sure how to do the $ p = 1 $ case without the Peano Kernel theorem. 
+
+
+
+
+
+
+$ k = 2 $: Consider $ f(\frac{1}{2}) \approx \frac{1}{2} (   f(0) + f(1 )) $.
+
+
+
+
+Let $ L(f) = f(\frac{1}{2}) - \frac{1}{2} (   f(0) + f(1 ))  $. $ L(f) = 0 $ for all $ f \in \mathcal{C}[0,1] $ since $ L(f) = 0 $ when $ f(x) = 1,x $, and using linearity. Peano Kernel theorem tells us that 
+
+\[ L(f) = \int_{0}^{1} K(\theta) f''(\theta) \; \d \theta   \]
+
+
+where $ K(\theta) = L(   x \mapsto (x-\theta)_{+} ) $. For fixed $ \theta $,  let $ g(x) : = (x-\theta)_{+} $. We have
+
+\begin{align*}
+K(\theta) & = L(g) = g(\frac{1}{2}) - \frac{1}{2}(g(0) + g(1) )\\
+& = (1/2-\theta)_{+} - \frac{1}{2} \left(  (0-\theta)_{+} + (1-\theta)_{+} \right) \\
+& = \begin{cases} -\frac{1}{2} (1-\theta) & \text{ if }  0 \leq \theta \leq 1/2 \\ - \frac{1}{2} \theta  & \text{ if } 1/2 \leq \theta \leq 1\end{cases}
+\end{align*}
+
+Now
+
+\begin{align*}
+\int_{0}^{1} | K(\theta) | \; \d \theta & = \int_{0}^{1/2} \frac{1}{2} (1 - \theta) \; \d \theta  + \int_{1/2}^{1} \frac{1}{2} \theta\; \d \theta \\
+& = \left(  \frac{1}{4} - \frac{1}{16} \right) + \left(  \frac{1}{4} - \frac{1}{16} \right) = \frac{3}{8}
+\end{align*}
+
+
+This allows us to bound the approximation error, for any $ f \in \mathcal{C}^{2}[0,1] $ we get
+
+\[ | L(f) | \leq \int_{0}^{1} |  K(\theta) f''(\theta) | \; \d \theta \leq | | f''| |_{\infty} \int_{0}^{1} | K(\theta) | \; \d \theta \leq \frac{3}{8 } | f''| |_{\infty} \]
+
+We can try the Peano kernel theorem in the $ k=1 $ ($ n = 0 $) case, which tells us 
+
+\[ L(f) = \int_{0}^{1} K(\theta) f'(\theta) \; \d \theta   \]
+
+
+where $ K(\theta) = L(   x \mapsto (x-\theta)_{+}^{0} ) $. For fixed $ \theta $,  let $ g(x) : = (x-\theta)_{+}^{0} $. Similar to before, we have
+
+\begin{align*}
+K(\theta) & = L(g) = g(\frac{1}{2}) - \frac{1}{2}(g(0) + g(1) )\\
+& = (1/2-\theta)_{+}^{0} - \frac{1}{2} \left(  (0-\theta)_{+}^{0} + (1-\theta)_{+}^{0} \right) \\
+& = \begin{cases} -\frac{1}{2} & \text{ if }  0 \leq \theta \leq 1/2 \\ \frac{1}{2}  & \text{ if } 1/2 \leq \theta \leq 1\end{cases}
+\end{align*}
+
+We can verify that $ \int_{0}^{1} |  K(\theta) | \; \d \theta = \frac{1}{2} $. This allows us to bound the approximation error, for any $ f \in \mathcal{C}[0,1] $ we get
+
+\[ | L(f) | \leq \int_{0}^{1} |  K(\theta) f'(\theta) | \; \d \theta \leq | | f'| |_{\infty} \int_{0}^{1} | K(\theta) | \; \d \theta \leq \frac{1}{2} | f'| |_{\infty} \]
+
+
+
+
 \section{QUESTION 11}
+
+Define $ L(f) :=  f[0,1,2,4] $. Easy to check that $ L(f) = 0 $ for $ f \in \P_{2}[x] $. Thus for $ f \in C^{3}[0,4] $, we have
+
+\[ L(f) = \frac{1}{6} \int_{0}^{4} K(\theta)f'''(\theta) \; \d \theta   \]
+
+with $ K(\theta) = L(x \mapsto (x - \theta)_{+}^{2} ) $. For fixed $ \theta $, let $ g(x) := (x - \theta)_{+}^{2} $. Then using the Lagrange formula, noting that $ g(0) = 0 $
+
+\begin{align*}
+K(\theta) & = L(g) = g[0,1,2,4] \\
+& = g(1) \frac{1}{1 - 0} \frac{1}{1 - 2} \frac{1}{1 - 4} + g(2) \frac{1}{2 - 0} \frac{1}{2 - 1} \frac{1}{2-4} + g(4) \frac{1}{4 - 0} \frac{1}{4 - 1} \frac{1}{4 - 2} \\
+& = \frac{1}{3} (1 - \theta)_{+}^{2} - \frac{1}{4} (2 - \theta)_{+}^{2} + \frac{1}{24} (4 - \theta)_{+}^{2} \\
+& = \begin{cases}  \frac{1}{8} \theta^{2} & \text{ if } 0 \leq \theta \leq 1 \\ - \frac{1}{4} (2 - \theta)^{2} + \frac{1}{24} (4 - \theta)^{2}  & \text{ if } 1 \leq \theta \leq 2 \\  \frac{1}{24} (4 - \theta)^{2} & \text{ if } 2 \leq \theta \leq 4 \end{cases}
+\end{align*}
+
+\begin{center}
+	\begin{tikzpicture}
+	
+	\draw[->] (0,0) -- (5,0) node[below]{$\theta$};
+	\draw[->] (0,0) -- (0,4) node[left]{$K(\theta)$};
+	\end{tikzpicture}
+\end{center}
+
+
+
+
+
+
 \section{QUESTION 12}
+
+
+For $ f \in \P_{3}[x] $, consider the approximant
+
+\[ f'''(\xi) \approx \alpha f(0) + \beta f(1) + \gamma f'(0) + \delta f'(1)  \qquad (*) \]
+
+Note that $ f'''(\xi) = 3! \; \forall \; \xi \in \R $  . Requiring (*) is exact for $ f(x) = 1, x, x^{2} $ and $ x^{3} $ respectively yields
+
+\begin{align*}
+0 & = \alpha + \beta \\
+0 & = \beta + \gamma + \delta \\
+0 & = \beta + 2\delta \\
+6 & = \beta + 3 \delta  
+\end{align*}
+
+which gives
+
+
+\[ f'''(\xi) \approx 12 f(0) - 12 f(1) + 6 f'(0) + 6 f'(1)  \]
+
+Let $ L(f) =  f'''(\xi) - [12 f(0) - 12 f(1) + 6 f'(0) + 6 f'(1) ] $. $ L(f) = 0 $ for all $ f \in C^{4}[0,1] $, so Peano Kernel theorem tells us that 
+
+\[ L(f) = \frac{1}{3!}  \int_{0}^{1} K(\theta) f^{(4)}(\theta) \; \d \theta \]
+
+
+where $ K(\theta) = L(x \mapsto (x - \theta)_{+}^{3} ) $. For fixed $ \theta $,  let $ g(x) : = (x - \theta)_{+}^{2} $. We have
+
+\begin{align*}
+K(\theta) & = L(g) = g'''(\xi) - [ 12g(0) - 12g(1) + 6g'(0) + 6g'(1)  ]   \\
+& = 6 (\xi - \theta)_{+}^{0}   - [ 12 (0 - \theta)_{+}^{3} - 12 (1 - \theta)_{+}^{3} + 18 (0 - \theta)_{+}^{2} + 18 (1 - \theta)_{+}^{2}  ] \\
+& = \begin{cases} 12(1-\theta)^{3} - 18(1-\theta)^{2}  & \text{ if } 0 \leq \theta \leq \xi \\ 6 + 12(1-\theta)^{3} - 18(1-\theta)^{2}  &   \text{ if }  \xi \leq \theta \leq 1 \end{cases}
+\end{align*}
+
+Consequently for any $ f \in C^{4}[0,1] $ we have
+
+
+
+\[ | L(f) | \leq \frac{1}{3!} \int_{0}^{1} |  K(\theta) f^{(4)}(\theta) | \; \d \theta \leq \frac{1}{6} | | f^{(4)} | |_{\infty} \int_{0}^{1} | K(\theta) | \; \d \theta  \]
+
+Now, 
+
+\begin{align*}
+\frac{1}{6} \int_{0}^{1} | K(\theta) | \; \d \theta & = \int_{0}^{\xi} 2(1-\theta)^{3} - 3(1-\theta)^{2} \; \d \theta + \int_{\xi}^{1} 1 + 2(1-\theta)^{3} - 3(1-\theta)^{2} \; \d \theta \\
+& = \frac{1}{4} (1 - \xi)^{4} - (1 - \xi)^{3} + (1 - \xi) + 
+\end{align*}
+
+
+
+
+
+
+
 
 
 

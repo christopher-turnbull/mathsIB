@@ -307,7 +307,56 @@ E(r) & = \int_{-\infty}^{\infty} \frac{Q}{4 \pi \varepsilon_{0}} \frac{1}{r^{2} 
 
 
 \section{QUESTION 7}
+
+The Green's function for the Laplacian is definied to be the solution to:
+
+\[ \nabla^{2} G(\mathbf{r},\mathbf{r}') = \delta^{3} (\mathbf{r} - \mathbf{r}')  \]
+
+We know that
+
+\[ G(\mathbf{r},\mathbf{r}') = - \frac{1}{4 \pi} \frac{1}{| \mathbf{r} - \mathbf{r}' |}  \]
+
+We assume all the charge is contained within some compact region $ V $, then
+
+\begin{align*}
+\phi(\mathbf{r}) & = - \frac{1}{\varepsilon_{0}} \int_{V} \rho(\mathbf{r}') G(\mathbf{r},\mathbf{r}') \; \d^{3} \mathbf{r} \\
+& = \frac{1}{4 \pi \varepsilon_{0}} \int_{V} \frac{\rho(\mathbf{r}')}{| \mathbf{r} - \mathbf{r}' |} \; \d^{3} \mathbf{r}
+\end{align*}
+
+So integrating over a circular disk of radius $ a $ we using polar coordinates so $ \mathbf{r} = (0,0,z) $, $ \mathbf{r}' = (r \cos \phi, r \sin \phi,0) $ and $ | \mathbf{r} - \mathbf{r}' | = r^{2} + z^{2} $, hence
+
+\begin{align*}
+\phi(\mathbf{r}) & = \frac{1}{4 \pi \varepsilon_{0}} \int_{0}^{2\pi} \int_{0}^{a} \frac{\sigma}{r^{2} + z^{2}} r \; \d r \;  \d \phi  \ \\
+& = \frac{\sigma}{4 \varepsilon_{0}} \left[  \log ( r^{2} + z^{2} ) \right]_{0}^{a} \\
+& = \frac{\sigma}{4 \varepsilon_{0}} \log ( 1 + \frac{z^{2}}{a^{2}} ) 
+\end{align*}
+
+Then 
+
+\begin{align*}
+\mathbf{E}(\mathbf{r}) & = - \nabla  \phi (\mathbf{r}) \\
+& = - \frac{\sigma}{2 \varepsilon_{0}} \frac{1}{r^{2} + z^{2}}
+\end{align*}
+
+
 \section{QUESTION 8}
+
+From Q7 we have the result that
+
+\begin{align*}
+\phi(\mathbf{r}) & = \frac{1}{4 \pi \varepsilon_{0}} \int_{V} \frac{\rho(\mathbf{r}')}{| \mathbf{r} - \mathbf{r}' |} \; \d^{3} \mathbf{r}
+\end{align*}
+
+Very far from $ V $, ie. $ | \mathbf{r} | \gg | \mathbf{r}' | $, we can use the Taylor expansion
+
+\begin{align*}
+\frac{1}{| \mathbf{r} - \mathbf{r}' |} & =  \frac{1}{r} + \mathbf{r}' \cdot \nabla \left(  \frac{1}{r} \right) + \cdots \\
+& = \frac{1}{r} + \frac{\mathbf{r} \cdot \mathbf{r}'}{r^{3}} + \cdots
+\end{align*}
+
+Then we get 
+
+
 \section{QUESTION 9}
 \section{QUESTION 10}
 \section{QUESTION 11}

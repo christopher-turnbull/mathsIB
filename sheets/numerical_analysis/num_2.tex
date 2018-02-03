@@ -1,0 +1,126 @@
+\documentclass[a4paper]{article}
+\usepackage{amsmath}
+\def\npart {IB}
+\def\nterm {Lent}
+\def\nyear {2018}
+\def\nlecturer {Dr. Saxton}
+\def\ncourse {Numerical Analysis Example Sheet 2}
+
+\input{header}
+
+\newtheorem*{soln}{Solution}
+
+\renewcommand{\thesection}{}
+\renewcommand{\thesubsection}{\arabic{section}.\arabic{subsection}}
+\makeatletter
+\def\@seccntformat#1{\csname #1ignore\expandafter\endcsname\csname the#1\endcsname\quad}
+\let\sectionignore\@gobbletwo
+\let\latex@numberline\numberline
+\def\numberline#1{\if\relax#1\relax\else\latex@numberline{#1}\fi}
+\makeatother
+
+
+\begin{document}
+	
+\maketitle
+
+\section{QUESTION 1}
+
+The differential equations, with initial condition $ y(0)= 1 $ have exact solutions given by
+
+\[ y = \frac{1}{1+t} \quad \text{ and } \quad y = (1 + t)^{2}, \quad 0 \leq t \leq 1\]
+
+respectively.
+
+The Euler method: we approximate the exact solution of the ODE:
+
+\[ y' = f(t,y) \]
+
+by
+
+\[ y_{n+1} = y_{n} + h f(t,y_{n}), \quad n = 0,1,\cdots \] 
+
+where $ y_{n} $ approximates $ y(nh) $.
+
+For the first ODE we have $ f(t,y) = -\frac{y}{1+t} $.
+
+Here, $ y_{0} = 1$,
+
+\begin{align*}
+y_{1} & = y_{0} + h \left( - \frac{y_{0}}{1+t} \right) \\
+& = y_{0} \left(  1 - \frac{h}{1+t}  \right)  \\
+& = 1 - \frac{h}{1+t}
+\end{align*}
+
+\begin{align*}
+y_{2} & = \left( 1 - \frac{h}{1+t} \right)^{2}, \cdots, y_{n} = \left( 1 - \frac{h}{1+t} \right)^{n}
+\end{align*}
+
+For the second ODE we have $ f(t,y) = \frac{2y}{1+t} $.
+
+Here, $ y_{0} = 1$,
+
+\begin{align*}
+y_{1} & = y_{0} + h \left( \frac{2 y_{0}}{1+t} \right) \\
+& = y_{0} \left(  1 + \frac{2h}{1+t} \right) \\
+\end{align*}
+
+Similarly, I'm just getting
+
+\[ y_{n} = \left(   1 + \frac{2h}{1+t} \right)^{n} \]
+
+Use $ t_{n} = nh $, these are not correct. 
+
+
+
+
+\section{QUESTION 2}
+
+The trapezoidal rule states that the numerical solution to the differential equation
+
+\[ \mathbf{y}' = \mathbf{f}(t,\mathbf{y}_{n}) \qquad (2.1) \]
+
+is given by
+
+\[ \mathbf{y}_{n+1} = \mathbf{y}_{n} + \frac{1}{2} h [ \mathbf{f}(t_{n},\mathbf{y}_{n}) + \mathbf{f}(t_{n+1},\mathbf{y}_{n+1})  ] \qquad (2.2) \]
+
+Assuming that $ \mathbf{f} $ satisfies the Lipschitz condition: there exists $ \lambda  \geq 0 $ such that
+
+\[ | | \mathbf{f}(t,\mathbf{v}) - \mathbf{f}(t,\mathbf{w}) | | \leq \lambda | |  \mathbf{v} - \mathbf{w} | |, \quad t \in [0,t^{*}], \quad \mathbf{v},\mathbf{w} \in \R^{N} \]
+
+we will prove that the trapezoidal rule converges; ie. 
+
+\[ \lim\limits_{h \to 0} \max_{n = 0,\cdots,\lfloor t^{*} / h \rfloor } | |  \mathbf{y}_{n}(h) - \mathbf{y}(nh)  | | = 0 \]
+
+where $ \mathbf{y}(nh) $ is the evaluation at time $ t = nh $ of the exact solution of (2.1).
+
+
+
+
+\begin{proof}
+	Let $ \mathbf{e}_{n} = \mathbf{y}_{n} - \mathbf{y}(t_{n}) $, the error at step $ n $, where $ 0 \leq n \leq t^{*} / h $, $ t_{n} := n h $. Thus,
+	
+	\[ \mathbf{e}_{n+1} = \mathbf{y}_{n+1} - \mathbf{y}(t_{n+1}) = [  \mathbf{y}_{n} + \frac{1}{2} h [ \mathbf{f}(t_{n},\mathbf{y}_{n}) + \mathbf{f}(t_{n+1},\mathbf{y}_{n+1})  ] ] - [  \mathbf{y}(t_{n}) + h \mathbf{y}'(t_{n}) + O(h^{2}) ] \]
+	
+	By the Taylor theorem, the $ O(h^{2}) $ term can be bounded uniformly for all $ [0,t^{*}] $ by $ ch^{2} $, where $ c > 0 $. Thus, using (2.1) and the triangle inequality, 
+	
+	\begin{align*}
+	| | \mathbf{e}_{n+1} | |  & = \\
+	& = 
+	\end{align*}
+\end{proof}
+
+\section{QUESTION 3}
+\section{QUESTION 4}
+\section{QUESTION 5}
+\section{QUESTION 6}
+\section{QUESTION 7}
+\section{QUESTION 8}
+\section{QUESTION 9}
+\section{QUESTION 10}
+\section{QUESTION 11}
+\section{QUESTION 12}
+
+
+
+\end{document}

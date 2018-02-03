@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6100 64-bit) (preloaded format=pdflatex 2017.1.3)  25 JAN 2018 18:31
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6100 64-bit) (preloaded format=pdflatex 2017.1.3)  30 JAN 2018 11:38
 entering extended mode
 **./electromagnetism_1.tex
 (electromagnetism_1.tex
@@ -1606,21 +1606,21 @@ Overfull \hbox (18.07907pt too wide) in paragraph at lines 117--117
  []
 
 [3] [4] [5] [6] [7] [8] [9] [10] [11] [12] [13]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 318.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 318.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 367.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 367.
  (electromagnetism_1.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 318.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 318.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 367.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 367.
 Package rerunfilecheck Info: File `electromagnetism_1.out' has not changed.
 (rerunfilecheck)             Checksum: A71CAD568896AE3AD830B05EB3E6460C;561.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 318.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 367.
  ) 
 Here is how much of TeX's memory you used:
- 46823 strings out of 493333
- 1052692 string characters out of 3139195
+ 46825 strings out of 493333
+ 1052706 string characters out of 3139195
  1273557 words of memory out of 3000000
  49510 multiletter control sequences out of 15000+200000
- 17940 words of font info for 88 fonts, out of 3000000 for 9000
+ 17991 words of font info for 89 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  64i,11n,96p,10406b,995s stack positions out of 5000i,500n,10000p,200000b,50000s
 <C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Pr
@@ -1637,7 +1637,7 @@ s/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr9.pfb><C:/Program Files/MiKTeX 2
 .9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files/MiKTeX 2.9/fonts
 /type1/public/amsfonts/cm/cmsy7.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/pu
 blic/amsfonts/cm/cmti10.pfb>
-Output written on electromagnetism_1.pdf (13 pages, 204239 bytes).
+Output written on electromagnetism_1.pdf (13 pages, 208289 bytes).
 PDF statistics:
  203 PDF objects out of 1000 (max. 8388607)
  26 named destinations out of 1000 (max. 500000)
