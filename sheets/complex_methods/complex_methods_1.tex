@@ -119,7 +119,9 @@
  	Now we see that when $ x = y = 0 $, $ \frac{\partial u }{\partial x} $ is not defined, which is enough to show that $ f $ is not differentiable at the origin.
 	
 	
+	\item Using the Cauchy-Riemann equations, $ g $ is differentiable iff
 	
+	\[ \frac{\partial u}{\partial x} = \frac{\partial v}{\partial y}, \quad \frac{\partial u}{\partial y} = - \frac{\partial v}{\partial x} \]
 	
 	
 
@@ -128,18 +130,6 @@
 \section{QUESTION 2}
 \emph{[Each of the following analytical functions will be of the form $ f(z) = u(x,y) + iv(x,y) $. Given $ u $, we find $ v $ using the Cauchy-Riemann equations, and thus $ f $.] }
 \begin{enumerate}
-	
-	\item The first Cauchy Riemann equation determines
-	
-	\[ \frac{\partial u }{\partial x} = \frac{\partial v }{\partial y} = 1 \implies v = y + g(x) \]
-	
-	The other Cauchy Riemann equation gives
-	
-	\[ 0 = - \frac{\partial u }{\partial y} = \frac{\partial v }{\partial x} = g'(x) \]
-	
-	So $ g $ must be a constant, say $ \alpha $. Wlog set it to zero. The corresponding analytic function is therefore
-	
-	\[ f(z) = x + iy   = z  \]
 	
 	\item $ u = xy, $ so the first Cauchy Riemann equation determines
 	
@@ -185,7 +175,7 @@
 	
 	Recall $ \int \frac{1}{a^{2} + x^{2}} \; \d x = \frac{1}{a} \arctan(x/a) $
 	
-	\[ \frac{\partial v }{\partial y} = \frac{\partial u }{\partial x } = \frac{2x}{x^{2}+y^{2}} \implies y = 2 \arctan (y/x) + g(x)   \]
+	\[ \frac{\partial v }{\partial y} = \frac{\partial u }{\partial x } = \frac{2x}{x^{2}+y^{2}} \implies v = 2 \arctan (y/x) + g(x)   \]
 	Next,
 	
 	\[ \frac{2y}{x^{2}+y^{2}}  = \frac{\partial u }{\partial y} = - \frac{\partial v}{\partial x} =  \frac{2y}{x^{2}+y^{2}} + g'(x) \]
@@ -196,6 +186,20 @@
 	\begin{align*}
 	f(z) & = \log(x^{2}+y^{2})  +  i 2 \arctan (y/x) \\
 	& = \log(| z |^{2}) + 2 i \text{sgn}(x) arg(z) \\
+	\end{align*}
+	
+	
+	\item $ u = e^{y^{2} - x^{2}} \cos 2 x y, $ so Cauchy Riemann determine that
+	
+	
+	\[ \frac{\partial v }{\partial y} = \frac{\partial u }{\partial x } = -2(x\cos 2xy +y \sin 2xy)e^{y^{2} - x^{2}} \implies v =  -e^{y^{2} - x^{2}} \sin 2 x y + g(x)   \]
+	
+	Set $ g(x) = 0 $ wlog, have that 
+	
+	
+	\begin{align*}
+	f(z) & = e^{y^{2} - x^{2}} \cos 2 x y - i e^{y^{2} - x^{2}} \sin 2 x y \\
+	& =  \\
 	\end{align*}
 	
 	
@@ -213,9 +217,7 @@
 	& = \frac{-(x+1)}{(x+1)^{2} + y^{2}} + g(x)
 	\end{align*}
 	
-	CBA checking the next one (is this necessary?)
-	
-	The corresponding analytic function is therefore
+	Setting $ g(x) = 0 $, the corresponding analytic function is therefore
 	
 	\begin{align*}
 	f(z) & = \frac{y}{(x+1)^{2} + y^{2}}  + - i \frac{(x+1)}{(x+1)^{2} + y^{2}} \\
@@ -240,7 +242,7 @@
 	& = - \log ( x^{2} + y^{2} ) + g(x) \\	
 	\end{align*}
 	
-	Hmm, deduce that $ g'(x) = 0 $, set the constant to zero, so we have 
+	Deduce that $ g'(x) = 0 $, set the constant to zero, so we have 
 	
 	\begin{align*}
 	f(z) & = \arctan\left(   \frac{2xy}{x^{2} - y^{2}} \right)  - i \log ( x^{2} + y^{2} ) \\
@@ -263,17 +265,8 @@ Now, if these $ f = u + iv $ are analytic, (and therefore satisfy the Cauchy-Rie
 
 Therefore, when the CR equations are satisfied, the function $ u $ is harmonic.
 
-Hence, for the above questions, we have $ u $ harmonic on
+Hence, for the above questions, we have $ u $ harmonic on $ \R^{2} $.
 
-\begin{enumerate}
-	\item $ \R^{2} $
-	\item $ \R^{2} $
-	\item $ \R^{2} $
-	\item $ \R^{2} $
-	\item $ \R^{2} $
-	\item $ \R^{2} $
-	
-\end{enumerate}
 
 \section{QUESTION 3}
 \section{QUESTION 4}
@@ -317,18 +310,223 @@ So $ g $ must be a constant, say $ 0 $, so the harmonic conjugate of $ \phi $ is
 Can now show that $ \nabla \phi \cdot \nabla  \psi = 0 $ (by the CR equations), ie. contours of harmonic conjugate function are perpendicular (in 2D). 
 
 Recall that a gradient of a function is perpendicular to its contours. 
+Not sure how to finish.
 
 
 
 
 
 \section{QUESTION 5}
+
+The principle branch of $ \log z $ is formed by introducing the branch cut from $ - \infty $ on the real axis to the origin, which is used to fix values of $ \theta $ lying in the range $ (-\pi,\pi] $.
+
+$ z^{i} $ has a branch point at the origin; consider a circle of radius $ r_{0} $ centred at $ 0 $, starting from $ -\pi $ and going round once anticlockwise, as we approach $ \pi $ there will be a jump from $ r_{0}^{i} e^{\pi} $ to $ r_{0}^{i} e^{-\pi} $. Hence using the same branch cut as before, this branch of $ z^{i} $ is single-valued and continuous on any curve $ C $ that does not cross the cut. 
+This branch is in fact analytic everywhere, with $ \frac{\d }{\d z} z^{i} = i z^{i-1}  $.
+
+We have
+
+\[ z^{i} = r^{i}e^{-\theta} = e^{-\theta + i \log r} \qquad \theta \in (-\pi,\pi] \]
+
+Hence we can see that  $ i^{i} = e^{-\pi/2} $ and moreover, this branch of $ z^{i} $ maps onto the annulus with inner radius $ e^{-\pi} $ and outer radius $ e^{\pi} $ infinitely often as $ r $ increases (not that the inner radius is not actually included in the mapping).
+
+Using different branches will produce an annuli of different radii and for each annulus, $ i^{i} = e^{-\theta} $. Eg. with $ \theta \in (\pi,3\pi] $, we have the annulus define from $ (e^{\pi},e^{3\pi}] $ with $ i^{i} = e^{-5\pi/2} $.
+
+
+
 \section{QUESTION 6}
+
+Introducing the branch cut from $ - \infty $ on the real axis to the origin, once branch is given below as 
+
+\[ z^{3/2} = r^{3/2}e^{3i\theta/2} \qquad \theta \in (-\pi,\pi] \]
+
+and we can define another two branches by choosing $ \theta \in (\pi,3\pi], \theta \in (3\pi,5\pi]$.
+
+$ f(z) = [z(z+1)]^{1/3} $ has two branch points, one at $ z=0 $ and one at $ z = 1 $. So we now need two branch cuts. One possibility is shown below. 
+
+Note that we cannot make use of the branch cut $ [-1,1] $ as $ z^{1/3} $ has a branch point at $ \infty $. 
+
+
+
+\begin{center}
+	\begin{tikzpicture}[scale=1.5]
+	\draw [->] (-2, 0) -- (2, 0);
+	\draw [decorate, thick, decoration=zigzag] (-2, 0) -- (-1, 0);
+	\draw [decorate, thick, decoration=zigzag] (1, 0) -- (2, 0);
+	\draw [->] (0, -1) -- (0, 2);
+	\node [below] at (1, 0) {$1$};
+	\node [below] at (-1, 0) {$-1$};
+	\node [circ] at (1, 0) {};
+	\node [circ] at (-1, 0) {};
+	
+	\end{tikzpicture}
+\end{center}
+
+Next, $ g(z) = (z^{2} + 1)^{1/2} $ has two different branch points, one at $ z = i $ and one at $ z = -i $. This time there is no branch point at infinity. Two different possibilities are shown below:
+
+\begin{center}
+	\begin{tikzpicture}[scale=1.5]
+	\draw [->] (-2, 0) -- (2, 0);
+	\draw [decorate, thick, decoration=zigzag] (0, -2) -- (0,-1);
+	\draw [decorate, thick, decoration=zigzag] (0, 1) -- (0, 2);
+	\draw [->] (0, -2) -- (0, 2);
+	\node [right] at (0,1) {$i$};
+	\node [right] at (0,-1) {$-i$};
+	\node [circ] at (0,1) {};
+	\node [circ] at (0,-1) {};
+	
+	\end{tikzpicture}
+\end{center}
+
+\begin{center}
+	\begin{tikzpicture}[scale=1.5]
+	\draw [->] (-2, 0) -- (2, 0);
+	\draw [decorate, thick, decoration=zigzag] (0, -1) -- (0,1);
+	\draw [->] (0, -2) -- (0, 2);
+	\node [right] at (0,1) {$i$};
+	\node [right] at (0,-1) {$-i$};
+	\node [circ] at (0,1) {};
+	\node [circ] at (0,-1) {};
+	
+	\end{tikzpicture}
+\end{center}
+
+
+
 \section{QUESTION 7}
+
+Writing $z + 1 = r e^{i\theta}$ and $z - 1 = r_1 e^{i \theta_1}$, we can write this as
+\begin{align*}
+f(z) &= (z-1)^{1/2}(z+1)^{1/2}\\
+&= \sqrt{r r_{1}} e^{i(\theta + \theta_{1})/2}   .
+\end{align*}
+This has branch points at $\pm 1$.
+
+I'm not sure I'm understanding what the question is asking;
 \section{QUESTION 8}
+
+This mapping is a M\"obius map, which sends circlines to circlines. 
+
+Looking at how the boundary of the disc is mapped, we see that $ 0,2,1+i $ are mapped to $ \infty,1/2 $ and $ 1/2 - i/2$, ie. this disc is mapped to the straight line intersecting the real axis at $ 1/2 $.
+
+ Inside the disc, the point $ 1 $ gets mapped to itself. Hence this disc is mapped to the RHP, right of (but not including) the line through $ 1/2 $. 
+ 
+ 
+Next, using M\"obius map ideas, we can consider the map $ z \mapsto \frac{1}{1 - z} $ acting on the unit disc $ | z | < 1 $. Now $ -1,i,1 $ are mapped to $ 1/2, 1/2 + i/2 ,\infty $, ie. the straight line intersecting the real axis at $ 1/2 $.  The point $ 0 $ is mapped to $ 1 $. Hence under this map, the disc is transformed to all of $ \C $ left of (but not including )this line. 
+
+Taking away $ 1/2 $ we are covering the RHP. Now, squaring will give $ \C \setminus {(-\infty,0]} $ as we are not including the imaginary axis. Hence lastly, taking away $ 1/4 $, we get the desired region.
+
+ 
+
 \section{QUESTION 9}
+
+$f(z) = \frac{z - 1}{z + 1}$ permutes the $8$ divisions on the complex plane as follows:
+\begin{center}
+	\begin{tikzpicture}
+	\fill [mred, fill opacity=0.5] (-2, -2) rectangle (2, 2);
+	\fill [white] circle [radius=1.5];
+	\draw [fill=mblue, fill opacity=0.5] circle [radius=1.5];
+	\draw [->] (-2, 0) -- (2, 0);
+	\draw [->] (0, -2) -- (0, 2);
+	\node at (0.5, 0.5) {$2$};
+	\node at (-0.5, 0.5) {$3$};
+	\node at (0.5, -0.5) {$6$};
+	\node at (-0.5, -0.5) {$7$};
+	
+	\node at (1.5, 1.5) {$1$};
+	\node at (-1.5, 1.5) {$4$};
+	\node at (1.5, -1.5) {$5$};
+	\node at (-1.5, -1.5) {$8$};
+	\end{tikzpicture}
+\end{center}
+The map sends $1 \mapsto 2 \mapsto 3 \mapsto 4 \mapsto 1$ and $5 \mapsto 6 \mapsto 7 \mapsto 8 \mapsto 5$. 
+
+We can derive as follows. $ f $ is a M\"obius map, and must map circlines to circlines. We can see that 
+
+
+\begin{align*}
+\infty & \mapsto 1 \\
+0 & \mapsto -1 \\
+1 & \mapsto 0 \\
+-1 & \mapsto \infty \\
+i & \mapsto i \\
+-i & \mapsto -i \\ 
+\end{align*}
+
+Consider $f(z) = \frac{z - 1}{z + 1}$ acting on the unit disk $U = \{z: |z| < 1\}$. The boundary of $U$ is a circle. The three points $-1, i$ and $+1$ lie on this circle, and are mapped to $\infty$, $i$ and $0$ respectively.
+
+Since M\"obius maps take circlines to circlines, the image of $\partial U$ is the imaginary axis. Since $f(0) = -1$, we see that the image of $U$ is the left-hand half plane.
+
+Similarly we can conclude the image of $ \C \setminus U $ is the RHP, LHP is mapped to $ \C \setminus U $, RHP is mapped to $ U $, and  UHP and DHP are mapped to themselves (repsectively). That is;
+
+\begin{align*}
+\{2,3,6,7\} & \mapsto \{3,4,6,7  \} \\
+\{ 1,4,5,8 \} & \mapsto \{  1,2,5,6 \}\\
+\{ 3,4,7,8 \} & \mapsto \{  1,4,5,8 \}\\
+\{ 1,2,5,6 \} & \mapsto \{  2,3,6,7 \}\\
+\{ 1,2,3,4 \} & \mapsto \{  1,2,3,4 \}\\
+\{ 5,6,7,8 \} & \mapsto \{  5,6,7,8 \}\\
+\end{align*}
+
+Now consider the alternative M\"obius map $ g(z) = \frac{z - i}{z + i} $. We can see that 
+
+
+\begin{align*}
+\infty & \mapsto 1 \\
+0 & \mapsto -1 \\
+1 & \mapsto i \\
+-1 & \mapsto -i \\
+i & \mapsto 0 \\
+-i & \mapsto \infty \\ 
+\end{align*}
+
+Now $-1, i$ and $+1$ on $ \partial U $ are mapped to $-i$, $0$ and $i$ respectively, so the image of $\partial U$ is the imaginary axis. Since $f(0) = -1$, we see that the image of $U$ is the left-hand half plane (as before).
+
+Similarly we can conclude the image of $ \C \setminus U $ is the RHP, but now LHP is mapped to DHP, RHP is mapped to UHP, UHP is mapped to $ \C \setminus U $ and DHP is mapped to $ U $. In other words
+
+
+\begin{align*}
+\{2,3,6,7\} & \mapsto \{3,4,6,7  \} \\
+\{ 1,4,5,8 \} & \mapsto \{  1,2,5,6 \}\\
+\{ 3,4,7,8 \} & \mapsto \{  5,6,7,8 \}\\
+\{ 1,2,5,6 \} & \mapsto \{  1,2,3,4 \}\\
+\{ 1,2,3,4 \} & \mapsto \{  1,4,5,8 \}\\
+\{ 5,6,7,8 \} & \mapsto \{  2,3,6,7 \}\\
+\end{align*}
+
+Thus, this map sends $1 \mapsto 1, 2 \mapsto 4 \mapsto 5 \mapsto 2$  and... slight slip somewhere?
+
+
+
+
+
 \section{QUESTION 10}
+
+Sketches are given below:
+
+
+\begin{enumerate}
+	\item $ f_{1} = \frac{1}{\alpha} \log z $, where the branch cut is made outside of the angular sector (doesn't matter too much where.)
+	
+	\item $ g_{1}(z) = e^{z} $ maps our half strip onto the upper half of the unit disc. We now apply $ g_{2}(z) = \frac{z-1}{z+1} ,g_{3}(z) =iz^{2} ,g_{2}(z) $ in succession. Thus the desired conformal map is $ g_{2} \circ g_{3} \circ g_{2} \circ g_{1} $, illustrated in the sketches below. 
+	
+	\item 
+\end{enumerate}
+
+
+
+
+
+
+
 \section{QUESTION 11}
+
+Write $ g(z) = e^{z} = e^{x}e^{iy} $, so $ g $ maps to points with radius $ e^{x} $ and angle given by $ y $. In our strip, as $ x \to \pm \infty $, we can get arbitrarily small or large radius, and as $ 0 < \Im z < \pi $, we can only reach the negative real axis. So this maps our strip to the UHP.
+
+
+
+The conformal map is $ f(z) = \log (\sin z) $, being careful with our choice of branch cut?
+
+
 \section{QUESTION 12}
 
 
