@@ -25,14 +25,249 @@
 \maketitle
 
 \section{QUESTION 1}
+
+In this example, $ \mathbf{u}(x) = \alpha(x,-y) $
+
+\begin{enumerate}
+	\item Streamlines are curves $ \mathbf{X}(s; \mathbf{x}_{0}) $ with $ \mathbf{X}_{0} = \mathbf{x}_{0} $ at $ s = 0 $. 
+	
+	\[ \frac{\partial X }{\partial s} = \alpha X, \quad \frac{\partial Y }{\partial s} = - \alpha Y \]
+	
+	$ X = x_{0} e^{\alpha s} $ and $ Y = y_{0}e^{- \alpha s} $. Eliminating $ s $ to get the shape of the streamlines gives $ XY = x_{0}y_{0} $. These are hyperbola.
+	
+	\item For steady flow, pathlines and streamlines are coincident. For a particle released at $ \mathbf{x}_{0} = (x_{0},y_{0}) $, the particle pathline obeys
+	
+	\[ x = x_{0} e^{\alpha t}, \quad y = y_{0}e^{- \alpha t} \]
+	
+	as  As $ x_{0}^{2} + y_{0}^{2} = a^{2} $ we find that the curve evolves as
+	
+	\[ x^{2}e^{-2\alpha t} + y^{2}e^{2 \alpha t} = a^{2} \]
+	
+	ie; this is an ellipse,
+	
+	
+	\[ \frac{x^{2}}{(ae^{at})^{2}} + \frac{y^{2}}{(ae^{-at})^{2}} = 1 \]
+	
+	\item 
+	
+	The area of this ellipse does not change in time; it is $ \pi \times ae^{at} \times ae^{-at} = \pi a^{2} $. As we would expect this is the area of the circle $ x^{2} + y^{2} = a^{2} $ at time $ t = 0 $. 
+	
+	Intuitively?
+	
+	
+\end{enumerate}
+
+
 \section{QUESTION 2}
+
+In this example, $ \mathbf{u}(x) = (\gamma y, 0) $
+
+\begin{enumerate}
+	\item Streamlines are curves $ \mathbf{X}(s; \mathbf{x}_{0}) $ with $ \mathbf{X}_{0} = \mathbf{x}_{0} $ at $ s = 0 $. 
+	
+	\[ \frac{\partial X }{\partial s} = \gamma y, \quad \frac{\partial Y }{\partial s} = 0 \]
+	
+	$ X = x_{0} + \gamma y_{0} s $ and $ Y = y_{0}$. Note that we cannot eliminate $ s $ to get the shape of the streamlines; they are given by;
+	
+	\[ X = x_{0} + \gamma Y s \]
+	
+	\item For steady flow, pathlines and streamlines are coincident. For a particle released at $ \mathbf{x}_{0} = (x_{0},y_{0}) $, the particle pathline obeys
+	
+	\[ x = x_{0} + \gamma y_{0} t, \quad y = y_{0}  \]
+	
+	as  As $ x_{0}^{2} + y_{0}^{2} = a^{2} $ we find that the curve evolves as
+	
+	\[ (x - \gamma t y_{0})^{2} + y^{2} = a^{2}  \]
+	
+	ie. it is just shifted to the right, at a rate of $ \gamma y_{0} $ units per second. 
+	
+	\item Clearly the curve is just translated so the area remains fixed.
+
+	
+	
+\end{enumerate}
+
+At longer times, the ellipse in Question 1 is stretched faster, as this grows exponentially, yet the stretch in this circle is just linear with time. 
+	
+
+
+
 \section{QUESTION 3}
+
+\section{QUESTION 2}
+
+In this example, $ \mathbf{u}(x) = (\frac{\partial \psi }{\partial y}, - \frac{\partial \psi }{\partial x}) $.
+
+\begin{enumerate}
+	\item The contours $ \psi = c $ have normal
+	
+	\[ \mathbf{n} = \nabla  \psi = (\psi_{x},\psi_{y}) \]
+	
+	We see immediately that
+	
+	\[ \mathbf{u} \cdot \mathbf{n} = \psi_{x} \psi_{y} - \psi_{y} \psi_{x} = 0 \]
+	
+	So the flow is perpendicular to the normal, ie. tangent to the contours of $ \psi $. 
+	
+	\item $ \left| \mathbf{u} \right| = | (\psi_{y},-\psi_{x}) | = \nabla^{2} \psi = | (\psi_{x},\psi_{y}) | = | \nabla \psi | $
+	
+	
+	\item The volume flux is
+	\[
+	q = \int_{\mathbf{x}_0}^{\mathbf{x}_1} \mathbf{u}\cdot \mathbf{n}\;\d s.
+	\]
+	We see that
+	\[
+	\mathbf{n}\;\d s = (-\d y, \d x).
+	\]
+	So we can write this as
+	\[
+	q = \int_{\mathbf{x}_0}^{\mathbf{x}_1} -\frac{\partial \psi}{\partial y}\;\d y - \frac{\partial \psi}{\partial x}\;\d x = \psi(\mathbf{x}_0) - \psi(\mathbf{x}_1).
+	\]
+	So the flux depends only the difference in the value of $\psi$. Hence, for closer streamlines, to maintain the same volume flux, we need a higher speed.
+	
+	\item Note that $\psi$ is constant on a stationary rigid boundary, i.e.\ the boundary is a streamline, since the flow is tangential at the boundary. This is a consequence of $\mathbf{u}\cdot \mathbf{n} = 0$. We often choose $\psi = 0$ as our boundary.
+	
+	
+\end{enumerate}
+
+
+
+
+
+
+
+
+
 \section{QUESTION 4}
+
+\[ \nabla \cdot \mathbf{u} = 0 \iff \frac{\partial u }{\partial x} + \frac{\partial v}{\partial y} = 0  \]
+
+By the quotient rule,
+
+\begin{align*}
+\frac{\partial u }{\partial x}& = \frac{-(y-b)[2(x-a)]}{( (x-a) + (y-b))^{2}} 
+\end{align*}
+
+\begin{align*}
+\frac{\partial v }{\partial y} & = \frac{-(a-x)[2(y-b)] }{( (x-a)^{2} + (y-b)^{2}   )} \\
+\end{align*}
+
+So $  \frac{\partial u }{\partial x} = - \frac{\partial v }{\partial y} $ and $  \nabla \cdot \mathbf{u} = 0 $, our fluid is indeed incompressible.
+
+By inspection, the required streamfunction is 
+
+\[ \psi(x,y) = \frac{1}{2} \log \left[   (x-a)^{2} + (y-b)^{2}  \right]  \]
+
+ 
+
+
 \section{QUESTION 5}
+
+\[ \nabla \cdot \mathbf{u} = 0 \iff  \frac{1}{r} \frac{\partial }{\partial r}(ru_{r}) + \frac{1}{r} \frac{\partial }{\partial \theta}(u_{\theta}) = 0  \]
+
+\begin{align*}
+\frac{\partial }{\partial r}(ru_{r}) & = \frac{\partial }{\partial r} \left[  U \left(  r - \frac{a^{2}}{r} \right) \cos \theta \right]    \\
+& = U \left(  1 + \frac{a^{2}}{r^{2}} \right) \cos \theta 
+\end{align*}
+
+\begin{align*}
+\frac{\partial }{\partial \theta}(u_{\theta}) & = \frac{\partial }{\partial \theta} \left[ -U \left( 1 + \frac{a^{2}}{r^{2}} \right)  \sin \theta \right]    \\
+& = U \left( 1 + \frac{a^{2}}{r^{2}} \right)  \cos \theta
+\end{align*}
+
+Hence 
+
+\[  \frac{1}{r} \frac{\partial }{\partial r}(ru_{r}) = - \frac{1}{r} \frac{\partial }{\partial \theta}(u_{\theta}) \implies \nabla \cdot \mathbf{u} = 0  \]
+
+
+By inspection the streamfunction is
+
+\[ \psi(r,\theta) = U \left(  r - \frac{a^{2}}{r} \right) \sin \theta  \]
+
 
 
 
 \section{QUESTION 6}
+
+\[ \nabla \cdot \mathbf{u} = 0 \iff  \frac{1}{r} \frac{\partial }{\partial r}(ru_{r}) + \frac{\partial u_{z}}{\partial z} = 0  \]
+
+
+\begin{align*}
+\frac{\partial }{\partial r}(ru_{r}) & = \frac{\partial }{\partial r} \left[ - \frac{1}{2} \alpha r^{2} \right]     \\
+& = - r \alpha
+\end{align*}
+
+\begin{align*}
+\frac{\partial }{\partial z}(u_{z}) & = \frac{\partial }{\partial z} \left[ \alpha z \right]    \\
+& = \alpha
+\end{align*}
+
+Hence 
+
+\[  \frac{1}{r} \frac{\partial }{\partial r}(ru_{r}) = - \frac{\partial u_{z}}{\partial z} \implies \nabla \cdot \mathbf{u} = 0  \]
+
+
+By inspection the streamfunction is
+
+\[ \Psi(r,z) = \frac{1}{2} \alpha r^{2} z  \]
+
+
+
+
+
+
+\section{QUESTION 7}
+
+
+In this example, $ \mathbf{u}(x) = (  1/(1+t), 1  ) $
+
+\begin{enumerate}
+	\item Streamlines are curves $ \mathbf{X}(s; \mathbf{x}_{0}) $ with $ \mathbf{X}_{0} = \mathbf{x}_{0} $ at $ s = 0 $. 
+	
+	\[ \frac{\partial X }{\partial s} = \frac{1}{1+t}, \quad \frac{\partial Y }{\partial s} = 1 \]
+	
+	$ X = \frac{s}{1+t} + x_{0} $ and $ Y = s + y_{0} $. Eliminating $ s $ to get the shape of the streamlines gives $ X = \frac{Y - y_{0}}{1+t} + x_{0} $. At time $ t = 0 $ this gives the streamline as
+	
+	\[ Y = X + y_{0} - x_{0} \]
+	
+	
+	
+	\item The pathline of the particle is given by
+	
+	\[ \frac{\partial X }{\partial t} = \frac{1}{1+t}, \quad \frac{\partial Y }{\partial t} = 1 \]
+	
+	with $ \mathbf{X} = \mathbf{x}_{0} $ at $ t = 0 $. Thus $ X = \log(1+t) + x_{0} $ and $ Y = t + y_{0} $. Eliminating $ t $ we get the shape of the pathline as
+	
+	\[ X = \log(1+ Y - y_{0}) + x_{0} \]
+	
+	
+	
+	\item 
+	
+	The area of this ellipse does not change in time; it is $ \pi \times ae^{at} \times ae^{-at} = \pi a^{2} $. As we would expect this is the area of the circle $ x^{2} + y^{2} = a^{2} $ at time $ t = 0 $. 
+	
+	Intuitively?
+	
+	
+\end{enumerate}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 \begin{enumerate}
 	\item At $ t = 1 $, the velocity makes an angle of $ 45^\circ $ angle with the horizontal , and the streamlines are slanted.
@@ -53,10 +288,6 @@
 	
 \end{enumerate}
 
-
-
-\section{QUESTION 7}
-
 Consider the fluid flow $ \mathbf{u} = (  1/(1+t),1,0 ) $ for $ t > 0 $. Supposing our fluid is incompressible, $ \nabla \cdot \mathbf{u} = 0 $ and there exists some vector potential $ \mathbf{A} $ such that $ \mathbf{u} = \nabla  \times \mathbf{A} $. As $ \mathbf{u} $ is two dimensional, we know $ \mathbf{A} $ is of the from
 
 \[ \mathbf{A} = (0,0,\psi(x,y,t)) \]
@@ -71,39 +302,60 @@ We define streamlines to be contours of our stream function. These contours have
 
 \section{QUESTION 8}
 
-\[ \nabla \cdot \mathbf{u} = 0 \iff \frac{\partial u }{\partial x} + \frac{\partial v}{\partial y} = 0  \]
 
-By the quotient rule,
+The integral from of the momentum equation:
+
+\[ \frac{\d }{\d t}  \int_{V}  \rho \mathbf{u} \; \d V = \int_{V} \rho \mathbf{g} \; \d V - \int_{S} p \mathbf{n} + \rho \mathbf{u} (\mathbf{u} \cdot \mathbf{n}) \; \d S \]
+
+For steady flow, the LHS is zero. Neglecting gravity, we have the total force on the wall as 
 
 \begin{align*}
-\frac{\partial u }{\partial x}& = \frac{-(y-b)[2(x-a)]}{( (x-a) + (y-b))^{2}} 
+& = \int_{S} p \mathbf{n} \; \d S \\
+& = - \int_{S} \rho \mathbf{u} (\mathbf{u} \cdot \mathbf{n}) \; \d S 
 \end{align*}
 
-\begin{align*}
-\frac{\partial v }{\partial y} & = \frac{-(a-x)[2(y-b)] }{( (x-a)^{2} + (y-b)^{2}   )} \\
-\end{align*}
-
-So $  \frac{\partial u }{\partial x} = - \frac{\partial v }{\partial y} $ and $  \nabla \cdot \mathbf{u} = 0 $, our fluid is indeed incompressible. 
+So the force on the wall is equal to the surface integral, which gives $ - \rho A U \mathbf{n} $. Assuming $ \rho = 10^{3} \text{kg m}^{-3} $; $ \Rightarrow 0.6 $ N force. 
 
 
 
 \section{QUESTION 9}
 
-\[ \nabla \cdot \mathbf{u} = 0 \iff  \frac{1}{r} \frac{\partial }{\partial r}(ru_{r}) + \frac{1}{r} \frac{\partial }{\partial \theta}(u_{\theta}) = 0  \]
+\begin{prop}[Euler momentum equation]
+	\[
+	\rho \frac{\D \mathbf{u}}{\D t} = - \nabla p + \mathbf{f}.
+	\]
+\end{prop}
 
-\begin{align*}
-\frac{\partial }{\partial r}(ru_{r}) & = \frac{\partial }{\partial r} \left[  U \left(  r - \frac{a^{2}}{r} \right) \cos \theta \right]    \\
-& = U \left(  1 + \frac{a^{2}}{r^{2}} \right) \cos \theta 
-\end{align*}
+For conservative forces, we can write $\mathbf{f} = -\nabla \chi$, where $\chi$ is a scalar potential.
 
-\begin{align*}
-\frac{\partial }{\partial \theta}(u_{\theta}) & = \frac{\partial }{\partial \theta} \left[ -U \left( 1 + \frac{a^{2}}{r^{2}} \right)  \sin \theta \right]    \\
-& = U \left( 1 + \frac{a^{2}}{r^{2}} \right)  \cos \theta
-\end{align*}
+We notice the vector identity
+\[
+\mathbf{u}\times (\nabla \times \mathbf{u}) = \nabla\left(\frac{1}{2}|\mathbf{u}|^2\right) - \mathbf{u}\cdot \nabla \mathbf{u}.
+\]
+We use this to rewrite the Euler momentum equation as
+\[
+\rho \frac{\partial \mathbf{u}}{\partial t} + \rho \nabla \left(\frac{1}{2}|\mathbf{u}|^2\right) - \rho \mathbf{u}\times (\nabla \times \mathbf{u}) = -\nabla p - \nabla \chi.
+\]
+Dotting with $\mathbf{u}$, the last term on the left vanishes, and we get
+\begin{prop}[Bernoulli's equation]
+	\[
+	\frac{1}{2}\rho \frac{\partial|\mathbf{u}|^2}{\partial t} = -\mathbf{u}\cdot \nabla \left(\frac{1}{2} \rho |\mathbf{u}|^2 + p + \chi\right).
+	\]
+\end{prop}
+Note also that this tells us that high velocity goes with low pressure; low pressure goes with high velocity.
 
-Hence 
+In the case where we have a steady flow, we know
+\[
+H = \frac{1}{2}\rho |\mathbf{u}|^2 + p + \chi
+\]
+is constant along streamlines.
 
-\[  \frac{1}{r} \frac{\partial }{\partial r}(ru_{r}) = - \frac{1}{r} \frac{\partial }{\partial \theta}(u_{\theta}) \implies \nabla \cdot \mathbf{u} = 0  \]
+Even if the flow is not steady, we can still define the value $H$, and then we can integrate Bernoulli's equation over a volume $\mathcal{D}$ to obtain
+\[
+\frac{\d}{\d t}\int_{\mathcal{D}} \frac{1}{2}\rho |\mathbf{u}|^2 \;\d V + \int_{\partial \mathcal{D}} H \mathbf{u}\cdot \mathbf{n} \;\d S. = 0 
+\]
+So $H$ is the transportable energy of the flow.
+
 
 
 

@@ -29,9 +29,9 @@
 
 \section{QUESTION 2}
 
-If $ X \sim \text{Exp}(\lambda), Y \sim \text{Exp}(\mu)  $, $ X,Y $ independent, we have 
+If $ X \sim \text{Exp}(\lambda), Y \sim \text{Exp}(\mu)  $, $ X,Y $ independent, we can derive the standard result that the minimum of exponentials is exponential:
 	\begin{align*}
-	\P (\min[X,Y] < t) & =  1 - \P (\min[X,Y] \geq n) \\
+	\P (\min[X,Y] < t) & =  1 - \P (\min[X,Y] \geq t) \\
 	& = 1 - \int_{0}^{\infty} \int_{0}^{\infty} I(\lambda e^{-\lambda x_{1}} \geq t, \mu e^{-\mu x_{2}} \geq t ) \; \d x_{2} \d x_{1} \\
 	& = 1 - \int_{t}^{\infty} \lambda e^{-\lambda x_{1}} \; \d x_{1} \int_{t}^{\infty} \mu e^{-\mu x_{2}} \; \d x_{2} \\
 	& = 1 - e^{-(\lambda + \mu) t}, \; \text{i.e.} \min[X,Y] \sim \text{Exp}(\lambda + \mu)
@@ -126,43 +126,252 @@ We have proved the discrete case in lectures. The continuous case is similar:
 	
 	\begin{align*}
 	f_{\mathbf{X}}(\mathbf{x} \; | \; \theta) & =  \prod_{i=1}^{n} \frac{e^{-i\theta}(i \theta)^{x_{i}}}{x_{i}!} \\
-	& = \underbrace{\exp  \left(- \frac{n(n+1)}{2} \theta   \right)  \theta^{\sum x_{i}}}_{g(t(\mathbf{x}),\theta)} \cdot \underbrace{\frac{1^{x_{1}} \cdot 2^{x_{2}} \cdot \cdots \cdot n^{x_{n}} }{x_{1}!x_{2}! \cdots x_{n}!}}_{h(\mathbf{x})}
+	& = \underbrace{\exp  \left(- \frac{n(n+1)}{2} \theta   \right)  \theta^{\sum x_{i}}}_{g(t(\mathbf{x}),\theta)} \cdot \underbrace{\prod_{i=1}^{n} \frac{i^{x_{i}}}{x_{i}!}}_{h(\mathbf{x})}
 	\end{align*}
 	
-	Using the factorization criterion, $ t(\mathbf{x}) = \sum_{i=1}^{n} x_{i} $ is a sufficient statistic, with distribution:
+	Using the factorization criterion, $ T = t(\mathbf{x}) = \sum_{i=1}^{n} x_{i} $ is a sufficient statistic, and $ T \sim \text{Po }(n(n+1)\theta/2) $
 	
-	The maximum likelihood estimator $ \hat{\theta} $ is given by
+	The log-likelihood is 
 	
-	\item Let $ X_{1},\cdots,X_{n} $ be independent Exp($ \theta $). So
-	
-		\begin{align*}
-	f_{\mathbf{X}}(\mathbf{x} \; | \; \theta) & =  \prod_{i=1}^{n} \lambda e^{-\lambda x_{i}} \\
-	& = \lambda^{n} e^{-\lambda \sum x_{i} }
+	\begin{align*}
+	l(\theta) &  = - \frac{n(n+1)}{2} \theta   + \sum x_{i} \log \theta + \log \left(  \prod_{i=1}^{n} \frac{i^{x_{i}}}{x_{i}!} \right)    \\
 	\end{align*}
 	
-	Choosing $ t(\mathbf{x}) = \sum_{i=1}^{n} x_{i} $, we can use the factorization criterion with $ g(t(\mathbf{x}),\lambda) = \lambda^{n} e^{-\lambda \sum x_{i} }$, $ h(\mathbf{x}) = 1 $, to show that $ t(\mathbf{x}) $ is a sufficient statistic for $ \lambda $.
+	and this is maximised when $ \frac{\d l}{\d \theta} = 0 $;
+	
+	\[  - \frac{n(n+1)}{2}  + \frac{1}{\theta} \sum x_{i}  = 0 \Rightarrow \hat{\theta} = \frac{2 \sum x_{i}}{n(n+1)}   \]
+	
+	Thus the MLE $ \hat{\theta} $ is a function of $ T = \sum x_{i} $, and is unbiased:
+	
+	\[ \E_{\theta}(\hat{\theta}) = \frac{2}{n(n+1)} \cdot \frac{n(n+1)}{2} \theta = \theta  \]
+	
+	\item Let $ X_{1},\cdots,X_{n} \sim $ iid Exp($ \theta $). Then
+	
+	
+	\begin{align*}
+	\frac{	f_{\mathbf{X}}(\mathbf{x} \; | \; \theta)}{	f_{\mathbf{X}}(\mathbf{y} \; | \; \theta)}& = \frac{\lambda^{n} e^{-\lambda \sum x_{i} }}{\lambda^{n} e^{-\lambda \sum y_{i} }} \\
+	& = \exp\left\{ - \lambda \left( \sum x_{i} - \sum y_{i}  \right)   \right\} 
+	\end{align*}
+	
+	This is constant as a function of $ \lambda $ iff $  \sum x_{i} = \sum y_{i} $. Hence $ T = \sum_{i=1}^{n} x_{i} $ is minimal sufficient, with $ T \sim \Gamma(n,\lambda) $. 
+	
+	The log-likelihood is  
+	
+	\[ l(\theta) = n \log \lambda - \lambda \sum x_{i} \]
+	
+	and this is maximised when $ \frac{\d l}{\d \lambda} = 0 $;
+	
+	\[   \frac{n}{\lambda} - \sum x_{i} = 0 \Rightarrow \hat{\lambda} = \frac{n}{\sum x_{i}}  \]
+	
+	Thus the MLE $ \hat{\lambda} $ is a function of $ T = \sum x_{i} $, and 
+	
+	\[ \E_{\lambda}(\hat{\lambda}) = n \cdot \left( \frac{n}{\lambda} \right)^{-1} = \lambda  \]
+	
+	so it is unbiased?
+	
+	
+	
+	
 	
 \end{enumerate}
 
 \section{QUESTION 5}
 
-\begin{enumerate}[label = (\alph*)]
-	\item Let $ X_{1},\cdots,X_{n} $ be $ \sim $ iid Bin($ 1,p $). ( this is Ber($ p $))
-	
-	\begin{align*}
-	f_{\mathbf{X}}(\mathbf{x} \; | \; p) & =  \prod_{i=1}^{n} p^{x_{i}}(1-p)^{1-x_{i}} \\
-	& = p^{\sum x_{i}} (1-p)^{n- \sum x_{i}}
-	\end{align*}
-\end{enumerate}
+Given $ \tilde{\theta} = \frac{2}{3} X_{1} $, we have
 
+\begin{align*}
+\E_{\theta}(\tilde{\theta}) & = \frac{2}{3} \frac{1}{2}(\theta + 2 \theta)  = \theta
+\end{align*}
+
+so $ \tilde{\theta} $ is unbiased. 
+
+We have
+
+\begin{align*}
+\frac{	f_{\mathbf{X}}(\mathbf{x} \; | \; \theta)}{	f_{\mathbf{X}}(\mathbf{y} \; | \; \theta)}& = \frac{ \frac{1}{\theta^{n}} \mathbb{I}_{\{ \max x_{i} < 2 \theta \}}  \mathbb{I}_{\{ \min x_{i} > \theta \}} }{ \frac{1}{\theta^{n}} \mathbb{I}_{\{ \max y_{i} < 2 \theta \}}  \mathbb{I}_{\{ \min y_{i} > \theta \}} }
+\end{align*}
+
+Hence we can see $ T = \Delta x : =  \lfloor  \frac{\min x_{i} + \max x_{i}}{2}  \rfloor  $ is minimal sufficient, and
+
+\begin{align*}
+\E_{\theta}(\tilde{\theta} | T = u) & = \frac{2}{3} \E_{\theta} ( X_{1} |  \lfloor  \frac{\min x_{i} + \max x_{i}}{2}  \rfloor  = u ) \\
+& = \frac{2}{3} \E_{\theta} ( X_{1} |   \Delta x   = u, X_{1} =  \Delta x  ) \P_{\theta}( X_{1} = \Delta x  \; | \;  \Delta x  = u ) \\
+& + \frac{2}{3} \E_{\theta} ( X_{1} |   \Delta x   = u, X_{1} \neq  \Delta x  ) \P_{\theta}( X_{1} \neq \Delta x  \; | \;  \Delta x  = u ) \\
+& = \frac{2}{3} \left(  u \times \frac{1}{n} + \frac{u}{2} \times \frac{n-1}{n}  \right) \\
+& = \frac{1}{3} \frac{n+1}{n} u 
+\end{align*}
+
+So the Rao-Blackwell estimator is $ \frac{1}{3} \frac{n+1}{n}  \lfloor  \frac{\min x_{i} + \max x_{i}}{2}  \rfloor $
+
+Note sure about this as I don't think the probability that $ X_{1} $ takes the value $ \Delta x $ is $ \frac{1}{n} $. Not sure how to incorporate both $ \min x_{i} $ and $ \max x_{i} $ into a sufficient statistic.  
+ 
 
 
 \section{QUESTION 6}
+
+Have
+
+\[ L(\theta) = f_{\mathbf{X}} (\mathbf{x} \; ; \; \theta) = \frac{1}{\theta^{n}} \mathbb{I}_{\{  \max x_{i} < \theta \}} \mathbb{I}_{\{  \min x_{i} > 0 \}} \]
+
+So for $ \theta \geq \max x_{i} $, $ L(\theta) = \frac{1}{\theta^{n}} $ and is decreasing as $ \theta $ increases, while for $ \theta < \max x_{i} $, $ L(\theta) = 0 $. Hence the value $ \hat{\theta} = \max x_{i} $ maximizes the likelihood.
+
+Now, $ \P_{\theta}(\theta \geq \max x_{i}) = 1 $. So we can construct a one-sided $ 100(1-\alpha) $ \% confidence interval with lower bound $ \hat{\theta} $, and upper bound $ b(\hat{\theta}) $, such that $ \P(\theta \leq b(\hat{\theta})) = 1 - \alpha $, for some function $ b $ to be determined.
+
+Have that 
+
+\[ 1 - \alpha = \P (\theta \leq b(\hat{\theta})) = 1 - \P(b(\hat{\theta}) < \theta) = 1 - \P(\hat{\theta} < b^{-1}(\theta))  \]
+
+Hence $ \P(\hat{\theta} < b^{-1}(\theta)) = \alpha  $. For $ 0 \leq t \leq \theta $ the cumulative distribution function of $ \hat{\theta}  $ is
+
+\[ F_{\hat{\theta}}(t) = \P (\hat{\theta} \leq t) = \P ( X_{i} \leq t \text{ for all } i) = ( \P(X_{i}\leq t))^{n} = \left( \frac{t}{n} \right)^{n}  \]
+
+We obtain
+
+\[ \frac{(b^{-1}(\theta))^{n}}{\theta^{n}} = \alpha, \; \text{ whence } b^{-1}(\theta) = \theta \alpha^{1/n} \]
+
+This gives inverse function $ b(\hat{\theta}) = \hat{\theta} / \alpha^{1/n} $.
+
+Hence, the $ (1 - \alpha) $ \% CI for $ \theta $ is $ (\hat{\theta},\hat{\theta}/\alpha^{1/n}) $.
+
+
+
 \section{QUESTION 7}
+
+
+If we take $ z_{-} < z_{+} $ such that $ \Phi(z_{+}) - \Phi(z_{-}) = \sqrt{0.95} $, then the equation
+
+\[ \P \left(    z_{-} < X_{1} - \theta_{1} < z_{+}, z_{-} < X_{2} - \theta_{2} < z_{+} \right) = 0.95  \]
+
+determines a $ 95 $ \% confidence set for $ (\theta_{1},\theta_{2}) $.
+ 
+Owing to independence we can model this as a square:
+
+
+\[  \P \left(    z_{-} < X_{1} - \theta_{1} < z_{+} \right) = \sqrt{0.95}  \]
+
+which can be written as 
+
+\[  \P \left(    X_{1} - z_{+} < \theta_{1} < X_{1} - z_{-} \right) = \sqrt{0.95}  \]
+
+ie. gives the interval 
+
+\[ \left(   X_{1} - z_{+}, X_{1} - z_{-} \right)  \]
+
+centred at $ X_{1} - (z_{+} + z_{-})/2   $ with width $ (z_{+} - z_{-}) $.
+
+Choosing $ z_{+} = - z_{-} := z $ gives the interval
+
+\[ \left(  X_{1} - z, X_{1} - z  \right)  \]
+
+and $ z $ will be the upper $ (1 - \sqrt{0.95})/2 $ point of the standard normal distribution, ie. $ \Phi(a) = 1 - ( 1 - \sqrt{0.95}) /2  = (1 + \sqrt{0.95})/a  $. By the hint, we see $ a = 2.236 $; thus the confidence set can be written as
+
+
+\[ S = \{  (\theta_{1},\theta_{2}) : | \theta_{1} - X_{1} | \leq 2.236, | \theta_{2} - X_{2} | \leq 2.236   \}  \]
+
+
+Similarly, we try model this as a circle:
+
+\[ \P  \left(  (\theta_{1} - X_{1})^{2} + (\theta_{2} - X_{2})^{2} < z_{+}^{2} \right) 0.95   \]
+
+Not sure how to finish. 
+
+
+
+%
+%
+%If $ X_{1} \sim N (\theta_{1},1) $ then $ \theta_{1} - X_{1} \sim N(0,1) $.
+%
+%The condition $ | \theta_{1} - X_{1} | \leq 2.236 $ is equivalent to 
+%
+%\[ - \Phi^{-1} \left( \frac{1 + \sqrt{0.95}}{2} \right)  \leq \theta_{1} - X_{1}  \leq \Phi^{-1} \left( \frac{1 + \sqrt{0.95}}{2} \right)  \]
+
 \section{QUESTION 8}
+
+The likelihood is written as 
+
+
+\begin{align*}
+f_{\mathbf{X}}(\mathbf{x} \; | \; \lambda) & =  \prod_{i=1}^{n} \frac{e^{-\lambda}\lambda^{x_{i}}}{x_{i}!} \\
+& = \exp ( - n \lambda ) \lambda^{\sum x_{i}} \cdot \prod_{i=1}^{n} \frac{1}{x_{i}!}
+\end{align*}
+
+Here $ n = 5 $, $ \sum x_{i} = 16 $, $ \prod_{i=1}^{n} \frac{1}{x_{i}!} = 207,360 $. Calculating,
+
+
+\begin{align*}
+f_{X}(x) & = f_{X}(x | 1)  \pi_{\lambda}(1) +  f_{X}(x | 1.5)  \pi_{\lambda}(1.5) \\
+& = \exp(-5) \cdot \frac{1}{207,360} \cdot 0.4 + \exp(-7.5) 1.5^{16} \cdot  \frac{1}{207,360} \cdot 0.6 \\
+& = 3.249396 \times 10^{-8} \cdot 0.4 + 1.75197 \times 10^{-6} \times 0.6 \\
+& = 7.20284 \times 10^{-7}
+\end{align*}
+	
+Whence
+
+\begin{align*}
+\pi_{\lambda| X}(1|x)& = \frac{f_{X}(x | 1) \cdot \pi_{\lambda}(1)}{f_{X}(x)} \\
+& = \frac{3.249396 \times 10^{-8} \cdot 0.4}{7.20284 \times 10^{-7}} \\
+& = 0.0270676
+\end{align*}
+
+and
+
+\begin{align*}
+\pi_{\lambda| X}(1.5|x)& = \frac{f_{X}(x | 1.5) \cdot \pi_{\lambda}(1.5)}{f_{X}(x)} \\
+& = \frac{1.75197 \times 10^{-6} \times 0.6}{7.20284 \times 10^{-7}} \\
+& = 0.972932
+\end{align*}
+
+Getting different answers than those on the sheet but not sure where the error is. 
+
+
+
 \section{QUESTION 9}
+
+By independence, $ f_{X|\theta}(x|\theta) = \theta^{n} (x_{1}x_{2}\cdots x_{n})^{\theta-1}, 0 < x < 1 $, and so given a Gamma prior, the posterior is 
+
+\begin{align*}
+\pi_{\theta | X}(\theta | x) & \propto f_{X|\theta}(x|\theta) \pi_{\theta}(\theta) \\
+& = \theta^{n} (x_{1}x_{2}\cdots x_{n})^{\theta-1} \cdot \frac{\lambda^{\alpha}\theta^{\alpha - 1} e^{- \lambda \theta}}{\Gamma (\alpha)}, \quad 0 < x < 1
+\end{align*}
+
+which is $ \Gamma(  n+\alpha,\lambda ) $ with the appropriate proportionality constant. 
+
+For quadratic loss, the Bayesian point estimator of $ \theta $ is just the posterior mean, which is given as $ \frac{n + \alpha}{\lambda} $.
+
+
 \section{QUESTION 10}
+
+We have that $ S_{n} \sim \text{Bin }(n,p_{n}) $, so as $ np_{n} \to \lambda $, $ n \to \infty $
+
+\begin{align*}
+\P (S_{n} = x) & = \binom{n}{x}p_{n}^{x}(1-p_{n})^{n-x} \\
+& = \frac{1}{x!} \frac{n(n-1)\cdots(n-x+1)}{n^{x}} (np_{n})^{x} \left( 1 - \frac{np_{n}}{x} \right)^{n-x} \\
+& \to \frac{1}{x!} \lambda^{x} e^{-\lambda}   \\
+& =   \P(Y=x) \text{ where } Y \sim   \text{Po }(\lambda)
+\end{align*}
+
+since $ (1-a/n)^{n} \to e^{-a} $
+
 \section{QUESTION 11}
+
+$ f_{X_{1}}(x_{1} | \theta) \sim N(0,1) $, so $ X_{2} = \theta X_{1} + (1- \theta^{2})^{1/2} \varepsilon_{2} $, and
+
+\begin{align*}
+f_{X_{2}}(x_{2} | \theta) & \sim N(0,\theta^{2}) + N(0,1-\theta^{2}) \\
+& \sim N(0,1)
+\end{align*}
+
+Similarly $ f_{X_{i}}(x_{i} | \theta) \sim N(0,1) $ for $ i = 1,\cdots,n $.
+
+Hence
+
+\begin{align*}
+f_{\mathbf{X}}(\mathbf{x} | \theta)& = (2\pi)^{-n/2} \exp\left( -\sum x_{i}^{2} \right)  \\
+& = 
+\end{align*}
+
+Shouldn't be independent of $ \theta $?
+
 \section{QUESTION 12}
 
 
