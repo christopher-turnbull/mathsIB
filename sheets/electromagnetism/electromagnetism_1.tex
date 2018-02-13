@@ -167,7 +167,7 @@ We have that
 \[ \rho(r) = \begin{cases} 0  & \text{ if } r < a  \\ \rho & \text{ if } a < r < b \\ 0 & \text{ if } r > b \end{cases} \]
 
 
-First consider $ r > b $. By symmetry, the force is the same in all directions and points outwards radially. So
+Note that if $ r < a $ there is no field; Gauss' law tells us that the flux only depends on the total charge contained inside the surface. Now consider $ r > b $. By symmetry, the force is the same in all directions and points outwards radially. So
 
 \[  \mathbf{E} = E(r) \hat{\mathbf{r}} \]
 
@@ -281,7 +281,7 @@ We use cylindrical polar coordinates. By symmetry, the field is radial, ie.
 
 \[ \mathbf{E}(r) = E(r) \hat{\mathbf{r}} \]
 
-Consider an arbitrary point at $ (r,z_{0}) $. We will integrate along the $ z $-axis to find the field at this point. 
+Consider an arbitrary point at $ (r,z_{0}) $. We will integrate along the $ z $-axis to find the field at this point; summing the contributions from the changes at $ (0,z) $ as $ z $ goes from $ -\infty $ to $ \infty $. By Coloumb's law; 
 
 
 %\begin{center}
@@ -297,11 +297,13 @@ Consider an arbitrary point at $ (r,z_{0}) $. We will integrate along the $ z $-
 Here,
 
 \begin{align*}
-E(r) & = \int_{-\infty}^{\infty} \frac{Q}{4 \pi \varepsilon_{0}} \frac{1}{r^{2} + (z-z_{0})^{2}} \; \d z \\
-& = \frac{Q}{4 \pi \varepsilon_{0}} \int_{-\infty}^{\infty}  \frac{1}{r^{2} + z^{2}} \; \d z \\
-& = \frac{Q}{4 \pi \varepsilon_{0}} \left[   \frac{1}{r} \arctan \left(  \frac{z}{r} \right)   \right]_{-\infty}^{\infty}  \\
-& = \frac{Q}{4 r \varepsilon_{0}} 
+E(r) & = \int_{-\infty}^{\infty} \frac{\eta}{4 \pi \varepsilon_{0}} \frac{1}{r^{2} + (z-z_{0})^{2}} \; \d z \\
+& = \frac{\eta}{4 \pi \varepsilon_{0}} \int_{-\infty}^{\infty}  \frac{1}{r^{2} + z^{2}} \; \d z \\
+& = \frac{\eta}{4 \pi \varepsilon_{0}} \left[   \frac{1}{r} \arctan \left(  \frac{z}{r} \right)   \right]_{-\infty}^{\infty}  \\
+& = \frac{\eta}{4 \varepsilon_{0} r} 
 \end{align*}
+
+But this is a different result than what we want... Can't spot my error. 
 
 
 
@@ -310,11 +312,11 @@ E(r) & = \int_{-\infty}^{\infty} \frac{Q}{4 \pi \varepsilon_{0}} \frac{1}{r^{2} 
 
 The Green's function for the Laplacian is definied to be the solution to:
 
-\[ \nabla^{2} G(\mathbf{r},\mathbf{r}') = \delta^{3} (\mathbf{r} - \mathbf{r}')  \]
+\[ \nabla^{2} G(\mathbf{r};\mathbf{r}') = \delta^{3} (\mathbf{r} - \mathbf{r}')  \]
 
-We know that
+The Green's function in three dimensions is:
 
-\[ G(\mathbf{r},\mathbf{r}') = - \frac{1}{4 \pi} \frac{1}{| \mathbf{r} - \mathbf{r}' |}  \]
+\[ G(\mathbf{r};\mathbf{r}') = - \frac{1}{4 \pi} \frac{1}{| \mathbf{r} - \mathbf{r}' |}  \]
 
 We assume all the charge is contained within some compact region $ V $, then
 
@@ -323,20 +325,35 @@ We assume all the charge is contained within some compact region $ V $, then
 & = \frac{1}{4 \pi \varepsilon_{0}} \int_{V} \frac{\rho(\mathbf{r}')}{| \mathbf{r} - \mathbf{r}' |} \; \d^{3} \mathbf{r}
 \end{align*}
 
-So integrating over a circular disk of radius $ a $ we using polar coordinates so $ \mathbf{r} = (0,0,z) $, $ \mathbf{r}' = (r \cos \phi, r \sin \phi,0) $ and $ | \mathbf{r} - \mathbf{r}' | = r^{2} + z^{2} $, hence
+Here, the charge is contained in a circular disk of radius $ a $, uniform charge density $ \sigma $. Using cylindrical polars, the charge at $ \mathbf{r} = (0,0,z) $, due to $ \mathbf{r}' = (r \cos \phi, r \sin \phi,0) $, we have $ | \mathbf{r} - \mathbf{r}' | = \sqrt{r^{2} + z^{2}} $ and hence
 
 \begin{align*}
-\phi(\mathbf{r}) & = \frac{1}{4 \pi \varepsilon_{0}} \int_{0}^{2\pi} \int_{0}^{a} \frac{\sigma}{r^{2} + z^{2}} r \; \d r \;  \d \phi  \ \\
-& = \frac{\sigma}{4 \varepsilon_{0}} \left[  \log ( r^{2} + z^{2} ) \right]_{0}^{a} \\
-& = \frac{\sigma}{4 \varepsilon_{0}} \log ( 1 + \frac{z^{2}}{a^{2}} ) 
+\phi(\mathbf{r}) & = \frac{1}{4 \pi \varepsilon_{0}} \int_{0}^{2\pi} \int_{0}^{a} \frac{\sigma}{\sqrt{r^{2} + z^{2}}} r \; \d r \;  \d \phi  \ \\
+& = \frac{\sigma}{2 \varepsilon_{0}} \left[  \sqrt{r^{2} + z^{2}} \right]_{r=0}^{a} \\
+& = \frac{\sigma}{2 \varepsilon_{0}} \left( \sqrt{a^{2} + z^{2}} - | z |  \right) 
 \end{align*}
 
 Then 
 
 \begin{align*}
 \mathbf{E}(\mathbf{r}) & = - \nabla  \phi (\mathbf{r}) \\
-& = - \frac{\sigma}{2 \varepsilon_{0}} \frac{1}{r^{2} + z^{2}}
+& = - \frac{\sigma}{2 \varepsilon_{0}} \left( \frac{z}{\sqrt{a^{2} + z^{2}}} - \sgn (z)  \right) 
 \end{align*}
+
+Thus again, with $ \mathbf{E} = E(z) \hat{\mathbf{z}} $, we see we have the expected discontinuity
+
+\[ E (z \to 0+) - E(z \to 0-) = \frac{\sigma}{\varepsilon_{0}} \]
+
+As $ z \to \infty $, 
+
+\begin{align*}
+\frac{z}{\sqrt{a^{2} + z^{2}}} &  =  \left(  1 + \frac{z^{2}}{a^{2}} \right)^{-1/2}  \\
+& = 1 + - \frac{z^{2}}{2a^{2}} + \cdots
+\end{align*}
+
+\[ \mathbf{E} \approx \frac{\sigma a^{2}}{4 \pi \varepsilon_{0} z^{2}} \mathbf{\hat{z}} \]
+
+which is Coloumb's Law for a particle due to charge $ Q = \sigma a^{2} $
 
 
 \section{QUESTION 8}
@@ -350,17 +367,152 @@ From Q7 we have the result that
 Very far from $ V $, ie. $ | \mathbf{r} | \gg | \mathbf{r}' | $, we can use the Taylor expansion
 
 \begin{align*}
-\frac{1}{| \mathbf{r} - \mathbf{r}' |} & =  \frac{1}{r} + \mathbf{r}' \cdot \nabla \left(  \frac{1}{r} \right) + \cdots \\
-& = \frac{1}{r} + \frac{\mathbf{r} \cdot \mathbf{r}'}{r^{3}} + \cdots
+\frac{1}{| \mathbf{r} - \mathbf{r}' |} & =  \frac{1}{r} + \mathbf{r}' \cdot \nabla \left(  \frac{1}{r} \right) - \frac{1}{2} (\mathbf{r}' \cdot \nabla )^{2} \left( \frac{1}{r} \right)  + \cdots  \\
+& = \frac{1}{r} + \frac{\mathbf{r} \cdot \mathbf{r}'}{r^{3}} - \frac{1}{2} \left(  \frac{\mathbf{r}' \cdot \mathbf{r}'}{r^{3}} - \frac{3 (\mathbf{r}' \cdot \mathbf{r})^{2} }{r^{5}} \right) + \cdots 
 \end{align*}
 
 Then we get 
 
 
+\begin{align*}
+\phi(\mathbf{r}) & = \frac{1}{4 \pi \varepsilon_{0}} \int_{V} \rho(\mathbf{r}')  \left\{  \frac{1}{r} + \frac{\mathbf{r} \cdot \mathbf{r}'}{r^{3}} - \frac{1}{2} \left(  \frac{\mathbf{r}' \cdot \mathbf{r}'}{r^{3}} - \frac{3 (\mathbf{r}' \cdot \mathbf{r})^{2} }{r^{5}} \right) + \cdots  \right\}  \; \d^{3} \mathbf{r}' \\
+& = \frac{1}{4 \pi \varepsilon_{0}} \left(  \frac{Q}{r} + \frac{\mathbf{p} \cdot \hat{\mathbf{r}} }{r^{2}} + \frac{1}{2} \frac{\Q_{ij} r_{i}r_{j}}{r^{5}} + \cdots \right) 
+\end{align*}
+
+where 
+
+\begin{align*}
+Q &= \int_V \rho(\mathbf{r}')\;\d V' \\
+\mathbf{p} &= \int_V \mathbf{r}'\rho(\mathbf{r}')\; \d V'\\
+\hat{\mathbf{r}} &= \frac{\mathbf{r}}{\|\mathbf{r}\|}.\\
+\Q_{ij} & = \int_{V} \d^{3} r' ( 3 r_{i}' r_{j}' - \delta_{ij} r'^{2} ) \rho(\mathbf{r}') 
+\end{align*}
+
+\begin{itemize}
+	\item For the first two charges we have
+	
+	\[ \rho(\mathbf{r}') = q \delta(\mathbf{r'}) - q \delta(\mathbf{r'} - \mathbf{d})  \]
+	
+	Then
+	
+	\begin{align*}
+	Q &= \int_V q \delta(\mathbf{r'}) - q \delta(\mathbf{r'} - \mathbf{d}) \;\d V' \\
+	& = 1 - 1 = 0,
+	\end{align*}
+	
+	\begin{align*}
+	\mathbf{p} & = \int_{V} q \delta(\mathbf{r'}) - q \delta(\mathbf{r'} - \mathbf{d}) \mathbf{r}'  \; \d V' \\
+	& = q(0 - \mathbf{d}) \\
+	& = -q\mathbf{d}
+	\end{align*}
+	
+	and 
+	
+	\begin{align*}
+	\Q_{ij} & = \int_{V} ( 3 r'_{i} r'_{j} - \delta_{ij} r'^{2} ) \left[  q \delta(\mathbf{r'}) - q \delta(\mathbf{r'} - \mathbf{d}) \right] \;  \d^{3} r' \\
+	& = - q \int_{V} ( 3 r'_{i} r'_{j} - \delta_{ij} r'^{2} ) \delta(\mathbf{r'} - \mathbf{d}) \;  \d^{3} r' \\
+	& = - q \left(  3 d_{i} d_{j} - \delta_{ij} | d |^{2}  \right)  \\
+	\end{align*}
+	
+	Now $ \mathbf{d} = (d,0,0) $ so $ \Q_{11} = -q(3d^{2} - d^{2}) = - 2d^{2}  $, and $ \Q_{ij} = 0 \text{ for } i,j \neq 1 $
+	
+	\item Next, similarly we have 
+	
+	
+	\[ \rho(\mathbf{r}') = q \delta(\mathbf{r'}) - q \delta(\mathbf{r'} - \mathbf{d}_{1}) - q \delta(\mathbf{r'} - \mathbf{d}_{2}) + - q \delta(\mathbf{r'} - \mathbf{d}_{3})   \]
+	
+	where $ \mathbf{d}_{1} = (d,0,0), \mathbf{d}_{2} = (0,d,0), $ and $ \mathbf{d}_{3} = (d,d,0) $. 
+	
+	Again it can be easily verified that $ Q = 0 $. The dipole this times gives
+	
+	\begin{align*}
+	p & = q(0 - \mathbf{d}_{1} - \mathbf{d}_{2} + \mathbf{d}_{3}) \\
+	& = 0
+	\end{align*}
+	
+	And the Quadrupole:
+	
+	\begin{align*}
+	\Q_{ij} & = - q \int_{V} ( 3 r'_{i} r'_{j} - \delta_{ij} r'^{2} ) \left[   \delta(\mathbf{r'} - \mathbf{d}_{1}) +  \delta(\mathbf{r'} -  \mathbf{d}_{2}) -  \delta(\mathbf{r'} -  \mathbf{d}_{3}) \right]  \;  \d^{3} r' \\
+	\end{align*}
+	
+	\begin{align*}
+	\Q_{11} & = -q ( (3d^{2} - d^{2}) +  (- d^{2})-  (3d^{2} - 2d^{2}) ) \\
+	& = 0
+	\end{align*}
+	
+	Similarly $ \Q_{22} = 0 $. Also have
+	
+	\begin{align*}
+	\Q_{12} & =   - q \left(  (0 - 0) + (0 - 0) - (3d^{2} - 0   \right)  \\
+	& = 3qd^{2} = \Q_{21}
+	\end{align*}
+	
+	\item Now, 	
+	
+	
+	
+	
+	
+	
+	
+	
+\end{itemize}
+
+
+
+
 \section{QUESTION 9}
+
+We define the electric dipole moment to be $ \mathbf{p} = Q \mathbf{d} $. Now
+
+\begin{align*}
+\frac{\d \mathbf{p}}{\d t} & = \mathbf{d} \frac{\d Q}{\d t} \\
+& = \mathbf{d} \int_{V} \frac{\partial }{\partial t} \rho \; \d V \quad V \text{ fixed} \\
+& = \mathbf{d} \int_{V} - \nabla \cdot \mathbf{J} \; \d V \quad \text{ by continuity equation} \\
+& = - \mathbf{d} \int_{S} \mathbf{J}  \d \mathbf{S}
+\end{align*}
+
+
 \section{QUESTION 10}
+
+\[
+U = \frac{1}{2} \int \rho (\mathbf{r}) \phi(\mathbf{r}) \;\d^3 \mathbf{r}.
+\]
+Hence we obtain
+\begin{align*}
+U &= \frac{\varepsilon_0}{2}\int (\nabla\cdot \mathbf{E}) \phi \;\d^3 \mathbf{r}\\
+&= \frac{\varepsilon_0}{2}\int [\nabla\cdot (\mathbf{E}\phi) - \mathbf{E}\cdot \nabla \phi]\;\d^3 \mathbf{r}.
+\end{align*}
+The first term is a total derivative and vanishes. In the second term, we use the definition $\mathbf{E} = -\nabla \phi$ and obtain
+
+
+	\[
+	U = \frac{\varepsilon_0}{2}\int \mathbf{E}\cdot \mathbf{E} \;\d^3 \mathbf{r}.
+	\]
+
+
+This result shows that the potential energy depends only on the field itself, and not the charges. 
+
+
+Next, considering a charge $ Q $ contained within some compact region $ V $; we have
+
+\begin{align*}
+\phi(\mathbf{r}) & = \frac{1}{4 \pi \varepsilon_{0}} \int_{V} \frac{\rho(\mathbf{r}')}{| \mathbf{r} - \mathbf{r}' |} \; \d^{3} \mathbf{r}
+\end{align*}
+
+Here, $ \rho(\mathbf{r}') = Q $, and using spherical polars, we model $ \mathbf{r}(r,\theta,\phi) $ in the usual way; take our point $ \mathbf{r} = (a,0,0) $, $ \mathbf{r}' = (r \sin \theta \cos \phi, r \sin \theta \sin \phi, r \cos \theta )  $, so $ | \mathbf{r} - \mathbf{r}' | = \sqrt{r^{2} \sin^{2} \theta + (a - r \cos \theta)^{2}} = \sqrt{a^{2} - 2 a r \cos \theta + r^{2}}  $
+
+
+\begin{align*}
+\phi(\mathbf{r}) 
+\end{align*}
+
+Did not finish due to time constraints.
+
+
+
 \section{QUESTION 11}
-\section{QUESTION 12}
 
 
 
