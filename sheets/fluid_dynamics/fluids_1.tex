@@ -26,10 +26,10 @@
 
 \section{QUESTION 1}
 
-In this example, $ \mathbf{u}(x) = \alpha(x,-y) $
+In this example, $ \mathbf{u}(x) =  (\alpha x,- \alpha y) $
 
 \begin{enumerate}
-	\item Streamlines are curves $ \mathbf{X}(s; \mathbf{x}_{0}) $ with $ \mathbf{X}_{0} = \mathbf{x}_{0} $ at $ s = 0 $. 
+	\item Streamlines are curves $ \mathbf{X}(s; \mathbf{x}_{0}) $ with $ \mathbf{X} = \mathbf{x}_{0} $ at $ s = 0 $. 
 	
 	\[ \frac{\partial X }{\partial s} = \alpha X, \quad \frac{\partial Y }{\partial s} = - \alpha Y \]
 	
@@ -79,22 +79,19 @@ In this example, $ \mathbf{u}(x) = (\gamma y, 0) $
 	
 	\[ (x - \gamma t y_{0})^{2} + y^{2} = a^{2}  \]
 	
-	ie. it is just shifted to the right, at a rate of $ \gamma y_{0} $ units per second. 
+	ie. the circle is just shifted to the right, at a rate of $ \gamma y_{0} $ units per second. 
 	
-	\item Clearly the curve is just translated so the area remains fixed.
+	\item The curve is just translated so the area remains fixed.
 
 	
 	
 \end{enumerate}
 
-At longer times, the ellipse in Question 1 is stretched faster, as this grows exponentially, yet the stretch in this circle is just linear with time. 
+At longer times, the ellipse in Question 1 is `stretched' faster, as this grows exponentially, yet the \st{stretch} translation in this circle is just linear with time. 
 	
 
 
-
 \section{QUESTION 3}
-
-\section{QUESTION 2}
 
 In this example, $ \mathbf{u}(x) = (\frac{\partial \psi }{\partial y}, - \frac{\partial \psi }{\partial x}) $.
 
@@ -109,7 +106,9 @@ In this example, $ \mathbf{u}(x) = (\frac{\partial \psi }{\partial y}, - \frac{\
 	
 	So the flow is perpendicular to the normal, ie. tangent to the contours of $ \psi $. 
 	
-	\item $ \left| \mathbf{u} \right| = | (\psi_{y},-\psi_{x}) | = \nabla^{2} \psi = | (\psi_{x},\psi_{y}) | = | \nabla \psi | $
+	\item $ \left| \mathbf{u} \right| = | (\psi_{y},-\psi_{x}) | =  | (\psi_{x},\psi_{y}) | = | \nabla \psi | $
+	
+	Hence flow is faster when streamlines are closer together. (Why does $ | \nabla  \psi | $ increasing mean that they are closer together?) Can also see this is true intuitively, as the fluid between any two streamlines must be between the streamlines. 
 	
 	
 	\item The volume flux is
@@ -227,9 +226,9 @@ In this example, $ \mathbf{u}(x) = (  1/(1+t), 1  ) $
 	
 	\[ \frac{\partial X }{\partial s} = \frac{1}{1+t}, \quad \frac{\partial Y }{\partial s} = 1 \]
 	
-	$ X = \frac{s}{1+t} + x_{0} $ and $ Y = s + y_{0} $. Eliminating $ s $ to get the shape of the streamlines gives $ X = \frac{Y - y_{0}}{1+t} + x_{0} $. At time $ t = 0 $ this gives the streamline as
+	$ X = \frac{s}{1+t} + x_{0} $ and $ Y = s + y_{0} $. Eliminating $ s $ to get the shape of the streamlines gives $ X = \frac{Y - y_{0}}{1+t} + x_{0} $. At time $ t = 0 $, with $ \mathbf{x}_{0} = (1,1) $ this gives the streamline as
 	
-	\[ Y = X + y_{0} - x_{0} \]
+	\[ Y = X \]
 	
 	
 	
@@ -241,64 +240,32 @@ In this example, $ \mathbf{u}(x) = (  1/(1+t), 1  ) $
 	
 	\[ X = \log(1+ Y - y_{0}) + x_{0} \]
 	
+	At $ \mathbf{x}_{0} = (1,1) $ we have
+	
+	\[ X = \log Y + 1 \]
+	
+	or $ Y = e^{X - 1} $
 	
 	
-	\item 
 	
-	The area of this ellipse does not change in time; it is $ \pi \times ae^{at} \times ae^{-at} = \pi a^{2} $. As we would expect this is the area of the circle $ x^{2} + y^{2} = a^{2} $ at time $ t = 0 $. 
+	\item Streaklines are curves $ \mathbf{X}(s; \mathbf{x}_{0}) $ with $ \mathbf{X}_{0} = \mathbf{x}_{0} $ at $ t = s $.
 	
-	Intuitively?
+	\[ \frac{\partial X }{\partial t} = \frac{1}{1+t}, \quad \frac{\partial Y }{\partial t} = 1 \]
 	
+	This gives $ X = \log \left(  \frac{1+t}{1+s} \right) + 1  $, $ Y = t + 1 - s   $. 
 	
-\end{enumerate}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-\begin{enumerate}
-	\item At $ t = 1 $, the velocity makes an angle of $ 45^\circ $ angle with the horizontal , and the streamlines are slanted.
+	Eliminating $ s $ to get the shape at time $ t > s $:
 	
-	\item For a particle released at $ (1,1) $ we get
+	\[ X = \log \left(  \frac{1+t}{1+t - Y} \right)  \]
 	
-	\[ \dot{x}(t) = \frac{1}{1+t}, \qquad \dot{y}(t) = 1  \]
-	
-	Hence we get 
-	
-	\[ x = \log(1+t) + 1, \qquad y = t + 1 \]
-	
-	Eliminating $ t $, we get that the path is given by
-	
-	\[ x = \log y + 1 \implies y = e^{x-1} \]
 	
 	
 	
 \end{enumerate}
 
-Consider the fluid flow $ \mathbf{u} = (  1/(1+t),1,0 ) $ for $ t > 0 $. Supposing our fluid is incompressible, $ \nabla \cdot \mathbf{u} = 0 $ and there exists some vector potential $ \mathbf{A} $ such that $ \mathbf{u} = \nabla  \times \mathbf{A} $. As $ \mathbf{u} $ is two dimensional, we know $ \mathbf{A} $ is of the from
 
-\[ \mathbf{A} = (0,0,\psi(x,y,t)) \]
 
-And taking the curl of this, 
 
-\[ \mathbf{u} = ( \frac{\partial \psi }{\partial y}, - \frac{\partial \psi }{\partial x}, 0 ) \]
-
-This $ \psi $ is our streamfunction.
-
-We define streamlines to be contours of our stream function. These contours have normal $ \mathbf{n} = ( \psi_{x},\psi_{y},0 ) $, this normal is obviously perpendicular to the flow $ \mathbf{u} $ ($ \mathbf{u} \cdot \mathbf{n} = 0 $). ie. the flow is tangent to the contours of $ \psi$. 
 
 \section{QUESTION 8}
 
@@ -361,6 +328,30 @@ So $H$ is the transportable energy of the flow.
 
 \section{QUESTION 10}
 
+Bernoulli says the quantity $ H $ is constant along streamlines:
+
+\[ H = \frac{1}{2} | \mathbf{u} |^{2} + \frac{p}{\rho} + \chi \]
+
+Applying Bernoulli along surface streamline gives
+
+\[ \frac{p_{1}}{\rho} + \frac{1}{2} U_{1}^{2} = \frac{p_{2}}{\rho} + \frac{1}{2} U_{2}^{2} \]
+
+The water has zero velocity when it hits the arm, and $ 1 $ before. Thus we have $ U_{1} =1  $ and $ U_{2} = 0 $. 
+
+
+Then
+
+\[ \frac{p_{1}}{\rho} + \frac{1}{2} = \frac{p_{2}}{\rho} \]
+
+\[ \Rightarrow (p_{2} - p_{1} ) = \frac{\rho}{2} \]
+
+Use $ p_{1} - p_{\text{atm}} = \rho g h_{1} $, $ p_{2} - p_{\text{atm}} = \rho g h_{2} $ 
+
+\[ h_{2} - h_{1} = \frac{1}{2g} \]
+
+ie, water can rise about $ 5 \text{ cm} $. 
+
+
 
 
 
@@ -368,8 +359,47 @@ So $H$ is the transportable energy of the flow.
 
 
 \section{QUESTION 11}
+
+Euler momentum equation states
+
+\[\frac{\partial \mathbf{u} }{\partial t } + (\mathbf{u} \cdot \nabla ) \mathbf{u} = - \nabla  p + \rho \mathbf{g} \]
+
+Have $  \rho \mathbf{g} = - \nabla  \chi  $, where $ \chi = g \rho z $ as $ \mathbf{g} = (0,0,-z) $.
+
+Now if $ \rho = $ constant, and $ \mathbf{u} = (- \omega y, \omega x,0) $.
+
+Note completely sure how to integrate this...
+
+
+
+
+
 \section{QUESTION 12}
 
+\[ \frac{p_{1}}{\rho} + \frac{1}{2} U_{1}^{2} + g h_{1} = \frac{p_{2}}{\rho} + \frac{1}{2} U_{2}^{2} + g h_{2} \qquad \text{(Bernoulli)} \]
+
+
+\[ A_{1} U_{1} = A_{2} U_{2} = 10^{-4} \text{ m}^{3} \text{s}^{-1} \qquad \text{(mass conservation)} \]
+
+\[ A_{2} = 4 \times 10^{-5} \text{ m}^{2} \Rightarrow U_{2} = 5\text{ ms}^{-1} \]
+
+Use $ p_{1} - p_{\text{atm}} = \rho g h_{1} $, $ p_{2} - p_{\text{atm}} = \rho g h_{2} $ 
+
+But not sure what $ U_{1}, A_{1} $ are?
+
+\section{QUESTION 13}
+
+Bernoulli:
+
+\[ \frac{U^{2}}{2} + \frac{p}{\rho} + gh = \text{constant} \]
+
+Apply at the opening, where $ h = 0 $, $ p = p_{\text{atm}} $. Apply again at the top of the vessel, where we can assume $ U = 0 $, $ h = h $, $ p = p_{atm} $. Comparing we find that 
+
+\[ \frac{U^{2}}{2}  = gh  \]
+
+\[ \Rightarrow U = \sqrt{2gh} \]
+
+So the shape is...?
 
 
 \end{document}
