@@ -1,0 +1,118 @@
+\documentclass[a4paper]{article}
+\usepackage{amsmath}
+\def\npart {IB}
+\def\nterm {Lent}
+\def\nyear {2018}
+\def\nlecturer {Prof. Haynes (P.H.Haynes@damtp.cam.ac.uk)}
+\def\ncourse {Complex Methods Example Sheet 2}
+
+\input{header}
+
+\newtheorem*{soln}{Solution}
+
+\renewcommand{\thesection}{}
+\renewcommand{\thesubsection}{\arabic{section}.\arabic{subsection}}
+\makeatletter
+\def\@seccntformat#1{\csname #1ignore\expandafter\endcsname\csname the#1\endcsname\quad}
+\let\sectionignore\@gobbletwo 
+\let\latex@numberline\numberline
+\def\numberline#1{\if\relax#1\relax\else\latex@numberline{#1}\fi}
+\makeatother
+
+
+\begin{document}
+	
+\maketitle
+
+\section{QUESTION 1}
+Using partial fractions,
+
+\[ \frac{1}{(z-a)(z-b)} = \frac{1}{a-b} \left(   \frac{1}{z-a} - \frac{1}{z - b} \right)  \]
+
+
+Have $ 0 < | a | < | b | $. In the region $ | z | < | a | $, we have no singularities,  ie our function is analytic here, and we can calculate the  Taylor series about $ z_{0} = 0 $. Note that (for $ | z | < | a | $)
+
+\[ \frac{1}{z - a} = - \frac{1}{a} \left(  1 - \frac{z}{a} \right)^{-1} = - \sum_{n=0}^{\infty} \frac{1}{a^{n+1}} z^{n}  \]
+
+
+Hence 
+
+\[ \frac{1}{(z-a)(z-b)} = \frac{1}{b-a} \sum_{n=0}^{\infty} \left(  \frac{1}{a^{n+1}} - \frac{1}{b^{n+1}} \right)  z^{n}   \]
+
+
+
+
+In the region $ | a | < | z | < | b | $ we can determine a Laurent series for $ \frac{1}{z-a} $ in this annulus, (but $ \frac{1}{z-b} $ still has a Taylor series). Note that 
+
+ \[
+\frac{1}{z - a} = \frac{1}{z} \left(1 - \frac{a}{z}\right)^{-1} = \sum_{m = 0}^\infty \frac{a^m}{z^{m + 1}} = \sum_{n = -\infty}^{-1} a^{-n - 1} z^n.
+\]
+
+
+Hence
+
+\[ \frac{1}{(z-a)(z-b)} = \frac{1}{a-b} \left(  \sum_{n = -\infty}^{-1} a^{-n - 1} z^n + \sum_{n=0}^{\infty} \frac{1}{b^{n+1}} z^{n}   \right)   \]
+
+
+
+Finally, in the region $ | z | > | b | $, this is an annulus, that goes from $|b|$ to infinity. So it has a Laurent series. We can find it by
+
+
+
+
+
+
+\section{QUESTION 2}
+
+We note that $ \sin z = \frac{e^{iz} - e^{-iz}}{2i} $ has zeros at $ e^{2iz} = 1 $ ie. $ z = n \pi $ for integer $ n $. 
+
+\section{QUESTION 3}
+
+
+
+\section{QUESTION 4}
+
+Firstly $ \int_{-1}^{1} z \; \d z $ evaluated along $ \gamma_{1} $, the straight line from $ -1 $ to $ +1 $ is simply $ \left[  \frac{z^{2}}{2} \right]_{-1}^{1} = 0 $. 
+
+We integrate along the semicircular contour by making the substitution $ z = e^{i \theta} $, $ \d z = i e^{i \theta} \; \ d \theta $. Then
+
+\begin{align*}
+\int_{\gamma_{2}} z \; \d z & = \int_{\pi}^{0} e^{i \theta} \cdot i e^{i \theta} \; \d \theta  \\
+& = \int_{\pi}^{0} i e^{2i \theta} \; \d \theta \\
+& = \left[ \frac{1}{2} e^{2 i \theta}  \right]_{\pi}^{0} \\
+& = 0
+\end{align*}
+
+Next, consider 
+
+\[ I_{3} = \oint_{\gamma_{3}} \bar{z} \; \d z, \quad I_{4} = \oint_{\gamma_{4}} \bar{z} \; \d z\]
+
+where $ \gamma_{3} $ is the unit circle $ | z | = 1 $, and $ \gamma_{4} $ is the translated unit circle $ | z - 1 | = 1 $. For $ I_{3} $ we again make the substitution $ z = e^{i \theta} $, $ \d z = i e^{i \theta} \; \ d \theta $, so 
+
+\begin{align*}
+I_{3} & = \int_{0}^{2\pi} e^{-i \theta} i e^{i \theta} \; \d \theta \\
+& = 2 \pi
+\end{align*}
+
+For $ I_{4} $ we make the substitution $ z = 1 + e^{i \theta} $, $ \d z = i e^{i \theta} \; \ d \theta $, so 
+
+\begin{align*}
+I_{4} & = \int_{0}^{2\pi} (1 + e^{-i \theta}) i e^{i \theta} \; \d \theta \\
+& = \int_{0}^{2\pi} i( 1 + e^{i \theta}) \; \d \theta \\
+& = 2 \pi i
+\end{align*}
+
+
+
+\section{QUESTION 5}
+\section{QUESTION 6}
+\section{QUESTION 7}
+\section{QUESTION 8}
+\section{QUESTION 9}
+\section{QUESTION 10}
+\section{QUESTION 11}
+\section{QUESTION 12}
+
+
+
+\end{document}

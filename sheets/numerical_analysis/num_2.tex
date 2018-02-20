@@ -32,44 +32,79 @@ The differential equations, with initial condition $ y(0)= 1 $ have exact soluti
 
 respectively.
 
-The Euler method: we approximate the exact solution of the ODE:
+Using the Euler method for the first ODE we have $ f(t,y) = -\frac{y}{1+t} $.
 
-\[ y' = f(t,y) \]
-
-by
-
-\[ y_{n+1} = y_{n} + h f(t,y_{n}), \quad n = 0,1,\cdots \] 
-
-where $ y_{n} $ approximates $ y(nh) $.
-
-For the first ODE we have $ f(t,y) = -\frac{y}{1+t} $.
-
-Here, $ y_{0} = 1$,
+Here, $ y_{0} = 1, t_{m} = mh$. For $ n \geq 1 $,
 
 \begin{align*}
-y_{1} & = y_{0} + h \left( - \frac{y_{0}}{1+t} \right) \\
-& = y_{0} \left(  1 - \frac{h}{1+t}  \right)  \\
-& = 1 - \frac{h}{1+t}
+y_{n} & = y_{n-1} + h f(t_{n-1},y_{n-1}) \\
+& = y_{n-1} \left(  1 - \frac{h}{1+(n-1)h} \right)  \\
+& = y_{n-1} \cdot \frac{1 + (n-2)h}{1 + (n-1)h} 
 \end{align*}
 
+Have that $ y_{1} = 1 - h $, thus
+
 \begin{align*}
-y_{2} & = \left( 1 - \frac{h}{1+t} \right)^{2}, \cdots, y_{n} = \left( 1 - \frac{h}{1+t} \right)^{n}
+y_{n} & =  1 \cdot (1-h) \left( \frac{1}{1+h} \right)\left( \frac{1+h}{1+2h} \right) \cdots \left(  \frac{1 + (n-3)h}{1 + (n-2)h}  \right)   \left( \frac{1 + (n-2)h}{1 + (n-1)h}  \right)  \\
+& = \frac{1-h}{1 + (n-1)h}
 \end{align*}
+
+As $  h \to 0 $, $ n \to \infty $ in such a way that $ nh \to t $. So we deduce $ y = 1/(1+t) $ as required.
+
+Moreover, the error is 
+
+
+\begin{align*}
+y_{n} - y(nh) & = \frac{1-h}{1 + (n-1)h} - \frac{1}{1+nh} \\
+\end{align*}
+
+which is clearly $ O(h) $.
+
+
+
 
 For the second ODE we have $ f(t,y) = \frac{2y}{1+t} $.
 
-Here, $ y_{0} = 1$,
+Calculating the first few terms we find that
 
 \begin{align*}
-y_{1} & = y_{0} + h \left( \frac{2 y_{0}}{1+t} \right) \\
-& = y_{0} \left(  1 + \frac{2h}{1+t} \right) \\
+y_{1} & = y_{0} \left(  1 + \frac{2h}{1+t_{0}} \right) \qquad t_{0} = 0 \\
+& = (1+2h)
 \end{align*}
 
-Similarly, I'm just getting
+\begin{align*}
+y_{2} & = y_{1} \left(  1 + \frac{2h}{1+t_{1}} \right) \qquad t_{1} = h \\
+& = (1+2h) \cdot \left(  \frac{1+3h}{1+h}  \right) 
+\end{align*}
 
-\[ y_{n} = \left(   1 + \frac{2h}{1+t} \right)^{n} \]
 
-Use $ t_{n} = nh $, these are not correct. 
+\begin{align*}
+y_{3} & = y_{2} \left(  1 + \frac{2h}{1+t_{1}} \right) \qquad t_{2} = 2h \\
+& = (1+2h) \cdot \left(  \frac{1+3h}{1+h}  \right) \cdot \left(  \frac{1+4h}{1+2h} \right) 
+\end{align*}
+
+and so
+
+\begin{align*}
+y_{n} & = (1+2h) \cdot \left(  \frac{1+3h}{1+h}  \right) \cdot \left(  \frac{1+4h}{1+2h} \right) \cdots \left(  \frac{1 + (n+1)h}{1 + (n-1)h} \right)  \\
+& = \frac{(1+nh)(1+(n+1)h)}{1+h} 
+\end{align*}
+
+again $ nh \to t $, so we have the result as required. 
+
+Here, the error is 
+
+
+\begin{align*}
+y_{n} - y(nh) & = \frac{(1+nh)(1+(n+1)h)}{1+h} - (1 + nh)^{2} \\
+& =  \frac{(1+nh)^{2} + h(1 + nh) -(1+h)(1 + nh)^{2}  }{1+h} 
+\end{align*}
+
+which is clearly $ O(h) $. 
+
+
+
+
 
 
 
@@ -105,21 +140,265 @@ where $ \mathbf{y}(nh) $ is the evaluation at time $ t = nh $ of the exact solut
 	By the Taylor theorem, the $ O(h^{2}) $ term can be bounded uniformly for all $ [0,t^{*}] $ by $ ch^{2} $, where $ c > 0 $. Thus, using (2.1) and the triangle inequality, 
 	
 	\begin{align*}
-	| | \mathbf{e}_{n+1} | |  & = \\
+	| | \mathbf{e}_{n+1} | |  & \leq | | \mathbf{y}_{n} - \mathbf{y}(t_{n}) | | + h | | \frac{1}{2} \{ \mathbf{f}(t_{n},\mathbf{y}_{n}) + \mathbf{f}(t_{n+1},\mathbf{y}_{n+1}) \} - \mathbf{f}(t_{n},\mathbf{y}(t_{n})) | | + ch^{2} \\
 	& = 
 	\end{align*}
+	
+	Want this in terms of $ | | \mathbf{e}_{n} | | $, but how?
 \end{proof}
 
 \section{QUESTION 3}
+The $ s $-step Adams-Bashforth method is of order $ s $ and has the form
+
+\[ \mathbf{y}_{n+s} - \mathbf{y}_{n+s-1} = h \sum_{j=0}^{s-1} \sigma_{j} \mathbf{f}(t_{n+j},\mathbf{y}_{n+j}) \]
+
+For $ s =3 $ we have  $ \rho(w) = w^{2}(w - 1) $.  To maximize order, we let $ \sigma $  be the $ 2 $ degree polynomial ($ \sigma_{3} = 0 $) arising from the truncation of the Taylor expanison of
+
+\[ \frac{\rho(w)}{\log w} \]
+
+
+Letting $ \xi = w - 1 $ and expanding,
+
+\begin{align*}
+\frac{w^{2}(w-1)}{\log w} & = \frac{(\xi + 1)^{2}\xi}{\log (1 + \xi)} = \frac{\xi + 2 \xi^{2} + \xi^{3}}{\xi - \frac{1}{2} \xi^{2} + \frac{1}{3} \xi^{3} - \cdots } \\
+& = \frac{1 + 2 \xi + \xi^{2}}{1 - \frac{1}{2} \xi + \frac{1}{3} \xi^{2} - \cdots} \\
+& = [1 + 2 \xi + \xi^{2}][ 1 + (\frac{1}{2} \xi - \frac{1}{3} \xi^{2}) + (\frac{1}{2} \xi - \frac{1}{3} \xi^{2})^{2} + O(\xi^{3})     ] \\
+& = 1 + \frac{5}{2} \xi + \frac{5}{3} \xi^{2} + O(\xi^{3}) \\
+& = 1 + \frac{5}{2} (w - 1) + \frac{5}{3} (w - 1)^{2} + O(| w-1 |^{3}) \\
+& = \frac{1}{6} - \frac{5}{3} w + \frac{5}{3} w^{2} +  O(| w-1 |^{3})
+\end{align*}
+
+Therefore $ \sigma_{0} = \frac{1}{6} , \sigma_{1} = - \frac{5}{3}  , \sigma_{2} = \frac{5}{3}  , \sigma_{3} = 0 $
+
+
 \section{QUESTION 4}
+
+Applying the \emph{explicit midpoint rule}
+
+\[ \mathbf{y}_{n+2} = \mathbf{y}_{n} + 2 h \mathbf{f}(t_{n+1},\mathbf{y}_{n+1}) \]
+
+to the ODE $ y' = - y $, we have
+
+
+\[ y_{n+2} = y_{n} - 2hy_{n+1} \]
+
+Making the ansatz $ y_{n} = k^{n} $ gives
+
+\[ k^{2} + 2hk - 1 = 0 \]
+
+and hence
+
+\[ k = -h  \pm \sqrt{h^{2} - 1} \]
+
+giving 
+
+\[ y_{n} = A \left(   -h  - \sqrt{h^{2} - 1} \right)^{n} + B  \left(   -h  + \sqrt{h^{2} - 1} \right)^{n}   \]
+
+Now $ y_{0} = 1 \Rightarrow A + B = 1 $, and $ y_{1} = 1 - h \Rightarrow 1 = (B - A) \sqrt{h^{2} - 1} $, thus 
+
+\[ A = \frac{1}{2 \sqrt{h^{2} - 1}} + \frac{1}{2}  \]
+\[ B = \frac{1}{2 \sqrt{h^{2} - 1}} - \frac{1}{2}  \]
+
+Now as $ n \to \infty $, we wish to show that $ y_{n} $ diverges, ie. one of the terms blow up, and we want to show this happens for all $ h > 0 $. Can see that if $ h > 1 $, the $ A \left(   -h  - \sqrt{h^{2} - 1} \right)^{n} $ explodes as $ -h  - \sqrt{h^{2} - 1} < - 1 $. If $ 0 < h < 1 $, I don't know...
+
+
+
+
+
+
+
 \section{QUESTION 5}
+
+The multistep method
+
+\[ \sum_{j=0}^{3} \rho_{j} \mathbf{y}_{n+j} = h \sum_{j=0}^{2} \sigma_{j} \mathbf{f}(t_{n+j}, \mathbf{y}_{n+j} ), \quad \rho_{3} = 1 \]
+
+is of order $ 4 $ iff
+
+\[ \rho(e^{z}) - z \sigma(e^{z}) = O(z^{5}), \quad z \to 0 \]
+
+Expanding into Taylor series,
+
+
+\[ e^{z} = 1 + z + \frac{1}{2} z^{2} + \frac{1}{6} z^{3} + \frac{1}{24} z^{4} + O(z^{5}) \]
+
+\[ e^{2z} = 1 + 2z + 2z^{2} + \frac{4}{3} z^{3} + \frac{5}{8} z^{4} + O(z^{5})  \]
+
+\[ e^{3z} = 1 + 3z + \frac{9}{2} z^{2} + \frac{9}{2} z^{3} + \frac{10}{3} z^{4} + O(z^{5})    \]
+
+\begin{align*}
+\rho(e^{z}) - z \sigma(e^{z}) & = [1 + 3z + \frac{9}{2} z^{2} + \frac{9}{2} z^{3} + \frac{10}{3} z^{4}] + \rho_{2} [1 + 2z + 2z^{2} + \frac{4}{3} z^{3} + \frac{5}{8} z^{4}] \\
+& \quad + \rho_{1} [1 + z + \frac{1}{2} z^{2} + \frac{1}{6} z^{3} + \frac{1}{24} z^{4}] + \rho_{0} - z \sigma_{2} \left[  1 + 2z + 2z^{2} + \frac{4}{3} z^{3} + \frac{5}{8} z^{4} \right]    \\
+& \quad - z \sigma_{1} \left[  1 + z + \frac{1}{2} z^{2} + \frac{1}{6} z^{3} + \frac{1}{24} z^{4} \right]  - z \sigma_{0} \\
+\end{align*}
+
+For this expression to be $ O(z^{5}) $, looking at first order terms we deduce that $ \rho_{1} + \rho_{2} + \rho_{3} = - 1 $. 
+
+So we have $ \rho(w) = w^{3} + \rho_{2} w^{2} - 9 w + \rho_{0} $, $ \rho_{0} + \rho_{2} = 8 $ for this to satisfy the root condition we must have all zeros residing in $ | w | \leq 1 $, and all zeros of unit modulus simple. 
+
+
+
+
+
+
 \section{QUESTION 6}
+
+starred
+
+
 \section{QUESTION 7}
+
+Consider the ODE $ y' = y $ with $ y(0) = 1 $ whose solution is $ y(t) = e^{t} $. For this ODE we can write the local error explicitly: indeed we have 
+
+\begin{align*}
+k_{1} & = f(t_{n},y(t_{n})) = e^{t_{n}} \\
+k_{2} & = y(t_{n}) + \frac{1}{3} h k_{1} = e^{t_{n}} (1 + \frac{1}{3} h) \\
+k_{3} & = y(t_{n}) - \frac{1}{3} h k_{1} + h k_{2} = e^{t_{n}}\left(  1 + \frac{2}{3}h + \frac{1}{3} h^{2}  \right)    \\
+k_{4} & =  y(t_{n}) + h k_{1} - h k_{2} + h k_{3} = e^{t_{n}}\left(  1 + h + \frac{1}{3} h^{2} + \frac{1}{3} h^{3} \right) 
+\end{align*} 
+
+Then the local error is 
+
+\begin{align*}
+y(t_{n+1}) -  ( y(t_{n}) + \frac{1}{8} h k_{1} + \frac{3}{8} h k_{2} + \frac{3}{8} h k_{3} + \frac{1}{8} h k_{4}   ) & =  e^{t_{n+1}} - e^{t_{n}} - e^{t_{n}}  \\
+& = 
+\end{align*}
+
+
+
+
+Let us now show that the method has order at least 3. To do this we restrict our attention to scalar, autonomous equations of the form $ y' = f(y) $. 
+
 \section{QUESTION 8}
+
+Consider the linear scalar system 
+
+\[ \begin{cases} y' = \lambda y  & \\ y(0) = 1&  \end{cases} \]
+
+where $ \lambda < 0 $. The solution is $ y(t) = e^{\lambda t} $ which decays to $ 0 $ as $ t \to \infty $. 
+
+\begin{enumerate}
+	\item For the explicit Euler method we get $ y_{n+1} = y_{n} + h \lambda y_{n} $ whose solution is $ y_{n} = (1+ h \lambda)^{n} $, so $ y_{n} \to 0 $ iff $ | 1 + h \lambda | < 1 $, therefore $ \mathcal{D} = \{ z \in \C \; ; \; | 1 + z | < 1  \} $, and $ \mathcal{D} \cap \R =  $
+	
+	\item Considering now the trapezoidal rule we get $ y_{n+1} = [  (1+\frac{1}{2} h \lambda) / (1 - \frac{1}{2} h \lambda) ] y_{n} $, and thus by induction, $ y_{n} = [  (1+\frac{1}{2} h \lambda) / (1 - \frac{1}{2} h \lambda) ]^{n} y_{0} $. Therefore
+	
+	\[ z \in \mathcal{D} \iff \left| \frac{1+\frac{1}{2}z}{1 - \frac{1}{2} z} \right| < 1 \iff \text{Re } z < 0  \]
+	
+	and we deduce that $ \mathcal{D} = \C^{-} $. Hence the method is A-stable. 
+	
+	\item 
+	
+	\item 
+	
+	\item Applying the RK method to $ y' = \lambda y $ we have
+	
+	\begin{align*}
+	h k_{1} & = h \lambda y_{n} \\
+	h k_{2} & = h \lambda ( y_{n} + h k_{1}) 
+	\end{align*}
+	
+	therefore
+	
+	\[ y_{n+1} = y_{n} + \frac{1}{2} h k_{1} + \frac{1}{2} h k_{2} = (1+ h \lambda  + \frac{1}{2} h^{2} \lambda^{2} ) y_{n}    \]
+	
+	Let 
+	
+	\[ r(z) = 1 + z + \frac{1}{2} z^{2}  \]
+	
+	Then $ y_{n+1} = r(h \lambda) y_{n} $, therefore, by induction, $ y_{n} = [r(h \lambda)]^{n} y_{0} $ and we deduce that 
+	
+	\[ \mathcal{D} = \{  z \in \C \; ; \; | r(z) | < 1 \} \]
+	
+	$ r $ is analytic in $ \mathcal{V} = \{  z \in \C \; ; \; \text{Re } z < \leq 0 \} $. Therefore it attains its maximum on $ \partial \mathcal{V} = i \R $. 
+	
+\end{enumerate}
+
 \section{QUESTION 9}
+
+Consider the two-step BDF method: $ \mathbf{y}_{n+2} - \frac{4}{3} \mathbf{y}_{n+1} + \frac{1}{3} \mathbf{y}_{n} = \frac{2}{3} hf(t_{n+2},\mathbf{y}_{n+2}) $. Applied to $ y' = \lambda y $ we get 
+
+\[ y_{n+2} - \frac{4}{3} y_{n+1} + \frac{1}{3} y_{n} = \frac{2}{3} h \lambda y_{n+2} \]
+
+\[ (3 - 2h \lambda)y_{n+2} - 4 y_{n+1} + y_{n} = 0 \]
+
+We try $ y_{n} = k^{n} $ and obtain 
+
+\[ (3 - 2h \lambda)k^{2} - 4 k + 1 = 0 \]
+
+So
+
+\begin{align*}
+k & = \frac{4 \pm \sqrt{16 - 4(3 - 2h \lambda)}}{(6 - 4h \lambda)} \\
+& = \frac{2 \pm \sqrt{1 + 2 h \lambda}}{3 - 2 h \lambda} 
+\end{align*}
+
+Hence 
+
+\[ y_{n} = A \left( \frac{2 + \sqrt{1 + 2 h \lambda}}{3 - 2 h \lambda} \right)^{n}  + B \left( \frac{2 - \sqrt{1 + 2 h \lambda}}{3 - 2 h \lambda} \right)^{n}  \]
+
+Unsure what to deduce.
+
+
 \section{QUESTION 10}
+
+Given that $ | y_{n} - y(t_{n}) |  \leq  10^{-6} $, with Euler's method, setting $ h = 2 \times 10^{-4} $, we have
+
+\begin{align*}
+| y_{n+1} - y(t_{n+1}) |  & = | y_{n} + h_{n}f(t_{n},y_{n})   - t_{n}^{-1} |  \\
+& = | y_{n} + 2 \times 10^{-4} (   -10^{4}  (y_{n} - t_{n}^{-1} ) - t_{n}^{-2} )    - t_{n+1}^{-1} | \\
+& = |  (1 + 2 \times 10^{-8}) y_{n} - (2 \times 10^{-8}) t_{n}^{-1} - 2 \times 10^{-4}) t_{n}^{-2} - t_{n+1}^{-1}   |
+\end{align*}
+
+No idea what I'm doing here. 
+
+
 \section{QUESTION 11}
+
+First consider the predictor; substituting the true solution
+
+\[ \mathbf{y}(t_{n+3}) - \{  - \frac{1}{2} \mathbf{y}(t_{n}) + 3 \mathbf{y}(t_{n+1})  - \frac{3}{2} \mathbf{y}(t_{n+2}) + 3h\mathbf{y}'(t_{n+2})  \} \quad (*) \]
+
+Performing Taylor expansions:
+
+\[ \mathbf{y}(t_{n+3}) = \mathbf{y}(t_{n}) + 3h \mathbf{y}'(t_{n}) + \frac{9}{2} h^{2} \mathbf{y}''(t_{n}) + \frac{9}{2} h^{3}  \mathbf{y}'''(t_{n}) + \frac{27}{8} h^{4} \mathbf{y}''''(t_{n})+ O(h^{5}) \]
+
+
+\[ \mathbf{y}(t_{n+1}) = \mathbf{y}(t_{n}) + h \mathbf{y}'(t_{n}) + \frac{1}{2} h^{2} \mathbf{y}''(t_{n}) + \frac{1}{6} h^{3}  \mathbf{y}'''(t_{n}) + \frac{1}{24} h^{4} \mathbf{y}''''(t_{n})+ O(h^{5}) \]
+
+
+
+\[ \mathbf{y}(t_{n+2}) = \mathbf{y}(t_{n}) + 2h \mathbf{y}'(t_{n}) + 2 h^{2} \mathbf{y}''(t_{n}) + \frac{4}{3} h^{3}  \mathbf{y}'''(t_{n}) + \frac{2}{3} h^{4} \mathbf{y}''''(t_{n})+ O(h^{5}) \]
+
+\[ h\mathbf{y}'(t_{n+2}) = h \mathbf{y}'(t_{n}) + 2h^{2} \mathbf{y}''(t_{n}) + 2 h^{3} \mathbf{y}'''(t_{n}) + \frac{4}{3} h^{4}  \mathbf{y}''''(t_{n}) + O(h^{5}) \]
+
+Substituting these into $ (*) $ it is clear that the predictor method is third order; moreover we deduce that 
+
+\[ \mathbf{y}(t_{n+3}) - \{  - \frac{1}{2} \mathbf{y}(t_{n}) + 3 \mathbf{y}(t_{n+1})  - \frac{3}{2} \mathbf{y}(t_{n+2}) + 3h\mathbf{y}'(t_{n+2})  \} =  \frac{1}{4} h^{4} \mathbf{y}''''(t_{n}) + O(h^{5})   \]
+
+and thus
+
+\begin{align*}
+\mathbf{y}_{n+3}^{P} & \approx \mathbf{y}(t_{n+3}) - \frac{1}{4} h^{4} \mathbf{y}''''(t_{n}) \\
+\end{align*}
+
+Similarly for the corrector; substituting the true solution
+
+\[ \mathbf{y}(t_{n+3}) - \frac{1}{11} \{ 2 \mathbf{y}(t_{n}) - 9 \mathbf{y}(t_{n+1})  + 18 \mathbf{y}(t_{n+2}) + 6h\mathbf{y}'(t_{n+3})  \} \quad (**) \]
+
+Noting that
+
+\[ h\mathbf{y}'(t_{n+3}) = h \mathbf{y}'(t_{n}) + 3h^{2} \mathbf{y}''(t_{n}) + \frac{9}{2} h^{3} \mathbf{y}'''(t_{n}) + 9 h^{4}  \mathbf{y}''''(t_{n}) + O(h^{5}) \]
+
+We again see this method is third order, and that 
+
+\[ \mathbf{y}(t_{n+3}) - \frac{1}{11} \{ 2 \mathbf{y}(t_{n}) - 9 \mathbf{y}(t_{n+1})  + 18 \mathbf{y}(t_{n+2}) + 6h\mathbf{y}'(t_{n+3})  \} =  \]
+
+
+
+
 \section{QUESTION 12}
+
+starred
 
 
 
