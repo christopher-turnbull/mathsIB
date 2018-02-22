@@ -25,6 +25,58 @@
 \maketitle
 
 \section{QUESTION 1}
+
+
+\begin{enumerate}
+	\item \begin{align*}
+	z/\log(1+z)& = z \left[  z - \frac{z^{2}}{2} + \frac{z^{3}}{3} - \cdots     \right]^{-1}  \\
+	& = \left[  1 - \frac{z}{2} + \frac{z^{2}}{3} - \cdots     \right]^{-1} \\
+	& = \left(  1 - \frac{z}{2} \right)^{-1} + O(z^{2}) \\
+	& = 1 + \frac{z}{2} + O(z^{2}) 
+	\end{align*}
+	
+	
+	Owing to the $ \log(1+z) $ term, this series expansion converges if $ | z | < 1 $. 
+	
+	
+	\item \begin{align*}
+	(\cos z)^{1/2} -1 & = \left[   1 - \frac{z^{2}}{2} +  \frac{z^{4}}{4!} - \cdots  \right]^{1/2} - 1  \\
+	& = \left(  1 - \left(  \frac{z^{2}}{2!} - \frac{z^{4}}{4!}  \right)  \right)^{1/2} - 1 + O(z^{6}) \\
+	& = - \frac{1}{4} z + \frac{5}{96} z^{4} + O(z^{6}) 
+	\end{align*}
+	
+	Converges for all $ z \in \C $.
+	
+	\item \begin{align*}
+	\log(1+e^{z})  & = e^{z} - \frac{e^{2z}}{2} + \frac{e^{3z}}{3} - \frac{e^{4z}}{4} + \cdots   \\
+	& = \underbrace{\left(  1 - \frac{1}{2} + \frac{1}{3} - \cdots \right)}_{= \log 2} + \left( 1 - 1 + 1 - 1 + \cdots \right) z  \\
+	& \quad + \frac{1}{2}\left( 1 - 2 + 3 - 4 + \cdots   \right) z^{2} + \frac{1}{3!} \left( 1^{2} - 2^{2} + 3^{2} - 4^{2} +  \cdots   \right) z^{3} +  O(z^{4}) 
+	\end{align*}
+	
+	this is valid if $ | e^{z} | < 1 $.
+	
+	
+	\item \begin{align*}
+	e^{e^{z}} & = 1 + e^{z} +  \frac{1}{2!}e^{2z}+ \frac{1}{3!}  e^{3z} + \cdots \\
+	& = \left(  1 + 1 + \frac{1}{2!} + \frac{1}{3!} + \cdots \right)  + \left(  1 + 2 + 3 + \cdots \right) z \\
+	& \quad + \frac{1}{2} \left( 1 + 2 + \frac{3}{2} + \frac{2}{3} + \frac{5}{24} + \cdots   \right)z^{2}
+	\end{align*}
+	
+	which seems to be valid for all $ z > 0 $. 
+	
+\end{enumerate}
+
+
+
+
+
+
+
+
+
+\section{QUESTION 2}
+
+
 Using partial fractions,
 
 \[ \frac{1}{(z-a)(z-b)} = \frac{1}{a-b} \left(   \frac{1}{z-a} - \frac{1}{z - b} \right)  \]
@@ -37,14 +89,14 @@ Have $ 0 < | a | < | b | $. In the region $ | z | < | a | $, we have no singular
 
 Hence 
 
-\[ \frac{1}{(z-a)(z-b)} = \frac{1}{b-a} \sum_{n=0}^{\infty} \left(  \frac{1}{a^{n+1}} - \frac{1}{b^{n+1}} \right)  z^{n}   \]
+\[ \frac{1}{(z-a)(z-b)} = -\frac{1}{a-b} \sum_{n=0}^{\infty} \left(  \frac{1}{a^{n+1}} - \frac{1}{b^{n+1}} \right)  z^{n}   \]
 
 
 
 
 In the region $ | a | < | z | < | b | $ we can determine a Laurent series for $ \frac{1}{z-a} $ in this annulus, (but $ \frac{1}{z-b} $ still has a Taylor series). Note that 
 
- \[
+\[
 \frac{1}{z - a} = \frac{1}{z} \left(1 - \frac{a}{z}\right)^{-1} = \sum_{m = 0}^\infty \frac{a^m}{z^{m + 1}} = \sum_{n = -\infty}^{-1} a^{-n - 1} z^n.
 \]
 
@@ -55,22 +107,72 @@ Hence
 
 
 
-Finally, in the region $ | z | > | b | $, this is an annulus, that goes from $|b|$ to infinity. So it has a Laurent series. We can find it by
+Finally, in the region $ | z | > | b | $, this is an annulus, that goes from $|b|$ to infinity. So it has a Laurent series, given by
 
 
 
+\[ \frac{1}{(z-a)(z-b)} = \frac{1}{a-b} \left(  \sum_{n = -\infty}^{-1} (a^{-n - 1}  + b^{-n-1})z^n  \right)   \]
 
 
 
-\section{QUESTION 2}
-
-We note that $ \sin z = \frac{e^{iz} - e^{-iz}}{2i} $ has zeros at $ e^{2iz} = 1 $ ie. $ z = n \pi $ for integer $ n $. 
 
 \section{QUESTION 3}
 
 
+We note that $ \sin z = \frac{e^{iz} - e^{-iz}}{2i} $ has zeros at $ e^{2iz} = 1 $ ie. $ z = n \pi $ for integer $ n $. 
+
+In the $ 0 < | z | < \pi $ annulus, consider
+
+\begin{align*}
+\cosec^{2} z& = \left[     \left( z - \frac{z^{3}}{3!} + \frac{z^{5}}{5!} - \cdots \right)\left( z - \frac{z^{3}}{3!} + \frac{z^{5}}{5!} - \cdots \right)  \right]^{-1}  \\
+& = \left[   z^{2} - \frac{z^{4}}{3} + \frac{z^{6}}{60} - \cdots \right]^{-1} \\
+& = z^{-2} \left[   1 - \frac{1}{3} z^{2} + \frac{1}{60} z^{4} - \cdots \right]^{-1}
+\end{align*}
+
+Not sure how to do the binomial expansion in a valid way
+
+
+
+
 
 \section{QUESTION 4}
+
+
+$ f(z) $ has a zero of order $ N $ at $ z = z_{0} $ if $ 0 = f(z_{0}) = f'(z_{0}) = \cdots = f^{N-1}(z_{0}) $, but $ f^{(N)}(z_{0}) \neq 0 $. 
+
+If there is a $ N > 0 $ such that $ a_n = 0 $ for all $ n < -N $ but $ a_{-N} \neq 0$,  then $ f $ has a pole of order $ N $ at $ z_{0} $.
+
+Not sure.
+
+
+
+\section{QUESTION 5}
+
+\begin{enumerate}
+	\item $ \frac{1}{z^{3}(z-1)^{2}} $ has isolated singularities at $ z = 0 $ and $ z = 1 $.
+	
+	\item $ \tan z $ has isolated singularities at $ z = (n + \frac{1}{2}) \pi $.
+	
+	\item  $\sinh z$ has zeros where $\frac{1}{2}(e^z - e^{-z}) = 0$, i.e.\ $e^{2z} = 1$, i.e.\ $z = n \pi i$, where $n \in \Z$. Hence $ z \coth z $ has isolated singularities here. 
+	
+	\item $ \frac{e^{z} - e}{(1-z)^{3}} $ has a singularity at $ z = 1 $, 
+	
+	\item $ \exp(\tan z) $ has singularities $ z = \frac{\pi}{2} + n \pi $.
+	
+	\item $ \sinh \frac{z}{z^{2} - 1} $ has singularities at $ z = \pm 1 $
+	
+	\item $ \log(1+e^{z}) $ has singularities $ z = ( 1 + 2n )i \pi  $. 
+	
+	\item $ \tan(z^{-1}) $ has singularities $ 1/(  \frac{\pi}{2} + n \pi  ) = \frac{2}{\pi(2n+1)} $.
+	
+\end{enumerate}
+
+
+
+
+
+\section{QUESTION 6}
+
 
 Firstly $ \int_{-1}^{1} z \; \d z $ evaluated along $ \gamma_{1} $, the straight line from $ -1 $ to $ +1 $ is simply $ \left[  \frac{z^{2}}{2} \right]_{-1}^{1} = 0 $. 
 
@@ -104,14 +206,294 @@ I_{4} & = \int_{0}^{2\pi} (1 + e^{-i \theta}) i e^{i \theta} \; \d \theta \\
 
 
 
-\section{QUESTION 5}
-\section{QUESTION 6}
 \section{QUESTION 7}
+
+ At a \emph{simple} pole, the residue is given by
+\[
+\res_{z = z_0}f(z) = \lim_{z \to z_0} (z - z_0) f(z).
+\]
+
+Hence 
+
+\begin{enumerate}
+	\item 
+	
+	\begin{align*}
+	\res_{z = z_0}f(z)/ (z- z_{0}) & = \lim_{z \to z_0} f(z) \\
+	& = f(z_{0})
+	\end{align*}
+	
+	\item 
+	
+	\begin{align*}
+	\res_{z = z_0}f(z)/ g(z) & = \lim_{z \to z_0} (z - z_0) f(z)/ g(z) \\
+	& = f(z_{0})
+	\end{align*}
+	
+	
+	\item 
+	
+	\begin{prop}
+		At a pole of order $N$, the residue is given by
+		\[
+		\lim_{z \to z_0} \frac{1}{(N - 1)!} \frac{\d^{N - 1}}{\d z^{N - 1}} (z - z_0)^N f(z).
+		\]
+	\end{prop}
+
+	\begin{proof}
+		We can simply expand the right hand side to obtain
+		\begin{align*}
+		& \lim_{z \to z_0} \frac{1}{(N - 1)!} \frac{\d^{N - 1}}{\d z^{N - 1}} (z - z_0)^{N}   \left(  \frac{a_{-N}}{(z - z_0)^{N}} + \cdots +  \frac{a_{-2}}{z - z_0}^{2} +    \frac{a_{-1}}{z - z_0} + a_0 + a_1(z - z_0) + \cdots\right) \\
+		& \lim_{z \to z_0} \frac{1}{(N - 1)!} \frac{\d^{N - 1}}{\d z^{N - 1}} \left(  a_{-N} + a_{-N+1} (z - z_{0}) + \cdots +  a_{-1} (z-z_{0})^{N-1}  + a_0(z - z_{0}  )^N + \cdots   \right) \\
+		& \lim_{z \to z_0} \frac{1}{(N - 1)!} \left((N-1)! a_{-1} + N! a_0(z - z_{0}  ) + \cdots   \right) \\
+		&= \lim_{z \to z_0} (a_{-1} + N a_0(z - z_0) +\cdots) \\
+		&= a_{-1}
+		\end{align*}
+		as required.
+	\end{proof}
+	
+	
+\end{enumerate}
+
+We now compute the residues of the poles given in question 5.
+
+\begin{enumerate}
+	\item We can use the fact that $f$ has a pole of order $3$ at $z = 0$. So we can use the formula to obtain
+	\[
+	\res_{z = 0} f(z) = \lim_{z \to 0} \frac{1}{2!} \frac{\d^2}{\d z^2} (z^3 f(z)) = \lim_{z \to 0} \frac{1}{2} \frac{\d^2}{\d z^2} \frac{1}{(z-1)^{2}} = \frac{1}{2}.
+	\]
+	
+\end{enumerate}
+
+
 \section{QUESTION 8}
 \section{QUESTION 9}
+
+ We shall evaluate
+\[
+I = \int_{\gamma} \frac{z^{n} \; \d z}{(z-a)(z-a^{-1})},
+\]
+
+where $ \gamma $ is the unit circle. Making the substitution $ z = e^{i \theta} $ and traversing anticlockwise from $ z = 1 $ gives
+
+\begin{align*}
+I & = \int_{0}^{2\pi}  \frac{e^{i n \theta}}{(e^{i \theta} - a)(e^{i \theta} - a^{-1})} i e^{i \theta} \; \d \theta  \\
+& = \int_{0}^{2\pi} \frac{ i e^{i n \theta}}{e^{ i \theta} - a - a^{-1}  + e^{-i \theta} }  \; \d \theta \\
+& = - ia \int_{0}^{2\pi} \frac{ \cos n \theta + i \sin n \theta}{1   - 2 a \cos \theta +  a^{2}    }  \; \d \theta \\
+\end{align*}
+
+Now evaluating $ I $ by the residue theorem, the poles of the integrand are at $z_0 = a $ and $z_1 = a^{-1} $, with $ z_{1} $ lying inside the contour with residue
+\[
+\frac{a^{-n+1}}{1-a^{2}}
+\]
+
+Hence we get
+
+\[
+I = 2\pi i \frac{a^{-n+1}}{1-a^{2}}
+\]
+
+
+
+
+
 \section{QUESTION 10}
+
+ We shall evaluate
+\[
+I = \int_{-\infty}^{\infty} \frac{\d x}{1 + x + x^2},
+\]
+
+Consider
+\[
+\oint_\gamma \frac{\d z}{1 + z + z^2},
+\]
+where $\gamma$ is the contour ``closing in the upper-half plane'', shown: from $-R$ to $R$ along the real axis ($\gamma_0$), then returning to $-R$ via a semicircle of radius $R$ in the upper half plane ($\gamma_R$).
+\begin{center}
+	\begin{tikzpicture}
+	\draw [->] (-3, 0) -- (3, 0);
+	\draw [->] (0, -1) -- (0, 3);
+	
+	\draw [mred, thick, ->-=0.3, ->-=0.8] (-2, 0) -- (2, 0) node [pos=0.3, below] {$\gamma_0$} arc(0:180:2) node [pos=0.3, right] {$\gamma_R$};
+	
+	\node [below] at (-2, 0) {$-R$};
+	\node [below] at (2, 0) {$R$};
+	
+	\node at (-1, 1) {$\times$};
+	\node [right] at (-1, 1) {$z_{0}$};
+	\end{tikzpicture}
+\end{center}
+Now we have
+\[
+\frac{1}{1 + z + z^2} = \frac{1}{(z - z_{0})(z - \bar{z_{0}})}.
+\]
+
+where $ z_{0} = - \frac{1}{2} + \frac{\sqrt{3}}{2} i  $. So the only singularity enclosed by $\gamma$ is a simple pole at $z = z_{0}$, where the residue is
+\[
+\lim_{z \to z_{0}} \frac{1}{z - \bar{z_{0}}} = -\frac{1}{\sqrt{3}i} .
+\]
+Hence
+\[
+\int_{\gamma_0} \frac{\d z}{1 + z + z^2} + \int_{\gamma_R} \frac{\d z}{1 +z +  z^2} = \int_\gamma \frac{\d z}{1 + z + z^2}= 2\pi i \cdot -\frac{1}{\sqrt{3}i} = - \frac{2 \sqrt{3}}{3} \pi.
+\]
+Let's now look at the terms individually. We know
+\[
+\int_{\gamma_0} \frac{\d z}{1 + z^2} = \int_{-R}^R \frac{\d x}{1 + x^2} \to I
+\]
+as $R \to \infty$. Also,
+\[
+\int_{\gamma_R} \frac{\d z}{1 + z^2} \to 0
+\]
+as $R \to \infty$ (see below). So we obtain in the limit
+\[
+I + 0 = - \frac{2 \sqrt{3}}{3} \pi.
+\]
+So
+\[
+I = - \frac{2 \sqrt{3}}{3} \pi.
+\]
+Finally, we need to show that the integral about $\gamma_R$ vanishes as $R \to \infty$. We can also do this informally, by writing
+\[
+\left|\int_{\gamma_R} \frac{\d z}{1 + z + z^2}\right| \leq \pi R \sup_{z \in \gamma_R} \left|\frac{1}{1 + z + z^2}\right| = \pi R \cdot O(R^{-2}) = O(R^{-1}) \to 0.
+\]
+
+
 \section{QUESTION 11}
+
+we want to integrate
+\[
+I = \int_0^\infty \frac{x^{a-1}}{1 +x}\;\d x,
+\]
+
+with $0 < a < 1$ so that the integral converges. 
+ We need a branch cut for $z^{a-1}$. We take our branch cut to be along the positive real axis, and define
+\[
+z^\alpha = r^\alpha e^{i\alpha \theta},
+\]
+where $z = re^{i\theta}$ and $0 \leq \theta < 2\pi$. We use the following keyhole contour:
+\begin{center}
+	\begin{tikzpicture}
+	\draw [->] (-3, 0) -- (3, 0);
+	\draw [->] (0, -3) -- (0, 3);
+	\draw [thick,decorate, decoration=zigzag] (0, 0) -- (3, 0);
+	
+	\draw [mred, thick, ->-=0.1, ->-=0.45, ->-=0.75, ->-=0.84, ->-=0.95] (1.977, 0.3) arc(8.63:351.37:2) node [pos=0.15, anchor = south west] {$C_R$} -- (0.4, -0.3) arc(323.13:36.87:0.5) node [pos=0.7, left] {$C_\varepsilon$} -- cycle;
+	
+	\node [circ] at (0, 0) {};
+	
+	\node at (-1, -1) {$\times$};
+	\node [right] at (-1, -1) {$e^{5\pi i/4}$};
+	\node at (-1, 1) {$\times$};
+	\node [right] at (-1, 1) {$e^{3\pi i/4}$};
+	\end{tikzpicture}
+\end{center}
+This consists of a large circle $C_R$ of radius $R$, a small circle $C_\varepsilon$ of radius $\varepsilon$, and the two lines just above and below the branch cut. We will simultaneously take the limit $\varepsilon \to 0$ and $R \to \infty$.
+
+We have four integrals to work out. The first is
+\[
+\int_{\gamma_R} \frac{z^{a-1}}{1 +z} \;\d z= O(R^{a - 2}) \cdot 2\pi R = O(R^{a - 1}) \to 0
+\]
+as $R \to \infty$. To obtain the contribution from $\gamma_\varepsilon$, we substitute $z = \varepsilon e^{i\theta}$, and obtain
+\[
+\int_{2\pi}^0 \frac{\varepsilon^{a-1} e^{i(a-1)\theta}}{1 + \varepsilon e^{i\theta}} i \varepsilon e^{i\theta}\;\d \theta = O(\varepsilon^{a - 1}) \to 0.
+\]
+Finally, we look at the integrals above and below the branch cut. The contribution from just above the branch cut is
+\[
+\int_\varepsilon^R \frac{x^{a-1}}{1 +x}\;\d x \to I.
+\]
+Similarly, the integral below is
+\[
+\int_R^\varepsilon \frac{x^{a-1}e^{2 a \pi i}}{1 +x}\;\d x \to -e^{2a  \pi i}I.
+\]
+So we get
+\[
+\oint_\gamma \frac{z^(a-1)}{1 + z}\;\d z \to (1 - e^{2a \pi i})I.
+\]
+All that remains is to compute the residues. The only pole is the simple pole at $z = -1$, with residue 
+
+
+\[ (-1)^{a-1} \]
+
+Hence we know
+\[
+(1 - e^{2a \pi i})I = 2\pi i\left( (-1)^{a-1} \right).
+\]
+
+
+In other words, we get
+\[
+e^{a \pi i} \frac{1}{2i} (e^{-a \pi i} - e^{a \pi i})I =  \pi (-1)^{a-1} e^{- \pi a i}
+\]
+Thus we have
+\[
+I = \frac{\pi}{\sin \pi a}
+\]
+
+
+
 \section{QUESTION 12}
+
+
+\section{QUESTION 13}
+
+Not too sure about these trigonometric integrals, but will attempt before supervision.
+
+
+\section{QUESTION 14}
+
+
+\section{QUESTION 15}
+
+Consider the integral
+\[
+\int_\gamma \frac{\cot z}{z^2 + \pi^{2} a^{2}}\;\d z,
+\]
+where $\gamma$ is the square contour shown with corners at $(N + \frac{1}{2})(\pm 1 \pm i)$, where $N$ is a large integer, avoiding the singularities
+\begin{center}
+	\begin{tikzpicture}
+	\draw [->] (-3, 0) -- (3, 0);
+	\draw [->] (0, -3) -- (0, 3);
+	
+	\foreach \x in {-2.5,-2,...,2.5} {
+		\node at (\x, 0) {$\times$};
+	}
+	
+	\draw [mred, thick] (1.75, 1.75) rectangle (-1.75, -1.75);
+	
+	\node [anchor = south west] at (0, 1.75) {$(N + \frac{1}{2})i$};
+	\node [anchor = north west] at (0, -1.75) {$-(N + \frac{1}{2})i$};
+	\node [anchor = south west] at (1.75, 0) {$N + \frac{1}{2}$};
+	\node [anchor = south east] at (-1.75, 0) {$-(N + \frac{1}{2})$};
+	
+	\node [circ] at (0, 1.75) {};
+	\node [circ] at (0, -1.75) {};
+	\node [circ] at (1.75, 0) {};
+	\node [circ] at (-1.75, 0) {};
+	\end{tikzpicture}
+\end{center}
+There are simple poles at $z = n \pi, \; n \in \Z\setminus \{0\}$, with residues $\frac{1}{(n^2 + a^{2}) \pi}$, and a two poles at $z = \pm i \pi a$ with residue $-\frac{1}{\pi a} \coth \pi a$ each. It turns out the integrals along the sides all vanish as $N \to \infty$ (see later). So we know
+\[
+2\pi i\left(2 \sum_{n = 1}^N \frac{1}{(n^2 + a^{2}) \pi} - \frac{2}{\pi a}  \coth \pi a \right) \to 0
+\]
+as $N \to \infty$. In other words,
+\[
+\sum_{n = 1}^N \frac{1}{n^2 + a^{2}} = \frac{\pi}{a} \coth \pi a.
+\]
+
+[Not sure of the details of calculating these residues...]
+Hence all that remains is to show that the integrals along the sides vanish. On the right-hand side, we can write $z = N + \frac{1}{2} + iy$. Then
+\[
+|\cot z| = \left|\cot\left( \left(N + \frac{1}{2}\right) + i y\right)\right| = |-\tan i y| = |\tanh y| \leq 1.
+\]
+So $\cot \pi z$ is bounded on the vertical side. Since we are integrating $\frac{\cot \pi z}{z^2 + \pi^{2} a^{2}}$, the integral vanishes as $N \to \infty$.
+
+Along the top, we get $z = x + \left(N + \frac{1}{2}\right)i$. This gives
+\[
+|\cot z| = \frac{\sqrt{\cosh^2 \left(N + \frac{1}{2}\right) - \sin^2 x}}{\sqrt{\sinh^2 \left(N + \frac{1}{2}\right) + \sin^2 x}} \leq \coth\left(N + \frac{1}{2}\right) \leq \coth \frac{1}{2}.
+\]
+So again $\cot \pi $ is bounded on the top side. So again, the integral vanishes as $N \to \infty$.
+
+Similarly the left and bottom boundary both vanish too, hence the required result.
 
 
 
