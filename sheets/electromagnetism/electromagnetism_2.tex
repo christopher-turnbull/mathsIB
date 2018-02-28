@@ -1,0 +1,449 @@
+\documentclass[a4paper]{article}
+\usepackage{amsmath}
+\def\npart {IB}
+\def\nterm {Lent}
+\def\nyear {2018}
+\def\nlecturer {Dr. Warnick (cmw50@cam.ac.uk)}
+\def\ncourse {Electromagnetism Example Sheet 2}
+
+\input{header}
+
+\newtheorem*{soln}{Solution}
+
+\renewcommand{\thesection}{}
+\renewcommand{\thesubsection}{\arabic{section}.\arabic{subsection}}
+\makeatletter
+\def\@seccntformat#1{\csname #1ignore\expandafter\endcsname\csname the#1\endcsname\quad}
+\let\sectionignore\@gobbletwo
+\let\latex@numberline\numberline
+\def\numberline#1{\if\relax#1\relax\else\latex@numberline{#1}\fi}
+\makeatother
+
+
+\begin{document}
+	
+\maketitle
+
+\section{QUESTION 1}
+
+
+\begin{itemize}
+	\item Given $ \mathbf{A} = x B \hat{\mathbf{y}},   $
+	
+	\begin{align*}
+	\nabla \times \mathbf{A} & =  ( - \partial_{z} x B, 0, \partial_{x} x B   )  \\
+	& = (0,0,B) = B \hat{\mathbf{z}}
+	\end{align*}
+	
+	\item Given $ \mathbf{A} =   \frac{1}{2} ( x B \hat{\mathbf{y}} -  y B \hat{\mathbf{x}} ) $,
+	
+	\begin{align*}
+	\nabla \times \mathbf{A} & =  ( - \partial_{z} \frac{1}{2} x B, - \partial_{z} \frac{1}{2} y B, \partial_{x} \frac{1}{2} x B + \partial_{y} y B   )  \\
+	& = (0,0,B) = B \hat{\mathbf{z}}
+	\end{align*}
+	
+	\item Given $ \mathbf{A} =   \frac{1}{2} r B \hat{\mathbf{\phi}} $, calculating curl in cylindrical polars we have 
+	
+	\begin{align*}
+	\nabla \times \mathbf{A} & =  \left( 0, 0, \frac{1}{r} \partial_{r} \left( \frac{1}{2} r^{2} B \right)    \right)  \\
+	& = (0,0,B) = B \hat{\mathbf{z}}
+	\end{align*}
+	
+	\item Given $ \mathbf{A} =   \frac{1}{2} r \sin \theta B \hat{\mathbf{\phi}} $, calculating curl in spherical polars we have 
+	
+	\begin{align*}
+	\nabla \times \mathbf{A} & = \left(   \frac{1}{r^{2}\sin \theta} \partial_{\theta} \left(  \frac{1}{2} r^{2} \sin^{2} \theta B   \right),  - \frac{1}{r \sin \theta} \partial_{r}  \left( \frac{1}{2} r^{2} \sin^{2} \theta  B \right), 0       \right)      \\
+	& = B (\cos \theta, - \sin \theta, 0 )  =  B \cos \theta \hat{\mathbf{r}} - B \sin \theta \hat{\boldsymbol\theta}   \\
+	& =  B \cos \theta \left(  \sin \theta \cos \phi \hat{\mathbf{x}} + \sin \theta \sin \phi \hat{\mathbf{y}} + \cos \theta \hat{\mathbf{z}} \right) \\
+	& \quad - B \sin \theta \left(  \cos \theta \cos \phi \hat{\mathbf{x}} + \cos \theta \sin \phi  \hat{\mathbf{y}} - \sin \theta \hat{\mathbf{z}}  \right)      \\
+	& = B(\cos^{2} \theta + \sin^{2} \theta ) \mathbf{z}   =  B \hat{\mathbf{z}}
+	\end{align*}
+	
+
+\end{itemize}
+
+
+
+
+\section{QUESTION 2}
+
+
+ We use cylindrical polar coordinates $(r, \phi, z)$, where $z$ is along the direction of the current, and $r$ points in the radial direction.
+\begin{center}
+	\begin{tikzpicture}
+	\draw (0, 1.5) circle [x radius=0.5, y radius = 0.15];
+	\draw [dashed] (0.5, -1.5) arc (0: 180:0.5 and 0.15);
+	\draw (-0.5, -1.5) arc (180: 360:0.5 and 0.15);
+	\draw (0.5, 1.5) -- (0.5, -1.5);
+	\draw (-0.5, 1.5) -- (-0.5, -1.5);
+	
+	\draw [->] (0, 1.5) -- (0, 2) node [above] {$I$};
+	
+	\draw [fill = gray!50!white] circle [x radius = 1, y radius = 0.3];
+	\draw [fill = white] circle [x radius = 0.5, y radius = 0.15];
+	\draw [fill = white, draw = none] (-0.5, 0) rectangle (0.5, 1);
+	\draw (-0.5, 0) -- (-0.5, 1);
+	\draw (0.5, 0) -- (0.5, 1);
+	\node at (1, 0) [right] {$S$};
+	
+	\draw [->] (3, 0) -- (3, 1) node [above] {$z$};
+	\draw [->] (3, 0) -- (4, 0) node [right] {$r$};
+	\end{tikzpicture}
+\end{center}
+By symmetry, the magnetic field can only depend on the radius, and must lie in the $x,y$ plane. Since we require that $\nabla\cdot \mathbf{B} = 0$, we cannot have a radial component. So the general form is
+\[
+\mathbf{B}(\mathbf{r}) = B(r)\hat{\boldsymbol\phi}.
+\]
+To find $B(r)$, we integrate over a disc that cuts through the wire horizontally. In cylindrical polars we have $ \d \mathbf{r} = \d r \hat{\mathbf{r}} + r \d \phi \hat{\boldsymbol\phi} + \d z \hat{\mathbf{z}} = r \d \phi \hat{\boldsymbol\phi} $, thus
+\[
+\oint_C \mathbf{B}\cdot \d \mathbf{r} = B(r)\int_0^{2\pi} r\;\d \phi = 2\pi r B(r)
+\]
+By Ampere's law, we have
+\[
+2\pi rB(r) = \mu_0 I.
+\]
+
+where 
+
+\[ I = \int_S \mathbf{J}\cdot \d S = J \pi r^{2} \]
+
+So
+\[
+\mathbf{B}(r) = \frac{\mu_0 J r}{2 } \hat{\boldsymbol\phi}.
+\]
+
+
+
+\section{QUESTION 3}
+
+Apply Ampere's Law to a loop of radius $ r $ that falls somewhere between the two cylinders. As before we have
+
+\[
+\oint_C \mathbf{B}\cdot \d \mathbf{r} = B(r)\int_0^{2\pi} r\;\d \phi = 2\pi r B(r)
+\]
+
+Now the current density is uniform, and thus given by $ \frac{1}{\pi b^{2} - \pi a^{2}} \hat{\mathbf{z}} $, so the current enclosed inside our loop is given by
+
+\[ J (\pi r^{2} - \pi a^{2}) = \frac{r^{2} - a^{2}}{b^{2} - a^{2}} \]
+
+Thus Ampere's Law gives us that
+
+\[ B(r) = \frac{\mu_{0} I (r^{2} - a^{2})}{2 \pi r (b^{2} - a^{2})} \]
+
+
+Not sure about direction, or why it seems that $ \frac{r^{2} - a^{2}}{r} = d $
+
+
+\section{QUESTION 4}
+
+
+Using cylindrical polars we calculate the potential as 
+
+
+We take the wire to point along the $ \hat{\mathbf{z}} $ axis and use
+$ r^{2} = x^{2} + y^{2} $ as our radial coordinate. This means that the line
+element along the wire is parametrised by $ \d \mathbf{x}' = \hat{\mathbf{z}} \d z  $ and, for a point $ \mathbf{x}  $ away from the wire, the vector $ \d \hat{\mathbf{x}}' \times (\mathbf{x} - \mathbf{x}') $ points along the tangent to the circle of radius $ r $,
+
+
+\[ \d \mathbf{x}' = (\mathbf{x} - \mathbf{x}') = r \hat{\boldsymbol\phi} \d z\]
+
+So we have
+
+
+\begin{align*}
+\mathbf{B} & = \frac{\mu_{0} I  \hat{\boldsymbol\phi}}{4 \pi} \int_{-\infty}^{\infty} \d z \frac{ r}{(r^{2} + z^{2}  )^{3/2}} = \frac{\mu_{0} I}{2 \pi r} \hat{\boldsymbol\phi} \\
+& =                       
+\end{align*}              
+                          
+                          
+which agrees with our work from Question 2.
+
+Not sure about the next two bits.                           
+                         
+
+
+
+\section{QUESTION 5}
+
+ A current $\mathbf{J}$, localized on some closed curve $C$, is in an external magnetic field $ \mathbf{B}(r) $, then this field causes the current to experience the Lorentz force
+\[
+\mathbf{F} = \int \mathbf{J}(\mathbf{r})\times \mathbf{B}(\mathbf{r})\;\d V.
+\]
+While we are integrating over all of space, the current is localized at a curve $C$. So
+\[
+\mathbf{F} = I\oint_{C} \d \mathbf{r} \times \mathbf{B}(\mathbf{r}).
+\]
+
+
+Similarly the torque is
+
+
+\begin{align*}
+\mathbf{F} & = \int  \mathbf{r} \times (\mathbf{J}(\mathbf{r})\times \mathbf{B}(\mathbf{r}))    \;\d V \\
+& = I\oint_{C} \mathbf{r} \times (\d \mathbf{r} \times \mathbf{B}(\mathbf{r}))
+\end{align*}
+
+
+
+as required. 
+
+\section{QUESTION 6}
+
+Consider the plane $z = 0$ with \emph{surface current density} $\mathbf{k}$ (i.e.\ current per unit length).
+\begin{center}
+	\begin{tikzpicture}[
+	y = {(0.5cm,0.5cm)},
+	z = {(0cm,1cm)}]
+	\draw (-2, -1, 0) -- (2, -1, 0) -- (2, 1, 0) -- (-2, 1, 0) -- cycle;
+	\draw [->] (-1.5, 0.5, 0) -- (1.5, 0.5, 0);
+	\draw [->] (-1.5, -0.5, 0) -- (1.5, -0.5, 0);
+	\draw [->] (-1.5, 0, 0) -- (1.5, 0, 0);
+	\end{tikzpicture}
+\end{center}
+
+
+Across any surface we have
+\[
+\hat {\mathbf{n}} \times \mathbf{B}_+ - \hat{\mathbf{n}}\times \mathbf{B}_{-} = \mu_0 \mathbf{k} \qquad (*)
+\]
+
+
+Consider the solenoid:
+
+
+\begin{center}
+	\begin{tikzpicture}
+	\draw (0, 1.5) circle [x radius=0.5, y radius = 0.15];
+	\draw [dashed] (0.5, -1.5) arc (0: 180:0.5 and 0.15);
+	\draw (-0.5, -1.5) arc (180: 360:0.5 and 0.15);
+	\draw [red, dashed] (0.5, -1) arc (0: 180:0.5 and 0.15);
+	\draw [red, ->-=0.6] (-0.5, -1) arc (180: 360:0.5 and 0.15);
+	\draw [red, dashed] (0.5, -0.5) arc (0: 180:0.5 and 0.15);
+	\draw [red, ->-=0.6] (-0.5, -0.5) arc (180: 360:0.5 and 0.15);
+	\draw [red, dashed] (0.5, 0) arc (0: 180:0.5 and 0.15);
+	\draw [red, ->-=0.6] (-0.5, 0) arc (180: 360:0.5 and 0.15);
+	\draw [red, dashed] (0.5, 0.5) arc (0: 180:0.5 and 0.15);
+	\draw [red, ->-=0.6] (-0.5, 0.5) arc (180: 360:0.5 and 0.15);
+	\draw [red, dashed] (0.5, 1) arc (0: 180:0.5 and 0.15);
+	\draw [red, ->-=0.6] (-0.5, 1) arc (180: 360:0.5 and 0.15);
+	\draw (0.5, 1.5) -- (0.5, -1.5);
+	\draw (-0.5, 1.5) -- (-0.5, -1.5);
+	
+	\draw [->] (3, 0) -- (3, 1) node [above] {$z$};
+	\draw [->] (3, 0) -- (4, 0) node [right] {$r$};
+	
+	\draw (0.2, 1) -- (0.8, 1) node[anchor = south west] {$C$};
+	\draw [->-=0.6] (0.8, 1) -- (0.8, -1);
+	\draw (0.8, -1) -- (0.2, -1) -- (0.2, 1);
+	\end{tikzpicture}
+\end{center}
+We use cylindrical polar coordinates with $z$ in the direction of the extension of the cylinder. By symmetry, $\mathbf{B} = B(r)\hat{\mathbf{z}}$.
+
+Away from the cylinder, $\nabla \times \mathbf{B} = 0$. So $\frac{\partial B}{\partial r} = 0$, which means that $B(r)$ is constant outside. Since we know that $\mathbf{B} = \mathbf{0}$ at infinity, $\mathbf{B} = \mathbf{0}$ everywhere outside the cylinder.
+
+To compute $\mathbf{B}$ inside, use Ampere's law with a curve $C$. Note that only the vertical part (say of length $L$) inside the cylinder contributes to the integral. Then
+\[
+\oint_C \mathbf{B}\cdot \d \mathbf{r} = BL = \mu_o INL.
+\]
+where $N$ is the number of wires per unit length and $I$ is the current in each wire (so $INL$ is the total amount of current through the wires).
+
+So
+\[
+B = \mu_0 IN \hat{\boldsymbol{z}}
+\]
+
+Note that since $ K = I N $ this is consistent with (*). The average field is thus  $ \frac{1}{2} \mu_0 IN \hat{\boldsymbol{z}} $, and the Lorentz force is:
+
+
+\[ \mathbf{F} = q \mathbf{v} \times \mathbf{B} = q \mathbf{v} \times \frac{1}{2} \mu_{0} N I \hat{\mathbf{z}}  \]
+
+For a wire with cross-sectional area $ A $, the total current is just $ I = JA $. We want to compute the force on the wire per unit length, $ \mathbf{f} $. Since the
+number of charges per unit area is $ nAN $ and $ F $ is the force on each charge, we have
+
+\[ \mathbf{f} = n A N \mathbf{F} = \frac{1}{2} \mu_{0} I^{2} N^{2} \hat{\mathbf{n}}\]
+
+where $  $
+
+
+\section{QUESTION 7}
+
+A current $\mathbf{J}_1$, localized on some closed curve $C_1$, sets up a magnetic field
+\[
+\mathbf{B}(\mathbf{r}) = \frac{\mu_0I_1}{4\pi}\oint_{C_1} \d \mathbf{r}_1 \times \frac{\mathbf{r} - \mathbf{r}_1}{|\mathbf{r} - \mathbf{r}_1|^3}.
+\]
+A second current $\mathbf{J}_2$ on $C_2$ experiences the Lorentz force
+\[
+\mathbf{F}_{12} = \int \mathbf{J}_2(\mathbf{r})\times \mathbf{B}(\mathbf{r})\;\d V.
+\]
+While we are integrating over all of space, the current is localized at a curve $C_2$. So
+\[
+\mathbf{F}_{12} = I_2\oint_{C_2} \d \mathbf{r}_2 \times \mathbf{B}(\mathbf{r}_2).
+\]
+Hence
+\[
+\mathbf{F}_{12} = \frac{\mu_0}{4\pi} I_1 I_2 \oint_{C_1}\oint_{C_2}\d \mathbf{r}_2\times \left(\d \mathbf{r}_1\times \frac{\mathbf{r}_2 - \mathbf{r}_1}{|\mathbf{r}_2 - \mathbf{r}_1|^3}\right).
+\]
+
+
+Manipulating the integrand,
+
+\begin{align*}
+ \frac{\d \mathbf{r}_2\times \d \mathbf{r}_1\times (\mathbf{r}_2 - \mathbf{r}_1)}{|\mathbf{r}_2 - \mathbf{r}_1|^3} & = \frac{ \d \mathbf{r}_2 \cdot (\mathbf{r}_2 - \mathbf{r}_1)}{|\mathbf{r}_2 - \mathbf{r}_1|^3} \d \mathbf{r}_1  - \frac{ \d \mathbf{r}_2 \cdot \d \mathbf{r}_1 }{|\mathbf{r}_2 - \mathbf{r}_1|^3} (\mathbf{r}_2 - \mathbf{r}_1)
+\end{align*}
+
+it is now in a from that is symmetric in $ \d \mathbf{r}_1 $, $ \d \mathbf{r}_2 $ and thus explicitly satisfies Newton's third law. 
+
+\section{QUESTION 8}
+
+Given
+
+\[ \mathbf{E} = e^{-t} \hat{\boldsymbol{\phi}}, \qquad \mathbf{B} = \frac{e^{-t}}{r} \hat{\mathbf{z}}  \]
+
+by considering divergence and curl in cylindrical polars, we have
+
+\begin{align*}
+\nabla \cdot \mathbf{E} & =  \frac{1}{r} \frac{\partial }{\partial \phi} (e^{-t}) \\
+& = 0
+\end{align*}
+
+\begin{align*}
+\nabla \cdot \mathbf{B} & =  \frac{\partial }{\partial z} \frac{e^{-t}}{r} \\
+& = 0
+\end{align*}
+
+and
+
+
+\begin{align*}
+\nabla \times \mathbf{E} & =  \left( 0,0,\frac{1}{r} \frac{\partial }{\partial r}  (r e^{-t}) \right) \\
+& =  \frac{e^{-t}}{r} \hat{\mathbf{z}} \\
+& = - \frac{\partial \mathbf{B} }{\partial t}
+\end{align*}
+
+thus these three Maxwell equations are satisfied. 
+
+Next we seek to verify the general from of Faraday's Law:
+
+\[ \oint_{C(t)} (\mathbf{E} + \mathbf{v}  \times \mathbf{B} ) \cdot \d \mathbf{r} = - \frac{\d }{\d t} \int_{S(t)} \mathbf{B} \cdot \d \mathbf{S} \quad (*)  \]
+
+where $ C(t) $ is the circle with radius $ 1 + t $. Note any point on this curve will have velocity $ \mathbf{v} = \hat{\mathbf{r}} $, so $ \mathbf{v} \times \mathbf{B} = - \frac{e^{-t}}{r} \hat{\boldsymbol{\phi}} $ Noting in cylindricals, we parametrise $ C(t) $ by $ \theta $, so 
+
+
+\[ \mathbf{r} = ( 1+t,\theta,0), \quad 0 \leq  \theta < 2 \pi \]
+
+ $ \d \mathbf{r} = (\d r, r \d \phi, \d z) $, the LHS of (*) is 
+
+\begin{align*}
+\oint_{C(t)}  (\mathbf{E} + \mathbf{v}  \times \mathbf{B} ) \cdot \d \mathbf{r} & = \int_{0}^{2\pi}  e^{-t} \left( 1 - \frac{1}{r} \right) \hat{\boldsymbol{\phi}} \cdot r \hat{\boldsymbol{\phi}} \; \d \theta \\
+	& =  2 \pi (r - 1) e^{-t} \\
+	& = 2 \pi t e^{-t} \qquad (r = t + 1)
+\end{align*}
+
+The surface integral has $ \mathbf{n} = (1,0,0) $ so $ \mathbf{B} \cdot \mathbf{n} = \frac{e^{-t}}{r} $. We have
+
+\begin{align*}
+\int_{S(t)}  \mathbf{B} \cdot \d \mathbf{S} & = \int_{0}^{1+t} \int_{0}^{2\pi} \frac{e^{-t}}{r} r \d \theta \d r   \\
+& = 2 \pi (1 + t) e^{-t} 
+\end{align*}
+
+Thus RHS of (*) is (product rule)
+
+\[ 2 \pi t e^{-t} \]
+
+in agreement with the LHS, thus Faraday's Law holds.  
+
+
+
+
+
+
+\section{QUESTION 9}
+
+
+ \begin{center}
+	\begin{tikzpicture}
+	\draw [->] (0.4, 1) -- (-0.1, 0) node [pos = 0.4, left] {$l$};
+	\draw [->] (-0.1, 0) -- (0.4, 1);
+	\draw (0.75, 0.5) -- (0.75, -0.3);
+	\draw (1.25, 0.5) -- (1.25, -0.3);
+	\draw (1.75, 0.5) -- (1.75, -0.3);
+	\draw (2.25, 0.5) -- (2.25, -0.3);
+	\draw (2.75, 0.5) -- (2.75, -0.3);
+	
+	\draw [fill=gray!50!white, opacity=0.8] (3, 0) -- (0, 0) -- (0.5, 1) -- (3.5, 1);
+	\draw [ultra thick] (1.5, -0.3) -- (2.2, 1.3);
+	
+	\draw [->] (0.75, 0.5) -- (0.75, 1.5);
+	\draw [->] (1.25, 0.5) -- (1.25, 1.5);
+	\draw [->] (1.75, 0.5) -- (1.75, 1.5);
+	\draw [->] (2.25, 0.5) -- (2.25, 1.5);
+	\draw [->] (2.75, 0.5) -- (2.75, 1.5);
+	
+	\draw [->] (4, 0) -- (4, 1) node [above] {$z$};
+	\draw [->] (4, 0) -- (5, 0) node [right] {$x$};
+	\draw [->] (4, 0) -- (4.8, 0.6) node [anchor = south west] {$y$};
+	\end{tikzpicture}
+\end{center}
+
+
+If a current $I$ flows, the force on a small segment of the bar is
+\[
+\mathbf{F} = IB \hat{\mathbf{y}}\times \hat{\mathbf{z}}
+\]
+So the total force on a bar is
+\[
+\mathbf{F} = I\frac{\alpha}{t}\ell\hat{\mathbf{x}}.
+\]
+So
+\[
+m\ddot{x} = I\frac{\alpha}{t}\ell.
+\]
+We can compute the emf as
+\[
+\mathcal{E} = -\frac{\d \Phi}{\d t} =  -\frac{\d }{\d t} ( B \ell x ) =  \frac{\alpha}{t^{2}} \ell x   - \frac{\alpha}{t} \ell\dot{x}.
+\]
+So Ohm's law gives
+\[
+IR = \frac{\alpha}{t^{2}} \ell x   - \frac{\alpha}{t} \ell\dot{x}
+\]
+Hence
+\[
+m\ddot{x} = \frac{\ell^{2} \alpha^{2}}{R t^{2}}\left(   \frac{1}{t} x   - \dot{x} \right) 
+\]
+
+
+Not sure how to solve this. 
+
+
+\section{QUESTION 10}
+
+
+Computing $ \mathbf{B} = \nabla  \times \mathbf{A} $ in cylindricals gives
+
+\[ \mathbf{B} = - \frac{1}{2} B r^{2} \hat{\mathbf{r}} + B r z \hat{\mathbf{z}} \]
+
+Next, we have the induced emf given by $ \mathcal{E}  = - \frac{\partial \phi }{\partial t} $, where
+
+\begin{align*}
+\phi & = \int_{S(t)} \mathbf{B}(t) \cdot \d \mathbf{S} \\
+& = \pi a^{2} B r z(t) \\
+\end{align*}
+
+Hence $ \mathcal{E} = - \pi a^{2} B r \dot{z}(t) $. According to Ohm's Law
+
+\[ \mathcal{E} = I R \]
+
+the induced current is given by
+
+\[ I = - \frac{1}{R} \pi a^{2} B r \dot{z}(t)  \]
+
+Next, \emph{Joule heating} is the energy lost in a circuit due to friction. It is given by
+\[
+\frac{\d W}{\d t} = I^2 R.
+\]
+
+Not sure how to calculate the force on the loop. 
+
+
+
+\end{document}

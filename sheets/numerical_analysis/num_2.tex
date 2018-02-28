@@ -49,10 +49,16 @@ y_{n} & =  1 \cdot (1-h) \left( \frac{1}{1+h} \right)\left( \frac{1+h}{1+2h} \ri
 & = \frac{1-h}{1 + (n-1)h}
 \end{align*}
 
-As $  h \to 0 $, $ n \to \infty $ in such a way that $ nh \to t $. So we deduce $ y = 1/(1+t) $ as required.
+As $  h \to 0 $, $ n \to \infty $ in such a way that $ nh \to t $. So we deduce 
 
-Moreover, the error is 
+\begin{align*}
+y_{n }& =(1-h)(1+t-h)^{-1} \\
+& = (1-h)(1+t)^{-1}\left(  1 - \frac{h}{1+t} \right)^{-1} \\
+& =  (1-h)(1+t)^{-1}\left(  1 + \frac{h}{1+t} + \cdots \right) \\
+& = (1+t)^{-1} + O(h)
+\end{align*}
 
+which is $ y = 1/(1+t) $ as $ h \to 0 $, as required. Moreover the magnitude of the error is at most $ O(h) $. Next question is similar. 
 
 \begin{align*}
 y_{n} - y(nh) & = \frac{1-h}{1 + (n-1)h} - \frac{1}{1+nh} \\
@@ -135,17 +141,52 @@ where $ \mathbf{y}(nh) $ is the evaluation at time $ t = nh $ of the exact solut
 \begin{proof}
 	Let $ \mathbf{e}_{n} = \mathbf{y}_{n} - \mathbf{y}(t_{n}) $, the error at step $ n $, where $ 0 \leq n \leq t^{*} / h $, $ t_{n} := n h $. Thus,
 	
-	\[ \mathbf{e}_{n+1} = \mathbf{y}_{n+1} - \mathbf{y}(t_{n+1}) = [  \mathbf{y}_{n} + \frac{1}{2} h [ \mathbf{f}(t_{n},\mathbf{y}_{n}) + \mathbf{f}(t_{n+1},\mathbf{y}_{n+1})  ] ] - [  \mathbf{y}(t_{n}) + h \mathbf{y}'(t_{n}) + O(h^{2}) ] \]
-	
-	By the Taylor theorem, the $ O(h^{2}) $ term can be bounded uniformly for all $ [0,t^{*}] $ by $ ch^{2} $, where $ c > 0 $. Thus, using (2.1) and the triangle inequality, 
-	
 	\begin{align*}
-	| | \mathbf{e}_{n+1} | |  & \leq | | \mathbf{y}_{n} - \mathbf{y}(t_{n}) | | + h | | \frac{1}{2} \{ \mathbf{f}(t_{n},\mathbf{y}_{n}) + \mathbf{f}(t_{n+1},\mathbf{y}_{n+1}) \} - \mathbf{f}(t_{n},\mathbf{y}(t_{n})) | | + ch^{2} \\
-	& = 
+	\mathbf{e}_{n+1} & = \mathbf{y}_{n+1} - \mathbf{y}(t_{n+1}) \qquad (\text{Taylor expand about } t = nh) \\
+	& = [  \mathbf{y}_{n} + \frac{1}{2} h [ \mathbf{f}(t_{n},\mathbf{y}_{n}) + \mathbf{f}(t_{n+1},\mathbf{y}_{n+1})  ] ] - [  \mathbf{y}(t_{n}) + h \mathbf{y}'(t_{n})  + \frac{h^{2}}{2!} \mathbf{y}''(t_{n}) + O(h^{3}) ] \\
+	& = [ \mathbf{y}_{n} - \mathbf{y}(t_{n}) ] + \frac{1}{2} h [ \mathbf{f}(t_{n},\mathbf{y}_{n}) - \mathbf{f}(t_{n},\mathbf{y}(t_{n})) ] \\
+	& \quad + \frac{1}{2} h \mathbf{f}(t_{n+1},\mathbf{y}_{n+1}) \underbrace{- \frac{1}{2} h \mathbf{y}'(t_{n}) - \frac{1}{2} h^{2} \mathbf{y}''(t_{n}) }_{(*)} + O(h^{3})
 	\end{align*}
 	
-	Want this in terms of $ | | \mathbf{e}_{n} | | $, but how?
+	\begin{align*}
+	(*) & = - \frac{1}{2} h\left[  \mathbf{y}'(t_{n}) + h \mathbf{y}''(t_{n})  \right]  \\
+	& = - \frac{1}{2} h\left[  \mathbf{y}'(t_{n+1}) + O(h^{2})  \right] \\
+	& = - \frac{1}{2} h \mathbf{f}(t_{n+1},\mathbf{y}(t_{n+1})) + O(h^{3})
+	\end{align*}
+	
+	
+	Hence 
+	
+	\begin{align*}
+	\mathbf{e}_{n+1} & = \mathbf{e}_{n} + \frac{1}{2} h [ \mathbf{f}(t_{n},\mathbf{y}_{n}) - \mathbf{f}(t_{n},\mathbf{y}(t_{n})) ]  \\
+	& \quad + \frac{1}{2} h [ \mathbf{f}(t_{n+1},\mathbf{y}_{n+1}) - \mathbf{f}(t_{n+1},\mathbf{y}(t_{n+1})) ] + O(h^{3}) \\
+	\end{align*}
+	
+	By the Taylor theorem, the $ O(h^{3}) $ term can be bounded uniformly for all $ [0,t^{*}] $ by $ ch^{3} $, where $ c > 0 $. Thus, using Lipshitz and the triangle inequality, 
+	
+	\begin{align*}
+	| | \mathbf{e}_{n+1} | |  & \leq | | \mathbf{e}_{n} | |   + \frac{1}{2} h \lambda | |  \mathbf{e}_{n} | |  + \frac{1}{2} h \lambda | | \mathbf{e}_{n+1} | |  + ch^{3} \\
+	\end{align*}
+	
+	Therefore we can say that 
+	
+	\begin{align*}
+	| | \mathbf{e}_{n+1} | |& = \frac{1 + \frac{1}{2}h\lambda}{1 -\frac{1}{2} h \lambda } | | \mathbf{e}_{n} | | + \frac{ch^{3}}{1 - \frac{1}{2} h \lambda} \\
+	& = \left( \frac{1 + \frac{1}{2}h\lambda}{1 -\frac{1}{2} h \lambda }   \right)^{2} | | \mathbf{e}_{n-1} | | +  \left( \frac{1 + \frac{1}{2}h\lambda}{1 -\frac{1}{2} h \lambda }   \right) \frac{ch^{3}}{1 - \frac{1}{2} h \lambda} + \frac{ch^{3}}{1 - \frac{1}{2} h \lambda} \\
+	& = \left( \frac{1 + \frac{1}{2}h\lambda}{1 -\frac{1}{2} h \lambda }   \right)^{n+1} | | \mathbf{e}_{0} | | +  \frac{ch^{3}}{1 - \frac{1}{2} h \lambda} \sum_{k=0}^{n} \left( \frac{1 + \frac{1}{2}h\lambda}{1 -\frac{1}{2} h \lambda }   \right)^{k}  \\
+	& = \frac{ch^{3}}{1 - \frac{1}{2} h \lambda} \left\{   1 - \left( \frac{1 + \frac{1}{2}h\lambda}{1 -\frac{1}{2} h \lambda }   \right)^{n+1}   \right\} \frac{1}{1 - \left( \frac{1 + \frac{1}{2}h\lambda}{1 -\frac{1}{2} h \lambda }   \right)} \\
+	& = \frac{ch^{2}}{\lambda} \left\{  \left( \frac{1 + \frac{1}{2}h\lambda}{1 -\frac{1}{2} h \lambda }  \right)^{n+1} - 1   \right\} 
+	\end{align*}
 \end{proof}
+
+
+eg.
+
+\[ \begin{cases} 1 + x < e^{x}  & \text{ for } x > 0  \\ 1 - x > e^{-2x} & \text{ for } x < \frac{1}{2} \end{cases} \Rightarrow \frac{1+x}{1-x} < e^{3x} \quad \text{ for } 0 < x < 1/2 \]
+
+\[ \Rightarrow \left( \frac{1 + \frac{1}{2}h\lambda}{1 -\frac{1}{2} h \lambda }  \right)^{n+1} < e^{\frac{3}{2} h \lambda (n+1)} \]
+
+\[ \Rightarrow | | \mathbf{e}_{n} | | \leq A h^{2}, \qquad A = \frac{c}{\lambda} e^{\frac{3}{2} \lambda t^{*}} \]
 
 \section{QUESTION 3}
 The $ s $-step Adams-Bashforth method is of order $ s $ and has the form
@@ -155,6 +196,8 @@ The $ s $-step Adams-Bashforth method is of order $ s $ and has the form
 For $ s =3 $ we have  $ \rho(w) = w^{2}(w - 1) $.  To maximize order, we let $ \sigma $  be the $ 2 $ degree polynomial ($ \sigma_{3} = 0 $) arising from the truncation of the Taylor expanison of
 
 \[ \frac{\rho(w)}{\log w} \]
+
+Fix this from here, you should have $ \rho(w) = w^{2}(w+1) $; ie the ROOTs of this thing are the coeffs. 
 
 
 Letting $ \xi = w - 1 $ and expanding,
@@ -188,18 +231,48 @@ Making the ansatz $ y_{n} = k^{n} $ gives
 
 and hence
 
-\[ k = -h  \pm \sqrt{h^{2} - 1} \]
+\[ k = -h  \pm \sqrt{h^{2} + 1} \]
 
 giving 
 
-\[ y_{n} = A \left(   -h  - \sqrt{h^{2} - 1} \right)^{n} + B  \left(   -h  + \sqrt{h^{2} - 1} \right)^{n}   \]
+\[ y_{n} = A \left(   -h  - \sqrt{h^{2} + 1} \right)^{n} + B  \left(   -h  + \sqrt{h^{2} + 1} \right)^{n}   \]
 
-Now $ y_{0} = 1 \Rightarrow A + B = 1 $, and $ y_{1} = 1 - h \Rightarrow 1 = (B - A) \sqrt{h^{2} - 1} $, thus 
+Now $ y_{0} = 1 \Rightarrow A + B = 1 $, and $ y_{1} = 1 - h \Rightarrow 1 = (A-B) \sqrt{h^{2} + 1} $, thus (FIX)
 
 \[ A = \frac{1}{2 \sqrt{h^{2} - 1}} + \frac{1}{2}  \]
 \[ B = \frac{1}{2 \sqrt{h^{2} - 1}} - \frac{1}{2}  \]
 
-Now as $ n \to \infty $, we wish to show that $ y_{n} $ diverges, ie. one of the terms blow up, and we want to show this happens for all $ h > 0 $. Can see that if $ h > 1 $, the $ A \left(   -h  - \sqrt{h^{2} - 1} \right)^{n} $ explodes as $ -h  - \sqrt{h^{2} - 1} < - 1 $. If $ 0 < h < 1 $, I don't know...
+Now as $ n \to \infty $, we wish to show that $ y_{n} $ diverges, ie. one of the terms blow up, and we want to show this happens for all $ h > 0 $. Can see that if $ h > 1 $, the $ A \left(   -h  - \sqrt{h^{2} + 1} \right)^{n} $ explodes as $ | -h  - \sqrt{h^{2} - 1} | = | h + \sqrt{h^{2} + 1} | > 1 $. What if $ h  < 0$? (Does it make sense that $ h > 0 $?).
+
+
+Next, note that $ \rho_{0} = -1 $, $ \rho_{1} / 0 $, $ \rho_{2} = 1 $, thus $ | \rho_{k} | \leq 1 $ and when $ | \rho_{k} | = 1  $, zero is simple. Therefore the root condition is obeyed.
+
+Is it clear that order $ \geq 1 $, do we need to show?
+Consider 
+
+\begin{align*}
+- h +  \sqrt{1 + h^{2}} & = - h + 1 + \frac{1}{2} h^{2} + O(h^{3})  \\
+& = e^{-h} + O(h^{3})
+\end{align*}
+
+and
+
+\begin{align*}
+- h -  \sqrt{1 + h^{2}} & = - h - 1 - \frac{1}{2} h^{2} + O(h^{3})  \\
+& = -e^{-h} + O(h^{3})
+\end{align*}
+
+should find coeffs such that
+
+\begin{align*}
+y_{n} & = \frac{1}{2 \sqrt{1+h^{2}}}   \left\{   (1 + \sqrt{1+h^{2}})(-h + \sqrt{1 + h^{2}})^{n} + (1 - \sqrt{1+h^{2}})(-h - \sqrt{1 + h^{2}})^{n}  \right\}  \\
+& = \frac{1}{2 \sqrt{1+h^{2}}}   \left\{   (1 + \sqrt{1+h^{2}}) e^{-nh}  (1 + O(e^{h}h^{3}))^{n} + (1 - \sqrt{1+h^{2}})(1 + O(e^{h}h^{3}))^{n} \right\}  \\
+& \to \frac{1}{2} 2 e^{-t} = e^{-t} \qquad \text{ as } h \to 0 \text{ with } nh = t = O(1)
+\end{align*}
+
+Thus convergence in a finite interval, or whatever. 
+
+
 
 
 
@@ -234,7 +307,39 @@ Expanding into Taylor series,
 
 For this expression to be $ O(z^{5}) $, looking at first order terms we deduce that $ \rho_{1} + \rho_{2} + \rho_{3} = - 1 $. 
 
-So we have $ \rho(w) = w^{3} + \rho_{2} w^{2} - 9 w + \rho_{0} $, $ \rho_{0} + \rho_{2} = 8 $ for this to satisfy the root condition we must have all zeros residing in $ | w | \leq 1 $, and all zeros of unit modulus simple. 
+Similarly, we get 
+
+\[ \rho_{1} + 4 \rho_{2} + 9 - 2 \sigma_{1} - 4 \sigma_{2} = 0  \]
+\[ \rho_{1} + 8 \rho_{2} + 27 - 3 \sigma_{1} - 12 \sigma_{2} = 0  \]
+\[ \rho_{1} + 16 \rho_{2} + 81 - 4 \sigma_{1} - 36 \sigma_{2} = 0  \]
+
+$ 3 \times (2) - (3) \Rightarrow $
+
+\[ 2 \rho_{1} + 4 \rho_{2} - 3 \sigma_{1} = 0 \]
+
+$  8 \times (2) - (4) $
+
+\[ 7 \rho_{1} + 16 \rho_{2} - 9 - 12 \sigma_{1} = 0\]
+
+So we get $ \rho_{1} = - 9 $, sub into first to get $ \rho_{0} + \rho_{2} = 8 $ as required.  
+
+ 
+
+So we have 
+
+\begin{align*}
+\rho(w) & = w^{3} + \rho w^{2} - 9 w + (8 - \rho) \\
+& = (w - 1)\underbrace{(w^{2} + (p+1)w + p - 8)}_{(*)}
+\end{align*}
+
+Now the roots of $ (*) $ are 
+
+\[ = \frac{-(p+1)  \pm \sqrt{p^{2} - 2p + 33}}{2} \]
+
+now $ \min(p^{2} - 2p + 33) = 32 $, so $ | w | > 1 $ and it cannot satisfy the root condition. 
+
+
+
 
 
 
@@ -257,17 +362,52 @@ k_{3} & = y(t_{n}) - \frac{1}{3} h k_{1} + h k_{2} = e^{t_{n}}\left(  1 + \frac{
 k_{4} & =  y(t_{n}) + h k_{1} - h k_{2} + h k_{3} = e^{t_{n}}\left(  1 + h + \frac{1}{3} h^{2} + \frac{1}{3} h^{3} \right) 
 \end{align*} 
 
-Then the local error is 
+Then the local error is $ y(t_{n+1}) - y_{n+1} $, ie:
 
 \begin{align*}
-y(t_{n+1}) -  ( y(t_{n}) + \frac{1}{8} h k_{1} + \frac{3}{8} h k_{2} + \frac{3}{8} h k_{3} + \frac{1}{8} h k_{4}   ) & =  e^{t_{n+1}} - e^{t_{n}} - e^{t_{n}}  \\
-& = 
+y(t_{n+1}) -  ( y(t_{n}) + \frac{1}{8} h k_{1} + \frac{3}{8} h k_{2} + \frac{3}{8} h k_{3} + \frac{1}{8} h k_{4}   ) & =  e^{t_{n}}\left[   e^{h} - 1 - h \ \frac{h^{2}}{2} - \frac{h^{3}}{6} - \frac{h^{4}}{24} \right]  \\
+& = e^{th} \left[  O(h^{5}) \right] 
+\end{align*}
+
+Thus the method is at most order 4.
+
+For $ f $ independent of $ y $ we have 
+
+\begin{align*}
+y_{n+1} & = y_{n} + h \frac{f}{8} + h \frac{3}{8}\left(  f' + \frac{h}{3} f'' + \frac{h^{2}}{8} f''' + \frac{h^{3}}{162}f'''' \right)    \\
+& + h \frac{3}{8}\left(  f' + \frac{2h}{3} f'' + \frac{2h^{2}}{18} f''' + \frac{4h^{3}}{81}f'''' \right)  \\
+& \quad + h \frac{1}{8}\left(  f' + h f'' + \frac{h^{2}}{2} f''' + \frac{h^{3}}{6} f'''' \right)  +  O(h^{4}) 
 \end{align*}
 
 
 
+We know that $ y(t_{n} + h ) = y(t_{n}) + h f + \frac{h^{2}f''}{2} + h^{3} \frac{f'''}{6} + \frac{h^{4} f^{4}}{24} + O(h^{5}) $.
 
-Let us now show that the method has order at least 3. To do this we restrict our attention to scalar, autonomous equations of the form $ y' = f(y) $. 
+Hence $ y(t_{n} + h) - y_{n+1} = O(h^{5}) $ and so the method is at least order 4.
+
+For $ f $ independent of $ t $ we get
+
+\begin{align*}
+k_{1} & = f(y_{n}) \\
+k_{2} & = f(y_{n}) + \frac{1}{3} h f(y_{n}) f'(y_{n}) + \frac{1}{18} h^{2} f(y_{n}) f''(y_{n}) + O(h^{3}) \\
+k_{3} & = f(y_{n}) + h  \left[ - \frac{1}{3} f(y_{n}) +  f(y_{n}) - \frac{1}{3}  h f(y_{n}) f'(y_{n}) \right] f' + O(h^{5}) \\
+k_{4} & = f(y_{n}) + h  \left[ f(y_{n}) -  f(y_{n}) - \frac{1}{3}  h f(y_{n}) f'(y_{n})  + f(y_{n}) + \frac{2h}{3} f(y_{n}) \right] f' + O(h^{5}) 
+\end{align*}
+
+
+Hence 
+
+\begin{align*}
+y_{n+1} & = y_{n} + h \frac{1}{8} f  \\
+& \quad +  h \frac{3}{8} \left[   f + \frac{h}{3} f f' + \frac{h^{2}}{18} f^{2} f  \right] \\
+& \quad +  h \frac{3}{8} \left[   f + \frac{2h}{3} f f' + \frac{h^{2}}{3} f (f')^{2}  \right] \\
+& \quad +  h \frac{1}{8} \left[   f + h f f' - \frac{h^{2}}{3} + \frac{h^{2}}{3} f (f')^{2}  + \frac{2h^{2}}{3} f f' \right] + O(h^{4})  \\
+\end{align*}
+
+Now $ y(t_{n+1}) = y(t_{n}) + hf + \frac{h^{2}}{2} f' f + \frac{h^{3}}{6} \left(   f'' f^{2} + (f')^{2} f  \right) + O(h^{4})  $
+
+Hence $ y_{n+1} - y(t_{n+1}) = O(h^{4}) $. So the method is at least order 3.
+
 
 \section{QUESTION 8}
 
@@ -278,17 +418,22 @@ Consider the linear scalar system
 where $ \lambda < 0 $. The solution is $ y(t) = e^{\lambda t} $ which decays to $ 0 $ as $ t \to \infty $. 
 
 \begin{enumerate}
-	\item For the explicit Euler method we get $ y_{n+1} = y_{n} + h \lambda y_{n} $ whose solution is $ y_{n} = (1+ h \lambda)^{n} $, so $ y_{n} \to 0 $ iff $ | 1 + h \lambda | < 1 $, therefore $ \mathcal{D} = \{ z \in \C \; ; \; | 1 + z | < 1  \} $, and $ \mathcal{D} \cap \R =  $
+	\item For the explicit Euler method we get $ y_{n+1} = y_{n} + h \lambda y_{n} $ whose solution is $ y_{n} = (1+ h \lambda)^{n} $, so $ y_{n} \to 0 $ iff $ | 1 + h \lambda | < 1 $, therefore $ \mathcal{D} = \{ z \in \C \; ; \; | 1 + z | < 1  \} $, and $ \mathcal{D} \cap \R = \{  z \in \R\; | \; -2 < z < 0 \} $.
 	
 	\item Considering now the trapezoidal rule we get $ y_{n+1} = [  (1+\frac{1}{2} h \lambda) / (1 - \frac{1}{2} h \lambda) ] y_{n} $, and thus by induction, $ y_{n} = [  (1+\frac{1}{2} h \lambda) / (1 - \frac{1}{2} h \lambda) ]^{n} y_{0} $. Therefore
 	
 	\[ z \in \mathcal{D} \iff \left| \frac{1+\frac{1}{2}z}{1 - \frac{1}{2} z} \right| < 1 \iff \text{Re } z < 0  \]
 	
-	and we deduce that $ \mathcal{D} = \C^{-} $. Hence the method is A-stable. 
+	and we deduce that $ \mathcal{D} = \C^{-} $. Hence the method is A-stable, and $ \mathcal{D} \cap \R = (-\infty,0) $. 
 	
-	\item 
+	\item Solving should give
 	
-	\item 
+	\[ \lambda = z \pm \sqrt{z^{2} + 1} \]
+	
+	
+	So we require $ |z + \sqrt{z^{2} + 1} | < 1 $ and $ | z - \sqrt{z^{2} + 1} |   < 1 $. Everything fails (you might think $ z = 0 $ is fine, but inequalities are strict.  ) and $ \mathcal{D} = \emptyset $.
+	
+	\item Give it a go! Hint: Consider the borderline cases where $ | \lambda_{+} | = 1 $, or $ | \lambda_{-} | = 1 $.
 	
 	\item Applying the RK method to $ y' = \lambda y $ we have
 	
@@ -311,6 +456,8 @@ where $ \lambda < 0 $. The solution is $ y(t) = e^{\lambda t} $ which decays to 
 	
 	$ r $ is analytic in $ \mathcal{V} = \{  z \in \C \; ; \; \text{Re } z < \leq 0 \} $. Therefore it attains its maximum on $ \partial \mathcal{V} = i \R $. 
 	
+	Which $ x \in \R $ give $ | 1 + x + \frac{1}{2} x^{2} | < 1 $ ?
+	
 \end{enumerate}
 
 \section{QUESTION 9}
@@ -319,37 +466,71 @@ Consider the two-step BDF method: $ \mathbf{y}_{n+2} - \frac{4}{3} \mathbf{y}_{n
 
 \[ y_{n+2} - \frac{4}{3} y_{n+1} + \frac{1}{3} y_{n} = \frac{2}{3} h \lambda y_{n+2} \]
 
-\[ (3 - 2h \lambda)y_{n+2} - 4 y_{n+1} + y_{n} = 0 \]
 
-We try $ y_{n} = k^{n} $ and obtain 
+If $ z \in \partial \mathcal{D} $, $ y_{n} = e^{i n \theta} $. So,
+
+\[ e^{2i \theta} - \frac{4}{3} e^{i \theta} + \frac{1}{3} = \frac{2}{3} z e^{2 i \theta} \]
+
+\[ \Rightarrow z = \frac{1}{2} \left(   3 - 4 e^{i \theta} + e^{2 i \theta} \right)  \]
+
+\begin{align*}
+\Rightarrow \Re z & = \frac{1}{2} \left(  3 - 4 \cos \theta + \cos 2\theta \right)  \\
+& = \frac{1}{2} \left(  3 - 4 \cos \theta + 2 \cos^{2} \theta - 1 \right)  \\
+& = (1 - \cos \theta)^{2} \\
+& \geq 0
+\end{align*}
+
 
 \[ (3 - 2h \lambda)k^{2} - 4 k + 1 = 0 \]
 
-So
+$ A $-stable $ \iff $ $ \{ \Re z < 0 \} \subset \mathcal{D} $.
 
-\begin{align*}
-k & = \frac{4 \pm \sqrt{16 - 4(3 - 2h \lambda)}}{(6 - 4h \lambda)} \\
-& = \frac{2 \pm \sqrt{1 + 2 h \lambda}}{3 - 2 h \lambda} 
-\end{align*}
-
-Hence 
-
-\[ y_{n} = A \left( \frac{2 + \sqrt{1 + 2 h \lambda}}{3 - 2 h \lambda} \right)^{n}  + B \left( \frac{2 - \sqrt{1 + 2 h \lambda}}{3 - 2 h \lambda} \right)^{n}  \]
-
-Unsure what to deduce.
+We have deduced $ \partial D $ lies completely to the right of the imaginary axis. Now we just need to check one point to determine which side of $ \partial D $ we are on, eg. $ z = -1 $. 
 
 
 \section{QUESTION 10}
 
 Given that $ | y_{n} - y(t_{n}) |  \leq  10^{-6} $, with Euler's method, setting $ h = 2 \times 10^{-4} $, we have
 
+%\begin{align*}
+%| y_{n+1} - y(t_{n+1}) |  & = | y_{n} + h_{n}f(t_{n},y_{n})   - t_{n}^{-1} |  \\
+%& = | y_{n} + 2 \times 10^{-4} (   -10^{4}  (y_{n} - t_{n}^{-1} ) - t_{n}^{-2} )    - t_{n+1}^{-1} | \\
+%& = |  (1 + 2 \times 10^{-8}) y_{n} - (2 \times 10^{-8}) t_{n}^{-1} - 2 \times 10^{-4}) t_{n}^{-2} - t_{n+1}^{-1}   |
+%\end{align*}
+
+For backward Euler we have:
+
+\[ y_{n+1} = y_{n} + h_{n} \left[   - 10^{4} \left( y_{n+1} - t_{n+1}^{-1} \right) - t_{n+1}^{-2} \right]  \]
+                                                                                          
+\[ \Rightarrow (1 + 10^{4} h_{n} ) y_{n+1} = y_{n} + 10^{4} h_{n} t_{n+1}^{-1} - h_{n} t_{n+1}^{-2}  \]
+
 \begin{align*}
-| y_{n+1} - y(t_{n+1}) |  & = | y_{n} + h_{n}f(t_{n},y_{n})   - t_{n}^{-1} |  \\
-& = | y_{n} + 2 \times 10^{-4} (   -10^{4}  (y_{n} - t_{n}^{-1} ) - t_{n}^{-2} )    - t_{n+1}^{-1} | \\
-& = |  (1 + 2 \times 10^{-8}) y_{n} - (2 \times 10^{-8}) t_{n}^{-1} - 2 \times 10^{-4}) t_{n}^{-2} - t_{n+1}^{-1}   |
+Rightarrow (1 + 10^{4} h_{n} ) (y_{n+1} - t_{n+1}^{-1} ) & = y_{n} + 10^{4} h_{n} t_{n+1}^{-1} - h_{n} t_{n+1}^{-2} - (1 + 10^{4} h_{n}) t_{n+1}^{-1} \\
+& = y_{n} - h_{n} t_{n-1}^{-2} - t_{n+1}^{-1} \\
+& = (y_{n} - t_{n}^{-1}) - h_{n} t_{n+1}^{-2} - t_{n+1}^{-1} + t_{n}^{-1}  
 \end{align*}
 
-No idea what I'm doing here. 
+Therefore 
+
+\begin{align*}
+(1 + 10^{4} h_{n} )e_{n+1} & =  e_{n} - h_{n} t_{n+1}^{-2} - t_{n+1}^{-1} + t_{n}^{-1}  \\
+& = e_{n} - \frac{h_{n}}{t_{n+1}^{2}} + \frac{t_{n+1} - t_{n}}{t_{n} t_{n+1}} \\
+& = e_{n} - \frac{h_{n}}{t_{n+1}^{2}} + \frac{h_{n}}{t_{n}t_{n+1}} \\
+& = e_{n} + \frac{h_{n}(t_{n+1} - t_{n})}{t_{n}t_{n+1}^{2}} \\
+& = e^{n} + \frac{h_{n}^{2}}{t_{n}t_{n+1}^{2}}
+\end{align*}
+
+Now suppose $ | | e_{n} | | \leq 10^{-6} $. 
+
+Then 
+\begin{align*}
+| | e_{n+1} | | & =  \frac{10^{-6}}{1 + 10^{4} h_{n}}   + \frac{h_{n}^{2}}{(1 + 10^{4} h_{n})t_{n}t_{n+1}^{2}} \\
+& \leq \frac{10^{-6} + h_{n} 10^{-2}}{1 + 10^{4} h_{n}} \qquad \text{ if } h \leq 10^{-2} t_{n} t_{n+1}^{2} \\
+& = \frac{10^{-6} (  1 + h_{n} 10^{4} )  }{1 + 10^{4} h_{n}} \\
+& = 10^{-6}
+\end{align*}
+
+
 
 
 \section{QUESTION 11}
@@ -395,6 +576,19 @@ We again see this method is third order, and that
 
 Would finish but numbers aren't looking right.
 
+Thus SHOULD GET
+
+\begin{align*}
+\mathbf{y}_{n+3}^{C} & \approx \mathbf{y}(t_{n+3}) - \frac{3}{22} h^{4} \mathbf{y}''''(t_{n}) \\
+\end{align*}
+
+So 
+
+\[ \mathbf{y}_{n+3}^{P} - \mathbf{y}_{n+3}^{C} =  \frac{17}{44} h^{4} \mathbf{y}''''(t_{n}) \]
+
+\[ \Rightarrow y_{n+3}^{C} - y(t_{n+1}) \approx \frac{3}{22} \frac{44}{17} (y_{n+3}^{P} - y_{n+3}^{C}) \]
+
+\[ = \frac{6}{17}  \left( y_{n+3}^{P} - y_{n+3}^{C} \right)  \]
 
 
 

@@ -1,0 +1,215 @@
+\documentclass[a4paper]{article}
+\usepackage{amsmath}
+\def\npart {IB}
+\def\nterm {Lent}
+\def\nyear {2018}
+\def\nlecturer {Prof. Haynes (P.H.Haynes@damtp.cam.ac.uk)}
+\def\ncourse {Fluid Dynamics Example Sheet 2}
+
+\input{header}
+
+\newtheorem*{soln}{Solution}
+
+\renewcommand{\thesection}{}
+\renewcommand{\thesubsection}{\arabic{section}.\arabic{subsection}}
+\makeatletter
+\def\@seccntformat#1{\csname #1ignore\expandafter\endcsname\csname the#1\endcsname\quad}
+\let\sectionignore\@gobbletwo
+\let\latex@numberline\numberline
+\def\numberline#1{\if\relax#1\relax\else\latex@numberline{#1}\fi}
+\makeatother
+
+
+\begin{document}
+	
+\maketitle
+
+\section{QUESTION 1}
+
+To derive the equations of motion, we can consider a small box in the fluid.
+\begin{center}
+	\begin{tikzpicture}
+	\draw (0, 0) parabola (1, 2);
+	\foreach \x in {0,0.25,0.5,0.75} {
+		\pgfmathsetmacro\len{sqrt(\x)}
+		\draw [->] (0, 2*\x) -- +(\len, 0);
+	}
+	\draw [->] (0, 0) -- (0, 2) node [above] {$y$};
+	\draw [mred] (-0.5, 0.8) node [anchor = north east] {$x, y$} -- +(2, 0) node [anchor = north west] {$x + \delta x$} -- +(2, 0.3) -- +(0, 0.3) node [anchor = south east] {$y + \delta y$} -- cycle;
+	\end{tikzpicture}
+\end{center}
+
+We know that this block of fluid accelerates in the $x$ direction, so the total forces here should equal $ \rho \frac{\partial u }{\partial t} \delta x \delta y $; and in the $ y $ direction, the total forces of the surrounding environment on the box should vanish.
+
+
+We first consider the $x$ direction. There are normal stresses at the sides, and tangential stresses at the top and bottom, plus body forces per unit volume. The sum of forces in the $x$-direction (per unit transverse width) gives
+\[
+p(x) \delta y - p(x + \delta x) \delta y + \tau_s(y + \delta y) \delta x + \tau_s(y) \delta x  +  f_{x} \delta x \delta y = \rho \frac{\partial u }{\partial t} \delta x \delta y
+\]
+By the definition of $\tau_s$, we can write
+\[
+\tau_s(y + \delta y) = \mu \frac{\partial u}{\partial y}(y + \delta y),\quad \tau_s (y) = -\mu \frac{\partial u}{\partial y}(y),
+\]
+where the different signs come from the different normals (for a normal pointing downwards, $\frac{\partial}{\partial \mathbf{n}} = \frac{\partial}{\partial(-y)}$).
+
+Dividing by $\delta x \delta y$, we get
+\[
+\frac{1}{\delta x}(p(x) - p(x + \delta x)) + \mu\frac{1}{\delta y}\left(\frac{\partial u}{\partial y}(y + \delta y) - \frac{\partial u}{\partial y}(y)\right) + f_{x} = \rho \frac{\partial u }{\partial t}
+\]
+Taking the limit as $\delta x, \delta y \to 0$, we end up with the equation of motion
+\[
+-\frac{\partial p}{\partial x} + \mu \frac{\partial^2 u}{\partial y^2} + f_{x} = \rho \frac{\partial u }{\partial t}.
+\]
+Performing similar calculations in the $y$ direction, we obtain
+
+\[
+-\frac{\partial p}{\partial y} + f_{y} = 0.
+\]
+
+\section{QUESTION 2}
+
+Using the derived equations in Question 1 (switch $ y $ and $ x $), we assume that this is a steady flow, but we will also include gravity. First, in the $ x $ direction, we have
+
+\[ \frac{\partial p }{\partial x} = 0 \]
+
+Using the fact that $p = p_0$ at the boundary, we get simply
+\[
+p = p_0
+\]
+In particular, $p$ is independent of $y$. In the $y$ component, we get
+
+\[
+\mu \frac{\partial^2 u}{\partial x^2} = - g\rho
+\]
+
+
+The no slip condition gives $u = 0$ when $x = 0$. The other condition is that there is no stress at $x = h$. So we get $\frac{\partial u}{\partial x} = 0$ when $x = h$.
+
+The solution is thus
+\[
+u = \frac{g\rho}{2 \mu} x(2h - x).
+\]
+
+
+The \emph{volume flux} is the volume of fluid traversing a cross-section per unit time. This is given by
+\[
+q = \int_0^h u(x) \;\d x
+\]
+per unit transverse width.
+
+We calculate this as 
+
+\begin{align*}
+q & = \int_{0}^{h} \frac{g\rho}{2 \mu} x(2h - x) \d x \\
+& = \frac{g\rho}{3 \mu} h^{3}
+\end{align*}
+
+
+\section{QUESTION 3}
+\section{QUESTION 4}
+\section{QUESTION 5}
+\section{QUESTION 6}
+\section{QUESTION 7}
+
+We calculate the vorticity as 
+
+\begin{align*}
+\mathbf{\omega} & = \nabla  \times \mathbf{u} \\
+& = 3r f(t) \hat{\mathbf{z}}
+\end{align*}
+
+Will try next bit before supo.
+
+\section{QUESTION 8}
+
+Have $ \mathbf{\Omega} $ a constant, so $ \nabla \mathbf{\Omega} = \nabla  \cdot \mathbf{\Omega} = 0 $, so that 
+
+\begin{align*}
+\mathbf{\omega} & = \nabla \times (\mathbf{\Omega}  \times \mathbf{x} ) \\
+& = \mathbf{\Omega}(\nabla  \cdot \mathbf{x}) + \mathbf{x} \cdot \nabla \mathbf{\Omega} - \mathbf{\Omega} \cdot \nabla \mathbf{x}   - \mathbf{x}(\nabla  \cdot \mathbf{\Omega})   \\
+& = 3 \mathbf{\Omega} - \mathbf{\Omega} = 2 \mathbf{\Omega}
+\end{align*}
+
+Not sure about this question
+
+
+\section{QUESTION 9}
+
+We can change our frame of reference, and suppose the sphere is stationary and the fluid is moving past it at $U$. Solving this, we then translate the velocities back by $U$ to get the solution.
+
+\begin{center}
+	\begin{tikzpicture}
+	\draw [fill=gray] circle [radius=1];
+	\draw [->] (-3, 0.7) -- +(1, 0);
+	\draw [->] (-3, 0) node [left] {$U$} -- +(1, 0);
+	\draw [->] (-3, -0.7) -- +(1, 0);
+	
+	\draw [->] (0, 0) -- (1.5, 0) node [right] {$x$};
+	\draw [->] (0, 0) -- (1, 1) node [right] {$r$};
+	\draw (0.4, 0) arc(0:45:0.4) node [pos=0.7, right] {$\theta$};
+	\end{tikzpicture}
+\end{center}
+We suppose the upstream flow is $\mathbf{u} = U \hat{\mathbf{x}}$. So
+\[
+\phi = Ux = Ur\cos \theta.
+\]
+So we need to solve
+\begin{align*}
+\nabla^2 \phi &= 0 & r &>a\\
+\phi&\to Ur \cos \theta & r &\to \infty\\
+\frac{\partial \phi}{\partial r}&= 0 & r&=a.
+\end{align*}
+The last condition is there to ensure no fluid flows into the sphere, i.e.\ $\mathbf{u}\cdot \mathbf{n} = 0$, for $\mathbf{n}$ the outward normal.
+
+We can use Legendre polynomials to write the solution as
+\[
+\phi = \sum_{n = 0}^\infty (A_n r^n + B_n r^{-n - 1})P_n(\cos \theta).
+\]
+We then have
+\[
+\mathbf{u} =
+\left(\frac{\partial \phi}{\partial r}, \frac{1}{r}\frac{\partial \phi}{\partial \theta},0\right).
+\]
+
+Since $P_1(\cos \theta) = \cos \theta$, and the $P_n$ are orthogonal, our boundary conditions at infinity require $\phi$ to be of the form
+\[
+\phi = \left(Ar + \frac{B}{r^2}\right) \cos \theta.
+\]
+We now just apply the two boundary conditions. The condition that $\phi \to Ur \cos \theta$ tells us $A = u$, and the other condition tells us
+\[
+A - \frac{2B}{a^3} = 0.
+\]
+So we get
+\[
+\phi = U\left(r + \frac{a^3}{2r^2}\right) \cos \theta.
+\]
+
+We can compute the velocity to be
+\begin{align*}
+u_r &= \frac{\partial \phi}{\partial r} = U\left(1 - \frac{a^3}{r^3}\right) \cos \theta\\
+u_\theta &= \frac{1}{r} \frac{\partial \phi}{\partial \theta} = -U\left(1 + \frac{a^3}{2r^3}\right)\sin \theta.
+\end{align*}
+
+Finally we subtract $  U \hat{\mathbf{x}} = U( \sin \theta, \cos \theta, 0) $
+
+
+\section{QUESTION 10}
+
+
+The general result is that given a point source of strength $ q $ placed at the origin, in spherical polars
+
+\[ \nabla^{2} \phi = q \delta(r)  \]
+
+We get
+
+\[ \phi = \frac{q}{2 \pi} \log r \]
+
+Thus, for a point source of strength $ m $ located at the origin we have
+
+\[ \phi = \frac{m}{2 \pi} \log \sqrt{x^{2} + y^{2}} \]
+
+Not sure about this question
+
+
+
+\end{document}
