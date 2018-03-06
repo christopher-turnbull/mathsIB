@@ -26,52 +26,470 @@
 
 \section{QUESTION 1}
 
+(use col pivoting)
+
 First, $ \mathbf{u}_{1}^{T} $ is just the first row of $ A $, ie $ (10,6,-2,1) $, and $ \mathbf{l}_{1} $ is the first column of $ A $ scaled so that $ L_{1,1} = 1 $, ie. $ (1,1,-\frac{1}{5},\frac{1}{10}) $. Calculating
 
 \[ \mathbf{l}_{1} \mathbf{u}_{1}^{T} = \begin{pmatrix}
 10 & 6 & -2 & 1 \\
 10 & 6 & -2 & 1 \\
 -2 & -\frac{6}{5} & \frac{2}{5} & - \frac{1}{5} \\
-1 & \frac{6}{10} & - \frac{1}{5} & \frac{1}{10}  
+1 & \frac{3}{5} & - \frac{1}{5} & \frac{1}{10}  
 \end{pmatrix} \]
 
 Now
 
 \begin{align*}
 \mathbf{A}_{1} & := A - \mathbf{l}_{1} \mathbf{u}_{1}^{T} \\
-& = \begin{pmatrix}
-0 & 0 & 0 & 0 \\
-0 & 4 & -3 & -1 \\
-0 & \frac{16}{5} & - \frac{14}{5} & \frac{6}{5} \\
-0 & \frac{24}{10} & - \frac{9}{10} & \frac{29}{10}
-\end{pmatrix}
+& = \left(
+\begin{array}{cccc}
+0 & & & \\
+& 4 & -3 & -1 \\
+& \frac{16}{5} & -\frac{12}{5} &
+\frac{6}{5} \\
+& \frac{12}{5} & -\frac{9}{5} &
+\frac{29}{10} \\
+\end{array}
+\right)
 \end{align*}
 
 
-And so $ \mathbf{u}_{2}^{T} = (0,4,-3,-1  ) $, $ \mathbf{l}_{2} = (0,1,\frac{4}{5},\frac{6}{10}) $.
+And so $ \mathbf{u}_{2}^{T} = (0,4,-3,-1  ) $, $ \mathbf{l}_{2} = (0,1,\frac{4}{5},\frac{3}{5}) $.
 
 Next,
+
+\[ \mathbf{l}_{2} \mathbf{u}_{2}^{T} = \left(
+\begin{array}{cccc}
+0 & & & \\
+ & 4 & -3 & -1 \\
+& \frac{16}{5} & -\frac{12}{5} &
+-\frac{4}{5} \\
+& \frac{12}{5} & -\frac{9}{5} &
+-\frac{3}{5} \\
+\end{array}
+\right) \]
+
+Thus
+
+\begin{align*}
+\mathbf{A}_{2} & := A_{1} - \mathbf{l}_{2} \mathbf{u}_{2}^{T} \\
+& = \left(
+\begin{array}{cccc}
+0 & & & \\
+ & 0 & & \\
+ & & 0 & 2 \\
+& & & \frac{7}{2} \\
+\end{array}
+\right)
+\end{align*}
+
+Here $ (A_{2})_{3,3} = 0 $, so we have a problem. In fact, all the entries in the third column of $ A_{2} $ are zero. So we pick $ \mathbf{l}_{3} = (0,0,1,0) $, $ \mathbf{u}_{3}^{T} = (0,0,0,2) $. \st{(Is this how to proceed?)}  Hence
+
+\begin{align*}
+\mathbf{A}_{3} & := A_{2} - \mathbf{l}_{3} \mathbf{u}_{3}^{T} \\
+& = \left(
+\begin{array}{cccc}
+0 & & & \\
+& 0 & & \\
+& & 0 & \\
+& & & \frac{7}{2} \\
+\end{array}
+\right)
+\end{align*}
+
+Finally giving $ \mathbf{l}_{4} = (0,0,0,1) $, $ \mathbf{u}_{4}^{T} = (0,0,0,\frac{7}{2}) $. Hence one factorization gives
+
+
+\[ L = \begin{pmatrix}
+1 & & & \\
+1 & 1  & & \\
+-\frac{1}{5} & \frac{4}{5} & 1 & \\
+\frac{1}{10} & \frac{3}{5} & 0 & 1
+\end{pmatrix}, \quad U = \begin{pmatrix}
+10 & 6 &-2 & 1 \\
+0 & 4 & -3 & -1 \\
+0 & 0 & 0 & 2\\
+0 & 0 & 0 & \frac{7}{2}
+\end{pmatrix} \]
+
+Solving $ A \mathbf{x} = \mathbf{b} $ is the same as $ L(U \mathbf{x}) = \mathbf{b} $, which we can decompose into $ L \mathbf{y} = \mathbf{b} $, $ U \mathbf{x} = \mathbf{y} $ (Both of which are triangular and easily solved).
+
+First consider $  L \mathbf{y} = \mathbf{b} $, with $ \mathbf{b}^{T} = (-2,0,2,1) $. This gives
+
+\[ 1 y_{1} = -2  \Rightarrow y_{1} = -2 \]
+
+\[ 1 y_{1} + 1 y_{2} = 0 \Rightarrow y_{2} = 2 \]
+
+\[ - \frac{1}{5} y_{1} + \frac{4}{5} y_{2} + y_{3} = 2 \Rightarrow y_{3} =  0 \]
+
+\[ \frac{1}{10} y_{1} + \frac{3}{5} y_{2} + y_{4} = 1 \Rightarrow y_{4} =  0 \]
+
+Having found $ \mathbf{y} $, we solve in reverse order for $ U\mathbf{x} = \mathbf{y} $. 
+
+\[ \frac{7}{2} x_{4} = 0 \Rightarrow x_{4} = 0 \]
+
+\[ 4 x_{2} - 3 x_{3} = 2  \]
+
+\[ 10 x_{1} - 6 x_{2} - 2 x_{3} = -2  \]
+
+\[ \Rightarrow  \]
+
+
+
+
+
+
 
 
 
 \section{QUESTION 2}
+
+Consider the $ LU $ factorization of the real $ n \times n $ symmetric matrix $ A $. We wish to prove that the elements of $ U $ satisfy the condition 
+
+\[ | u_{ij} | < 2^{i-1} \alpha, \quad j = 1,\cdots,n \]
+
+where $ \alpha = \max( | A_{ij} |  ) $. 
+
+We proceed by induction:
+
+\begin{itemize}
+	\item for $ i = 1 $, the condition is $ | u_{1j} | \leq \alpha  $. Now $ u_{1j} $ are elements of $ \mathbf{u}_{1}^{T} $, which by the LU algorithm is just the first row of $ A $, thus clearly all the elements satisfy $ | A_{1j} | \leq \alpha $, so base done. 
+	
+	
+	\item for the inductive step we assume that $ | u_{rj} | \leq 2^{r-1} \alpha  $. The LU decomposition algorithm says that $ \mathbf{u}_{r+1}^{T} $ is the $ (r+1) $th row of $ A_{r} $, where 
+	
+	\[ A_{r} = A_{r-1} - \mathbf{l}_{r}\mathbf{u}_{r}^{T} \] 
+	
+	Want to show that $ \left| u_{(r+1),j} \right| < 2^{r} \alpha $. 
+	
+	
+	
+	
+\end{itemize} 
+
+We see the condition for a 2x2 matrix to have this is such that, in $ A_{1} : = A - \mathbf{l}_{1} \mathbf{u}_{1}^{T} $, we want the $ 2,2 $ entry in $ \mathbf{l}_{1} \mathbf{u}_{1}^{T} $ to be $ - A_{2,2} $. If $ A = \begin{pmatrix}
+a & b \\
+c & d
+\end{pmatrix} $
+
+then $ \mathbf{l}_{1} \mathbf{u}_{1}^{T} $ is formed by $ \begin{pmatrix}
+1 \\
+\frac{c}{a}
+\end{pmatrix} \begin{pmatrix}
+a & b
+\end{pmatrix}  $
+
+so if $ \max(A_{ij})  = d $, we want $ \frac{bc}{a} = -d $, ie. $ ad + bc = 0 $. So, \[ A = \begin{pmatrix}
+3 & -6\\
+2 & 4
+\end{pmatrix} \]
+
+will do. Similarly considering 
+
+\[ A = \begin{pmatrix}
+a & b & c \\
+d & e & f \\
+g & h & i
+\end{pmatrix} \]
+
+Our condition becomes 
+
+\[ 3(ah - bg)(af - cd) = (ae - bd)(-ia) \]
+
+
+
 \section{QUESTION 3}
 
+As $ \mathbf{u}_{1}^{T} $ is just the first row of $ A $, this is trivially true for $ k = 1 $. 
 
-\end{align*}
+For $ k = 2 $, we suppose the first 2 rows of $ A $ span some plane (and are therefore linearly independent). 
+
+In our LU decomposition algorithm, we simply have $ A_{1} = A - \mathbf{l}_{1} \mathbf{u}_{1}^{T}  $, and the second row of $ U, \mathbf{u}_{2}^{T} $, is the second row of $ A_{1,1} $. 
+
+(general linear  combination arguments)
+
+(do general case). 
+
+
+
 
 
 \section{QUESTION 4}
+
+\[ A = \begin{pmatrix}
+1 & 1 & & & & \\
+1 & 2 & 1 & & & \\
+& 1 & 3 & 1 & & \\
+& & 1 & 4 & 1 & \\
+& & & 1 & 5 & 1 \\
+& & & & 1 & \lambda
+\end{pmatrix} \]
+
+Define $ D^{1/2} $ as the diagonal matrix whose $ (k,k) $ element is $ D_{k,k}^{1/2} $, hence $ D^{1/2} D^{1/2}  =  D $. Then, $ A $ being positive definite, we can write
+
+\[ A = (LD^{1/2})(D^{1/2} L^{T}) = ( L D^{1/2}) (  L D^{1/2} )^{T} \]
+
+In other words, letting $ \tilde{L} = L D^{1/2} $, we obtain the \emph{Cholesky factorisation} $ A = \tilde{L} \tilde{L}^{T} $. 
+
+Proceeding with our usual LU algorithm on $ A $, we have $ \mathbf{l}_{1} = (1,1,0,0,0,0) $, $ D_{1,1} = 1 $, thus
+
+\begin{align*}
+A_{1} & = A - D_{1,1} \mathbf{l}_{1} \mathbf{l}_{1}^{T} \\
+& = \begin{pmatrix}
+0 &  & & & & \\
+ & 1 & 1 & & & \\
+& 1 & 3 & 1 & & \\
+& & 1 & 4 & 1 & \\
+& & & 1 & 5 & 1 \\
+& & & & 1 & \lambda
+\end{pmatrix}
+\end{align*} 
+
+Next $ \mathbf{l}_{2} = (0,1,1,0,0,0) $, $ D_{2,2} = 1 $, thus
+
+\begin{align*}
+A_{2} & = A_{1} - D_{2,2} \mathbf{l}_{2} \mathbf{l}_{2}^{T} \\
+& = \begin{pmatrix}
+0 & & & & & \\
+& 0 &  & & & \\
+& & 2 & 1 & & \\
+& & 1 & 4 & 1 & \\
+& & & 1 & 5 & 1 \\
+& & & & 1 & \lambda
+\end{pmatrix}
+\end{align*} 
+
+
+Next $ \mathbf{l}_{3} = (0,0,1,\frac{1}{2},0,0) $, $ D_{3,3} = 2 $, thus
+
+\begin{align*}
+A_{3} & = A_{2} - D_{3,3} \mathbf{l}_{3} \mathbf{l}_{3}^{T} \\
+& = \begin{pmatrix}
+0 & & & & & \\
+& 0 &  & & & \\
+& & 0 & & & \\
+& & & \frac{7}{2} & 1 & \\
+& & & 1 & 5 & 1 \\
+& & & & 1 & \lambda
+\end{pmatrix}
+\end{align*}
+
+Next $ \mathbf{l}_{4} = (0,0,0,1,\frac{2}{7},0) $, $ D_{4,4} = \frac{7}{2} $, thus
+
+\begin{align*}
+A_{4} & = A_{3} - D_{4,4} \mathbf{l}_{4} \mathbf{l}_{4}^{T} \\
+& = \begin{pmatrix}
+0 & & & & & \\
+& 0 &  & & & \\
+& & 0 & & & \\
+& & & 0 & & \\
+& & & & \frac{33}{7} & 1 \\
+& & & & 1 & \lambda
+\end{pmatrix}
+\end{align*}
+
+Next $ \mathbf{l}_{5} = (0,0,0,0,1,\frac{7}{33}) $, $ D_{5,5} = \frac{33}{7} $, thus
+
+\begin{align*}
+A_{5} & = A_{4} - D_{5,5} \mathbf{l}_{5} \mathbf{l}_{5}^{T} \\
+& = \begin{pmatrix}
+0 & & & & & \\
+& 0 &  & & & \\
+& & 0 & & & \\
+& & & 0 & & \\
+& & & & 0 & \\
+& & & & & \lambda - \frac{7}{33}
+\end{pmatrix}
+\end{align*}
+
+Finally giving  $ \mathbf{l}_{6} = (0,0,0,0,0,1) $, $ D_{6,6} = \frac{1}{\lambda  - 33/7} $.
+
+Hence $ A $ has the Cholesky factorisation $ A = \tilde{L} \tilde{L}^{T} $,  $ \tilde{L} = L D^{1/2} $, where
+
+
+\[ L =  \begin{pmatrix}
+1 & & & & &\\
+& 1 & & & & \\
+& 1 & 1 & & & \\
+ &  & \frac{1}{2} & 1 & & \\
+ &  &  & \frac{2}{7} & 1 & \\
+ &  &  &  & \frac{7}{33} & 1
+\end{pmatrix}, \quad D^{1/2} = \begin{pmatrix}
+1 & & & & &\\
+& 1 & & & & \\
+&  & \sqrt{2} & & & \\
+&  &  & \sqrt{\frac{7}{2}} & & \\
+&  &  &  & \sqrt{\frac{33}{7}} & \\
+&  &  &  &  & \frac{1}{\sqrt{\lambda - 33/7}}
+\end{pmatrix} \]
+
+Thus if 
+
+ 
+
+
 \section{QUESTION 5}
+
+Draw up some different banded matrices for different $ n $ and $ r $, think about gram-schmidt for each of them, generalize in terms of $r $ and $ n $. (how many subtractions would you need to do to get each column to be upper triangular).
+
 \section{QUESTION 6}
+
+Using the Gram-Schmidt algorithm we can factorize $ A = QR $ 
+
+\[ \mathbf{a}_{k} = \sum_{j=1}^{k} r_{jk} \mathbf{q}_{k}, k = 1,2,3 \qquad (*)  \]
+
+Setting $ k = 1 $ in (*) tells us that we must have $ R_{1,1} = | | \mathbf{a}_{1} | | = 7 $, and
+
+\[ \mathbf{q}_{1} = \mathbf{a}_{1} / R_{1,1} = \begin{pmatrix}
+6/7\\
+3/7\\
+2/7
+\end{pmatrix}  \] 
+
+Next we form the vector $ \mathbf{b} = \mathbf{a}_{2} - \langle \mathbf{q}_{1},\mathbf{a}_{2} \rangle \mathbf{q}_{1}  $, which is orthogonal to $ \mathbf{q}_{1} $. Have
+
+\begin{align*}
+\mathbf{b} & = \begin{pmatrix}
+6\\
+6\\
+1
+\end{pmatrix} - 8 \begin{pmatrix}
+6/7\\
+3/7\\
+2/7
+\end{pmatrix} \\
+& = \begin{pmatrix}
+- 6/7 \\
+18/7\\
+-9/7
+\end{pmatrix}
+\end{align*}
+
+with $ R_{1,2} = \langle \mathbf{q}_{1},\mathbf{a}_{2} \rangle = 8$, $ R_{2,2} = | | \mathbf{b} | | = \frac{21}{7} $, and 
+
+\[ \mathbf{q}_{2} = \mathbf{b} / R_{2,2} = \begin{pmatrix}
+-2/7\\
+6/7\\
+-3/7
+\end{pmatrix}  \] 
+
+Now we form the vector $ \mathbf{c} = \mathbf{a}_{3} - \langle \mathbf{q}_{1},\mathbf{a}_{3} \rangle \mathbf{q}_{1} - \langle \mathbf{q}_{2},\mathbf{a}_{3} \rangle \mathbf{q}_{2}  $, which is orthogonal to both $ \mathbf{q}_{1} $ and $ \mathbf{q}_{2} $. Have
+
+\[ R_{1,3} = \langle \mathbf{q}_{1},\mathbf{a}_{3} \rangle = \frac{11}{7}, R_{2,3} = \langle \mathbf{q}_{2},\mathbf{a}_{3} \rangle = \frac{1}{7} \] 
+
+Thus
+
+\begin{align*}
+\mathbf{c} & = \begin{pmatrix}
+1\\
+1\\
+1
+\end{pmatrix} - \frac{11}{7} \begin{pmatrix}
+6/7\\
+3/7\\
+2/7
+\end{pmatrix} - \frac{1}{7} \begin{pmatrix}
+-2/7\\
+6/7\\
+-3/7
+\end{pmatrix} \\
+& = \begin{pmatrix}
+- 6/7 \\
+18/7\\
+-9/7
+\end{pmatrix}
+\end{align*}
+
+
+
+
+with $ R_{3,3} = | | \mathbf{c} | | = \frac{21}{7} $
+
+
+
+
+
+
+
 \section{QUESTION 7}
+
+First pick $ \Omega^{[1,2]} $ so that $ (\Omega^{[1,2]}A)_{2,1} = 0 $. The choice of $ \theta $ is given by
+
+\[ \cos \theta = \frac{A_{1,1}}{\sqrt{A_{1,1}^{2} + A_{2,1}^{2}}}, \quad \sin \theta  = \frac{A_{1,1}}{\sqrt{A_{1,1}^{2} + A_{2,1}^{2}}}  \]
+
+Hence $ \cos \theta = 6 / \sqrt{45} $, $ \sin \theta = 3 / \sqrt{45} $, and
+
+\begin{align*}
+\Omega^{[1,2]}A  & =  \begin{pmatrix}
+6 / \sqrt{45} & 3 / \sqrt{45} & 0 \\
+-3  / \sqrt{45} & 6 / \sqrt{45} & 0 \\
+0 & 0 & 1
+\end{pmatrix} \begin{pmatrix}
+6 & 6 & 1 \\
+3 & 6 & 1 \\
+2 & 1 & 1
+\end{pmatrix}  \\
+& = \left(
+\begin{array}{ccc}
+3 \sqrt{5} & \frac{18}{\sqrt{5}} &
+\frac{3}{\sqrt{5}} \\
+0 & \frac{6}{\sqrt{5}} &
+\frac{1}{\sqrt{5}} \\
+2 & 1 & 1 \\
+\end{array}
+\right)
+\end{align*}
+
+Next, pick $ \Omega^{[1,3]} $ so that $ (\Omega^{[1,3]}\Omega^{[1,2]}A)_{3,1} = 0 $. Say $ B = \Omega^{[1,2]} A $, so the choice of $ \theta $ is given by
+
+\[ \cos \theta = \frac{B_{1,1}}{\sqrt{B_{1,1}^{2} + B_{3,1}^{2}}}, \quad \sin \theta  = \frac{B_{3,1}}{\sqrt{B_{1,1}^{2} + B_{3,1}^{2}}}  \]
+
+Hence $ \cos \theta = \frac{3}{7} \sqrt{5} $, $ \sin \theta = \frac{2}{7} \sqrt{5} $, and
+
+\begin{align*}
+\Omega^{[1,3]}\Omega^{[1,2]}A  & =  \begin{pmatrix}
+\frac{3}{7} \sqrt{5} & 0 & \frac{2}{7} \\
+0 & 1 & 0 \\
+- \frac{2}{7} & 0 & \frac{3}{7} \sqrt{5}
+\end{pmatrix} \left(
+\begin{array}{ccc}
+3 \sqrt{5} & \frac{18}{\sqrt{5}} &
+\frac{3}{\sqrt{5}} \\
+0 & \frac{6}{\sqrt{5}} &
+\frac{1}{\sqrt{5}} \\
+2 & 1 & 1 \\
+\end{array}
+\right)  \\
+& = \left(
+\begin{array}{ccc}
+7 & 8 & \frac{11}{7} \\
+0 & \frac{6}{\sqrt{5}} &
+\frac{1}{\sqrt{5}} \\
+0 & -\frac{36}{7 \sqrt{5}}+\frac{3
+	\sqrt{5}}{7} & -\frac{6}{7
+	\sqrt{5}}+\frac{3 \sqrt{5}}{7} \\
+\end{array}
+\right) 
+\end{align*}
+
+
+Finally, pick $ \Omega^{[2,3]} $ so that $ (\Omega^{[2,3]} \Omega^{[1,3]}\Omega^{[1,2]}A)_{3,2} = 0 $. Say $ C = \Omega^{[1,3]} \Omega^{[1,2]} A $, so the choice of $ \theta $ is given by
+
+\[ \cos \theta = \frac{C_{2,2}}{\sqrt{C_{2,2}^{2} + C_{3,2}^{2}}}, \quad \sin \theta  = \frac{C_{3,2}}{\sqrt{C_{2,2}^{2} + C_{3,2}^{2}}}  \]
+
+Hence $ \cos \theta = \frac{3}{7} \sqrt{5} $, $ \sin \theta = \frac{2}{7} \sqrt{5} $, and
+
+
+
+
+
+
 \section{QUESTION 8}
 \section{QUESTION 9}
 
 
 \section{QUESTION 10}
-\section{QUESTION 11}
-\section{QUESTION 12}
+
 
 
 

@@ -1,0 +1,464 @@
+\documentclass[a4paper]{article}
+\usepackage{amsmath}
+\def\npart {IB}
+\def\nterm {Lent}
+\def\nyear {2018}
+\def\nlecturer {Mr. Higson}
+\def\ncourse {Statistics Example Sheet 2}
+
+\input{header}
+
+\newtheorem*{soln}{Solution}
+
+\renewcommand{\thesection}{}
+\renewcommand{\thesubsection}{\arabic{section}.\arabic{subsection}}
+\makeatletter
+\def\@seccntformat#1{\csname #1ignore\expandafter\endcsname\csname the#1\endcsname\quad}
+\let\sectionignore\@gobbletwo
+\let\latex@numberline\numberline
+\def\numberline#1{\if\relax#1\relax\else\latex@numberline{#1}\fi}
+\makeatother
+
+
+\begin{document}
+	
+\maketitle
+
+\section{QUESTION 1}
+
+
+Given $ f(x;\theta) $, we calculate the likelihood ratio as
+
+\begin{align*}
+\Lambda_{\mathbf{x}}(H_{0},H_{1}) & =  \frac{L_{\mathbf{x}}(H_{1})}{L_{\mathbf{x}}(H_{0})} \\
+& = \frac{2/(x+2)^{2}}{1/(x+1)^{2}} \\
+& = 2 \left(  \frac{x+1}{x+2} \right)^{2} 
+\end{align*}
+
+For $ x > 0 $ this is increasing as a function of $ x $, so for any $ k $, $ \Lambda_{x} > k \iff x > c $, for some $ c $.
+
+Hence we reject $ H_{0} $ if $ x > c $, where $ c $ is chosen such that $ \P( X > c \; | \; H_{0} )  = \alpha = 0.05 $. 
+
+Under $ H_{0}, f_{X}(x | \theta) = \frac{1}{(x+1)^{2}}, \; x > 0 $, so
+
+
+\begin{align*}
+\P( X > c \; | \; H_{0} ) & = \int_{c}^{\infty} \frac{1}{(x+1)^{2}} \; \d x  \\
+& = \frac{1}{c+1}
+\end{align*}
+
+
+
+
+So for the size 0.05 test, this gives $ c = 19 $, hence the test rejects $ H_{0} $ if $ x > 19 $. 
+
+Then
+
+\begin{align*}
+\P( \text{Type II error})& = \P( X \notin C \; | \; H_{1} ) \\
+& = \int_{0}^{19} \frac{2}{(x+2)^{2}} \; \d x \\
+& = \left[  -2(x+2)^{-1} \right]_{0}^{19} \\
+& = \frac{19}{21} 
+\end{align*}
+
+
+
+
+\section{QUESTION 2}
+
+
+We wish to test $ H_{0}: \theta_{1} = \theta_{2} $ against $ H_{1} : \theta_{1} \neq \theta_{2} $. Then 
+
+\begin{align*}
+\Lambda_\mathbf{x} (H_0; H_1) & = \frac{L_\mathbf{x}(H_1)}{L_\mathbf{x}(H_0)} \\
+& = \frac{ \sup_{\theta_{x},\theta_{y}} \theta_{x}^{n} e^{-\theta_{x} \sum x_{i} } \theta_{y}^{n} e^{-\theta_{y} \sum y_{i} }}{ \sup_{\theta} \theta^{n} e^{-\theta \sum x_{i} } \theta^{n} e^{-\theta \sum y_{i} }} \\
+\end{align*}
+
+Under $ H_{1} $ the MLEs of $ \theta_{x} $ and $ \theta_{y} $ are $ \theta_{x} = \frac{n}{\sum x_{i}} $ and $ \theta_{y} = \frac{n}{\sum y_{i}} $. Under $ H_{0} $ the MLE of $ \theta $ is $\hat{\theta} = \frac{2n}{\sum x_{i} + \sum y_{i}}$. So
+
+\begin{align*}
+\Lambda_\mathbf{x} (H_0; H_1) & = \frac{L_\mathbf{x}(H_1)}{L_\mathbf{x}(H_0)} \\
+& = \frac{  \theta_{x}^{n} \theta_{y}^{n} e^{-2n}}{ \hat{\theta}^{2n}  e^{-2n} } \\ 
+& = \left( \frac{n^{2}}{\sum x_{i} \sum y_{i}} \right)^{n}  \left( \frac{\sum x_{i} + \sum y_{i}}{2n} \right)^{2n} \\
+& = 2^{-2n} \left(   \frac{\left(  \sum x_{i} + \sum y_{i} \right)^{2} }{\sum x_{i} \sum y_{i}} \right)^{n} 
+\end{align*}
+
+
+Given 
+
+\[ T = \frac{\sum X_{i}}{\sum X_{i} + \sum Y_{i}} \]
+
+We see that
+
+\begin{align*}
+\Lambda_\mathbf{x} (H_0; H_1) & = 2^{-2n} \left(  T(1-T) \right)^{-n} \\
+& = 2^{-2n} \left(  - (T - 1/2)^{2} + 1/4 \right)^{-n}  
+\end{align*}
+
+this is an increasing function of $ \left| T - \frac{1}{2} \right| $, so for any $ k $, $ \Lambda_{x} > k \iff \left| T - \frac{1}{2} \right| > c $. for some $ c $
+
+
+We know that under $ H_{0} $, $ \sum X_{i} \sim \Gamma(n,\theta) $, $ \sum Y_{i} \sim \Gamma(n,\theta) $ so $ X/(X+Y) \sim \text{Beta}(n,n) $ (cf. Example Sheet 1, Question 2, ) ie.
+
+\[ T \sim \text{Beta}(n,n) \]
+
+So the size $ \alpha $ generalised likelihood test rejects $ H_{0} $ if 
+
+\[ \left| T - \frac{1}{2} \right| > \beta_{\alpha/2} - 1/2 \]
+
+Question: Does $ 2 \log \Lambda_{x}(H_{0} ; H_{1}) $ obviously have a $ \chi_{1}^{2} $ distribution under $ H_{0} $ here?
+
+
+
+
+
+
+
+
+
+\section{QUESTION 3}
+
+
+
+
+The probabilities for a bunch have $ i $ defective articles, $ i = 0,1,2,3 $ are $ (1-\theta)^{3}, 3 \theta (1 - \theta)^{2}, 3 \theta^{2} (1- \theta) $ and $ \theta^{3} $ respectively.  We wish to test $ H_{0}: p_{i} = p_{i}(\theta) $.
+
+
+
+We observe $ N_{i} = n_{i}, N = ( 213,228,57,14)  $. Under $ H_{0} $, the mle $ \hat{\theta} $ is found by maximizing
+
+\[ \sum n_{i} \log p_{i} (\theta) = 3 n_{1} \log(1 - \theta) + 2 n_{2} \log(3 \theta(1-\theta)) + 2 n_{3} \log ( 3(1 - \theta)\theta ) + 3 n_{4} \log \theta \]
+
+Differentiating the RHS gives
+
+\begin{align*}
+0 & =  \frac{-3n_{1}}{1 - \theta} + \frac{(2n_{2} + 2n_{3})(3(1-\theta) - 3 \theta )  }{3 \theta(1-\theta)} + \frac{3n_{4}}{\theta} \\
+& = \frac{-9n_{1} \theta}{3 \theta(1-\theta)} + \frac{(2n_{2} + 2n_{3})(3(1-\theta) - 3 \theta )  }{3 \theta(1-\theta)} + \frac{9n_{4}(1 - \theta)}{3 \theta(1-\theta)}
+\end{align*}
+
+which gives $ \hat{\theta} = \frac{2n_{2} + 2n_{3} + 3n_{4}}{3 n_{1} + 4n_{2} + 4n_{3} + 3n_{4}} $.
+
+ Pearson's chi-squared statistic is
+
+\begin{align*}
+T & := \sum_{j=1}^{4} \frac{(o_{j} - e_{j})^{2}}{e_{j}} \\
+& = \frac{(213 - 512(1-\theta)^{3})^{2}}{512(1-\theta)^{3}} + \frac{(228 - 1536 3 \theta (1 - \theta)^{2} )^{2}}{1536 \theta (1 - \theta)^{2}} \\
+& \quad + \frac{(57 - 1536 \theta^{2} (1- \theta))^{2}}{1536 \theta^{2} (1- \theta)} + \frac{(14 - 512 \theta^{3} )^{2}}{512 \theta^{3}}
+\end{align*}
+
+Also, $ \left| \Theta_{0} \right| = 1 $ and $ \left| \Theta_{1} \right| = 3 $, so we refer to $ \chi_{2}^{2} $. 
+
+
+
+
+\section{QUESTION 4}
+
+\begin{lemma}[Neyman-Pearson lemma for discrete distributions]
+	Suppose $H_0: f = f_0$, $H_1: f = f_1$, where $f_0$ and $f_1$ are probability mass functions on a countable set $ \mathcal{X} $. Then among all tests of size less than or equal to $\alpha$, the test with the largest power is the likelihood ratio test of size $\alpha$.
+\end{lemma}
+
+\begin{proof}
+	Under the likelihood ratio test, our critical region is
+	\[
+	C = \left\{\mathbf{x}: \frac{f_1(\mathbf{x})}{f_0(\mathbf{x})} > k\right\},
+	\]
+	where $k$ is chosen such that $\alpha=\P(\text{reject }H_0\mid H_0) = \P(\mathbf{X}\in C\mid H_0) = \sum_{\mathbf{x}_{i} \in C} f_0(\mathbf{x}_{i})$. The probability of Type II error is given by
+	\[
+	\beta = \P(\mathbf{X}\not\in C\mid f_1) = \sum_{\mathbf{x}_{i} \in \bar{C}} f_1(\mathbf{x}_{i}).
+	\]
+	Let $C^*$ be the critical region of any other test with size less than or equal to $\alpha$. Let $\alpha^* = \P(X\in C^*\mid f_0)$ and $\beta^* = \P(\mathbf{X}\not\in C^*\mid f_1)$. We want to show $\beta \leq \beta^*$.
+	
+	We know $\alpha^* \leq \alpha$, ie
+	\[
+	\sum_{\mathbf{x}_{i} \in C^{*}} f_0(\mathbf{x}_{i})\leq \sum_{\mathbf{x}_{i} \in C} f_0(\mathbf{x}_{i}).
+	\]
+	Also, on $C$, we have $f_1(\mathbf{x}) > kf_0(\mathbf{x})$, while on $\bar C$ we have $f_1(\mathbf{x}) \leq kf_0(\mathbf{x})$. So
+	\begin{align*}
+	\sum_{\mathbf{x}_{i} \in \bar C^*\cap C} f_1(\mathbf{x}_{i}) &\geq k\sum_{\mathbf{x}_{i} \in \bar C^*\cap C} f_0(\mathbf{x}_{i}) \\
+	\sum_{\mathbf{x}_{i} \in \bar C\cap C^*}  f_1(\mathbf{x}_{i}) &\leq k 	\sum_{\mathbf{x}_{i} \in \bar C\cap C^*} f_0 (\mathbf{x}_{i}).
+	\end{align*}
+	Hence
+	\begin{align*}
+	\beta - \beta^* &= \sum_{\mathbf{x}_i \in \bar C}f_1(\mathbf{x}_{i})  - \sum_{\mathbf{x}_i \in \bar C^*}f_1(\mathbf{x}_{i})\\
+	&= \sum_{\mathbf{x}_i \in \bar C\cap C^*} f_1(\mathbf{x}_{i}) + \sum_{\mathbf{x}_i \in \bar C\cap \bar C^*}f_1(\mathbf{x}_{i}) \\
+	&\quad - \sum_{\mathbf{x}_i \in \bar C^*\cap C} f_1(\mathbf{x}_{i}) - \sum_{ \mathbf{x}_i \in \bar C\cap \bar C^*}f_1(\mathbf{x}_{i})\\
+	&= \sum_{\mathbf{x}_i \in \bar C \cap C^*}f_1(\mathbf{x}_{i})  - \sum_{\mathbf{x}_i \in \bar C^*\cap C}f_1(\mathbf{x}_{i}) \\
+	&\leq k\sum_{\mathbf{x}_i \in \bar C \cap C^*} f_0(\mathbf{x}_{i})  - k\sum_{\mathbf{x}_i \in \bar C^*\cap C}f_0(\mathbf{x}_{i}) \\
+	&= k \left\{\sum_{\mathbf{x}_i \in \bar C\cap C^*}f_0(\mathbf{x}_{i})+ \sum_{\mathbf{x}_i \in C \cap C^*}f_0(\mathbf{x}_{i}) \right\} \\
+	&\quad- k\left\{\sum_{\mathbf{x}_i \in \bar C^*\cap C}f_0(\mathbf{x}) + \sum_{\mathbf{x}_i \in C\cap C^*}f_0(\mathbf{x}_{i})\right\}\\
+	&= k(\alpha^* - \alpha)\\
+	&\leq 0.
+	\end{align*}
+	\begin{center}
+		\begin{tikzpicture}
+		\draw [fill=mblue!50!white] (0, 0) rectangle (2.5, 1);
+		\draw [fill=mred!50!white] (2.5, 0) rectangle (4, 1);
+		\draw (0, 1) rectangle (2.5, 4);
+		\draw [fill=mgreen!50!white] (2.5, 1) rectangle (4, 4);
+		
+		\node at (0, 0.5) [left] {$C^*$};
+		\node at (0, 2.5) [left] {$\bar{C^*}$};
+		
+		\node at (1.25, 4) [above] {$\bar{C}$};
+		\node at (3.26, 4) [above] {$C$};
+		
+		\node [align=center] at (1.25, 0.5) {$C^*\cap \bar C$ \\\small $(f_1 \leq kf_0)$};
+		\node [align=center] at (3.25, 2.5) {$\bar{C^*}\cap C$ \\\small $(f_1 \geq kf_0)$};
+		\node [align=center] at (3.25, 0.5) {$C^*\cap C$};
+		
+		\draw [decorate, decoration={brace}] (2.5, 0) -- (0, 0) node [pos=0.5, below] {$\beta/H_1$};
+		\draw [decorate, decoration={brace}] (4, 0) -- (2.5, 0) node [pos=0.5, below] {$\alpha/H_0$};
+		
+		\draw [decorate, decoration={brace}] (4, 1) -- (4, 0) node [pos=0.5, right] {$\alpha^*/H_0$};
+		\draw [decorate, decoration={brace}] (4, 4) -- (4, 1) node [pos=0.5, right] {$\beta^*/H_1$};
+		\end{tikzpicture}
+	\end{center}
+\end{proof}
+So even with non-continuous distributions, the likelihood ratio test is still a good idea; for a discrete distribution, as long as a likelihood ratio test of exactly size $\alpha$ exists, the same result holds.
+
+
+\section{QUESTION 5}
+
+
+We wish to test $H_0$: sex and eye colour independent. The actual data is:
+\begin{center}
+	\begin{tabular}{ccccc}
+		\toprule
+		& & & Eye-colour\\
+		& & Blue & Brown & \textbf{Total}\\\midrule
+		\multirow{3}{*}{\rotatebox[origin=c]{90}{Sex}}& Male & 19 & 10 & \textbf{29}\\
+		& Female & 9 & 21 & \textbf{30}\\\cmidrule{2-5} 
+		& \textit{Total} & \textit{28} & \textit{31} & \textit{\textbf{59}}\\\bottomrule
+	\end{tabular}
+\end{center}
+while the expected values given by $H_0$ is
+\begin{center}
+	\begin{tabular}{ccccc}
+		\toprule
+		& & & Eye-colour\\
+		& & Blue & Brown & \textbf{Total}\\\midrule
+		\multirow{3}{*}{\rotatebox[origin=c]{90}{Sex}}& Male & $ \frac{812}{59} $ & $ \frac{812}{59} $ & \textbf{29}\\
+		& Female & $ \frac{840}{59} $ & $ \frac{930}{59} $ & \textbf{30}\\\cmidrule{2-5} 
+		& \textit{Total} & \textit{28} & \textit{31} & \textit{\textbf{59}}\\\bottomrule
+	\end{tabular}
+\end{center}
+It is not quite clear that they do not match well, so we can find the $p$ value to be sure.
+
+$\displaystyle\sum\sum \frac{(o_{ij} - e_{ij})^2}{e_{ij}} = 7.46$, and the degrees of freedom is $(2 - 1)(2 - 1) = 1$.
+
+From the tables, $\chi_1^2(0.05) = 3.841$ and $\chi_4^2(0.01) = 6.63$.
+
+So our observed value of 7.46 is significant at the $1\%$ level, i.e.\ there is strong evidence against $H_0$. 
+
+Next we wish to test $ H_0':$ all cell probabilities are equal to $ 1/4 $.
+
+  $\displaystyle\sum\sum \frac{(o_{ij} - e_{ij})^2}{e_{ij}} = 7.64$, also $ \left| \Theta_{0} \right| = 0 $, $ \left| \Theta_{0} \right| = 4 -1 = 3  $. 
+From the tables, $\chi_3^2(0.05) = 7.82$. Hence we do not reject $ H_{0} $. 
+
+
+\section{QUESTION 6}
+
+In general, we have independent observations from $r$ multinomial distributions, each of which has $c$ categories, i.e.\ we observe an $r\times c$ table $(n_{ij})$, for $i = 1, \cdots, r$ and $j = 1, \cdots, c$, where
+\[
+(N_{i1}, \cdots, N_{ic}) \sim \multinomial(n_{i+}, p_{i1}, \cdots, p_{ic})
+\]
+independently for each $i = 1, \cdots, r$.
+We want to test
+\[
+H_0: p_{1j} = p_{2j} = \cdots = p_{rj} = p_j,
+\]
+for $j = 1, \cdots, c$ (ie. homogeneity down the rows), and
+\[
+H_1: p_{ij}\text{ are unrestricted}.
+\]
+Using $H_1$,
+\[
+\like(p_{ij}) = \prod_{i = 1}^r \frac{n_{i+}!}{n_{i1}!\cdots n_{ic}!}p_{i1}^{n_{i1}} \cdots p_{ic}^{n_{ic}},
+\]
+and
+\[
+\log\like = \text{constant} + \sum_{i = 1}^r \sum_{j = 1}^c n_{ij}\log p_{ij}.
+\]
+Using Lagrangian methods, we find that $\hat{p}_{ij} = \frac{n_{ij}}{n_{i+}}$.
+
+Under $H_0$,
+\[
+\log\like = \text{constant} + \sum_{j = 1}^c n_{+j}\log p_j.
+\]
+By Lagrangian methods, we have $\hat{p}_j = \frac{n_{+j}}{n_{++}}$.
+
+Hence
+\[
+2\log \Lambda = \sum_{i = 1}^{r}\sum_{j = 1}^c n_{ij}\log\left(\frac{\hat{p}_{ij}}{\hat{p}_j}\right) = 2\sum_{i = 1}^r\sum_{j = 1}^c n_{ij}\log\left(\frac{n_{ij}}{n_{i+}n_{+j}/n_{++}}\right),
+\]
+which is the same as what we had last time, when the row totals are unrestricted!
+
+We have $|\Theta_1| = r(c - 1)$ and $|\Theta_0| = c - 1$. So the degrees of freedom is $r(c - 1) - (c - 1) = (r - 1)(c - 1)$, and under $H_0$, $2\log\Lambda$ is approximately $\chi^2_{(r - 1)(c - 1)}$. Again, it is exactly the same as what we had last time!
+
+We reject $H_0$ if $2\log \Lambda > \chi_{(r - 1)(c - 1)}^2 (\alpha)$ for an approximate size $\alpha$ test.
+
+If we let $o_{ij}= n_{ij}, e_{ij} = \frac{n_{i+}n_{+j}}{n_{++}}$, and $\delta_{ij} = o_{ij} - e_{ij}$, using the same approximating steps as for Pearson's Chi-squared, we obtain
+\[
+2\log \Lambda \approx \sum \frac{(o_{ij} - e_{ij})^2}{e_{ij}}.
+\]
+
+
+Continuing our previous example, our data is
+\begin{center}
+	\begin{tabular}{ccccc}
+		\toprule
+		& Improved & No difference & Worse & \textbf{Total}\\\midrule
+		Placebo & 18 & 17 & 15 & \textbf{50} \\
+		Half dose & 20 & 10 & 20 & \textbf{50} \\
+		Full dose & 25 & 13 & 12& \textbf{50} \\\midrule
+		\textit{Total} & \textit{6}3 & \textit{40} & \textit{47} & \textbf{\textit{150}} \\ \bottomrule
+	\end{tabular}
+\end{center}
+The expected under $H_0$ is
+\begin{center}
+	\begin{tabular}{ccccc}
+		\toprule
+		& Improved & No difference & Worse &\textbf{Total}\\\midrule
+		Placebo & 21 & 13.3 & 15.7 & \textbf{50} \\
+		Half dose & 21 & 13.3 & 15.7 & \textbf{50}\\
+		Full dose & 21 & 13.3 & 15.7 & \textbf{50}\\\midrule
+		\textit{Total}& \textit{63} & \textit{40} & \textit{47} & \textbf{\textit{150}}\\ \bottomrule
+	\end{tabular}
+\end{center}
+We find $2\log \Lambda = 5.129$, and we refer this to $\chi_4^2$. Clearly this is not significant, as the mean of $\chi_4^2$ is $4$, and is something we would expect to happen solely by chance.
+
+We can calculate the $p$-value: from tables, $\chi_4^2(0.05) = 9.488$, so our observed value is not significant at $5\%$, and the data are consistent with $H_0$.
+
+We conclude that there is no evidence for a difference between the drug at the given doses and the placebo.
+
+For interest,
+\[
+\sum\frac{(o_{ij} - e_{ij})^2}{e_{ij}} = 5.173,
+\]
+giving the same conclusion.
+
+
+
+
+
+\section{QUESTION 7}
+
+Let $ X_{1},\cdots, X_{n} \sim  \text{Exp}(\theta) $.  We want to find the best size $\alpha$ test of $H_0: \theta = \theta_0$ against $H_1: \theta = \theta_1$, where $\theta_0$ and $\theta_1$ are known fixed values with $\theta_1 > \theta_0$. Then
+\begin{align*}
+\Lambda_\mathbf{x}(H_0; H_1) &= \frac{\theta_{0}^{n}e^{-\theta_{0}\sum x_{i}}}{\theta_{1}^{n}e^{-\theta_{1}\sum x_{i}}}\\
+&= \left(  \frac{\theta_{1}}{\theta_{0}} \right)^{n} \exp \left[  -\left( \theta_{1} - \theta_{0} \right) \sum x_{i}  \right]   
+\end{align*}
+This is an increasing function of $\sum x_{i} $, so for any $k$, $\Lambda_x > k\Leftrightarrow \sum x_{i} > c$ for some $c$. Hence we reject $H_0$ if $\sum x_{i} > c$, where $c$ is chosen such that $\P(\sum X_{i} > c \mid H_0) = \alpha$.
+
+Under $H_0$, $\sum X_{i} \sim \Gamma( n, \theta_{0} )$,  
+
+Note that
+
+\[ C = \left\{  x \; : \; \sum x_{i} > c  \right\}  \]
+
+For $ \theta \in \R $, the power function is
+
+\begin{align*}
+W(\theta) &= \P_\theta(\text{reject } H_0)\\
+&= \P_\theta\left(\sum X_{i} > c\right)\\
+&= 1 - G_{\theta}(c)
+\end{align*}
+To show this is UMP, we know that $W(\theta_0) = c$ (by plugging in). $W(\mu)$ is an increasing function of $\theta$. So
+\[
+\sup_{ \theta \leq \theta_0} W(\theta) = \alpha.
+\]
+So the first condition is satisfied.
+
+For the second condition, observe that for any $\theta > \theta_0$, the Neyman Pearson size $\alpha$ test of $H_0: \theta = \theta_{0} $ vs $H_1: \theta = \theta_{1} $ has critical region $C$. Let $C^*$ and $W^*$ belong to any other test of $H_0$ vs $H_1$ of size $\leq \alpha$. Then $C^*$ can be regarded as a test of $H_0$ vs $H_1$ of size $\leq \alpha$, and the Neyman-Pearson lemma says that $W^*(\theta_1) \leq W(\theta_1)$. This holds for all $\theta_1 > \theta_0$. So the condition is satisfied and it is UMP.
+	
+	
+Not sure about last bit; I think not true, but need some explanation. 
+
+\section{QUESTION 8}
+
+Suppose $ X \sim N(0,1) $, $ Y \sim \chi_{n}^{2}  $. We want to find the joint PDF of
+
+\[ X / \sqrt{Y/n} \]
+
+Consider the map 
+
+\[ S: (x,y) \mapsto (u,v), \text{ \; where \;} u = x, \; v = \frac{x}{\sqrt{y/n}} \]
+
+where $ x,y,u \geq 0 $, $ 0 \leq v \leq 1 $ The inverse map $ T^{-1} $ acts by
+
+\[ S^{-1}: (u,v) \mapsto (x,y), \text{ where } x = u, \; y = nu^{2}/v^{2} \]
+
+and has the Jacobian
+
+\begin{align*}
+J(u,v) & = \det \begin{pmatrix}
+1 & 0 \\
+2nu/v^{2} & -2nu^{2} / v^{3} 
+\end{pmatrix}  \\
+& = -2nu^{2} / v^{3} 
+\end{align*}
+
+Then the joint PDF, by independence, is
+
+\[ f_{U,V}(u,v) = f_{X,Y}(u,nu^{2}/v^{2})\left| -2nu^{2} / v^{3}  \right|  \]
+
+Substituting in $ f_{X,Y}(x,y) = \frac{1}{\sqrt{2\pi}} e^{-x^{2}/2} \cdot \frac{y^{n/2 - 1} e^{-y/2} }{2^{n/2} \Gamma(n/2)}  $, yields
+
+\begin{align*}
+f_{U,V}(u,v) & = \frac{1}{\sqrt{2\pi}}  \cdot \frac{1}{2^{n/2} \Gamma(n/2)} e^{-u^{2}/2} (nu^{2}/v^{2})^{n/2 - 1} e^{-nu^{2}/2v^{2}} 2nu^{2}/v^{3}
+\end{align*}
+
+Here, we integrate over the $ u $ variables. The pdf of $ T $ is given by $ \int_{-\infty}^{\infty} f_{U,V}(u,v) \; \d u $. Can't get the result out; \st{this is gruesome.}
+
+
+\section{QUESTION 9}
+
+Single sample: testing a given mean, known variance ($z$-test). Suppose that $X_1, \cdots, X_n$ are iid $N(\mu, \sigma^2)$, with $\sigma^2$ unknown, and we wish to test $H_0: \mu = \mu_0$ against $H_1: \mu \not= \mu_0$ (for given constant $\mu_0$).
+
+Here $\Theta_0 = \{\mu_0\}$ and $\Theta = \R$.
+
+For the denominator, we have $\sup_\Theta f(\mathbf{x}\mid \mu) = f(\mathbf{x}\mid \hat{\mu})$, where $\hat{\mu}$ is the mle. We know that $\hat{\mu} = \bar x$. Hence
+\[
+\Lambda_\mathbf{x}(H_0; H_1) = \frac{(2\pi\sigma^2)^{-n/2}\exp\left(-\frac{1}{2\sigma^2}\sum(x_i - \bar x)^2\right)}{(2\pi\sigma^2)^{-n/2}\exp\left(-\frac{1}{2\sigma^2}\sum(x_i - \mu_0)^2\right)}.
+\]
+Then $H_0$ is rejected if $\Lambda_x$ is large.
+
+To make our lives easier, we can use the logarithm instead:
+\[
+2\log \Lambda(H_0;H_1) = \frac{1}{\sigma^2}\left[\sum (x_i - \mu_0)^2 - \sum (x_i - \bar x)^2\right] = \frac{n}{\sigma^2}(\bar x - \mu_0)^2.
+\]
+So we can reject $H_0$ if we have
+\[
+\left|\frac{\sqrt{n}(\bar x - \mu_0)}{\sigma}\right| > c
+\]
+for some $c$.
+
+We know that under $H_0$, $\displaystyle Z = \frac{\sqrt{n}(\bar X - \mu_0)}{\sigma}\sim N(0, 1)$. So the size $\alpha$ generalised likelihood test rejects $H_0$ if
+\[
+\left|\frac{\sqrt{n}(\bar x - \mu_0)}{\sigma}\right| > z_{\alpha/2}.
+\]
+Alternatively, since $\displaystyle \frac{n(\bar X - \mu_0)}{\sigma^2}\sim \chi_1^2$, we reject $H_0$ if
+\[
+\frac{n(\bar X - \mu_0)^2}{\sigma^2} > \chi_1^2(\alpha),
+\]
+(check that $z_{\alpha/2}^2 = \chi_1^2(\alpha)$).
+
+Note that this is a two-tailed test --- i.e.\ we reject $H_0$ both for high and low values of $\bar x$.
+
+Also $S_{XX}/\sigma^2 \sim \chi^2_{n - 1}$ and is independent of $\bar X$, and hence $Z$. So, from the previous question, know that
+\[
+\frac{\sqrt{n}(\bar X - \mu)/\sigma}{\sqrt{S_{XX}/((n - 1)\sigma^2)}} \sim t_{n - 1},
+\]
+or
+\[
+\frac{\sqrt{n}(\bar X - \mu)}{\sqrt{S_{XX}/(n - 1)}} \sim t_{n - 1}.
+\]
+
+
+\section{QUESTION 10}
+\section{QUESTION 11}
+\section{QUESTION 12}
+
+
+
+\end{document}
