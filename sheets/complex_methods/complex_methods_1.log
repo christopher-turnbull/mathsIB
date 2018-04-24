@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6100 64-bit) (preloaded format=pdflatex 2017.1.3)  22 FEB 2018 14:01
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6100 64-bit) (preloaded format=pdflatex 2017.1.3)  9 MAR 2018 10:40
 entering extended mode
 **./complex_methods_1.tex
 (complex_methods_1.tex
@@ -1600,15 +1600,8 @@ Package microtype Info: Loading generic settings for font family
 (microtype)             See the microtype manual for details.
  [1
 
-{C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map}]
-Overfull \hbox (8.03242pt too wide) in paragraph at lines 50--51
-\OT1/cmr/m/n/10 (-20) Check-ing when $\OML/cmm/m/it/10 g$ \OT1/cmr/m/n/10 (-20)
- is zero gives us $\OML/cmm/m/it/10 z \OT1/cmr/m/n/10 (-20) = [] [](\OMS/cmsy/m
-/n/10  \OT1/cmr/m/n/10 (-20) 1) = [] []$
- []
-
-[2] [3] [4] [5]
-Overfull \hbox (5.41223pt too wide) detected at line 195
+{C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map}] [2] [3] [4]
+Overfull \hbox (5.41223pt too wide) detected at line 226
 [] \OT1/cmr/m/n/10 = [] = \OMS/cmsy/m/n/10  \OT1/cmr/m/n/10 2(\OML/cmm/m/it/10 
 x [] \OT1/cmr/m/n/10 2\OML/cmm/m/it/10 xy \OT1/cmr/m/n/10 + \OML/cmm/m/it/10 y 
 [] \OT1/cmr/m/n/10 2\OML/cmm/m/it/10 xy\OT1/cmr/m/n/10 )\OML/cmm/m/it/10 e[]  \
@@ -1618,41 +1611,43 @@ OT1/cmr/m/n/10 =[]\OMS/cmsy/m/n/10 )  \OML/cmm/m/it/10 v \OT1/cmr/m/n/10 = \OMS
 /10 )
  []
 
-[6] [7] [8] [9] [10] [11] [12] [13] [14] [15] [16] [17] [18] [19]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 534.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 534.
+[5] [6] [7] [8] [9] [10] [11] [12] [13] [14] [15] [16] [17] [18]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 587.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 587.
 
 (complex_methods_1.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 534.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 534.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 587.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 587.
 Package rerunfilecheck Info: File `complex_methods_1.out' has not changed.
 (rerunfilecheck)             Checksum: A71CAD568896AE3AD830B05EB3E6460C;561.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 534.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 587.
  ) 
 Here is how much of TeX's memory you used:
- 46794 strings out of 493333
- 1051189 string characters out of 3139195
+ 46797 strings out of 493333
+ 1051212 string characters out of 3139195
  1276558 words of memory out of 3000000
  49426 multiletter control sequences out of 15000+200000
- 18147 words of font info for 105 fonts, out of 3000000 for 9000
+ 18249 words of font info for 107 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  64i,12n,96p,10405b,925s stack positions out of 5000i,500n,10000p,200000b,50000s
 <C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Pr
 ogram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Program Fi
 les/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Program Files/MiKT
-eX 2.9/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Program Files/MiKTeX 2.9/fo
-nts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1
-/public/amsfonts/cm/cmr12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/a
-msfonts/cm/cmr17.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/c
-m/cmr5.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr7.pfb
-><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr9.pfb><C:/Progr
-am Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files
-/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Program Files/MiKTeX 2
-.9/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Program Files/MiKTeX 2.9/fonts
-/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on complex_methods_1.pdf (19 pages, 219257 bytes).
+eX 2.9/fonts/type1/public/amsfonts/cm/cmmi5.pfb><C:/Program Files/MiKTeX 2.9/fo
+nts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1
+/public/amsfonts/cm/cmr10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/a
+msfonts/cm/cmr12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/c
+m/cmr17.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr5.pf
+b><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Prog
+ram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr9.pfb><C:/Program Files/
+MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files/MiKTeX 2
+.9/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Program Files/MiKTeX 2.9/fonts/
+type1/public/amsfonts/cm/cmti10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/pu
+blic/amsfonts/symbols/msbm10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/publi
+c/amsfonts/symbols/msbm7.pfb>
+Output written on complex_methods_1.pdf (18 pages, 234183 bytes).
 PDF statistics:
- 241 PDF objects out of 1000 (max. 8388607)
- 44 named destinations out of 1000 (max. 500000)
+ 244 PDF objects out of 1000 (max. 8388607)
+ 43 named destinations out of 1000 (max. 500000)
  24269 words of extra memory for PDF output out of 24883 (max. 10000000)
 

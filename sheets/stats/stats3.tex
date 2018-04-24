@@ -1,0 +1,233 @@
+\documentclass[a4paper]{article}
+\usepackage{amsmath}
+\def\npart {IB}
+\def\nterm {Lent}
+\def\nyear {2018}
+\def\nlecturer {Mr. Higson}
+\def\ncourse {Statistics Example Sheet 3}
+
+\input{header}
+
+\newtheorem*{soln}{Solution}
+
+\renewcommand{\thesection}{}
+\renewcommand{\thesubsection}{\arabic{section}.\arabic{subsection}}
+\makeatletter
+\def\@seccntformat#1{\csname #1ignore\expandafter\endcsname\csname the#1\endcsname\quad}
+\let\sectionignore\@gobbletwo
+\let\latex@numberline\numberline
+\def\numberline#1{\if\relax#1\relax\else\latex@numberline{#1}\fi}
+\makeatother
+
+
+\begin{document}
+	
+\maketitle
+
+\section{QUESTION 1}
+
+
+Let $ X \sim N_{n}(\mu,\Sigma) $, and let $ A \in \R^{m \times n} $.
+$ X $ has a $ n $-variable normal distribution, so for every $ t \in \R^{n}  $, the rv. $ t^{T} X $ has a univariate normal distribution.
+
+
+Have
+
+
+\[ AX = \begin{pmatrix}
+a_{11} X_{1} + \cdots + a_{1n} X_{n} \\
+\vdots \\
+\vdots \\
+a_{m1} X_{1} + \cdots + a_{mn} X_{n}
+\end{pmatrix} \]
+
+Want to show that for every $ s \in \R^{m}  $, the variable $ s^{T} A X $ has a univariate normal distribution. Not sure. 
+Assuming it does, we calculate the mean and variance.
+
+Have 
+
+\[ \E [AX] = \begin{pmatrix}
+a_{11} \E [X_{1}] + \cdots + a_{1n} \E [X_{n}] \\
+\vdots \\
+\vdots \\
+a_{m1} \E [X_{1}] + \cdots + a_{mn} \E [X_{n}]
+\end{pmatrix} = \begin{pmatrix}
+a_{11} \mu_{1} + \cdots + a_{1n} \mu_{n} \\
+\vdots \\
+\vdots \\
+a_{m1} \mu_{1} + \cdots + a_{mn} \mu_{n}
+\end{pmatrix} = A \mu  \]
+
+and 
+
+
+\[ \text{Var } [AX] = \begin{pmatrix}
+a_{11}^{2} \text{Var } [X_{1}] + \cdots + a_{1n}^{2}  \text{Var } [X_{n}] \\
+\vdots \\
+\vdots \\
+a_{m1}^{2} \text{Var } [X_{1}] + \cdots + a_{mn}^{2} \text{Var } [X_{n}]
+\end{pmatrix} = \begin{pmatrix}
+a_{11}^{2} \sigma_{1}^{2} + \cdots + \sigma_{n}^{2} \sigma_{n}^{2} \\
+\vdots \\
+\vdots \\
+a_{m1}^{2} \sigma_{1}^{2} + \cdots + a_{mn}^{2} \sigma_{n}^{2}
+\end{pmatrix} = A \Sigma A^{T} \]
+
+
+
+
+
+
+\section{QUESTION 2}
+
+
+
+
+
+\section{QUESTION 3}
+
+Choosing $ A $ be the $ n_{1} \times n $ matrix 
+
+\[ A = \begin{pmatrix}
+1 & & 0 & \\
+& \ddots & & 0 \\
+0 & & 1 & 
+\end{pmatrix} \]
+
+Have $ A X = X_{1} $, and from Question 1 we have
+
+\[ X_{1} \sim N_{n_{1}}( A \mu, A \Sigma A^{T})  \]
+
+And we can see that $ A X_{1} = \mu_{1} $ and $ A \Sigma A^{T}  = \Sigma_{11} $ as required. 
+
+
+\section{QUESTION 4}
+
+
+\[ Y_{i} = a + b x_{i} + \varepsilon_{i} \]
+
+This is a linear model; we have $ Y_{i} \sim N(a + bx_{i}, \sigma^{2}) $, with likelihood
+
+\[ f_{Y_{i}} = \frac{1}{(2 \pi \sigma^{2})^{n /2}}  \exp \left(  - \frac{1}{2 \sigma^{2}} \sum_{i=1}^{n} ( y_{i} - a - bx_{i})^{2} \right)  \]
+
+Then
+
+\[ \frac{\partial f_{Y_{i}} }{\partial a} \propto \sum_{i=1}^{n} ( y_{i} - a - bx_{i})  \]
+
+and since $ \sum_{i=1}^{n} x_{i} = 0 $ we have 
+
+\[ \hat{a} = \frac{1}{n} \sum_{i=1}^{n} y_{i} = \bar{Y}  \]
+
+Next, we have 
+
+\[ \frac{\partial f_{Y_{i}} }{\partial b} \propto \sum_{i=1}^{n} ( y_{i} - a - bx_{i})x_{i}  \]
+
+then
+
+\[ \hat{b} = \frac{\sum_{i=1}^{n} x_{i}y_{i} }{\sum_{i=1}^{n} x_{i}^{2} } \]
+
+Now the log-likelihood is given by
+
+\[ l(\alpha,\beta,\sigma) = - \frac{n}{2} \log(2 \pi \sigma^{2}) - \frac{1}{2 \sigma^{2}} \sum_{i=1}^{n} ( y_{i} - a - bx_{i})^{2}   \]
+
+Here,
+
+\begin{align*}
+\frac{\partial l }{\partial \sigma^{2}} & = - \frac{n}{2 \sigma^{2}} + \frac{1}{2 \sigma^{2}} \sum_{i=1}^{n} ( y_{i} - a - bx_{i})^{2}
+\end{align*}
+
+Thus setting this to zero at $ a = \hat{a} $, $ b = \hat{b} $ yields
+
+\[ \hat{\sigma}^{2} = \frac{1}{n} \sum_{i=1}^{n} ( y_{i} - \hat{a} - \hat{b} x_{i})^{2} \]
+
+
+
+\section{QUESTION 5}
+
+This is a linear model with 
+
+\[ y_{i} = \underbrace{\frac{v^{2}}{g}}_{\hat{\beta}} \underbrace{\sin 2\alpha}_{x_{i}} + \varepsilon_{i} \]
+
+
+Here,
+
+\begin{align*}
+\hat{b} & = \frac{\sum_{i=1}^{n} x_{i}y_{i} }{\sum_{i=1}^{n} x_{i}^{2} }\\
+& = 28156
+\end{align*}
+
+Hence $ v = \sqrt{g \hat{\beta} } $ which is approximately $ 526 \text{ ms}^{-1} $.
+
+
+
+
+
+\section{QUESTION 6}
+
+
+
+\[ Y_{ij} = \mu_{i} + \varepsilon_{ij} \]
+
+This is a linear model; we have $ Y_{ij} \sim N(\mu_{i}, \sigma^{2}) $, with likelihood
+
+\[ f_{Y_{ij}} = \frac{1}{(2 \pi \sigma^{2})^{n_{i} /2}}  \exp \left(  - \frac{1}{2 \sigma^{2}} \sum_{i=1}^{I} \sum_{i=j}^{n_{i}} ( y_{ij} - \mu_{i} )^{2} \right)  \]
+
+Then
+
+\[ \frac{\partial f_{Y_{ij}} }{\partial \mu_{i}} \propto \left(  2n_{i} \hat{\mu}_{i} - 2 \sum_{j=1}^{n_{i}} y_{ij}  \right)   \]
+
+thus 
+
+\[ \hat{\mu}_{i} = \frac{1}{n} \sum_{j=1}^{n_{i}} y_{ij} = \hat{Y}_{i}  \]
+
+
+Now the log-likelihood is given by
+
+\[ l(\mu_{i}, \sigma) = - \frac{n_{i}}{2} \log(2 \pi \sigma^{2}) - \frac{1}{2 \sigma^{2}} \sum_{i=1}^{n} ( y_{i} - a - bx_{i})^{2}   \]
+
+Here,
+
+\begin{align*}
+\frac{\partial l }{\partial \sigma^{2}} & = - \frac{n}{2 \sigma^{2}} + \frac{1}{2 \sigma^{2}} \sum_{i=1}^{I} \sum_{i=j}^{n_{i}} ( y_{ij} - \mu_{i} )^{2}
+\end{align*}
+
+Thus setting this to zero yields
+
+\[ 0 = - \frac{n_{i}}{2 \hat{\sigma}^{2}}  + \frac{1}{2 \hat{\sigma}^{4}}\sum_{i=1}^{I} \sum_{i=j}^{n_{i}} ( y_{ij} - \mu_{i} )^{2}   \]
+
+Thus
+
+\[ \hat{\sigma}^{2} = \frac{1}{n_{i}} \sum_{i=1}^{I} \sum_{i=j}^{n_{i}} ( y_{ij} - \mu_{i} )^{2} \]
+
+
+
+
+
+\section{QUESTION 7}
+
+
+We can write the distribution of the linearly transformed variable
+
+\[ (\bar{X}, X_{1} - \bar{X}, X_{2} - \bar{X}, \cdots, X_{n} - \bar{X}  ) \]
+
+
+as 
+
+
+\[ \frac{1}{(2 \pi \sigma^{2})^{n /2}}  \exp \left(  - \frac{1}{2 \sigma^{2}} \sum_{i=j}^{n} ( x_{i} - \bar{x} )^{2} \right) \exp \left(   \frac{n( \bar{x} - \mu  )^{2}}{2 \sigma^{2}}  \right)  \]
+
+
+Not sure how to show $ \bar{X} $ and $ X_{i} - \bar{X} $ are independent. 
+
+But if we do that, then it follows $ S_{XX} $ and $ \bar{X} $ are independent, as $ S_{XX} $ is a function of the $ X_{i} - \bar{X} $.
+
+
+\section{QUESTION 8}
+\section{QUESTION 9}
+\section{QUESTION 10}
+\section{QUESTION 11}
+\section{QUESTION 12}
+
+
+
+\end{document}

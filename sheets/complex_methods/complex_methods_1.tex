@@ -47,81 +47,114 @@
 		So if $ f(z) $ is analytic, then $ \frac{1}{f(z)} $ is analytic provided $ f(z) \neq 0 $. 
 		
 		
-		$ g(z) : = \cosh(z) = \frac{1}{2} (e^{z} + e^{-z}) $ is entire since $ e^{z} $ is entire (from lectures). Checking when $ g $ is zero gives us $ z = \frac{1}{2} \log(-1) = \frac{1}{2} \left[ \log(1) + (2 n + 1) i \pi \right] $ for integer $ n $.
+		$ g(z) : = \cosh(z) = \frac{1}{2} (e^{z} + e^{-z}) $ is entire since $ e^{z} $ is entire (from lectures). Checking when $ g $ is zero gives us $ e^{x + iy} + e^{x - i y} = 0 \Rightarrow e^{2x + 2iy} = -1 \Rightarrow x = 0, y = (2n +1)pi)/2$.
 		
-		Hence $ \sech (z) $ is differentiable at all points expect those at $ (0,(n + \frac{1}{2}) \pi) $ for integer $ n $, and hence also analytic everywhere but these points. 
+		Hence $ \sech (z) $ is differentiable at all points expect those at $ z = (n + \frac{1}{2}) \pi i $ for integer $ n $, and hence also analytic everywhere but these points. 
 	\end{itemize}
 	
 	
-	\item Writing $ z= r(\cos \theta + i \sin \theta) $, we obtain 
+%	\item Writing $ z= r(\cos \theta + i \sin \theta) $, we obtain 
+%	
+%	\[ u = r\cos 5 \theta \quad v = r\sin 5\theta \]
+%	
+%	Using the chain rule with $ r = \sqrt{x^{2} + y^{2}}, \tan \theta = \frac{y}{x} $,
+%	
+%	\st{This is going to be messy} First note that
+%	
+%	\[ \frac{\partial \theta }{\partial x} = \frac{-y}{x^{2} + y^{2}}, \qquad \frac{\partial \theta }{\partial y} = \frac{x}{x^{2} + y^{2}} \]
+%	
+%	and
+%	
+%	\[ \frac{\partial r }{\partial x} = x (x^{2} + y^{2})^{-1/2}, \qquad \frac{\partial r }{\partial y} y (x^{2} + y^{2})^{-1/2} \]
+%	
+%	The first Cauchy Riemann equation is
+%	
+%	\begin{align*}
+%	\frac{\partial u }{\partial x} & = \frac{\partial u }{\partial r} \frac{\partial r}{\partial x} + \frac{\partial u }{\partial \theta} \frac{\partial \theta}{\partial x} \\
+%	& = \cos (5 \theta) x (x^{2} + y^{2})^{-1/2} - r \sin 5 \theta \frac{-y}{x^{2} + y^{2}} \\
+%	& = \cos (5 \theta) r \cos \theta r^{-1}  - r \sin 5 \theta \frac{-r \sin \theta }{r^{2}} \\
+%	& = \cos 4 \theta
+%	\end{align*}
+%	
+%	Similarly, 
+%	
+%	\begin{align*}
+%	\frac{\partial v }{\partial y} & = \frac{\partial v }{\partial r} \frac{\partial r}{\partial y} + \frac{\partial v }{\partial \theta} \frac{\partial \theta}{\partial y} \\
+%	& = \sin (5 \theta) y (x^{2} + y^{2})^{-1/2} + r \cos 5 \theta \frac{x}{x^{2} + y^{2}} \\
+%	& = \sin (5 \theta) r \sin \theta r^{-1} + r \cos 5 \theta \frac{r \cos \theta}{r^{2}} \\
+%	& = \cos 4 \theta
+%	\end{align*}
+%	
+%	For second CR equation,
+%	
+%	\begin{align*}
+%	\frac{\partial v }{\partial x} & = \frac{\partial v }{\partial r} \frac{\partial r}{\partial x} + \frac{\partial v }{\partial \theta} \frac{\partial \theta}{\partial x} \\
+%	& = \sin (5 \theta) x (x^{2} + y^{2})^{-1/2} + r \cos 5 \theta \frac{-y}{x^{2} + y^{2}} \\
+%	& = \sin (5 \theta) r \cos \theta r^{-1}  + r \cos 5 \theta \frac{-r \sin \theta }{r^{2}} \\
+%	& = \sin 4 \theta
+%	\end{align*}
+%	
+%	and 
+%	
+%	\begin{align*}
+%	\frac{\partial u }{\partial y} & = \frac{\partial u }{\partial r} \frac{\partial r}{\partial y} + \frac{\partial u }{\partial \theta} \frac{\partial \theta}{\partial y} \\
+%	& = \cos (5 \theta) y (x^{2} + y^{2})^{-1/2} + - \sin 5 \theta \frac{x}{x^{2} + y^{2}} \\
+%	& = \cos (5 \theta) r \sin \theta r^{-1} - r \sin 5 \theta \frac{r \cos \theta}{r^{2}} \\
+%	& = -  \sin 4 \theta
+%	\end{align*}
+%	
+%	We conclude in fact that the Cauchy-Riemann equations are satisfied everywhere. 
+%	
+%	Now, looking closer at $ \frac{\partial u }{\partial x} $, we have 
+%	
+%	\begin{align*}
+%	\frac{\partial u }{\partial x} & = \cos 4 \theta \\
+%	& = \cos^{2} 2\theta - \sin^{2} 2 \theta \\
+%	& = ( \cos^{2} \theta - \sin^{2} \theta )^{2} - 4 \sin^{2} \theta \cos^{2} \theta \\
+%	& = ( \cos^{2} \theta + \sin^{2} \theta )^{2} - 8 \sin^{2} \theta \cos^{2} \theta \\
+%	& = 1 - \frac{8x^{2}y^{2}}{r^{4}} \\
+%	& = 1 - \frac{8x^{2}y^{2}}{(x^{2} + y^{2})^{2}}
+% 	\end{align*}
+% 	
+% 	Now we see that when $ x = y = 0 $, $ \frac{\partial u }{\partial x} $ is not defined, which is enough to show that $ f $ is not differentiable at the origin.
+
+	\item Writing $ f(z) = \frac{z^{5}}{| z |^{4}} = u + iv $, have
 	
-	\[ u = r\cos 5 \theta \quad v = r\sin 5\theta \]
-	
-	Using the chain rule with $ r = \sqrt{x^{2} + y^{2}}, \tan \theta = \frac{y}{x} $,
-	
-	\st{This is going to be messy} First note that
-	
-	\[ \frac{\partial \theta }{\partial x} = \frac{-y}{x^{2} + y^{2}}, \qquad \frac{\partial \theta }{\partial y} = \frac{x}{x^{2} + y^{2}} \]
-	
-	and
-	
-	\[ \frac{\partial r }{\partial x} = x (x^{2} + y^{2})^{-1/2}, \qquad \frac{\partial r }{\partial y} y (x^{2} + y^{2})^{-1/2} \]
-	
-	The first Cauchy Riemann equation is
 	
 	\begin{align*}
-	\frac{\partial u }{\partial x} & = \frac{\partial u }{\partial r} \frac{\partial r}{\partial x} + \frac{\partial u }{\partial \theta} \frac{\partial \theta}{\partial x} \\
-	& = \cos (5 \theta) x (x^{2} + y^{2})^{-1/2} - r \sin 5 \theta \frac{-y}{x^{2} + y^{2}} \\
-	& = \cos (5 \theta) r \cos \theta r^{-1}  - r \sin 5 \theta \frac{-r \sin \theta }{r^{2}} \\
-	& = \cos 4 \theta
+	\frac{\partial u }{\partial x} \Big|_{x=0,y=0} & = \lim_{h \to 0, h \in \R} \frac{u(h,0) - u(0,0)}{h}  \\
+	& = \lim_{h \to 0, h \in \R} \frac{\Re\left(  \frac{h^{5}}{h^{4}} \right) - 0 }{h} = 1
 	\end{align*}
 	
-	Similarly, 
+	Similarly,
 	
 	\begin{align*}
-	\frac{\partial v }{\partial y} & = \frac{\partial v }{\partial r} \frac{\partial r}{\partial y} + \frac{\partial v }{\partial \theta} \frac{\partial \theta}{\partial y} \\
-	& = \sin (5 \theta) y (x^{2} + y^{2})^{-1/2} + r \cos 5 \theta \frac{x}{x^{2} + y^{2}} \\
-	& = \sin (5 \theta) r \sin \theta r^{-1} + r \cos 5 \theta \frac{r \cos \theta}{r^{2}} \\
-	& = \cos 4 \theta
+	\frac{\partial v }{\partial y} \Big|_{x=0,y=0} & = \lim_{h \to 0, h \in \R} \frac{v(0,h) - v(0,0)}{h}  \\
+	& = \lim_{h \to 0, h \in \R} \frac{\Im \left(  \frac{ih^{5}}{h^{4}} \right) - 0 }{h} = 1
 	\end{align*}
 	
-	For second CR equation,
+	Hence $ \frac{\partial u }{\partial x} = \frac{\partial v}{\partial y} $ and similarly we can deduce $ \frac{\partial u}{\partial y} = - \frac{\partial v }{\partial x} $. However,
 	
-	\begin{align*}
-	\frac{\partial v }{\partial x} & = \frac{\partial v }{\partial r} \frac{\partial r}{\partial x} + \frac{\partial v }{\partial \theta} \frac{\partial \theta}{\partial x} \\
-	& = \sin (5 \theta) x (x^{2} + y^{2})^{-1/2} + r \cos 5 \theta \frac{-y}{x^{2} + y^{2}} \\
-	& = \sin (5 \theta) r \cos \theta r^{-1}  + r \cos 5 \theta \frac{-r \sin \theta }{r^{2}} \\
-	& = \sin 4 \theta
-	\end{align*}
+	\[ \lim\limits_{re^{i \theta} \to 0} \frac{f(re^{i \theta}) - f(0) }{r e^{i \theta}} = \frac{r e^{5 i \theta}}{r e^{i \theta}} = e^{4 i \theta} \]
 	
-	and 
-	
-	\begin{align*}
-	\frac{\partial u }{\partial y} & = \frac{\partial u }{\partial r} \frac{\partial r}{\partial y} + \frac{\partial u }{\partial \theta} \frac{\partial \theta}{\partial y} \\
-	& = \cos (5 \theta) y (x^{2} + y^{2})^{-1/2} + - \sin 5 \theta \frac{x}{x^{2} + y^{2}} \\
-	& = \cos (5 \theta) r \sin \theta r^{-1} - r \sin 5 \theta \frac{r \cos \theta}{r^{2}} \\
-	& = -  \sin 4 \theta
-	\end{align*}
-	
-	We conclude in fact that the Cauchy-Riemann equations are satisfied everywhere. 
-	
-	Now, looking closer at $ \frac{\partial u }{\partial x} $, we have 
-	
-	\begin{align*}
-	\frac{\partial u }{\partial x} & = \cos 4 \theta \\
-	& = \cos^{2} 2\theta - \sin^{2} 2 \theta \\
-	& = ( \cos^{2} \theta - \sin^{2} \theta )^{2} - 4 \sin^{2} \theta \cos^{2} \theta \\
-	& = ( \cos^{2} \theta + \sin^{2} \theta )^{2} - 8 \sin^{2} \theta \cos^{2} \theta \\
-	& = 1 - \frac{8x^{2}y^{2}}{r^{4}} \\
-	& = 1 - \frac{8x^{2}y^{2}}{(x^{2} + y^{2})^{2}}
- 	\end{align*}
- 	
- 	Now we see that when $ x = y = 0 $, $ \frac{\partial u }{\partial x} $ is not defined, which is enough to show that $ f $ is not differentiable at the origin.
+	which has no unique limit.
 	
 	
 	\item Using the Cauchy-Riemann equations, $ g $ is differentiable iff
 	
 	\[ \frac{\partial u}{\partial x} = \frac{\partial v}{\partial y}, \quad \frac{\partial u}{\partial y} = - \frac{\partial v}{\partial x} \]
+	
+	Now
+	
+	\begin{align*}
+	\frac{\partial g}{\partial \bar{z}} & = \frac{\partial u }{\partial x} \frac{\partial x }{\partial \bar{z}} + \frac{\partial u }{\partial y} \frac{\partial y }{\partial \bar{z}} + i\frac{\partial v }{\partial x} \frac{\partial x }{\partial \bar{z}} + i\frac{\partial v }{\partial y} \frac{\partial y }{\partial \bar{z}}   \\
+	& = \frac{\partial u }{\partial x} \cdot \frac{1}{2}  + \frac{\partial u }{\partial y} \cdot \frac{i}{2} + i\frac{\partial v }{\partial x} \frac{1}{2} + i\frac{\partial v }{\partial y} \frac{i}{2} \\
+	& = \frac{1}{2} \left(  \frac{\partial u}{\partial x} - \frac{\partial v }{\partial y} \right) + \frac{1}{2} i \left(  \frac{\partial u }{\partial y}  + \frac{\partial v }{\partial x} \right)  
+	\end{align*}
+	
+	So the CR equations are satisfied iff $ \frac{\partial g}{\partial \bar{z}} = 0 $. 
+	
+	This means that a function $ g(z,\bar{z}) $ is analytic iff there is no dependence on $ \bar{z} $. 
 	
 	
 
@@ -524,10 +557,38 @@ Write $ g(z) = e^{z} = e^{x}e^{iy} $, so $ g $ maps to points with radius $ e^{x
 
 
 
+Next, consider $ h(z) = \sin z $ acting on the half-strip $ \mathcal{H} = \{   z \; | \; \ \frac{\pi}{2} < \Re z < \frac{\pi}{2}, \Im z > 0 \} $. On the left boundary of $ \partial \mathcal{H} $, 
+
+\begin{align*}
+\sin(- \pi/2 + iy) & = \sin(-\pi/2)\cos(iy) + \cos(-\pi/2)\sin(iy)  \\
+& = - \cosh y
+\end{align*}
+
+so $ h(z) $ maps the left boundary of $ \partial H $ onto the $ (-\infty,-1) $ part of the real line. Similarly, $ h(z) $ maps the right boundary of $ \partial H $ onto the $ (1,\infty) $ part of the real line. 
+
+Finally, the lower boundary of $ \partial H $ is mapped to $ (-1,1) $. This shows that $ h $ maps the boundary to the real axis. Finally, choosing one point in our strip, say $ i $, we see that $ h(i) = \frac{i}{2} \sinh 1 $, so we conclude that the region $ H $ is mapped to the UHP as required. 
+
+
 The conformal map is $ f(z) = \log (\sin z) $, being careful with our choice of branch cut?
 
 
+
+Under this conformal map we wish to solve 
+
+\[ \nabla^{2} \Phi = 0, \quad \text{ on } \mathcal{L} = \{  z \; : \; 0 < \Im z < \pi \}   \]
+
+subject to 
+
+\[  \]
+
+
 \section{QUESTION 12}
+
+
+
+
+
+
 
 
 
