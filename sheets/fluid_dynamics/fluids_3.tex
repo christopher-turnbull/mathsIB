@@ -1,0 +1,467 @@
+\documentclass[a4paper]{article}
+\usepackage{amsmath}
+\def\npart {IB}
+\def\nterm {Lent}
+\def\nyear {2018}
+\def\nlecturer {Prof. Haynes (P.H.Haynes@damtp.cam.ac.uk)}
+\def\ncourse {Fluid Dynamics Example Sheet 1}
+
+\input{header}
+
+\newtheorem*{soln}{Solution}
+
+\renewcommand{\thesection}{}
+\renewcommand{\thesubsection}{\arabic{section}.\arabic{subsection}}
+\makeatletter
+\def\@seccntformat#1{\csname #1ignore\expandafter\endcsname\csname the#1\endcsname\quad}
+\let\sectionignore\@gobbletwo
+\let\latex@numberline\numberline
+\def\numberline#1{\if\relax#1\relax\else\latex@numberline{#1}\fi}
+\makeatother
+
+
+\begin{document}
+	
+\maketitle
+
+\section{QUESTION 1}
+
+ \begin{center}
+	\begin{tikzpicture}
+	\draw (0, 0) -- (6,0);
+	\draw (0.5,4) -- (0.5,1) -- (6,1);
+	\draw [dashed] (0.5, 0.5) -- (6, 0.5);
+	\draw [<->] (0.5, -0.5) -- (6, -0.5) node [pos=0.5, fill=white] {$L$};
+%	\node [left] at (0, 1) {$y = 0$};
+%	
+	\fill [mblue, opacity=0.5] (0, 3.5) -- (0, 0) -- (6, 0) -- (6, 1) -- (0.5,1) -- (0.5, 3.5) -- (0, 3.5);
+	
+	\draw [<->] (-0.5, 0) -- (-0.5, 3.5) node [pos=0.5, left] {$h$};
+	\end{tikzpicture}
+	
+\end{center}
+
+We apply time-dependent Bernoulli equation:
+
+\[
+\rho \frac{\partial\phi}{\partial t} + \frac{1}{2} \rho |\nabla \phi|^2 + p + \chi = f(t),
+\]
+
+along the centre of the horizontal tube, so gravity ($ \chi $) cancels out.
+
+At the left end of the dashed line, the open vessel implies $ \phi = 0 $, and $ p = p_{\text{atm}} + \rho g h $. At the right most end, the water will move only horizontally (since the diameter is small). Hence 
+
+\[ \phi = u x, \frac{\partial \phi }{\partial t} = \dot{u} x \]
+
+Applying the equation, taking $ x = 0 $ at the left end and $ x = L $ at the right gives 
+
+\[  p_{\text{atm}} + \rho g h = \rho \dot{u} L + \frac{1}{2} \rho u^{2} +  p_{\text{atm}}  \]
+
+which simplifies to 
+
+\[ L \dot{u} + \frac{1}{2} u^{2} = g h \]
+
+Not sure how to solve this first order ODE, but we can ansatz the given form of the solution as $ u = A \tanh (k t) $, which yields
+
+\[ k L A \sech^{2}(kt) + \frac{1}{2} A^{2}\tanh^{2} (k t) = g h \]
+
+\[ k L A ( 1  - \tanh^{2} (k t) ) + \frac{1}{2} A^2 \tanh^{2} (k t) = g h \]
+
+Comparing constants and coefficients of $ \tanh $ shows that
+
+\[ klA = gh, \quad \frac{1}{2} A^{2} = k l A \]
+
+which give $ A = \sqrt{2gh} $ and $ k = \frac{\sqrt{2gh}}{2L} $ as required. 
+
+Given $ L \sim 10  $ m $ h \sim 5 $ m, we have $ \frac{\sqrt{2gh}}{2L} \sim \frac{1}{2}$.
+
+Given $ \tanh 2 \approx 0.96$, we are pretty much there after $ 4 $ seconds.  
+
+
+
+
+
+\section{QUESTION 2}
+
+\begin{center}
+	\begin{tikzpicture}
+	\fill [gray, path fading=south] (-3, 0) rectangle (3, -1);
+	
+	
+	\fill [mblue, opacity=0.5] (-3, 0) -- (-3,1) -- (3,1) -- (3,0) ;
+	
+	\fill [mblue, opacity=0.5, path fading=north] (-3, 1) -- (-3,1.5) -- (3,1.5) -- (3,1) ;
+	
+	\draw (-3, 1) -- (3,1);
+	
+	\draw [->] (0, 1) -- (0, 2);
+	
+	\draw [->] (-5, 0.5) -- +(1, 0) node [right] {$r$};
+	\draw [->] (-5, 0.5) -- +(0, 1) node [above] {$z$};
+	
+	\draw (-1.5, 2.3) node [right] {$h(t)$} edge [out=180, in=90, -latex] (-2, 1);
+	
+	\end{tikzpicture}
+\end{center}
+
+Incompressibility $ \implies u = \nabla \phi $ ?
+
+No penetration conditions imply that $ \frac{\partial \phi }{\partial z} = 0 $ on $ z = 0 $ and the dynamic boundary condition $ \frac{\partial \phi }{\partial z} = \dot{h} $ on $ z = h $.
+
+Not sure how to derive the results: can show the given results satisfy boundary conditions though.
+
+To find pressure distribution $ p(r,z,t) $ under the disc, applying Bernoulli at $ z = h(t) $ and $ z = \infty $ gives
+
+\begin{align*}
+(2z^{2} - r^{2}) \left(  \frac{\ddot{h}}{4h} - \frac{\dot{h}^{2}}{4h^{2}} \right)  + \frac{1}{2} \left( \frac{\dot{h}^{2}}{h^{2}} \right) \left(  \frac{r^{2}}{4} + z^{2} \right) + \frac{p}{\rho} =  \frac{p_{\infty}}{\rho} \\ 
+\end{align*}
+
+Thus
+
+\[ p(r,z,t) = p_{\infty} - \frac{\dot{h}^{2}}{h^{2}} \left(  \frac{3}{8} r^{2} + z^{2} \right) - \frac{\dot{h}}{4h}(2z^{2} - r^{2})  \]
+
+Force on disc from below is given by surface integral of this pressure distribution, but not sure how to calculate force from above...
+
+\section{QUESTION 3}
+
+
+
+
+
+\begin{center}
+	\begin{tikzpicture}
+	\draw [fill=black] circle [radius=1];
+	\draw [fill = mblue, opacity=0.5] circle [radius=2];
+	
+
+%	
+	\draw [->] (0, 1) -- (0, 1.5) node [pos=0.5, right] {$U(t)$};
+%	\draw [<->] (2.2, 2.5) -- (2.2, 3.3) node [pos=0.5, left] {$\zeta$};
+%	
+
+%	\node [right] at (3, 2) {$A_{2}$};
+	\end{tikzpicture}
+\end{center}
+
+Since the fluid is inviscid and irrational, between the two spheres we have 
+
+\[ \nabla^{2} \phi = 0  \]
+
+with kinematic boundary conditions 
+
+\[ \frac{\partial \phi }{\partial r} \Big|_{r = b} = 0, \quad \frac{\partial \phi }{\partial r} \Big|_{r = a} = \frac{D a}{D t }  \approx U(t) \cos \theta \]
+
+that is, no flow through the boundary of the outer sphere, and fluid on the inner surface of the sphere stays there. 
+
+Assuming the motion is asymmetrical, the solution of Laplace's equation with these boundary conditions becomes
+
+\[ \phi(r,\theta) = \sum_{l=0}^{\infty} \left(  A_{l} r^{l} + \frac{B_{l}}{r^{l+1}} \right)  P_{l} (\cos \theta) \]
+
+where $ P_{l} $ is the $ l^{\text{th}} $ Lagrange polynomial. Neglecting quadratic terms in amplitude means the solution can be approximated by
+
+\[ \phi(r,\theta) = \frac{B_{0}}{r} + \left(  A_{l} r + \frac{B_{1}}{r^{2}} \right) (\cos \theta) \] 
+
+since $ P_{0}(\cos \theta) = 1 $, $ P_{1}(\cos \theta) = \cos \theta $ and wlog $ A_{0} = 0 $. We then apply our boundary condition to determine the potential but I feel like I've forgotten something. 
+
+Then applying time dependent Bernoulli to get the pressure should be no problem...
+
+The dynamic force will be given by the surface integral of the pressure on the inner sphere, ie.
+
+\[ F = \int_{\theta = 0}^{\pi} \int_{\varphi = 0}^{2\pi} p_{0}(t) + \frac{a^{3} + \frac{1}{2} b^{3}}{b^{3} - a^{3}} \rho \dot{U} a \cos \theta \; \d \varphi \d \theta \]
+
+The outer sphere has a larger surface area so the force will be more spread out. Not sure on the case of a tight fit; the pressure will shoot of to infinity?
+
+
+\section{QUESTION 4}
+
+\begin{center}
+	\begin{tikzpicture}
+	\draw (0, 4) -- (0, 0) -- (3, 0) -- (3, 4);
+	\draw (0.5, 4) -- (0.5, 1) -- (2.5, 1) -- (2.5, 4);
+	\draw [dashed] (-0.5, 2.5) -- (3.5, 2.5);
+	
+	\fill [mblue, opacity=0.5] (0, 1.7) -- (0, 0) -- (3, 0) -- (3, 3.3) arc(0:-180:0.25 and 0.05) -- (2.5, 1) -- (0.5, 1) -- (0.5, 1.7) arc(0:-180:0.25 and 0.05);
+	
+	\draw [<->] (0.8, 1.7) -- (0.8, 2.5) node [pos=0.5, right] {$ - \frac{A_{2}}{A_{1}}\zeta$};
+	\draw [<->] (2.2, 2.5) -- (2.2, 3.3) node [pos=0.5, left] {$\zeta$};
+	
+	\node [left] at (0, 2) {$A_{1}$};
+	\node [right] at (3, 2) {$A_{2}$};
+	\end{tikzpicture}
+\end{center}
+
+Equal volumes of water are displaced, so if the water moves up by $ \zeta(t) $ in $ A_{2} $, it must move down by $ \frac{A_{2}}{A_{1}} \zeta $ in $ A_{1} $. On the right, we have
+
+\[ \phi = \dot{\zeta} z, \quad \frac{\partial \phi }{\partial t} = \ddot{\zeta} z \]
+
+and on the left,
+
+\[ \phi = - \frac{A_{2}}{A_{1}} \dot{\zeta} z, \quad  \frac{\partial \phi }{\partial t} = \frac{A_{2}}{A_{1}} \ddot{\zeta} z   \]
+
+Applying time-dependent Bernoulli thus yields
+
+\begin{align*}
+- & \rho \frac{A_{2}}{A_{1}} \ddot{\zeta} (h - \frac{A_{2}}{A_{1}} \zeta) +  \frac{1}{2} \rho \frac{A_{2}^{2}}{A_{1}^{2}} \dot{\zeta}^{2} + g \rho ( h - \frac{A_{2}}{A_{1}} \zeta) + p_{\text{atm}} \\
+& = \rho \ddot{\zeta} (h + \zeta) + \frac{1}{2} \rho \dot{\zeta}^{2} + g \rho ( h + \zeta) + p_{\text{atm}}
+\end{align*}
+
+which simplifies to
+
+\[ \rho \ddot{\zeta}\left(  h + \zeta + \frac{A_{2}}{A_{1}} h - \frac{A_{2}^{2}}{A_{1}^{2}} \zeta  \right) + \frac{1}{2} \rho \dot{\zeta}^{2} \left(  1 - \frac{A_{2}^{2}}{A_{1}^{2}} \right) + g \rho \zeta \left(  1 + \frac{A_{2}}{A_{1}}\right) = 0      \]
+
+where we divide by $ \rho \left( 1 + \frac{A_{2}}{A_{1}} \right)  $ to achieve the required result.
+
+
+
+\section{QUESTION 5}
+
+
+\begin{center}
+	\begin{tikzpicture}
+	\draw (0, 3) -- (0, 0) -- (3, 0) -- (3, 3);
+	\draw [dashed] (0, 2.5) -- (3, 2.5);
+	
+	\fill [mblue, opacity=0.5] (0, 3) -- (0,0) -- (3,0) -- (3,3) arc(0:-180:1.5 and 0.2);
+	
+	%	\draw [<->] (0.8, 1.7) -- (0.8, 2.5) node [pos=0.5, right] {$ - \frac{A_{2}}{A_{1}}\zeta$};
+	%	\draw [<->] (2.2, 2.5) -- (2.2, 3.3) node [pos=0.5, left] {$\zeta$};
+	%	
+	%	\node [left] at (0, 2) {$A_{1}$};
+	\node [right] at (3, 2.5) {$z = 0 $};
+	\node [left] at (0, 2.5) {$z = \zeta(x,y,t) $};
+	\end{tikzpicture}
+\end{center}
+
+Incompressibility and inviscid together imply that 
+
+\[ \nabla^{2} \phi = 0 \]
+
+Have no flow through the bottom or sides, so must have
+
+\[ \frac{\partial \phi }{\partial z} = 0 \]
+
+when $ z = -h $,
+
+\[ \frac{\partial \phi }{\partial x} = 0 \]
+
+when $ x = 0, a $ and similarly 
+
+\[ \frac{\partial \phi }{\partial y} = 0 \]
+
+when $ y = 0,a $.
+
+At the free surface, we have
+
+\[ \frac{\partial \phi }{\partial z} = \frac{D \zeta}{D t} = \frac{\partial \zeta }{\partial t} + u \frac{\partial \zeta }{\partial x} + v \frac{\partial \zeta }{\partial y}  \]
+
+We then have the dynamic boundary condition that the pressure at the surface is the atmospheric pressure, i.e.\ at $z = \zeta$, we have
+\[
+p = p_0 = \text{constant}.
+\]
+We need to relate this to the flow. So we apply the time-dependent Bernoulli equation
+\[
+\rho \frac{\partial \phi}{\partial t} + \frac{1}{2} \rho|\nabla \phi|^2 + g\rho h + p_0 = f(t)\text{ on }z = h.
+\]
+The equation is not hard, but the boundary conditions are. Apart from them being non-linear, there is this surface $h$ that we know nothing about.
+
+It is impossible to solve these equations just as they are. So we want to make some approximations. We assume that the waves amplitudes are small, i.e.\ that
+\[
+\zeta \ll h.
+\]
+Moreover, we assume that the waves are relatively flat, so that
+\[
+\frac{\partial \zeta}{\partial x},\frac{\partial \zeta}{\partial y} \ll 1,
+\]
+We then ignore quadratic terms in small quantities. For example, since the waves are small, the velocities $u$ and $v$ also are. So we ignore $u \frac{\partial \zeta}{\partial x}$ and $v\frac{\partial \zeta}{\partial y}$. Similarly, we ignore the whole of $|\nabla \phi|^2$ in Bernoulli's equations since it is small.
+
+Next, we use Taylor series to write
+\[
+\left.\frac{\partial \phi}{\partial z}\right|_{z = \zeta} = \left.\frac{\partial \phi}{\partial z}\right|_{z = 0} + \zeta \left.\frac{\partial^2 \phi}{\partial z^2}\right|_{z = 0} + \cdots.
+\]
+Again, we ignore all quadratic terms. So we just approximate
+\[
+\left.\frac{\partial \phi}{\partial z}\right|_{z = \zeta} = \left.\frac{\partial \phi}{\partial z}\right|_{z = 0}.
+\]
+We are then left with linear water waves. The equations are then
+\begin{align*}
+\nabla^2 \phi &= 0 & -h < z &\leq 0\\
+\frac{\partial \phi}{\partial z} &= 0 & z &= -h\\
+\frac{\partial \phi}{\partial x} &= 0 & x &= 0,a\\
+\frac{\partial \phi}{\partial y} &= 0 & y &= 0,a\\
+\frac{\partial \phi}{\partial z} &= \frac{\partial \zeta}{\partial t} & z &= 0\\
+\frac{\partial \phi}{\partial t} + g\zeta &= f(t) & z &= \zeta.
+\end{align*}
+Note that the last equation is just Bernoulli equations, after removing the small terms and throwing our constants and factors in to the function $f$.
+
+Don't have time to solve to get double infinite family of solutions but think I can do it fine. 
+
+
+\section{QUESTION 6}
+
+Not sure about this question.
+
+\section{QUESTION 7}
+
+\begin{center}
+	\begin{tikzpicture}
+	\draw (0, 3) -- (0, 0) -- (3, 0) -- (3, 3);
+	\draw [dashed] (0, 2.5) -- (3, 2.5);
+	
+	\fill [mblue, opacity=0.5] (0, 3) -- (0,0) -- (3,0) -- (3,3) arc(0:-180:1.5 and 1);
+	
+%	\draw [<->] (0.8, 1.7) -- (0.8, 2.5) node [pos=0.5, right] {$ - \frac{A_{2}}{A_{1}}\zeta$};
+%	\draw [<->] (2.2, 2.5) -- (2.2, 3.3) node [pos=0.5, left] {$\zeta$};
+%	
+%	\node [left] at (0, 2) {$A_{1}$};
+	\node [right] at (3, 2.5) {$z = h(r)$};
+	\end{tikzpicture}
+\end{center}
+
+Assume the fluid is inviscid, so the Navier-Stokes equations become the Euler momentum equation
+	\[
+	\rho \frac{\D \mathbf{u}}{\D t} = - \nabla p + \mathbf{f}.
+	\]
+	
+Note the advective term $ \mathbf{u} \cdot \nabla \mathbf{u} $ becomes:
+
+\[ u_{x} \frac{\partial \mathbf{u} }{\partial x} + u_{y} \frac{\partial \mathbf{u} }{\partial y} + u_{z} \frac{\partial \mathbf{u} }{\partial z} \]
+
+After a long time we have $ \mathbf{u} = (- \Omega y, \Omega x, 0) $ for constant $ \Omega $ (in Cartesians). Then we get
+
+\begin{align*}
+- \rho \Omega^{2} x & =  - \frac{\partial p }{\partial x} \\
+- \rho \Omega^{2} y & = - \frac{\partial p }{\partial y} \\
+0 & = - \frac{\partial p }{\partial z} - \rho g 
+\end{align*} 
+
+From the last equation, plus the boundary condition $ p = p_{0} $ on $ z = h $, we know
+
+\[ p = p_{0} + g \rho (h - z) \]
+
+We can put this expression into the horizontal components to get
+
+
+\begin{align*}
+ \Omega^{2} x & =  g \frac{\partial h }{\partial x} \\
+ \Omega^{2} y & = g \frac{\partial h }{\partial y} \\
+\end{align*} 
+
+which gives
+
+\[ h(x,y) = \frac{\Omega^{2}x^{2}}{2g} + \frac{\Omega^{2}x^{2}}{2g} + A  \]
+
+for some constant $ A $, ie.
+
+\[ h(r) = \frac{\Omega^{2}r^{2}}{2g} + A \]
+
+The volume of the water in this situation is given by
+
+\[ V = \pi a^{2} h(0) + \int_{h(0)}^{h(a)} \pi x^{2} \d y \]
+
+where we have taken a volume of revolution along the curve $ y = \frac{\Omega^{2} x^{2}}{2g} + A $. Note that $ h(0) = A $ and $ h(a) = \frac{\Omega^{2}a^{2}}{2g} + A $. Thus
+
+\[ V = A \pi a^{2} + \frac{2 \pi g}{\Omega^{2}} \int_{A}^{A + \frac{\Omega^{2}a^{2}}{2g}} y - A \; \d y \]
+
+the integral evaluates to $ \frac{\Omega^{4} a^{4}}{8 g^{2}} $, hence
+
+\[ V = A \pi a^{2} + \frac{\pi \Omega^{2} a^{4}}{4 g} \]
+
+Thus
+
+\[ h(r) = \frac{\Omega^{2}r^{2}}{2g} + \frac{1}{a^{2}} \left( V  -  \frac{\pi \Omega^{2} a^{4}}{4 g} \right)  \]
+
+For the fluid to cover the whole base, want $ h(0) > 0 $, hence
+
+\[ V > \frac{\pi \Omega^{2} a^{4}}{4 g}  \]
+
+Thus the largest largest value of $ \Omega $ is given by 
+
+
+\[ \Omega = \sqrt{\frac{4gV}{\pi a^{4}}}   \]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\section{QUESTION 8}
+
+Not sure about this question.
+\section{QUESTION 9}
+
+
+Suppose we have a shallow layer of depth $z = h(x, y)$ with $p = p_0$ on $z = h$.
+\begin{center}
+	\begin{tikzpicture}
+	\fill [gray, path fading=south] (-3, 0) rectangle (3, -1);
+	
+	\draw [dashed] (-3, 1) -- (3, 1);
+	
+	\fill [mblue, opacity=0.5] (-3, 0) -- (-3, 1) sin (-2, 1.2) cos (-1, 1) sin (0, 0.8) cos (1, 1) sin (2, 1.2) cos (3, 1) -- (3, 0) -- cycle;;
+	
+	\draw (-3, 1) sin (-2, 1.2) cos (-1, 1) sin (0, 0.8) cos (1, 1) sin (2, 1.2) cos (3, 1);
+	
+	\draw (-1.5, 2.3) node [right] {$h(x, y, t)$} edge [out=180, in=90, -latex] (-2, 1.2);
+	
+	\draw [->] (4, 1.5) -- +(0, -1) node [below] {$\mathbf{g}$};
+	
+	\draw [->] (4.5, 0.5) -- +(0, 1) node [right] {$\frac{1}{2} \mathbf{f}$};
+	
+	\draw [-latex'](4.35, 1) arc(135:405:0.2 and 0.1);
+	\end{tikzpicture}
+\end{center}
+We consider motions with horizontal scales $L$ much greater than vertical scales $H$.
+
+We use the fact that the fluid is incompressible, i.e.\ $\nabla \cdot \mathbf{u} = 0$. Writing $\mathbf{u} = (u, v, w)$, we get
+\[
+\frac{\partial w}{\partial z} = -\frac{\partial u}{\partial x} - \frac{\partial v}{\partial y}.
+\]
+The scales of the terms are $W/H$, $U/L$ and $V/L$ respectively. Since $H \ll L$, we know $W \ll U, V$, i.e.\ most of the movement is horizontal, which makes sense, since there isn't much vertical space to move around.
+
+We consider only horizontal velocities, and write
+\[
+\mathbf{u} = (u, v, 0),
+\]
+and
+\[
+\mathbf{f} = (0, 0, f).
+\]
+Then from Euler's equations, we get
+\begin{align*}
+\frac{\partial u}{\partial t} - fv &= -\frac{1}{\rho} \frac{\partial p}{\partial x},\\
+\frac{\partial v}{\partial t} + fu &= -\frac{1}{\rho} \frac{\partial p}{\partial y},\\
+0 &= -\frac{1}{\rho}\frac{\partial p}{\partial z} -g.
+\end{align*}
+From the last equation, plus the boundary conditions, we know
+\[
+p = p_0 = g\rho(h - z).
+\]
+This is just the hydrostatic balance. We now put this expression into the horizontal components to get
+\begin{align*}
+\frac{\partial u}{\partial t} - fv &= -g\frac{\partial h}{\partial x},\\
+\frac{\partial v}{\partial t} + fu &= -g\frac{\partial h}{\partial y}.
+\end{align*}
+
+
+To simplify the situation, we suppose we have small oscillations, so we have $h = h_0 + \eta(x, y, t)$, where $\eta \ll h_0$
+
+Hence have
+
+\begin{align*}
+\frac{\partial u}{\partial t} - fv &= -g \frac{\partial \eta}{\partial x},\\
+\frac{\partial v}{\partial t} + fu &= -g\frac{\partial \eta}{\partial y}.
+\end{align*}
+
+Not sure about rest
+
+
+\end{document}

@@ -1,7 +1,7 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6100 64-bit) (preloaded format=pdflatex 2017.1.3)  24 APR 2018 22:01
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6100 64-bit) (preloaded format=pdflatex 2017.1.3)  9 MAY 2018 09:07
 entering extended mode
-**./stats3.tex
-(stats3.tex
+**./electromagnetism_3.tex
+(electromagnetism_3.tex
 LaTeX2e <2016/03/31> patch level 3
 Babel <3.9r> and hyphenation patterns for 75 language(s) loaded.
 ("C:\Program Files\MiKTeX 2.9\tex\latex\base\article.cls"
@@ -1331,11 +1331,11 @@ Package: multicol 2016/04/07 v1.8p multicolumn formatting (FMi)
 \colbreak@box=\box96
 \mc@col@check@num=\count294
 ))
-\stats3@idxfile=\write5
-\openout5 = `stats3.idx'.
+\electromagnetism_3@idxfile=\write5
+\openout5 = `electromagnetism_3.idx'.
 
 
-Writing index file stats3.idx
+Writing index file electromagnetism_3.idx
 ("C:\Program Files\MiKTeX 2.9\tex\latex\hyperref\hyperref.sty"
 Package: hyperref 2016/06/24 v6.83q Hypertext links for LaTeX
 
@@ -1478,8 +1478,8 @@ libraryquotes.code.tex"
 File: tikzlibraryquotes.code.tex 2014/03/21 v3.0.1a (rcs-revision 1.4)
 ))
 \c@nthm=\count306
-) (stats3.aux)
-\openout1 = `stats3.aux'.
+) (electromagnetism_3.aux)
+\openout1 = `electromagnetism_3.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 23.
 LaTeX Font Info:    ... okay on input line 23.
@@ -1584,9 +1584,9 @@ LaTeX Info: Redefining \ref on input line 23.
 LaTeX Info: Redefining \pageref on input line 23.
 LaTeX Info: Redefining \nameref on input line 23.
 
-(stats3.out) (stats3.out)
+(electromagnetism_3.out) (electromagnetism_3.out)
 \@outlinefile=\write6
-\openout6 = `stats3.out'.
+\openout6 = `electromagnetism_3.out'.
 
 \c__siunitx_mathsf_int=\count314
 Package microtype Info: Loading generic settings for font family
@@ -1600,47 +1600,49 @@ Package microtype Info: Loading generic settings for font family
 (microtype)             See the microtype manual for details.
  [1
 
-{C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map}]
-Overfull \hbox (38.33197pt too wide) detected at line 74
-[]\OT1/cmr/m/n/10 [\OML/cmm/m/it/10 AX\OT1/cmr/m/n/10 ] = [] = [] = \OML/cmm/m/
-it/10 A\OT1/cmr/m/n/10 \OML/cmm/m/it/10 A[]
- []
+{C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map}] [2]
 
-[2] [3] [4] [5] [6] [7] [8] [9] [10] [11] [12] [13]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 239.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 239.
- (stats3.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 239.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 239.
-Package rerunfilecheck Info: File `stats3.out' has not changed.
-(rerunfilecheck)             Checksum: A71CAD568896AE3AD830B05EB3E6460C;561.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 239.
+LaTeX Warning: Command \i invalid in math mode on input line 148.
+
+
+LaTeX Warning: Command \i invalid in math mode on input line 148.
+
+[3] [4] [5] [6] [7] [8] [9] [10] [11]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 381.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 381.
+ (electromagnetism_3.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 381.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 381.
+Package rerunfilecheck Info: File `electromagnetism_3.out' has not changed.
+(rerunfilecheck)             Checksum: A51146BB284A23242B46F758626844C4;463.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 381.
  ) 
 Here is how much of TeX's memory you used:
- 46641 strings out of 493333
- 1047878 string characters out of 3139195
- 1271448 words of memory out of 3000000
- 49331 multiletter control sequences out of 15000+200000
- 17013 words of font info for 85 fonts, out of 3000000 for 9000
+ 46747 strings out of 493333
+ 1051134 string characters out of 3139195
+ 1272557 words of memory out of 3000000
+ 49430 multiletter control sequences out of 15000+200000
+ 18201 words of font info for 92 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 64i,12n,96p,10394b,735s stack positions out of 5000i,500n,10000p,200000b,50000s
-<C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Pr
-ogram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Program Fi
-les/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Program Files/MiKT
-eX 2.9/fonts/type1/public/amsfonts/cm/cmmi5.pfb><C:/Program Files/MiKTeX 2.9/fo
-nts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1
-/public/amsfonts/cm/cmr10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/a
-msfonts/cm/cmr12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/c
-m/cmr17.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr5.pf
-b><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Prog
-ram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr9.pfb><C:/Program Files/
-MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files/MiKTeX 2
-.9/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Program Files/MiKTeX 2.9/fonts/
-type1/public/amsfonts/cm/cmti10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/pu
-blic/amsfonts/symbols/msbm10.pfb>
-Output written on stats3.pdf (13 pages, 190978 bytes).
+ 64i,11n,96p,10406b,930s stack positions out of 5000i,500n,10000p,200000b,50000s
+<C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Pr
+ogram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Program Fi
+les/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx7.pfb><C:/Program Files/MiKTe
+X 2.9/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Program Files/MiKTeX 2.9/fo
+nts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type
+1/public/amsfonts/cm/cmmi7.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/
+amsfonts/cm/cmr10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/
+cm/cmr12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr17.
+pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr5.pfb><C:/Pr
+ogram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Program File
+s/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr9.pfb><C:/Program Files/MiKTeX 2
+.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files/MiKTeX 2.9/fonts
+/type1/public/amsfonts/cm/cmsy7.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/pu
+blic/amsfonts/cm/cmti10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/ams
+fonts/symbols/msbm10.pfb>
+Output written on electromagnetism_3.pdf (11 pages, 223565 bytes).
 PDF statistics:
- 203 PDF objects out of 1000 (max. 8388607)
- 26 named destinations out of 1000 (max. 500000)
- 24269 words of extra memory for PDF output out of 24883 (max. 10000000)
+ 189 PDF objects out of 1000 (max. 8388607)
+ 22 named destinations out of 1000 (max. 500000)
+ 25789 words of extra memory for PDF output out of 29859 (max. 10000000)
 

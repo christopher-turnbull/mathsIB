@@ -3,8 +3,8 @@
 \def\npart {IB}
 \def\nterm {Lent}
 \def\nyear {2018}
-\def\nlecturer {Prof. Haynes (P.H.Haynes@damtp.cam.ac.uk)}
-\def\ncourse {Complex Methods Example Sheet 1}
+\def\nlecturer {Dr. Warnick (cmw50@cam.ac.uk)}
+\def\ncourse {Electromagnetism Example Sheet 3}
 
 \input{header}
 
@@ -25,17 +25,356 @@
 \maketitle
 
 \section{QUESTION 1}
+
+
+ We use cylindrical polar coordinates $(r, \phi, z)$, where $z$ is along the direction of the current, and $r$ points in the radial direction.
+\begin{center}
+	\begin{tikzpicture}
+	\draw (0, 1.5) circle [x radius=0.5, y radius = 0.15];
+	\draw [dashed] (0.5, -1.5) arc (0: 180:0.5 and 0.15);
+	\draw (-0.5, -1.5) arc (180: 360:0.5 and 0.15);
+	\draw (0.5, 1.5) -- (0.5, -1.5);
+	\draw (-0.5, 1.5) -- (-0.5, -1.5);
+	
+	\draw [->] (0, 1.5) -- (0, 2) node [above] {$I$};
+	
+	\draw [fill = gray!50!white] circle [x radius = 1, y radius = 0.3];
+	\draw [fill = white] circle [x radius = 0.5, y radius = 0.15];
+	\draw [fill = white, draw = none] (-0.5, 0) rectangle (0.5, 1);
+	\draw (-0.5, 0) -- (-0.5, 1);
+	\draw (0.5, 0) -- (0.5, 1);
+	\node at (1, 0) [right] {$S$};
+	
+	\draw [->] (3, 0) -- (3, 1) node [above] {$z$};
+	\draw [->] (3, 0) -- (4, 0) node [right] {$r$};
+	\end{tikzpicture}
+\end{center}
+
+
+We know that inside a conductor, $ \mathbf{E} = 0 $, and at the surface, $ \mathbf{E}_{\parallel} = 0 $. 
+
+
+%Let the $ a $ be the radius of the cylinder, so 
+
+%\[ \mathbf{E} = \begin{cases} 0  & \text{ if } r < a \\ E(r) \hat{\mathbf{r}} & \text{ if } r = a \end{cases} \]
+
+Since
+
+\[ \mathbf{J} = \sigma \mathbf{E} \]
+
+we know that inside the conductor, $ \mathbf{J} = 0 $. Hence the current, given by $ I = \int_{S} \mathbf{J} \cdot \d s $, must be constant across the cylinder. 
+
+
+Using the result
+  \[
+\hat{\mathbf{n}}\cdot \mathbf{E}_{\text{outside}} - \hat{\mathbf{n}}\cdot \mathbf{E}_{\text{inside}} = \frac{k}{\varepsilon_0}.
+\]
+
+where $ k $ is the surface current density. Since $ \mathbf{E}_{\text{inside}} = 0 $, dotting with $ \hat{\mathbf{r}} = \hat{\mathbf{n}} $ gives
+
+\[ \mathbf{E}_{\text{outside}} = \frac{k}{\varepsilon_0} \hat{\mathbf{r}}
+\]
+
+Maxwell's equations say that $ \nabla \times \mathbf{E} = - \frac{\partial \mathbf{B} }{\partial t} $, and since $ \mathbf{E} $ is constant, we also have that $ \mathbf{B} $ is constant. 
+
+I think inside the conductor $ \mathbf{B} = 0 $ but not sure.
+
+
+
+Pontying vector: $ \mathbf{S} = \frac{1}{\mu_{0}} \mathbf{E} \times \mathbf{B}  $.
+
+\begin{defi}[Joule heating]
+	\emph{Joule heating} is the energy lost in a circuit due to friction. It is given by
+	\[
+	\frac{\d W}{\d t} = I^2 R.
+	\]
+\end{defi}
+
+From the definition of resistivity and conductivity, we have $ R = \frac{L}{A \sigma} $, which is simply $ 1/\sigma $ if we're talking about unit lengths.
+
+
+
+
+Not sure how to finish this off. 
+
+
+ 
+
 \section{QUESTION 2}
+
+\begin{center}
+	\begin{tikzpicture}
+	\draw [fill=gray] (0, 2) rectangle (1, -2);
+	\draw [->] (-2, 0) -- (-1, 0) node [pos =0.5, above] {$\mathbf{E}_\mathrm{inc}$};
+	\end{tikzpicture}
+\end{center}
+
+We have
+
+\[ \mathbf{E} = E_{0} \hat{\mathbf{x}} e^{i(kz - \omega t)} -  E_{0} \hat{\mathbf{x}} e^{i(-kz - \omega t)}   \]
+
+\[ \mathbf{B} = \frac{E_{0}}{c} \hat{\mathbf{y}} e^{i(kz - \omega t)} -  \frac{E_{0}}{c} \hat{\mathbf{y}} e^{i(-kz - \omega t)}   \]
+
+The Maxwell equations in free space $ \nabla \cdot \mathbf{E} = 0 $,$ \nabla  \cdot \mathbf{B} = 0  $ are trivially satisfied as $ E_{x} $ and $ B_{y} $ have no dependence on $ x $ and $ y $ respectively. Next we have to satisfy
+
+\begin{align*}
+\nabla  \times \mathbf{E} & = - \frac{\partial \mathbf{B} }{\partial t} \\
+\nabla  \times \mathbf{B} & = \mu_{0}\varepsilon_{0} \frac{\partial \mathbf{E} }{\partial t} 
+\end{align*}
+
+Noting that $ \nabla \times E(z) \hat{\mathbf{x}} = E'(z) \hat{\mathbf{y}} $ and $ \nabla \times B(z) \hat{\mathbf{y}} = - B'(z) \hat{\mathbf{x}} $, we have 
+
+\begin{align*}
+\nabla  \times \mathbf{E} & = i k E_{0} \hat{\mathbf{y}} e^{i(kz - \omega t)} - ( ik E_{0} \hat{\mathbf{y}} e^{i(-kz - \omega t)}  )
+\end{align*}
+
+and
+
+\begin{align*}
+\frac{\partial \mathbf{B} }{\partial t} & = - i \omega \frac{E_{0}}{c} \hat{\mathbf{y}} e^{i(kz - \omega t)} - ( - i \omega \frac{E_{0}}{c} \hat{\mathbf{y}} e^{i(-kz - \omega t)} )
+\end{align*}
+
+so the the first equation is satisfied if $ k = \omega / c  $. Next, we have 
+
+\begin{align*}
+\nabla \times \mathbf{B }& = - ik \frac{E_{0}}{c} \hat{\mathbf{x}} e^{i(kz - \omega t)} -  (- ik \frac{E_{0}}{c} \hat{\mathbf{x}} e^{i(-kz - \omega t)} )  \\
+\end{align*}
+
+so can see the next equation is satisfied if $ \frac{k}{c} = \omega \mu_{0} \varepsilon_{0} $, which is equivalent to $ k = \omega / c $ since $ c = \frac{1}{\sqrt{\mu_{0} \varepsilon_{0} }} $.
+
+We know at the surface of a conductor, $ \mathbf{E}_{\parallel} =  0 $. Clearly $ \mathbf{E} \cdot \hat{y}|_{z = 0} = 0 $, and 
+
+
+\[  \mathbf{E} \cdot \hat{x}|_{z = 0} = E_{0} e^{-\i \omega t} - E_{0} e^{-\i \omega t} = 0 \]
+
+
+Not sure how to do rest/ ran out of time.
+
+
+
+
+
+
+
+
 \section{QUESTION 3}
+
+Plane wave solutions which propagate in the $y$ direction are independent of $x$ and $z$. So we can write our electric field as
+\[
+\mathbf{E}(\mathbf{x}) = (E_x(y, t), E_y(y, t), E_z(y, t)).
+\]
+Hence any derivatives wrt $x$ and $z$ are zero. Since we know that $\nabla \cdot \mathbf{E} = 0$, $E_y$ must be constant. We take $E_y = 0$. wlog, assume $E_z = 0$, ie the wave propagate in the $y$ direction and oscillates in the $x$ direction. Then we look for solutions of the form
+
+\[
+\mathbf{E} = (E(y, t), 0, 0),
+\]
+with
+\[
+\frac{1}{c^2}\frac{\partial^2 \mathbf{E}}{\partial t^2} - \frac{\partial^2 \mathbf{E}}{\partial y^2} = 0.
+\]
+The general solution is
+\[
+E(y, t) = f(y - ct) + g(y + ct).
+\]
+The most important solutions are the \emph{monochromatic} waves
+\[
+E(y,t) = E_0 \sin (ky - \omega t).
+\]
+
+Note that here, $ \omega = c k $. The given boundary conditions imposed are that $ E(0,t) = E(a,t) = 0 $. Thus
+
+\[ \sin \left( \frac{a \omega}{c} - \omega t  \right) = 0, \quad \sin(- \omega t) = 0 \]
+
+from which we deduce that both arguments are integer multiples of $ \pi $. It then follows that $ \frac{a \omega}{c} = n \pi $ for some $ n \in \Z $, and hence $ \omega = \frac{n \pi c}{a}  $.
+
+
+
+
+
+
+
 \section{QUESTION 4}
+
+
+We check that the given electric and magnetic fields satisfy the equations:
+
+\[ \frac{1}{c^{2}} \frac{\partial^{2} \mathbf{E} }{\partial t^{2}} - \nabla^{2} \mathbf{E} = 0 , \quad \nabla \times \mathbf{E} = - \frac{\partial \mathbf{B} }{\partial t}  \]
+
+First, 
+
+\begin{align*}
+ \nabla^{2} \mathbf{E} & = \frac{\partial^{2} \mathbf{E} }{\partial y^{2}} + \frac{\partial^{2} \mathbf{E} }{\partial z^{2}} \\
+& = \left[  - \left( \frac{n \pi}{a} \right)^{2}  - k^{2} \right]  \omega A \sin \left( \frac{n \pi y}{a} \right) \sin(kz - \omega t) 
+\end{align*}
+
+Next,
+
+\begin{align*}
+\frac{1}{c^{2}} \frac{\partial^{2} \mathbf{E} }{\partial t^{2}} & = - \frac{\omega^{3}}{c^{2}} A \sin \left( \frac{n \pi y}{a} \right) \sin(kz - \omega t)  \\
+\end{align*}
+
+Thus the first equation reduces to
+
+\[ \omega^{2} = \left(  \frac{n \pi c}{a} \right)^{2} + c^{2} k^{2}  \quad (*)\]
+
+which is the criteria for the wave to propagate between the plates. 
+
+Next, we have 
+
+\begin{align*}
+\quad \nabla \times \mathbf{E}  & =  \partial_{z} E_{x} \hat{\mathbf{y}}- \partial_{y} E_{x} \hat{\mathbf{z}}   \\
+\end{align*}
+
+which is trivial to show, matches the negative first time derivative of $ B_{y} $ and $ B_{z} $.
+
+Next, we have $ \lambda = 2 \pi / k $ and
+
+\[ k^{2} = \frac{\omega^{2}}{c^{2}} -  \left(  \frac{n \pi}{a} \right)^{2}   \]
+
+from (*). Hence
+
+\begin{align*}
+ \frac{1}{\lambda^{2}} & = k^{2} / 4 \pi^{2}  \\
+& = \left(  \frac{\omega}{2 \pi c} \right)^{2} - \frac{n^{2}}{4 a^{2}} 
+\end{align*}
+
+This suggests that $ \lambda_{\infty} = \frac{2 \pi c}{\omega} $ but I'm not sure why this would be true.
+
+Also not sure if (*) is true; don't we have $ \omega^{2} = c^{2} k^2 $ for monochromatic waves?
+
+
 \section{QUESTION 5}
+
+
+Recall we define $\mathbf{E}$ and $\mathbf{B}$ in terms of $\phi$ and $\mathbf{A}$ as follows:
+
+\begin{align*}
+\mathbf{E} &= -\nabla\phi - \frac{\partial \mathbf{A}}{\partial t}\\
+\mathbf{B} &= \nabla\times \mathbf{A}.
+\end{align*}
+
+Since this is an electromagnetic wave, it must satisfy $ \nabla  \cdot \mathbf{E} = 0 $. Now
+
+\begin{align*}
+\nabla  \cdot \frac{\partial \mathbf{A} }{\partial t} & = \partial_{j} [ - \omega \mathbf{A}_{0} e^{i(\mathbf{k} \cdot \mathbf{r} - \omega t )} ]_{j}  \\
+& = - \omega [\mathbf{A}_{0}]_{j} k_{j} e^{i(\mathbf{k} \cdot \mathbf{r} - \omega t )} \\
+& = - \omega \mathbf{A}_{0} \cdot \mathbf{k} e^{i(\mathbf{k} \cdot \mathbf{r} - \omega t )}
+\end{align*}
+
+and
+
+\begin{align*}
+\nabla  \cdot \nabla  \phi & = \nabla^{2} \phi \\
+& = k^{2} \phi_{0} e^{i(\mathbf{k} \cdot \mathbf{r} - \omega t)}
+\end{align*}
+
+Therefore we must have
+
+\[ \omega \mathbf{A}_{0} \cdot \mathbf{k} = k^{2} \phi_{0} \]
+
+
+
+
+
+
+
 \section{QUESTION 6}
+
+Under a boost by $v$ in the $x$-direction , we have
+\begin{align*}
+E_x' &= E_x\\
+E_y' &= \gamma(E_y - vB_z)\\
+E_z' &= \gamma(E_z + vB_y)\\
+B_x' &= B_x\\
+B_y' &= \gamma\left(B_y + \frac{v}{c^2}E_z\right)\\
+B_z' &= \gamma\left(B_z - \frac{v}{c^2} E_y\right)
+\end{align*}
+
+The conditions are:
+
+\[ E_{x} B_{x} + E_{y} B_{y} + E_{z} B_{z} = 0 \]
+
+and
+
+\[ E_{x}^{2} + E_{y}^{2}+ E_{z}^{2} - c^{2} \left( B_{x}^{2} + B_{y}^{2} + B_{z}^{2}  \right) \neq 0  \]
+
+Not sure what I'm doing here.
+
+
+
 \section{QUESTION 7}
+
+We know that inside a conductor, $\mathbf{E} = 0$, and at the surface, $\mathbf{E}_{\parallel} = 0$. So $\mathbf{E}_0 \cdot \hat{\mathbf{y}}|_{x = 0} = 0$. This is clearly satisfied by our field, as it just becomes $ f(t) - f(t) = 0$. 
+
+
+Maxwell's equations says $\nabla\times \mathbf{E} = -\frac{\partial \mathbf{B}}{\partial t}$. So
+
+\begin{align*}
+\nabla\times \mathbf{E} & = \hat{\mathbf{z}} \left[  \frac{\partial f(t_{-}) }{\partial x } - \frac{\partial f(t_{+}) }{\partial x } \right] \\
+& =  
+\end{align*}
+
+Note sure how to link in the time derivatives of $ f $.
+
+Under a boost by $v$ in the $x$-direction , we have
+\begin{align*}
+E_x' &= E_x\\
+E_y' &= \gamma(E_y - vB_z)\\
+E_z' &= \gamma(E_z + vB_y)\\
+B_x' &= B_x\\
+B_y' &= \gamma\left(B_y + \frac{v}{c^2}E_z\right)\\
+B_z' &= \gamma\left(B_z - \frac{v}{c^2} E_y\right)
+\end{align*}
+
+
+
 \section{QUESTION 8}
+
+\[
+F_{\mu\nu} = \partial_\mu A_\nu -\partial_\nu A_\mu.
+\]
+Since this is antisymmetric, the diagonals are all 0, and $A_{\mu\nu} = -A_{\nu\mu}$. So this thing has $(d \times d - d)/2 = $ independent components (for $ d \geq 3 $).
+
+
 \section{QUESTION 9}
+
+The Lorentz force law in relativistic from is 
+
+\[ \frac{\d P^{\mu}}{\d \tau} = q F^{\mu \nu} U_{\nu} \]
+
+Here $ U_{\nu} = \gamma(c,0,-p_{0} /m,0 ) $, and 
+
+\[   F^{\mu\nu} =
+\begin{pmatrix}
+0 & -E/c & 0 & 0\\
+E/c & 0 & 0 & 0\\
+0 & 0 & 0 & 0\\
+0 & 0 & 0 & 0
+\end{pmatrix} \]
+
+So here, the RHS is $ (0,qE,0,0) $.
+
+Then
+
+\[ m \frac{\d \gamma u}{\d t} = q E \]
+
+which gives 
+
+\[ m \gamma u = q E t \]
+
+where 
+
+\[ \gamma(\mathbf{u}) = \frac{1}{\sqrt{ 1 - \frac{u^{2} + v^{2}}{c^{2}}}} \]
+
+
+
+
+
+
+
+
 \section{QUESTION 10}
-\section{QUESTION 11}
-\section{QUESTION 12}
+
 
 
 
